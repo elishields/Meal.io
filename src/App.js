@@ -15,8 +15,11 @@ class App extends Component {
 
                 <nav className="navbar header-footer">
                     <div className="container-fluid navbar-header header-footer">
-                        <a className="navbar-brand" href="">
+                        <a href="" className="navbar-brand navbar-left">
                             <img src={Logo} alt="Meal.io" className="logo"/>
+                        </a>
+                        <a href="" className="navbar-right">
+                            <span className="glyphicon glyphicon-menu-hamburger"></span>
                         </a>
                     </div>
                 </nav>

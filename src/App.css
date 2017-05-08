@@ -1,5 +1,10 @@
 .app {
-    height: 719px;
+
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: white;
 }
 
 .container-fluid {
@@ -15,12 +20,6 @@
 
 .logo {
     display: block;
-/*
-    margin-left: 10px;
-    margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: auto;
-*/
     height: 50px;
     width: auto;
 }
@@ -38,5 +37,5 @@
 .nav-icon {
     height: 70px;
     width: auto;
-    margin: 5px 10px 5px 10px;
+    margin: 6px 12px;
 }
