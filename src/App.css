@@ -2,38 +2,41 @@
     height: 719px;
 }
 
-#header {
+.container-fluid {
+    padding: 0;
+}
+
+.header-footer {
     background-color: #21C0C0;
+    margin: 0;
+    padding: 0;
+    height: 80px;
 }
 
 .logo {
     display: block;
+/*
     margin-left: 10px;
     margin-right: auto;
     padding-top: 10px;
     padding-bottom: auto;
+*/
     height: 50px;
     width: auto;
 }
 
-.body {
-    height: 80%;
-}
-
 .nav{
     background-color: #21C0C0;
-    height: 10%;
 }
+
 .icon-group {
     margin-right: auto;
     margin-left: auto;
-    height: auto;
-    width: 50%;
-
+    text-align: center;
 }
 
 .nav-icon {
-    margin: 10px;
-    height: 20%;
-    width: 20%;
+    height: 70px;
+    width: auto;
+    margin: 5px 10px 5px 10px;
 }
