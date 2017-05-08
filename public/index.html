@@ -14,6 +14,19 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBu4t2U50FLEZf2dvIGCVbB62iDW2sBUIM",
+            authDomain: "mealio-4baa7.firebaseapp.com",
+            databaseURL: "https://mealio-4baa7.firebaseio.com",
+            projectId: "mealio-4baa7",
+            storageBucket: "mealio-4baa7.appspot.com",
+            messagingSenderId: "61163998020"
+        };
+        firebase.initializeApp(config);
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -36,7 +36,8 @@ class App extends Component {
                 </nav>
 
                 </div>
-            </div>
+
+            </div> // .app
         );
     }
 }
