@@ -1,14 +1,12 @@
-.App {
+.app {
     height: 719px;
 }
 
-.Header {
+#header {
     background-color: #21C0C0;
-    height: 10%;
-    margin-bottom: 20px;
-    color: white;
 }
-.Logo {
+
+.logo {
     display: block;
     margin-left: 10px;
     margin-right: auto;
@@ -18,22 +16,23 @@
     width: auto;
 }
 
-.Body {
+.body {
     height: 80%;
 }
 
-.Nav{
+.nav{
     background-color: #21C0C0;
     height: 10%;
 }
-.Icon-Group {
+.icon-group {
     margin-right: auto;
     margin-left: auto;
     height: auto;
     width: 50%;
 
 }
-.Nav-Icon {
+
+.nav-icon {
     margin: 10px;
     height: 20%;
     width: 20%;
