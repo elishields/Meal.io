@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
+import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
 class AddItem extends React.Component {
@@ -14,7 +16,7 @@ class AddItem extends React.Component {
 
 	render() {
 		return(
-			<button className="AddItem" onClick={this.onClick}>
+			<button type="button" className="btn btn-default" onClick={this.onClick}>
 				Add Item
 			</button>
 		);
@@ -49,17 +51,12 @@ class ListItem extends React.Component {
 	
 	render() {
 		return (
-			<div className="ListItem">
-				<div className="ItemWrapper">
-					<div className="ItemName">
-						<label className="ItemAmount">{this.state.amount}</label>
-						<input type="text"></input>
-					</div><div className="IncrementWrapper">
-						<button className="Incrementor" onClick={this.increment}>+</button>
-						<button className="Incrementor" onClick={this.decrement}>-</button>
-						<button className="Incrementor">></button>
-					</div>
-				</div>
+			<div className="input-group">
+				<span className="input-group-addon">{this.state.amount}</span>
+				<input type="text" className="form-control" placeholder="item name" aria-describedby="item name"></input>
+				<span className="input-group-addon">
+					<input type="checkbox" aria-label="confirm item"></input>
+				</span>
 			</div>
 		);
 	}
