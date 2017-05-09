@@ -22,7 +22,8 @@ a, a:link, a:visited, a:hover, a:active {
 
 .logo {
     display: block;
-    height: 50px;
+    height: 40px;
+    padding-top: 5px;
     width: auto;
 }
 

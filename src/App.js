@@ -9,7 +9,7 @@ import Fridge from './Fridge.js';
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
-import Logo from '../res/Logo.png';
+import Logo from '../res/Logo-str.png';
 
 //Import our styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
