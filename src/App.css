@@ -1,5 +1,7 @@
-.app {
+/* GLOBAL */
 
+.app {
+  
 }
 
 a, a:link, a:visited, a:hover, a:active {
@@ -38,4 +40,28 @@ a, a:link, a:visited, a:hover, a:active {
     height: 70px;
     width: auto;
     margin: 6px 12px;
+}
+
+/* GROCERY LIST */
+
+#grocery-item {
+    margin: 0.2em 0em;
+}
+
+#grocery-item-quantity {
+    background-color: #21C0C0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#grocery-item-input {
+    font-style: italic;
+}
+
+#grocery-item-check-bg {
+    background-color: #21C0C0;
+}
+
+#grocery-item-check {
+  
 }
