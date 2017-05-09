@@ -47,11 +47,34 @@ class App extends Component {
         return (
             <div className="app">
                 <div className="container-fluid">
-									<MealioHeader />
 
-									<GroceryList />
+                <nav className="navbar header-footer">
+                    <div className="container-fluid navbar-header header-footer">
+                        <a href="" className="navbar-brand navbar-left">
+                            <img src={Logo} alt="Meal.io" className="logo"/>
+                        </a>
+                        <a href="" className="navbar-right">
+                            <span className="glyphicon glyphicon-menu-hamburger"></span>
+                        </a>
+                    </div>
+                </nav>
+          
+          <GroceryList />
+
+                <nav className="navbar navbar-default navbar-fixed-bottom header-footer">
+                    <div className="container-fluid header-footer icon-group">
+                        <a href="">
+                            <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
+                        </a>
+                        <a href="">
+                            <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
+                        </a>
+                        <a href="">
+                            <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
+                        </a>
+                    </div>
+                </nav>
 									
-									<MealioNavbar />
                 </div>
 
             </div> // .app
