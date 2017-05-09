@@ -27,6 +27,10 @@ a, a:link, a:visited, a:hover, a:active {
     width: auto;
 }
 
+#menu-icon {
+    width: 0.1em
+}
+
 .nav{
     background-color: #21C0C0;
 }

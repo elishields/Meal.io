@@ -29,12 +29,16 @@ class MealioHeader extends React.Component {
 		return (
       <nav className="navbar header-footer">
         <div className="container-fluid navbar-header header-footer">
-            <a href="" className="navbar-brand navbar-left">
-                <img src={Logo} alt="Meal.io" className="logo"/>
-            </a>
-            <a href="" className="navbar-right">
-                <span className="glyphicon glyphicon-menu-hamburger"></span>
-            </a>
+            <ul className="navbar-left">
+                <a href="" className="navbar-brand">
+                    <img src={Logo} alt="Meal.io" className="logo"/>
+                </a>
+            </ul>
+            <ul className="navbar-right">
+                <a href="">
+                    <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
+                </a>
+            </ul>
         </div>
     </nav>
 		);
