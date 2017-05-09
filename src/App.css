@@ -1,40 +1,66 @@
-.App {
-    height: 719px;
+/* GLOBAL */
+
+.app {
 }
 
-.Header {
-    background-color: #21C0C0;
-    height: 10%;
-    margin-bottom: 20px;
-    color: white;
+.container-fluid {
+    padding: 0;
 }
-.Logo {
+
+.header-footer {
+    background-color: #21C0C0;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+}
+
+.logo {
     display: block;
+/*
     margin-left: 10px;
     margin-right: auto;
     padding-top: 10px;
     padding-bottom: auto;
+*/
     height: 50px;
     width: auto;
 }
 
-.Body {
-    height: 80%;
+.nav{
+    background-color: #21C0C0;
 }
 
-.Nav{
-    background-color: #21C0C0;
-    height: 10%;
-}
-.Icon-Group {
+.icon-group {
     margin-right: auto;
     margin-left: auto;
-    height: auto;
-    width: 50%;
-
+    text-align: center;
 }
-.Nav-Icon {
-    margin: 10px;
-    height: 20%;
-    width: 20%;
+
+.nav-icon {
+    height: 70px;
+    width: auto;
+    margin: 5px 10px 5px 10px;
+}
+
+/* GROCERY LIST */
+
+#grocery-item {
+    margin: 0.2em 0em;
+}
+
+#grocery-item-quantity {
+    background-color: #21C0C0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#grocery-item-input {
+    font-style: italic;
+}
+
+#grocery-item-check-bg {
+    background-color: #21C0C0;
+}
+
+#grocery-item-check {
 }
