@@ -7,33 +7,6 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
 /*
- * AddItem: defines an "Add Item" button
- */
-class AddItem extends React.Component {
-
-	/*
-	 *  Constructor for AddItem
-	 *
-	 *  note: props are react's name for constructor parameters
-	 */
-	constructor(props) {
-		super(props);
-		this.onClick = props.onClick;
-	}
-
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return(
-			<button type="button" className="btn btn-default" onClick={this.onClick}>
-				Add Item
-			</button>
-		);
-	}
-}
-
-/*
  * ListItem: defines a single item for the grocery list
  */
 class ListItem extends React.Component {
