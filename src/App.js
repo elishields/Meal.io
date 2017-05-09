@@ -2,70 +2,14 @@
 import React, { Component } from 'react';
 
 //Import classes for our pages
-import GroceryList from './GroceryList.js';
-
-//Import our resources
-import GroceryListIcon from '../res/NavGroceryListIcon.svg';
-import MyFridgeIcon from '../res/FridgeIcon.png';
-import MealPlanIcon from '../res/NavMealPlanIcon.png';
-import Logo from '../res/Logo.png';
+import { Header } from './Navigation.js';
+import { Navbar } from './Navigation.js';
+import { GroceryList } from './GroceryList.js';
 
 //Import our styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-
-
-/*
- *  MealioHeader: defines the header common to all pages
- */
-class MealioHeader extends React.Component {
-
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return (
-      <nav className="navbar header-footer">
-        <div className="container-fluid navbar-header header-footer">
-            <a href="" className="navbar-brand navbar-left">
-                <img src={Logo} alt="Meal.io" className="logo"/>
-            </a>
-            <a href="" className="navbar-right">
-                <span className="glyphicon glyphicon-menu-hamburger"></span>
-            </a>
-        </div>
-    </nav>
-		);
-	}
-}
-
-/*
- *  MealioNavbar: defines the navbar common to all pages.
- */
-class MealioNavbar extends React.Component {
-
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return (
-      <nav className="navbar navbar-default navbar-fixed-bottom header-footer">
-        <div className="container-fluid header-footer icon-group">
-            <a href="">
-                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-            </a>
-            <a href="">
-                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-            </a>
-            <a href="">
-                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-            </a>
-        </div>
-    </nav>
-		);
-	}
-}
 
 /*
  * App: this is the 'entry point' for our app. It is loaded in index.js
@@ -81,13 +25,13 @@ class App extends Component {
         <div className="container-fluid">
 
           {/* Adds a MealioHeader to the template*/}
-          <MealioHeader />
+          <Header />
 
           {/* Adds a GroceryList to the template*/}
           <GroceryList />
 
           {/* Adds a MealioNavbar to the template*/}
-          <MealioNavbar />
+          <Navbar />
         </div>
       </div>
     );
