@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 //Import classes for our pages
 import GroceryList from './GroceryList.js';
+import Fridge from './Fridge.js';
 
 //Import our resources
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
@@ -84,7 +85,7 @@ class App extends Component {
           <MealioHeader />
 
           {/* Adds a GroceryList to the template*/}
-          <GroceryList />
+          <Fridge />
 
           {/* Adds a MealioNavbar to the template*/}
           <MealioNavbar />
