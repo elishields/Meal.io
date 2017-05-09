@@ -51,11 +51,11 @@ class ListItem extends React.Component {
 	
 	render() {
 		return (
-			<div className="input-group">
-				<span className="input-group-addon">{this.state.amount}</span>
-				<input type="text" className="form-control" placeholder="item name" aria-describedby="item name"></input>
-				<span className="input-group-addon">
-					<input type="checkbox" aria-label="confirm item"></input>
+			<div className="input-group" id="grocery-item">
+				<span className="input-group-addon" id="grocery-item-quantity">{this.state.amount}</span>
+				    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" aria-describedby="item name"></input>
+				<span className="input-group-addon" id="grocery-item-check-bg">
+					<input type="checkbox" id="grocery-item-check" aria-label="confirm item"></input>
 				</span>
 			</div>
 		);
