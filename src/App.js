@@ -1,85 +1,97 @@
+//Import classes from React
 import React, { Component } from 'react';
+
+//Import classes for our pages
 import GroceryList from './GroceryList.js';
+
+//Import our resources
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
 import Logo from '../res/Logo.png';
+
+//Import our styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
+
+/*
+ *  MealioHeader: defines the header common to all pages
+ */
 class MealioHeader extends React.Component {
+
+	/*
+	 *  render() defines the HTML template for this class.
+	 */
 	render() {
 		return (
-		 <nav className="navbar header-footer">
+      <nav className="navbar header-footer">
         <div className="container-fluid navbar-header header-footer">
-              <a className="navbar-brand" href="">
-                  <img src={Logo} alt="Meal.io" className="logo"/>
-              </a>
-          </div>
-      </nav>
+            <a href="" className="navbar-brand navbar-left">
+                <img src={Logo} alt="Meal.io" className="logo"/>
+            </a>
+            <a href="" className="navbar-right">
+                <span className="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+    </nav>
 		);
 	}
 }
 
+/*
+ *  MealioNavbar: defines the navbar common to all pages.
+ */
 class MealioNavbar extends React.Component {
+
+	/*
+	 *  render() defines the HTML template for this class.
+	 */
 	render() {
 		return (
-			<nav className="navbar navbar-default navbar-fixed-bottom header-footer">
-          <div className="container-fluid header-footer icon-group">
-              <a href="">
-                  <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-              </a>
-              <a href="">
-                  <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-              </a>
-              <a href="">
-                  <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-              </a>
-          </div>
-      </nav>
+      <nav className="navbar navbar-default navbar-fixed-bottom header-footer">
+        <div className="container-fluid header-footer icon-group">
+            <a href="">
+                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
+            </a>
+            <a href="">
+                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
+            </a>
+            <a href="">
+                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
+            </a>
+        </div>
+    </nav>
 		);
 	}
 }
 
+/*
+ * App: this is the 'entry point' for our app. It is loaded in index.js
+ */
 class App extends Component {
-    render() {
-        return (
-            <div className="app">
-                <div className="container-fluid">
 
-                <nav className="navbar header-footer">
-                    <div className="container-fluid navbar-header header-footer">
-                        <a href="" className="navbar-brand navbar-left">
-                            <img src={Logo} alt="Meal.io" className="logo"/>
-                        </a>
-                        <a href="" className="navbar-right">
-                            <span className="glyphicon glyphicon-menu-hamburger"></span>
-                        </a>
-                    </div>
-                </nav>
-          
+  /*
+   *  render() defines the HTML template for this class.
+   */
+  render() {
+    return (
+      <div className="app">
+        <div className="container-fluid">
+
+          {/* Adds a MealioHeader to the template*/}
+          <MealioHeader />
+
+          {/* Adds a GroceryList to the template*/}
           <GroceryList />
 
-                <nav className="navbar navbar-default navbar-fixed-bottom header-footer">
-                    <div className="container-fluid header-footer icon-group">
-                        <a href="">
-                            <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-                        </a>
-                        <a href="">
-                            <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-                        </a>
-                        <a href="">
-                            <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-                        </a>
-                    </div>
-                </nav>
-									
-                </div>
-
-            </div> // .app
-        );
-    }
+          {/* Adds a MealioNavbar to the template*/}
+          <MealioNavbar />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
