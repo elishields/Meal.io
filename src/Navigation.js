@@ -17,20 +17,24 @@ export class Header extends React.Component {
 	 */
 	render() {
 		return (
-	    	<nav className="navbar header">
-		        <div className="container-fluid navbar-header header">
-					<div>
-                        <a href="">
-                            <img src={Logo} alt="Meal.io" className="logo navbar-brand navbar-left"/>
-                        </a>
-                    </div>
-                    <div className="navbar-right">
-                        <a href="">
-                            <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
-                        </a>
-                    </div>
-		        </div>
-		    </nav>
+		    <div className="row">
+                <div className="container-fluid">
+                    <nav className="navbar header">
+                        <div className="container-fluid navbar-header header">
+                            <div className="col-md-4 navbar-left">
+                                <a href="">
+                                    <img src={Logo} alt="Meal.io" className="logo"/>
+                                </a>
+                            </div>
+                                <div className="col-md-1 navbar-right">
+                                <a href="">
+                                    <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
 		);
 	}
 }

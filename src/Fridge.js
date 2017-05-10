@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 //Import our resources
-import Apple from '../res/apple.svg';
-import Cheese from '../res/cheese.svg';
-import Meat from '../res/meat.svg';
-import Veg from '../res/veg.svg';
+import FruitVeg from '../res/fruit-veg-icon.png';
+import Dairy from '../res/dairy-icon.png';
+import Meat from '../res/meat-icon.png';
+import OtherIcon from '../res/other-icon.png';
 
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -29,22 +29,26 @@ export class Fridge extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="">
-                    <h3 className="page-header">
-                        <span className="page-title-text">MY FRIDGE</span>
-                    </h3>
+                <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3">
+                        <h3 className="page-header">
+                            <span className="page-title-text">MY FRIDGE</span>
+                        </h3>
+                    </div>
                 </div>
-                <div className="table-responsive" id="fridge-table">
-                    <table className="table">
-                        <tr>
-                            <td className="fridge-category"><img src={Apple} alt="Apple" className="fridge-category-icon"/></td>
-                            <td className="fridge-category"><img src={Cheese} alt="Cheese" className="fridge-category-icon"/></td>
-                        </tr>
-                        <tr>
-                            <td className="fridge-category"><img src={Meat} alt="Meat" className="fridge-category-icon"/></td>
-                            <td className="fridge-category"><img src={Veg} alt="Veg" className="fridge-category-icon"/></td>
-                        </tr>
-                    </table>
+                <div className="row">
+                    <div className="table-responsive" id="fridge-table">
+                        <table className="table">
+                            <tr>
+                                <td className="fridge-category"><img src={FruitVeg} alt="FruitVeg" className="fridge-category-icon"/></td>
+                                <td className="fridge-category"><img src={Dairy} alt="Dairy" className="fridge-category-icon"/></td>
+                            </tr>
+                            <tr>
+                                <td className="fridge-category"><img src={Meat} alt="Meat" className="fridge-category-icon"/></td>
+                                <td className="fridge-category"><img src={OtherIcon} alt="OtherIcon" className="fridge-category-icon"/></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
 
