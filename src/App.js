@@ -14,7 +14,6 @@ import Logo from '../res/Logo-str.png';
 
 import { Header } from './Navigation.js';
 import { Navbar } from './Navigation.js';
-import { GroceryList } from './GroceryList.js';
 
 //Import our styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
