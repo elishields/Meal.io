@@ -28,18 +28,26 @@ export class Fridge extends React.Component {
 
     render() {
         return (
-            <div className="table-responsive" id="fridge-table">
-                <table className="table">
-                    <tr>
-                        <td className="fridge-category"><img src={Apple} alt="Apple" className="fridge-category-icon"/></td>
-                        <td className="fridge-category"><img src={Cheese} alt="Cheese" className="fridge-category-icon"/></td>
-                    </tr>
-                    <tr>
-                        <td className="fridge-category"><img src={Meat} alt="Meat" className="fridge-category-icon"/></td>
-                        <td className="fridge-category"><img src={Veg} alt="Veg" className="fridge-category-icon"/></td>
-                    </tr>
-                </table>
+            <div className="container-fluid">
+                <div className="">
+                    <h3 className="page-header">
+                        <span className="page-title-text">MY FRIDGE</span>
+                    </h3>
+                </div>
+                <div className="table-responsive" id="fridge-table">
+                    <table className="table">
+                        <tr>
+                            <td className="fridge-category"><img src={Apple} alt="Apple" className="fridge-category-icon"/></td>
+                            <td className="fridge-category"><img src={Cheese} alt="Cheese" className="fridge-category-icon"/></td>
+                        </tr>
+                        <tr>
+                            <td className="fridge-category"><img src={Meat} alt="Meat" className="fridge-category-icon"/></td>
+                            <td className="fridge-category"><img src={Veg} alt="Veg" className="fridge-category-icon"/></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
         )
     }
 }

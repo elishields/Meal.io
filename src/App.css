@@ -13,6 +13,8 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 0;
 }
 
+/* NAVIGATION */
+
 .header {
     background-color: #21C0C0;
     margin: 0 0 10px 0;
@@ -56,6 +58,22 @@ a, a:link, a:visited, a:hover, a:active {
     height: 70px;
     width: auto;
     margin: 6px 12px;
+}
+
+.page-header {
+    margin: 20px 0 0 0;
+    text-align: center;
+    padding-bottom: 16px;
+    border: none;
+}
+
+.page-title-text {
+    color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
 }
 
 /* LANDING PAGE */
@@ -129,7 +147,7 @@ h4 {
 
 #fridge-table {
     width: 80%;
-    margin: 80px auto;
+    margin: 40px auto;
     border: none;
 }
 
