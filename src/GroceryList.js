@@ -24,6 +24,7 @@ class ListItem extends React.Component {
 		this.clearOnChange = this.clearOnChange.bind(this);
 		this.increment = this.increment.bind(this);
 		this.decrement = this.decrement.bind(this);
+		//this.setAmount = this.setAmount.bind(this);
 	}
 	
 	/*
@@ -58,6 +59,15 @@ class ListItem extends React.Component {
 	getAmount = function() {
 		return(this.state.amount);
 	}
+
+	/*
+	 *  Setter for amount.
+	 */
+	setAmount = function(n) {
+		this.setState((prevState, props) => {
+			return({amount: n});
+		});
+	}
 	
 	/*
 	 *  render() defines the HTML template for this class.
@@ -65,10 +75,10 @@ class ListItem extends React.Component {
 	render() {
 		return (
 			<div className="input-group" id="grocery-item">
-				<span className="input-group-addon" id="grocery-item-quantity">{this.state.amount}</span>
+				<input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
 				    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" 
 				    	onChange={this.clearOnChange} aria-describedby="item name"></input>
-				<span className="input-group-addon" id="grocery-item-check-bg">
+					<span className="input-group-addon" id="grocery-item-check-bg">
 					<input type="checkbox" id="grocery-item-check" aria-label="confirm item"></input>
 				</span>
 			</div>
