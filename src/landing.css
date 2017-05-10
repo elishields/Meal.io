@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
+
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+html,body,#body-landing {
+    height:100%;
+    background-color: #21C0C0;
+}
+
+#body-landing {
+    background-color: #21C0C0;
+    font-family: 'Catamaran', sans-serif;
+}
+
+.logo-landing {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.img-landing {
+    padding-top: 15px;
+}
+
+.img-responsive {
+    max-width: 60%;
+}
+
+.form-landing {
+    margin-top: 15px;
+    padding: 10px 20px 20px;
+    border-radius: 15px;
+}
+
+h4 {
+    border: 0 solid #FFFFFF;
+    border-bottom-width: 1px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.form-control {
+    border-radius: 10px;
+    font-family: 'Catamaran', sans-serif;
+}
+
+.wrapper {
+    text-align: center;
+    color: white;
+}
+
+#login-button {
+    color: black;
+}
