@@ -2,6 +2,16 @@
 import React, { Component } from 'react';
 
 //Import classes for our pages
+
+import GroceryList from './GroceryList.js';
+import Fridge from './Fridge.js';
+
+//Import our resources
+import GroceryListIcon from '../res/NavGroceryListIcon.svg';
+import MyFridgeIcon from '../res/FridgeIcon.png';
+import MealPlanIcon from '../res/NavMealPlanIcon.png';
+import Logo from '../res/Logo-str.png';
+
 import { Header } from './Navigation.js';
 import { Navbar } from './Navigation.js';
 import { GroceryList } from './GroceryList.js';
@@ -28,7 +38,7 @@ class App extends Component {
           <Header />
 
           {/* Adds a GroceryList to the template*/}
-          <GroceryList />
+          <Fridge />
 
           {/* Adds a MealioNavbar to the template*/}
           <Navbar />

@@ -22,8 +22,13 @@ a, a:link, a:visited, a:hover, a:active {
 
 .logo {
     display: block;
-    height: 50px;
+    height: 40px;
+    padding-top: 5px;
     width: auto;
+}
+
+#menu-icon {
+    width: 0.1em
 }
 
 .nav{
@@ -107,4 +112,20 @@ h4 {
 }
 
 #grocery-item-check {
+}
+
+/* FRIDGE ICON */
+
+#fridge-table {
+    width: 80%;
+    margin: 80px auto;
+    border: none;
+}
+
+.fridge-category {
+    padding: 1em;
+}
+
+.fridge-category-icon {
+
 }
