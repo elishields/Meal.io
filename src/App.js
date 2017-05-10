@@ -3,6 +3,7 @@ import GroceryList from './GroceryList.js';
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
+import AffiliatedPage from './affiliated-page';
 import Logo from '../res/Logo.png';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
@@ -59,7 +60,7 @@ class App extends Component {
                     </div>
                 </nav>
           
-          <GroceryList />
+          <AffiliatedPage/>
 
                 <nav className="navbar navbar-default navbar-fixed-bottom header-footer">
                     <div className="container-fluid header-footer icon-group">

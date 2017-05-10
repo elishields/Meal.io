@@ -108,3 +108,24 @@ h4 {
 
 #grocery-item-check {
 }
+
+/* AFFILIATED PAGE */
+.caption p a {
+    color: black;
+}
+
+.thumbnail img {
+    width: 50%;
+}
+#entire-container{
+    margin-top: -20px;
+}
+
+#first-logo{
+    padding-top: 10px;
+}
+
+#last-div{
+    padding-bottom: 75px;
+}
+
