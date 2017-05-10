@@ -112,10 +112,18 @@ h4 {
     background-color: #21C0C0;
     font-style: italic;
     font-weight: bold;
+    text-align: center;
+
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+
+    width: 10%;
 }
 
 #grocery-item-input {
     font-style: italic;
+    width: 90%;
 }
 
 #grocery-item-check-bg {

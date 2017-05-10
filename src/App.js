@@ -37,7 +37,7 @@ class App extends Component {
           <Header />
 
           {/* Adds a GroceryList to the template*/}
-          <Fridge />
+          <GroceryList />
 
           {/* Adds a MealioNavbar to the template*/}
           <Navbar />
