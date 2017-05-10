@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
-import Logo from '../res/Logo.png';
+import Logo from '../res/Logo-str.png';
 
 /*
  *  Header: defines the header common to all pages
@@ -17,14 +17,18 @@ export class Header extends React.Component {
 	 */
 	render() {
 		return (
-	    	<nav className="navbar header-footer">
-		        <div className="container-fluid navbar-header header-footer">
-		            <a href="" className="navbar-brand navbar-left">
-		                <img src={Logo} alt="Meal.io" className="logo"/>
-		            </a>
-		            <a href="" className="navbar-right">
-		                <span className="glyphicon glyphicon-menu-hamburger"></span>
-		            </a>
+	    	<nav className="navbar header">
+		        <div className="container-fluid navbar-header header">
+					<div>
+                        <a href="">
+                            <img src={Logo} alt="Meal.io" className="logo navbar-brand navbar-left"/>
+                        </a>
+                    </div>
+                    <div className="navbar-right">
+                        <a href="">
+                            <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
+                        </a>
+                    </div>
 		        </div>
 		    </nav>
 		);
@@ -41,8 +45,8 @@ export class Navbar extends React.Component {
 	 */
 	render() {
 		return (
-	    	<nav className="navbar navbar-default navbar-fixed-bottom header-footer">
-		        <div className="container-fluid header-footer icon-group">
+	    	<nav className="navbar navbar-default navbar-fixed-bottom footer">
+		        <div className="container-fluid footer icon-group">
 		            <a href="">
 		                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
 		            </a>
