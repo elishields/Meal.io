@@ -175,8 +175,8 @@ export class GroceryList extends Component {
     	return (
       		<div className="GroceryList">
 				<div className="container-fluid">
-					<div className="">
-						<h3 className="page-header">
+					<div>
+						<h3 className="page-header" id="header-all">
 							<span className="page-title-text">GROCERY LIST</span>
 						</h3>
 					</div>
