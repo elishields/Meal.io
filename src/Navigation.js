@@ -20,13 +20,13 @@ export class Header extends React.Component {
 		    <div className="row">
                 <div className="container-fluid">
                     <nav className="navbar header">
-                        <div className="container-fluid navbar-header header">
-                            <div className="col-md-4 navbar-left">
+                        <div className="navbar-header header">
+                            <div className="navbar-left">
                                 <a href="">
                                     <img src={Logo} alt="Meal.io" className="logo"/>
                                 </a>
                             </div>
-                                <div className="col-md-1 navbar-right">
+                            <div className="navbar-right">
                                 <a href="">
                                     <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
                                 </a>
