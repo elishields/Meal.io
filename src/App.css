@@ -144,10 +144,19 @@ h4 {
 }
 
 #grocery-item-check-bg {
-    background-color: #21C0C0;
+    padding: 5px 10px;
 }
 
-#grocery-item-check {
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + span {
+    background-color: #ffffff;
+}
+
+input[type="checkbox"]:checked + span {
+    background-color: #21c0c0;
 }
 
 /* AFFILIATED PAGE */
