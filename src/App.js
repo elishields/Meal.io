@@ -10,6 +10,7 @@ import Fridge from './Fridge.js';
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
+import AffiliatedPage from './affiliated-page';
 import Logo from '../res/Logo-str.png';
 
 import { Header } from './Navigation.js';
@@ -35,10 +36,8 @@ class App extends Component {
 
           {/* Adds a MealioHeader to the template*/}
           <Header />
-
           {/* Adds a GroceryList to the template*/}
           <Fridge />
-
           {/* Adds a MealioNavbar to the template*/}
           <Navbar />
         </div>
