@@ -13,21 +13,39 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 0;
 }
 
-.header-footer {
+/* NAVIGATION */
+
+.header {
     background-color: #21C0C0;
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 0;
     height: 80px;
 }
 
 .logo {
     display: block;
-    height: 50px;
+    height: 70px;
     width: auto;
+    margin: 3px;
+}
+
+.navbar-right {
+}
+
+#menu-icon {
+    margin: 20px -2px 20px 100px;
+    font-size: 2.5em;
 }
 
 .nav{
     background-color: #21C0C0;
+}
+
+.footer {
+    background-color: #21C0C0;
+    margin: 10px 0 0 0;
+    padding: 0;
+    height: 80px;
 }
 
 .icon-group {
@@ -40,6 +58,21 @@ a, a:link, a:visited, a:hover, a:active {
     height: 70px;
     width: auto;
     margin: 6px 12px;
+}
+
+.page-header {
+    margin: 20px 0;
+    text-align: center;
+    border: none;
+}
+
+.page-title-text {
+    color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
 }
 
 /* LANDING PAGE */
@@ -96,10 +129,18 @@ h4 {
     background-color: #21C0C0;
     font-style: italic;
     font-weight: bold;
+    text-align: center;
+
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+
+    width: 10%;
 }
 
 #grocery-item-input {
     font-style: italic;
+    width: 90%;
 }
 
 #grocery-item-check-bg {
@@ -129,3 +170,18 @@ h4 {
     padding-bottom: 75px;
 }
 
+/* FRIDGE ICON */
+
+#fridge-table {
+    width: 80%;
+    margin: 40px auto;
+    border: none;
+}
+
+.fridge-category {
+    padding: 1em;
+}
+
+.fridge-category-icon {
+
+}
