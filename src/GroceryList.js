@@ -174,6 +174,13 @@ export class GroceryList extends Component {
   	render() {
     	return (
       		<div className="GroceryList">
+				<div className="container-fluid">
+					<div className="">
+						<h3 className="page-header">
+							<span className="page-title-text">GROCERY LIST</span>
+						</h3>
+					</div>
+				</div>
     			{this.state.rows}
       		</div>
 	    );
