@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^3.9.0",
     "react": "^15.5.4",
+    "react-burger-menu": "^2.0.2",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
