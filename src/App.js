@@ -23,7 +23,7 @@ import './landing-page.css';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={LandingPage}/>
+      <Route exact path='/' component={GroceryList}/>
       <Route path='/list' component={GroceryList}/>
       <Route path='/fridge' component={Fridge}/>
     </Switch>
