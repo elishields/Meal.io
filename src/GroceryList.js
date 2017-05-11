@@ -5,89 +5,97 @@ import React, { Component } from 'react';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+//import and initialize firebase
+import * as firebase from "firebase";
+var config = {
+    apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
+    authDomain: "mealio-d047c.firebaseapp.com",
+    databaseURL: "https://mealio-d047c.firebaseio.com",
+    projectId: "mealio-d047c",
+    storageBucket: "mealio-d047c.appspot.com",
+    messagingSenderId: "280670219948"
+};
+firebase.initializeApp(config);
 
 /*
  * ListItem: defines a single item for the grocery list
  */
 class ListItem extends React.Component {
-	
-	/*
-	 *  Constructor for ListItem
-	 */
-	constructor(props) {
-		super(props);
 
-		// Set state variables
-		this.state = {amount: 1, onChange: props.onChange};
+    /*
+     *  Constructor for ListItem
+     */
+    constructor(props) {
+        super(props);
 
-		this.checkId = "check-" + this.props.myId;
-		
-		// Bind reference to 'this' to member functions
-		this.clearOnChange = this.clearOnChange.bind(this);
-		this.increment = this.increment.bind(this);
-		this.decrement = this.decrement.bind(this);
-		//this.setAmount = this.setAmount.bind(this);
-	}
-	
-	/*
-	 *  fires onChange function and then clears it.
-	 */
-	clearOnChange = function() {
-		this.state.onChange();
-		this.state.onChange = () => {};
-	}
-	
-	/*
-	 *  Increments this ListItem's amount.
-	 */
-	increment = function() {
-		this.setState((prevState, props) => {
-			return({amount: prevState.amount + 1});
-		});
-	}
-	
-	/*
-	 *  Decrements this ListItem's amount.
-	 */
-	decrement = function() {
-		this.setState((prevState, props) => {
-			return({amount: prevState.amount - 1});
-		});
-	}
-	
-	/*
-	 *  Getter for amount.
-	 */
-	getAmount = function() {
-		return(this.state.amount);
-	}
+        // Set state variables
+        this.state = {amount: 1, onChange: props.onChange};
 
-	/*
-	 *  Setter for amount.
-	 */
-	setAmount = function(n) {
-		this.setState((prevState, props) => {
-			return({amount: n});
-		});
-	}
-	
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return (
-			<div className="input-group" id="grocery-item">
-				<input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
-			    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" 
-			    	onChange={this.clearOnChange} aria-describedby="item name"></input>
-				
-				<input type="checkbox" id={this.checkId} aria-label="confirm item" />
-				<span className="input-group-addon">
-					<label htmlFor={this.checkId} id="grocery-item-check-bg"><span></span></label>
+        // Bind reference to 'this' to member functions
+        this.clearOnChange = this.clearOnChange.bind(this);
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        //this.setAmount = this.setAmount.bind(this);
+    }
+
+    /*
+     *  fires onChange function and then clears it.
+     */
+    clearOnChange = function() {
+        this.state.onChange();
+        this.state.onChange = () => {};
+    }
+
+    /*
+     *  Increments this ListItem's amount.
+     */
+    increment = function() {
+        this.setState((prevState, props) => {
+            return({amount: prevState.amount + 1});
+        });
+
+    }
+
+    /*
+     *  Decrements this ListItem's amount.
+     */
+    decrement = function() {
+        this.setState((prevState, props) => {
+            return({amount: prevState.amount - 1});
+        });
+    }
+
+    /*
+     *  Getter for amount.
+     */
+    getAmount = function() {
+        return(this.state.amount);
+    }
+
+    /*
+     *  Setter for amount.
+     */
+    setAmount = function(n) {
+        this.setState((prevState, props) => {
+            return({amount: n});
+        });
+    }
+
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div className="input-group" id="grocery-item">
+                <input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
+                <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
+                       onChange={this.clearOnChange} aria-describedby="item name"></input>
+                <span className="input-group-addon" id="grocery-item-check-bg">
+					<input type="checkbox" id="grocery-item-check" aria-label="confirm item"></input>
 				</span>
-			</div>
-		);
-	}
+            </div>
+        );
+    }
 }
 
 /*
