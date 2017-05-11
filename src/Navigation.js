@@ -18,18 +18,20 @@ export class Header extends Component {
 	 */
 	render() {
 		return (
-		    <div className="row">
-                <div className="container-fluid" id="container-fluid">
-                    <nav className="navbar navbar-fixed-top" id="header">
-                        <div>
-                            <a href="" className="navbar-brand">
-                                <img className="logo" src={Logo} alt="Meal.io"/>
-                            </a>
-                            <a href="">
-                                <span className="glyphicon glyphicon-menu-hamburger navbar-brand pull-right" id="menu-icon"></span>
-                            </a>
-                        </div>
-                    </nav>
+		    <div className="container-fluid" id="container-fluid">
+                <div className="row">
+                    <div className="col-xs-12">
+                        <nav className="navbar navbar-fixed-top" id="header">
+                            <div>
+                                <a href="" className="navbar-brand">
+                                    <img className="logo" src={Logo} alt="Meal.io"/>
+                                </a>
+                                <a href="">
+                                    <span className="glyphicon glyphicon-menu-hamburger navbar-brand pull-right" id="menu-icon"></span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
 		);
@@ -46,21 +48,23 @@ export class Footer extends React.Component {
 	 */
 	render() {
 		return (
-			<div className="row">
-                <div className="container-fluid" id="container-fluid">
-                    <nav className="navbar navbar-fixed-bottom" id="footer">
-                        <div className="icon-group">
-                            <Link to="/">
-                                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-                            </Link>
-                            <Link to="/fridge">
-                                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-                            </Link>
-                            <Link to="/">
-                                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-                            </Link>
-                        </div>
-                    </nav>
+			<div className="container-fluid" id="container-fluid">
+                <div className="row">
+                    <div className="col-xs-12">
+                        <nav className="navbar navbar-fixed-bottom" id="footer">
+                            <div className="icon-group">
+                                <Link to="/">
+                                    <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
+                                </Link>
+                                <Link to="/fridge">
+                                    <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
+                                </Link>
+                                <Link to="/">
+                                    <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
+                                </Link>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
 		);
