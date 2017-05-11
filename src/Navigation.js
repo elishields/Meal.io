@@ -1,5 +1,6 @@
 //Import classes from React
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Import our resources
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
@@ -10,7 +11,7 @@ import Logo from '../res/Logo-str.png';
 /*
  *  Header: defines the header common to all pages
  */
-export class Header extends React.Component {
+export class Header extends Component {
 
 	/*
 	 *  render() defines the HTML template for this class.
@@ -47,15 +48,15 @@ export class Footer extends React.Component {
 		return (
 	    	<nav className="navbar navbar-default navbar-fixed-bottom footer">
 		        <div className="container-fluid footer icon-group">
-		            <a href="">
+		            <Link to="/">
 		                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-		            </a>
-		            <a href="">
+		            </Link>
+		            <Link to="/fridge">
 		                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-		            </a>
-		            <a href="">
+		            </Link>
+		            <Link to="/">
 		                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-		            </a>
+		            </Link>
 		        </div>
 		    </nav>
 		);

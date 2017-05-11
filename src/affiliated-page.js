@@ -7,7 +7,7 @@ import FoodFactoryLogo from '../res/Foodfactorylogo.png';
 import Pocketpantry from '../res/Pocketpantry.png';
 
 
-export class AffiliatedPage extends React.Component {
+export class AffiliatedPage extends Component {
 
     render() {
 

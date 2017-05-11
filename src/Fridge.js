@@ -17,7 +17,7 @@ import './App.css';
  *
  * Note: 'export' for classes we will use outside this file.
  */
-export class Fridge extends React.Component {
+export class Fridge extends Component {
 
     /*
      *  Constructor for Fridge.
