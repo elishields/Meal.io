@@ -115,10 +115,16 @@ a, a:link, a:visited, a:hover, a:active {
     display: none;
 }
 .confirm-check + span {
-    background-color: #ffffff;
+    background-image: url("../res/unchecked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .confirm-check:checked + span {
-    background-color: #21c0c0;
+    background-image: url("../res/checked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .remove-check + span {
     background-color: #ffffff;

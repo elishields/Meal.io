@@ -6,6 +6,9 @@ import { Header, Footer } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+
+import CheckIcon from '../res/checked-checkbox.png';
+
 //import and initialize firebase
 import * as firebase from "firebase";
 var config = {
@@ -95,12 +98,7 @@ class ListItem extends React.Component {
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 
-                <input type="radio" name={this.groupId} className="remove-check" id={this.removeId} aria-label="remove item"></input>
-				<span className="input-group-addon">
-					<label htmlFor={this.removeId} className="grocery-item-check-bg"><span></span></label>
-				</span>
-
-				<input type="radio" name={this.groupId} className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+				<input type="checkbox" name={this.groupId} className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
 				<span className="input-group-addon">
 					<label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
 				</span>
