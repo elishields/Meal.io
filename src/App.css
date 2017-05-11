@@ -81,9 +81,11 @@ a, a:link, a:visited, a:hover, a:active {
     font-style: italic;
     width: 90%;
 }
+
 #grocery-item-check-bg {
     padding: 5px 10px;
 }
+
 input[type="checkbox"] {
     display: none;
 }
@@ -92,6 +94,13 @@ input[type="checkbox"] + span {
 }
 input[type="checkbox"]:checked + span {
     background-color: #21c0c0;
+}
+
+.grocery-item-check-bg {
+    width: 20px;
+    height: 16px;
+
+    margin: 0;
 }
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
