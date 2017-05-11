@@ -96,7 +96,7 @@ input[type="checkbox"] + span {
 
 input[type="checkbox"]:checked + span {
     background-color: #21c0c0;
-
+}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 #fridge-table {
