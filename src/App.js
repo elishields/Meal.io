@@ -1,5 +1,6 @@
 //Import classes from React
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 //Import classes for our pages
 
@@ -7,11 +8,7 @@ import GroceryList from './GroceryList.js';
 import Fridge from './Fridge.js';
 
 //Import our resources
-import GroceryListIcon from '../res/NavGroceryListIcon.svg';
-import MyFridgeIcon from '../res/FridgeIcon.png';
-import MealPlanIcon from '../res/NavMealPlanIcon.png';
 import AffiliatedPage from './affiliated-page';
-import Logo from '../res/Logo-str.png';
 
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
@@ -21,7 +18,14 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
-
+const Main = () => (
+  <main>
+    <Switch>
+      <Route exact path='/' component={GroceryList}/>
+      <Route path='/fridge' component={Fridge}/>
+    </Switch>
+  </main>
+)
 
 /*
  * App: this is the 'entry point' for our app. It is loaded in index.js
@@ -38,8 +42,8 @@ class App extends Component {
 
           {/* Adds a MealioHeader to the template*/}
           <Header />
-          {/* Adds a GroceryList to the template*/}
-          <Fridge/>
+          {/* Main object contains our Routes*/}
+          <Main/>
           {/* Adds a MealioNavbar to the template*/}
           <Footer />
         </div>
