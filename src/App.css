@@ -10,7 +10,7 @@ a, a:link, a:visited, a:hover, a:active {
     color: white;
 }
 #container-fluid {
-    padding: 70px 0 0 0;
+    padding: 0;
 }
 .page-header {
     margin: 20px 0;
@@ -18,6 +18,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 #header-all {
     border: none;
+    margin: 100px 20px 20px 20px;
 }
 .page-title-text {
     color: #21C0C0;
@@ -96,16 +97,17 @@ input[type="checkbox"]:checked + span {
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 #fridge-table {
-    width: 80%;
-    margin: 50px auto;
+    margin: 40px auto;
     border: none;
+}
+.fridge-table-row {
+    margin-left: auto;
+    margin-right: auto;
 }
 .fridge-category {
     padding: 0.5em;
-}
-.fridge-category-icon {
     width: 130px;
-    height:;
+    height: auto;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
