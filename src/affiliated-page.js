@@ -7,15 +7,19 @@ import FoodFactoryLogo from '../res/Foodfactorylogo.png';
 import Pocketpantry from '../res/Pocketpantry.png';
 
 
-export class AffiliatedPage extends React.Component {
+export class AffiliatedPage extends Component {
 
     render() {
 
         return (
-            <div className="container" id="entire-container">
-                <h3 className="page-header" id="header-all">
-                    <span className="page-title-text">AFFILIATED APPS</span>
-                </h3>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                        <h3 className="page-header" id="header-all">
+                            <span className="page-title-text">AFFILIATED APPS</span>
+                        </h3>
+                    </div>
+                </div>
             <p>Check out these super cool apps created to reduce food waste by fellow students at BCIT:</p>
 
             <div className="row">

@@ -105,99 +105,98 @@ class ListItem extends React.Component {
  */
 export class GroceryList extends Component {
 
-    /*
-     *  Constructor for GroceryList
-     */
-    constructor(props) {
-        super(props);
+	/*
+	 *  Constructor for GroceryList
+	 */
+	constructor(props) {
+		super(props);
+		
+		/*
+		 * Create an empty array to store ListItems, then push one new ListItem
+		 * 
+		 * key: index of new element
+		 */
+		let rows = [];
+		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+		
+		/*
+		 * set this.state.rows = rows
+		 */
+		this.state = {rows: rows};
+	}
+	
+	/*
+	 *  handler to add a ListItem to rows[]
+	 */
+	handleAddItem = function() {
 
-        /*
-         * Create an empty array to store ListItems, then push one new ListItem
-         *
-         * key: index of new element
-         */
-        let rows = [];
-        rows.push(<ListItem key={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+		// reference to this GroceryList
+		let handle = this;
 
-        /*
-         * set this.state.rows = rows
-         */
-        this.state = {rows: rows};
-    }
+		// update component state...
+		this.setState((prevState, props) => {
 
-    /*
-     *  handler to add a ListItem to rows[]
-     */
-    handleAddItem = function() {
+			// get rows from component's previous state
+			let newStateRows = prevState.rows;
+			let nsrLength = newStateRows.length;
+			// push a new ListItem to newStateRows
+			newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
 
-        // reference to this GroceryList
-        let handle = this;
+			// update GroceryList's state.rows = newStateRows
+			return({rows: newStateRows});
+		});
+		
+		// this isn't working yet, disregard!
+		this.rebuildList();
+	}
+	
 
-        // update component state...
-        this.setState((prevState, props) => {
+	/*
+	 *  This isn't working yet, disregard!
+	 */
+	handleRemoveItem = function(index) {
+		this.setState((prevState, props) => {
+			let newStateRows = prevState.rows;
+			newStateRows.splice(index, 1);
+			return({rows: newStateRows});
+		});
+	}
 
-            // get rows from component's previous state
-            let newStateRows = prevState.rows;
+	/*
+	 *  this doesn't work yet, disregard!
+	 */
+	rebuildList = function() {
+		this.setState((prevState, props) => {
+	
+			let newStateRows = prevState.rows;
+	
+			for(let i=0; i<newStateRows.length; i++) {
+				if(newStateRows[i].amount === 0) {
+					this.handleRemoveItem(i);
+					i--;
+				}
+			}
+		});
+	}
+	
 
-            // push a new ListItem to newStateRows
-            newStateRows.push(<ListItem name="Added Item" onChange={handle.handleAddItem.bind(handle)} key={newStateRows.length} />);
-
-            // update GroceryList's state.rows = newStateRows
-            return({rows: newStateRows});
-
-        });
-
-        // this isn't working yet, disregard!
-        this.rebuildList();
-    }
-
-
-    /*
-     *  This isn't working yet, disregard!
-     */
-    handleRemoveItem = function(index) {
-        this.setState((prevState, props) => {
-            let newStateRows = prevState.rows;
-            newStateRows.splice(index, 1);
-            return({rows: newStateRows});
-        });
-    }
-
-    /*
-     *  this doesn't work yet, disregard!
-     */
-    rebuildList = function() {
-        this.setState((prevState, props) => {
-
-            let newStateRows = prevState.rows;
-
-            for(let i=0; i<newStateRows.length; i++) {
-                if(newStateRows[i].amount === 0) {
-                    this.handleRemoveItem(i);
-                    i--;
-                }
-            }
-        });
-    }
-
-
-    /*
-     *  render() defines the HTML template for this class.
-     */
-    render() {
-        return (
-            <div className="GroceryList">
-                <div className="container-fluid">
-                    <div>
-                        <h3 className="page-header" id="header-all">
-                            <span className="page-title-text">GROCERY LIST</span>
-                        </h3>
-                    </div>
-                </div>
-                {this.state.rows}
-            </div>
-        );
-    }
+	/*
+	 *  render() defines the HTML template for this class.
+	 */
+  	render() {
+    	return (
+      		<div className="container-fluid">
+				<div className="row">
+					<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+						<h3 className="page-header" id="header-all">
+							<span className="page-title-text">GROCERY LIST</span>
+						</h3>
+					</div>
+				</div>
+    			{this.state.rows}
+      		</div>
+	    );
+  	}
 }
 
 export default GroceryList;
