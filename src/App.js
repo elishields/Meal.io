@@ -44,7 +44,7 @@ class App extends Component {
         <div className="container-fluid">
 
           {/* Main object contains our Routes*/}
-          <Main/>
+          <AffiliatedPage/>
 
         </div>
       </div>

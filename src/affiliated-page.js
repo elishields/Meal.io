@@ -13,6 +13,7 @@ export class AffiliatedPage extends Component {
 
         return (
             <div className="container-fluid">
+
                 <div className="row">
                     <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
                         <h3 className="page-header" id="header-all">
@@ -20,42 +21,63 @@ export class AffiliatedPage extends Component {
                         </h3>
                     </div>
                 </div>
-            <p>Check out these super cool apps created to reduce food waste by fellow students at BCIT:</p>
 
-            <div className="row">
-                <div className="col-md-4">
-                    <div className="thumbnail">
-                        <img src={FoodFactoryLogo} id="first-logo" alt="Food Factory Logo"></img>
-                        <div className="caption">
-                            <p><a href="#">Food Factory</a> a time-based drag and drop game. Players need to pick and
-                                match the ingredients on the belt conveyor with recipes without wasting them.</p>
+                <div className="row">
+                    <div className="col-xs-10 col-xs-offset-1" id="affiliate-blurb">
+                        <p>Check out these food-waste reduction apps created by BCIT students:</p>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-4 col-xs-10 col-xs-offset-1">
+                        <div className="thumbnail">
+                            <a href="">
+                                <img src={FoodFactoryLogo} className="affiliate-image" id="top-thumbnail" alt="Food Factory Logo"></img>
+                            </a>
+                            <div className="caption">
+                                <p>
+                                    <span className="affiliate-title">Food Factory</span> is a
+                                    time-based drag and drop game.
+                                    Players need to pick and match the ingredients on the belt
+                                    conveyor with recipes without wasting them.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 col-xs-10 col-xs-offset-1">
+                        <div className="thumbnail">
+                            <a href="http://www.eco-list.ca">
+                                <img src={EcoListLogo} className="affiliate-image" alt="EcoList Logo"></img>
+                            </a>
+                            <div className="caption">
+                                <p>
+                                    <span className="affiliate-title">EcoList</span> is
+                                    a meal planner and shopping list
+                                    combination. Users can choose from a preset meal plan or create their own, can input
+                                    items to list from meal planner.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-4 col-xs-10 col-xs-offset-1" id="bottom-thumbnail">
+                        <div className="thumbnail">
+                            <a href="">
+                                <img src={Pocketpantry} className="affiliate-image" alt="PocketPantry Logo"></img>
+                            </a>
+                            <div className="caption">
+                                <p>
+                                    <span className="affiliate-title">Pocket Pantry</span> is designed to help create easy plan meal planning and
+                                    calculation of necessary ingredients for efficient grocery lists to reduce wasteful
+                                    expenditure.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-md-4">
-                    <div className="thumbnail">
-                        <img src={EcoListLogo} alt="EcoList Logo"></img>
-                        <div className="caption">
-                            <p><a href="http://www.eco-list.ca">EcoList</a> is a meal planner and shopping list
-                                combination. Users can choose from a preset meal plan or create their own, can input
-                                items to list from meal planner.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-md-4" id="last-div">
-                    <div className="thumbnail">
-                        <img src={Pocketpantry}  alt="PocketPantry Logo"></img>
-                        <div className="caption">
-                            <p><a href="#">Pocket Pantry</a> is designed to help create easy plan meal planning and
-                                calculation of necessary ingredients for efficient grocery lists to reduce wasteful
-                                expenditure.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>)
+        )
     }
 }
 
