@@ -19,6 +19,8 @@ class ListItem extends React.Component {
 
 		// Set state variables
 		this.state = {amount: 1, onChange: props.onChange};
+
+		this.checkId = "check-" + this.props.myId;
 		
 		// Bind reference to 'this' to member functions
 		this.clearOnChange = this.clearOnChange.bind(this);
@@ -76,10 +78,12 @@ class ListItem extends React.Component {
 		return (
 			<div className="input-group" id="grocery-item">
 				<input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
-				    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" 
-				    	onChange={this.clearOnChange} aria-describedby="item name"></input>
-					<span className="input-group-addon" id="grocery-item-check-bg">
-					<input type="checkbox" id="grocery-item-check" aria-label="confirm item"></input>
+			    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" 
+			    	onChange={this.clearOnChange} aria-describedby="item name"></input>
+				
+				<input type="checkbox" id={this.checkId} aria-label="confirm item" />
+				<span className="input-group-addon">
+					<label htmlFor={this.checkId} id="grocery-item-check-bg"><span></span></label>
 				</span>
 			</div>
 		);
@@ -105,7 +109,7 @@ export class GroceryList extends Component {
 		 * key: index of new element
 		 */
 		let rows = [];
-		rows.push(<ListItem key={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
 		
 		/*
 		 * set this.state.rows = rows
@@ -126,9 +130,9 @@ export class GroceryList extends Component {
 
 			// get rows from component's previous state
 			let newStateRows = prevState.rows;
-
+			let nsrLength = newStateRows.length;
 			// push a new ListItem to newStateRows
-			newStateRows.push(<ListItem name="Added Item" onChange={handle.handleAddItem.bind(handle)} key={newStateRows.length} />);
+			newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
 
 			// update GroceryList's state.rows = newStateRows
 			return({rows: newStateRows});
@@ -176,7 +180,11 @@ export class GroceryList extends Component {
       		<div className="GroceryList">
 				<div className="container-fluid">
 					<div>
+
 						<h3 className="page-header">
+
+						<h3 className="page-header" id="header-all">
+
 							<span className="page-title-text">GROCERY LIST</span>
 						</h3>
 					</div>

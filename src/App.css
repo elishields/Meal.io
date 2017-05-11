@@ -3,6 +3,7 @@
 
 .app {
     font-family: 'Catamaran', sans-serif;
+    font-size: 1.1em;
 }
 a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
@@ -47,6 +48,9 @@ a, a:link, a:visited, a:hover, a:active {
 .page-header {
     margin: 20px 0;
     text-align: center;
+}
+
+#header-all {
     border: none;
 }
 .page-title-text {
@@ -79,10 +83,19 @@ a, a:link, a:visited, a:hover, a:active {
     width: 90%;
 }
 #grocery-item-check-bg {
-    background-color: #21C0C0;
+    padding: 5px 10px;
 }
-#grocery-item-check {
+
+input[type="checkbox"] {
+    display: none;
 }
+
+input[type="checkbox"] + span {
+    background-color: #ffffff;
+}
+
+input[type="checkbox"]:checked + span {
+    background-color: #21c0c0;
 
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
@@ -103,6 +116,7 @@ a, a:link, a:visited, a:hover, a:active {
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
 .caption p a {
     color: black;
+    font-weight: bold;
 }
 .thumbnail img {
     width: 50%;

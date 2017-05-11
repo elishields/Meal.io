@@ -13,8 +13,10 @@ export class AffiliatedPage extends React.Component {
 
         return (
             <div className="container" id="entire-container">
-            <h2>Affiliated Apps</h2>
-            <p>Checkout these super cool apps created to reduce food waste by fellow students at BCIT.</p>
+                <h3 className="page-header" id="header-all">
+                    <span className="page-title-text">AFFILIATED APPS</span>
+                </h3>
+            <p>Check out these super cool apps created to reduce food waste by fellow students at BCIT:</p>
 
             <div className="row">
                 <div className="col-md-4">
@@ -50,9 +52,7 @@ export class AffiliatedPage extends React.Component {
                 </div>
             </div>
         </div>)
-
     }
-
 }
 
 export default AffiliatedPage;
