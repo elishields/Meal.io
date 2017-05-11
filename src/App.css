@@ -12,6 +12,24 @@ a, a:link, a:visited, a:hover, a:active {
 #container-fluid {
     padding: 70px 0 0 0;
 }
+.page-header {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#header-all {
+    border: none;
+}
+.page-title-text {
+    color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 700;
+}
 
 /* NAVIGATION *//* NAVIGATION *//* NAVIGATION */
     /* HEADER *//* HEADER *//* HEADER */
@@ -45,24 +63,6 @@ a, a:link, a:visited, a:hover, a:active {
     width: auto;
     margin: 6px 12px;
 }
-.page-header {
-    margin: 20px 0;
-    text-align: center;
-}
-
-#header-all {
-    border: none;
-}
-.page-title-text {
-    color: #21C0C0;
-    border: 2px solid #21C0C0;
-    -webkit-border-radius:;
-    -moz-border-radius:;
-    border-radius: 15px;
-    padding: 6px;
-    font-family: 'Catamaran', sans-serif;
-    font-weight: 700;
-}
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
 #grocery-item {
@@ -85,15 +85,12 @@ a, a:link, a:visited, a:hover, a:active {
 #grocery-item-check-bg {
     padding: 5px 10px;
 }
-
 input[type="checkbox"] {
     display: none;
 }
-
 input[type="checkbox"] + span {
     background-color: #ffffff;
 }
-
 input[type="checkbox"]:checked + span {
     background-color: #21c0c0;
 }
