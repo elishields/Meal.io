@@ -131,6 +131,11 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
+#affiliated-blurb {
+    margin: 15px auto;
+    text-align: center;
+}
+
 .caption p a {
     color: black;
     font-weight: bold;
@@ -138,9 +143,6 @@ a, a:link, a:visited, a:hover, a:active {
 .thumbnail img {
     width: 50%;
 }
-#first-logo{
-    padding-top: 10px;
-}
-#last-div{
-    padding-bottom: 75px;
+#bottom-thumbnail {
+    margin-bottom: 100px;
 }

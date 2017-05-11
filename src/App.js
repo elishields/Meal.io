@@ -47,7 +47,7 @@ class App extends Component {
           <Header />
 
           {/* Main object contains our Routes*/}
-          <Main/>
+          <AffiliatedPage/>
 
           {/* Adds a MealioNavbar to the template*/}
           <Footer />
