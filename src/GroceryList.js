@@ -180,11 +180,7 @@ export class GroceryList extends Component {
       		<div className="GroceryList">
 				<div className="container-fluid">
 					<div>
-
-						<h3 className="page-header">
-
 						<h3 className="page-header" id="header-all">
-
 							<span className="page-title-text">GROCERY LIST</span>
 						</h3>
 					</div>
