@@ -56,11 +56,16 @@ a, a:link, a:visited, a:hover, a:active {
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
+    font-family: 'Catamaran', sans-serif;
 }
 
 .menu-item a {
-    color: black;
+    color: white;
     text-decoration: none;
+}
+
+.open>.dropdown-menu {
+    background-color: #21C0C0;
 }
 
     /* FOOTER *//* FOOTER *//* FOOTER */
