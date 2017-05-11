@@ -14,8 +14,8 @@ import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
 
 //Import our styles
-import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
-import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import './bootstrap-3.3.7-dist/css/bootstrap.css';
+import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
 const Main = () => (
@@ -23,6 +23,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={GroceryList}/>
       <Route path='/fridge' component={Fridge}/>
+      <Route path='/affiliated-page' component={AffiliatedPage}/>
     </Switch>
   </main>
 )
