@@ -21,7 +21,7 @@ export class Header extends Component {
 		    <div className="row">
                 <div className="container-fluid" id="container-fluid">
                     <nav className="navbar navbar-fixed-top" id="header">
-                        <div >
+                        <div>
                             <a href="" className="navbar-brand">
                                 <img className="logo" src={Logo} alt="Meal.io"/>
                             </a>
@@ -46,19 +46,23 @@ export class Footer extends React.Component {
 	 */
 	render() {
 		return (
-	    	<nav className="navbar navbar-default navbar-fixed-bottom footer">
-		        <div className="container-fluid footer icon-group">
-		            <Link to="/">
-		                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-		            </Link>
-		            <Link to="/fridge">
-		                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-		            </Link>
-		            <Link to="/">
-		                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-		            </Link>
-		        </div>
-		    </nav>
+			<div className="row">
+                <div className="container-fluid" id="container-fluid">
+                    <nav className="navbar navbar-fixed-bottom" id="footer">
+                        <div className="icon-group">
+                            <Link to="/">
+                                <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
+                            </Link>
+                            <Link to="/fridge">
+                                <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
+                            </Link>
+                            <Link to="/">
+                                <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
+                            </Link>
+                        </div>
+                    </nav>
+                </div>
+            </div>
 		);
 	}
 }
