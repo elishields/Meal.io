@@ -66,22 +66,22 @@
         };
         firebase.initializeApp(config);
     //get all elements
-        email = document.getElementById('email').value;
-        passw = document.getElementById('password').value;
+        email = document.getElementById('email');
+        passw = document.getElementById('password');
         login = document.getElementById('btnLogin');
         signup = document.getElementById('btnSignUp');
     //signup event
         btnSignUp.addEventListener('click', e =>{
             const auth = firebase.auth();
             //TODO:check for real emails
-            const promise = auth.createUserWithEmailAndPassword(email, passw);
+            const promise = auth.createUserWithEmailAndPassword(email.value, passw.value);
             promise.catch(e => console.log(e.message));
             gotoShopList();
         });
     //login event
         btnLogin.addEventListener('click', e =>{
             const auth = firebase.auth();
-            const promise = auth.signInWithEmailAndPassword(email, passw);
+            const promise = auth.signInWithEmailAndPassword(email.value, passw.value);
             promise.catch(e => console.log(e.message));
             gotoShopList();
         });
@@ -95,6 +95,6 @@
         });
     //link to grocery list page once user hits login or signup button
         function gotoShopList(){
-            window.location.href="";
+
         }
 </script>

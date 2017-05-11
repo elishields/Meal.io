@@ -16,5 +16,21 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+
+  },
+  "description": "CST-2910 Web App",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elishields/Meal.io.git"
+  },
+  "keywords": [
+    "mealio"
+  ],
+  "author": "Danny DiIorio, Eli Shields, Liam MacIntyre, Prabhvir Saran,  Tony Pacheco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elishields/Meal.io/issues"
+  },
+  "homepage": "https://github.com/elishields/Meal.io#readme"
 }

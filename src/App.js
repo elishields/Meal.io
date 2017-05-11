@@ -4,8 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 
 //Import classes for our pages
 
-import GroceryList from './GroceryList.js';
-import Fridge from './Fridge.js';
+import { GroceryList } from './GroceryList.js';
+import { Fridge } from './Fridge.js';
+import { LandingPage } from './Landing-page.js';
 
 //Import our resources
 import AffiliatedPage from './affiliated-page';
@@ -17,11 +18,13 @@ import { Footer } from './Navigation.js';
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+import './landing-page.css';
 
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={GroceryList}/>
+      <Route exact path='/' component={LandingPage}/>
+      <Route path='/list' component={GroceryList}/>
       <Route path='/fridge' component={Fridge}/>
       <Route path='/affiliated-page' component={AffiliatedPage}/>
     </Switch>
@@ -41,12 +44,9 @@ class App extends Component {
       <div className="app">
         <div className="container-fluid">
 
-          {/* Adds a MealioHeader to the template*/}
-          <Header />
           {/* Main object contains our Routes*/}
-          <Main/>
-          {/* Adds a MealioNavbar to the template*/}
-          <Footer />
+          <AffiliatedPage/>
+
         </div>
       </div>
     );
