@@ -46,11 +46,11 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
     /* FOOTER *//* FOOTER *//* FOOTER */
-.footer {
+#footer {
     background-color: #21C0C0;
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
     padding: 0;
-    height: 80px;
+    height: 90px;
 }
 .icon-group {
     margin-right: auto;
@@ -58,9 +58,9 @@ a, a:link, a:visited, a:hover, a:active {
     text-align: center;
 }
 .nav-icon {
-    height: 70px;
+    height: 78px;
     width: auto;
-    margin: 6px 12px;
+    margin: 6px 17px;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
@@ -107,7 +107,6 @@ input[type="checkbox"]:checked + span {
     width: 130px;
     height:;
 }
-
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
 .caption p a {
