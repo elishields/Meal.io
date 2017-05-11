@@ -1,40 +1,125 @@
-.App {
-    height: 719px;
-}
+/* GLOBAL *//* GLOBAL *//* GLOBAL */
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
 
-.Header {
-    background-color: #21C0C0;
-    height: 10%;
-    margin-bottom: 20px;
+.app {
+    font-family: 'Catamaran', sans-serif;
+    font-size: 1.1em;
+}
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
     color: white;
 }
-.Logo {
-    display: block;
-    margin-left: 10px;
-    margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: auto;
-    height: 50px;
+#container-fluid {
+    padding: 70px 0 0 0;
+}
+.page-header {
+    margin: 20px 0;
+    text-align: center;
+}
+#header-all {
+    border: none;
+}
+.page-title-text {
+    color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 700;
+}
+
+/* NAVIGATION *//* NAVIGATION *//* NAVIGATION */
+    /* HEADER *//* HEADER *//* HEADER */
+#header {
+    background-color: #21C0C0;
+    height: 70px;
+}
+.logo {
+    height: 40px;
     width: auto;
 }
-
-.Body {
-    height: 80%;
+#menu-icon {
+    margin-top: 8px;
+    font-size: 2.5em;
 }
 
-.Nav{
+    /* FOOTER *//* FOOTER *//* FOOTER */
+.footer {
     background-color: #21C0C0;
-    height: 10%;
+    margin: 10px 0 0 0;
+    padding: 0;
+    height: 80px;
 }
-.Icon-Group {
+.icon-group {
     margin-right: auto;
     margin-left: auto;
-    height: auto;
-    width: 50%;
-
+    text-align: center;
 }
-.Nav-Icon {
-    margin: 10px;
-    height: 20%;
-    width: 20%;
+.nav-icon {
+    height: 70px;
+    width: auto;
+    margin: 6px 12px;
+}
+
+/* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
+#grocery-item {
+    margin: 0.2em 0em;
+}
+#grocery-item-quantity {
+    background-color: #21C0C0;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+    width: 10%;
+}
+#grocery-item-input {
+    font-style: italic;
+    width: 90%;
+}
+#grocery-item-check-bg {
+    padding: 5px 10px;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + span {
+    background-color: #ffffff;
+}
+input[type="checkbox"]:checked + span {
+    background-color: #21c0c0;
+}
+
+/* FRIDGE *//* FRIDGE *//* FRIDGE */
+#fridge-table {
+    width: 80%;
+    margin: 50px auto;
+    border: none;
+}
+.fridge-category {
+    padding: 0.5em;
+}
+.fridge-category-icon {
+    width: 130px;
+    height:;
+}
+
+
+/* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
+.caption p a {
+    color: black;
+    font-weight: bold;
+}
+.thumbnail img {
+    width: 50%;
+}
+#first-logo{
+    padding-top: 10px;
+}
+#last-div{
+    padding-bottom: 75px;
 }
