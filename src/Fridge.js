@@ -37,25 +37,25 @@ export class Fridge extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-12">
-                            <table className="table table-responsive" id="fridge-table">
-                                <tr className="fridge-table-row">
-                                    <td>
-                                        <img className="fridge-category" src={FruitVeg} alt="FruitVeg"/>
-                                    </td>
-                                    <td>
-                                        <img className="fridge-category" src={Dairy} alt="Dairy"/>
-                                    </td>
-                                </tr>
-                                <tr className="fridge-table-row">
-                                    <td>
-                                        <img className="fridge-category" src={Meat} alt="Meat"/>
-                                    </td>
-                                    <td>
-                                        <img className="fridge-category" src={OtherIcon} alt="OtherIcon"/>
-                                    </td>
-                                </tr>
-                            </table>
+                    <div className="col-xs-10 col-xs-offset-1" id="fridge-col">
+                        <table className="table" id="fridge-table">
+                            <tr className="fridge-table-row">
+                                <td className="fridge-category">
+                                    <img className="fridge-category-icon" src={FruitVeg} alt="FruitVeg"/>
+                                </td>
+                                <td className="fridge-category">
+                                    <img className="fridge-category-icon" src={Dairy} alt="Dairy"/>
+                                </td>
+                            </tr>
+                            <tr className="fridge-table-row">
+                                <td className="fridge-category">
+                                    <img className="fridge-category-icon" src={Meat} alt="Meat"/>
+                                </td>
+                                <td className="fridge-category">
+                                    <img className="fridge-category-icon" src={OtherIcon} alt="OtherIcon"/>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
