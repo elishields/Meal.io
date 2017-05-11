@@ -131,17 +131,19 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
-#affiliated-blurb {
+#affiliate-blurb {
     margin: 15px auto;
     text-align: center;
 }
-
-.caption p a {
+#top-thumbnail {
+    padding-top: 5px;
+}
+.affiliate-title {
     color: black;
     font-weight: bold;
 }
-.thumbnail img {
-    width: 50%;
+.affiliate-image {
+    width: 60%;
 }
 #bottom-thumbnail {
     margin-bottom: 100px;
