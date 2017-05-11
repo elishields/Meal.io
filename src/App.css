@@ -16,7 +16,6 @@ a, a:link, a:visited, a:hover, a:active {
     margin: 20px 0;
     text-align: center;
 }
-
 #header-all {
     border: none;
 }
@@ -117,9 +116,6 @@ input[type="checkbox"]:checked + span {
 }
 .thumbnail img {
     width: 50%;
-}
-#entire-container{
-    margin-top: -20px;
 }
 #first-logo{
     padding-top: 10px;

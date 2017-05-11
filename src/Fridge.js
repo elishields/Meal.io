@@ -30,8 +30,8 @@ export class Fridge extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3">
-                        <h3 className="page-header">
+                    <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                        <h3 className="page-header" id="header-all">
                             <span className="page-title-text">MY FRIDGE</span>
                         </h3>
                     </div>
