@@ -22,25 +22,28 @@ export class Header extends Component {
 	render() {
 		return (
 		    <div className="container-fluid" id="container-fluid">
-            <nav className="navbar navbar-fixed-top" id="header">
-                <div>
-                    <a href="" className="navbar-brand">
-                        <img className="logo" src={Logo} alt="Meal.io"/>
-                    </a>
-                    <ButtonGroup className="pull-right" id="menu-icon">
-                        <DropdownButton className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
-                            <MenuItem className="menu-item" eventKey="1">
-										            <Link to="/affiliated-page">Affiliated Apps</Link>
-									          </MenuItem>
-                            <MenuItem className="menu-item" eventKey="2">
-                                <Link to="/about-page">About Us</Link>
-                            </MenuItem>
-                            <MenuItem divider/>
-                            <MenuItem className="menu-item" eventKey="3">Log Out</MenuItem>
-                        </DropdownButton>
-                    </ButtonGroup>
-                </div>
-            </nav>
+                <row>
+                    <nav className="navbar navbar-fixed-top" id="header">
+                        <div>
+                            <a href="" className="navbar-brand">
+                                <img className="logo" src={Logo} alt="Meal.io"/>
+                            </a>
+                            <ButtonGroup className="pull-right" id="menu-icon">
+                                <DropdownButton className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
+                                    <MenuItem className="menu-item" eventKey="1">
+                                                            <Link to="/affiliated-page">Affiliated Apps</Link>
+                                                      </MenuItem>
+                                    <MenuItem className="menu-item" eventKey="2">
+                                        <Link to="/about-page">About Us</Link>
+                                    </MenuItem>
+                                    <MenuItem divider/>
+                                    <MenuItem className="menu-item" eventKey="3">Log Out</MenuItem>
+                                </DropdownButton>
+                            </ButtonGroup>
+                        </div>
+                    </nav>
+                </row>
+            </div>
 		);
 	}
 }

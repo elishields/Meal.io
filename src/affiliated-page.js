@@ -5,6 +5,8 @@ import './App.css';
 import EcoListLogo from '../res/EcoListLogo.png';
 import FoodFactoryLogo from '../res/Foodfactorylogo.png';
 import Pocketpantry from '../res/Pocketpantry.png';
+import { Header } from './Navigation.js';
+import { Footer } from './Navigation.js';
 
 
 export class AffiliatedPage extends Component {
@@ -12,6 +14,8 @@ export class AffiliatedPage extends Component {
     render() {
 
         return (
+            <div>
+            <Header/>
             <div className="container-fluid">
 
                 <div className="row">
@@ -76,6 +80,8 @@ export class AffiliatedPage extends Component {
                     </div>
                 </div>
 
+            </div>
+            <Footer/>
             </div>
         )
     }
