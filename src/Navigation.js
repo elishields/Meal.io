@@ -18,19 +18,15 @@ export class Header extends React.Component {
 	render() {
 		return (
 		    <div className="row">
-                <div className="container-fluid">
-                    <nav className="navbar header">
-                        <div className="navbar-header header">
-                            <div className="navbar-left">
-                                <a href="">
-                                    <img src={Logo} alt="Meal.io" className="logo"/>
-                                </a>
-                            </div>
-                            <div className="navbar-right">
-                                <a href="">
-                                    <span className="glyphicon glyphicon-menu-hamburger" id="menu-icon"></span>
-                                </a>
-                            </div>
+                <div className="container-fluid" id="container-fluid">
+                    <nav className="navbar navbar-fixed-top" id="header">
+                        <div >
+                            <a href="" className="navbar-brand">
+                                <img className="logo" src={Logo} alt="Meal.io"/>
+                            </a>
+                            <a href="">
+                                <span className="glyphicon glyphicon-menu-hamburger navbar-brand pull-right" id="menu-icon"></span>
+                            </a>
                         </div>
                     </nav>
                 </div>
@@ -40,9 +36,9 @@ export class Header extends React.Component {
 }
 
 /*
- *  Navbar: defines the navbar common to all pages.
+ *  Footer: defines the navbar common to all pages.
  */
-export class Navbar extends React.Component {
+export class Footer extends React.Component {
 
 	/*
 	 *  render() defines the HTML template for this class.

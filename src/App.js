@@ -14,7 +14,7 @@ import AffiliatedPage from './affiliated-page';
 import Logo from '../res/Logo-str.png';
 
 import { Header } from './Navigation.js';
-import { Navbar } from './Navigation.js';
+import { Footer } from './Navigation.js';
 
 //Import our styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -39,7 +39,7 @@ class App extends Component {
           {/* Adds a GroceryList to the template*/}
           <Fridge />
           {/* Adds a MealioNavbar to the template*/}
-          <Navbar />
+          <Footer />
         </div>
       </div>
     );
