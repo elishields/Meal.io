@@ -1,16 +1,22 @@
 // Import classes from React
 import React, { Component } from 'react';
-
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-
+import * as firebase from "firebase";
+var config = {
+    apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
+    authDomain: "mealio-d047c.firebaseapp.com",
+    databaseURL: "https://mealio-d047c.firebaseio.com",
+    projectId: "mealio-d047c",
+    storageBucket: "mealio-d047c.appspot.com",
+    messagingSenderId: "280670219948" }
+firebase.initializeApp(config);
 /*
  * ListItem: defines a single item for the grocery list
  */
 class ListItem extends React.Component {
-	
 	/*
 	 *  Constructor for ListItem
 	 */
@@ -77,8 +83,8 @@ class ListItem extends React.Component {
 	render() {
 		return (
 			<div className="input-group" id="grocery-item">
-				<input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
-			    <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item" 
+				<input type="number" className="form-control" id="groceryItemQuantity" placeholder="1"></input>
+			    <input type="text" className="form-control" id="groceryItemInput" placeholder="enter an item"
 			    	onChange={this.clearOnChange} aria-describedby="item name"></input>
 				
 				<input type="checkbox" id={this.checkId} aria-label="confirm item" />
@@ -89,7 +95,6 @@ class ListItem extends React.Component {
 		);
 	}
 }
-
 /*
  * GroceryList: defines our grocery list page.
  *
@@ -97,9 +102,9 @@ class ListItem extends React.Component {
  */
 export class GroceryList extends Component {
 
-	/*
-	 *  Constructor for GroceryList
-	 */
+    /*
+     *  Constructor for GroceryList
+     */
 	constructor(props) {
 		super(props);
 		
@@ -140,6 +145,8 @@ export class GroceryList extends Component {
 		
 		// this isn't working yet, disregard!
 		this.rebuildList();
+
+
 	}
 	
 
@@ -187,6 +194,7 @@ export class GroceryList extends Component {
 				</div>
     			{this.state.rows}
       		</div>
+
 	    );
   	}
 }
