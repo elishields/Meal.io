@@ -18,7 +18,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 #header-all {
     border: none;
-    margin: 100px 20px 20px 20px;
+    margin: 110px 20px 20px 20px;
 }
 .page-title-text {
     color: #21C0C0;
@@ -82,53 +82,52 @@ a, a:link, a:visited, a:hover, a:active {
     font-style: italic;
     width: 90%;
 }
-
 #grocery-item-check-bg {
     padding: 5px 10px;
 }
-
 .remove-check {
     display: none;
 }
-
 .confirm-check {
     display: none;
 }
-
 .confirm-check + span {
     background-color: #ffffff;
 }
 .confirm-check:checked + span {
     background-color: #21c0c0;
 }
-
 .remove-check + span {
     background-color: #ffffff;
 }
 .remove-check:checked + span {
     background-color: #ff0000;
 }
-
 .grocery-item-check-bg {
     width: 20px;
     height: 16px;
-
     margin: 0;
 }
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
+
 #fridge-table {
-    margin: 40px auto;
+    margin: 50px 0;
     border: none;
+    table-layout: fixed;
 }
 .fridge-table-row {
     margin-left: auto;
     margin-right: auto;
 }
 .fridge-category {
-    padding: 0.5em;
-    width: 130px;
+    padding: 8px 0;
+    text-align: center;
+}
+.fridge-category-icon {
+    width: 120px;
     height: auto;
+    text-align: center;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
