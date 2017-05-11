@@ -31,6 +31,7 @@ class ListItem extends React.Component {
         // Set state variables
         this.state = {amount: 1, onChange: props.onChange};
         this.checkId = "check-" + this.props.myId;
+        this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
         this.clearOnChange = this.clearOnChange.bind(this);
@@ -92,7 +93,12 @@ class ListItem extends React.Component {
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 
-				<input type="checkbox" id={this.checkId} aria-label="confirm item"></input>
+                <input type="checkbox" className="remove-check" id={this.removeId} aria-label="remove item"></input>
+				<span className="input-group-addon">
+					<label htmlFor={this.removeId} className="grocery-item-check-bg"><span></span></label>
+				</span>
+
+				<input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
 				<span className="input-group-addon">
 					<label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
 				</span>

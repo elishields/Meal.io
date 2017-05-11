@@ -86,14 +86,26 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 5px 10px;
 }
 
-input[type="checkbox"] {
+.remove-check {
     display: none;
 }
-input[type="checkbox"] + span {
+
+.confirm-check {
+    display: none;
+}
+
+.confirm-check + span {
     background-color: #ffffff;
 }
-input[type="checkbox"]:checked + span {
+.confirm-check:checked + span {
     background-color: #21c0c0;
+}
+
+.remove-check + span {
+    background-color: #ffffff;
+}
+.remove-check:checked + span {
+    background-color: #ff0000;
 }
 
 .grocery-item-check-bg {
