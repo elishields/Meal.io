@@ -31,8 +31,8 @@ a, a:link, a:visited, a:hover, a:active {
     font-weight: 700;
 }
 
-/* NAVIGATION *//* NAVIGATION *//* NAVIGATION */
-    /* HEADER *//* HEADER *//* HEADER */
+/* NAVIGATION */
+    /* HEADER */
 #header {
     background-color: #21C0C0;
     height: 70px;
@@ -44,6 +44,29 @@ a, a:link, a:visited, a:hover, a:active {
 #menu-icon {
     margin-top: 8px;
     font-size: 2.5em;
+}
+
+#bg-nested-dropdown {
+    font-size: 0.8em;
+    border: none;
+    color: white;
+    background-color: #21C0C0;
+    box-shadow: none;
+}
+
+.menu-item {
+    font-size: 1.5em;
+    padding: 5px;
+    font-family: 'Catamaran', sans-serif;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.open>.dropdown-menu {
+    background-color: #21C0C0;
 }
 
     /* FOOTER *//* FOOTER *//* FOOTER */

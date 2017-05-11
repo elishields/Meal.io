@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^3.9.0",
     "react": "^15.5.4",
+    "react-burger-menu": "^2.0.2",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+
   },
   "description": "CST-2910 Web App",
   "main": "index.js",
