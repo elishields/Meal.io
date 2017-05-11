@@ -4,9 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 
 //Import classes for our pages
 
-import GroceryList from './GroceryList.js';
-import Fridge from './Fridge.js';
-import LandingPage from './Landing-page.js';
+import { GroceryList } from './GroceryList.js';
+import { Fridge } from './Fridge.js';
+import { LandingPage } from './Landing-page.js';
 
 //Import our resources
 import AffiliatedPage from './affiliated-page';
@@ -23,7 +23,7 @@ import './landing-page.css';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={GroceryList}/>
+      <Route exact path='/' component={LandingPage}/>
       <Route path='/list' component={GroceryList}/>
       <Route path='/fridge' component={Fridge}/>
     </Switch>
@@ -43,14 +43,9 @@ class App extends Component {
       <div className="app">
         <div className="container-fluid">
 
-          {/* Adds a MealioHeader to the template*/}
-          <Header />
-
           {/* Main object contains our Routes*/}
           <Main/>
 
-          {/* Adds a MealioNavbar to the template*/}
-          <Footer />
         </div>
       </div>
     );

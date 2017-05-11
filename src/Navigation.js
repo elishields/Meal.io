@@ -53,7 +53,7 @@ export class Footer extends React.Component {
                     <div className="col-xs-12">
                         <nav className="navbar navbar-fixed-bottom" id="footer">
                             <div className="icon-group">
-                                <Link to="/">
+                                <Link to="/list">
                                     <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
                                 </Link>
                                 <Link to="/fridge">

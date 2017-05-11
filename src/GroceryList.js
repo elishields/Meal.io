@@ -1,5 +1,6 @@
 // Import classes from React
 import React, { Component } from 'react';
+import { Header, Footer } from './Navigation.js';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -194,15 +195,21 @@ export class GroceryList extends Component {
 	 */
   	render() {
     	return (
-      		<div className="container-fluid">
-				<div className="row">
-					<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-						<h3 className="page-header" id="header-all">
-							<span className="page-title-text">GROCERY LIST</span>
-						</h3>
+    		<div>
+    			<Header />
+
+	      		<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+							<h3 className="page-header" id="header-all">
+								<span className="page-title-text">GROCERY LIST</span>
+							</h3>
+						</div>
 					</div>
-				</div>
-    			{this.state.rows}
+	    			{this.state.rows}
+	      		</div>												
+
+	      		<Footer />
       		</div>
 	    );
   	}
