@@ -7,6 +7,7 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
+// Import resources
 import CheckIcon from '../res/checked-checkbox.png';
 
 //import and initialize firebase
@@ -48,7 +49,7 @@ class ListItem extends React.Component {
      *  restores onChange function
      */
     restoreOnChange = function() {
-    	this.setState({onChange: this.props.onChange});
+        this.setState({onChange: this.props.onChange});
     }
 
     /*
@@ -76,11 +77,10 @@ class ListItem extends React.Component {
                 <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
-
-				<input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
-				<span className="input-group-addon">
-					<label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
-				</span>
+                <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+                <span className="input-group-addon">
+                    <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
+                </span>
             </div>
         );
     }
@@ -102,7 +102,7 @@ export class GroceryList extends Component {
 		this.deleteItems = this.deleteItems.bind(this);
 		this.handleAddItem = this.handleAddItem.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
-        this.readItems = this.readItems.bind(this);
+    this.readItems = this.readItems.bind(this);
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
