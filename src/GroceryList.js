@@ -6,17 +6,7 @@ import { Header, Footer } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-//import and initialize firebase
 import * as firebase from "firebase";
-var config = {
-    apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
-    authDomain: "mealio-d047c.firebaseapp.com",
-    databaseURL: "https://mealio-d047c.firebaseio.com",
-    projectId: "mealio-d047c",
-    storageBucket: "mealio-d047c.appspot.com",
-    messagingSenderId: "280670219948"
-};
-firebase.initializeApp(config);
 
 /*
  * ListItem: defines a single item for the grocery list
@@ -140,8 +130,7 @@ export class GroceryList extends Component {
 	 *  handler to add a ListItem to rows[]
 	 */
 	handleAddItem = function() {
-
-		// reference to this GroceryList
+        // reference to this GroceryList
 		let handle = this;
 
 		// update component state...
