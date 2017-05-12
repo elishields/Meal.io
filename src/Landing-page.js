@@ -9,7 +9,6 @@ import { Header, Footer } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import '../src/App.css'
-import './landing-page.css';
 
 // Import resources
 import MealIoLogo from '../res/Logo-str.png';
@@ -108,50 +107,54 @@ export class LandingPage extends Component {
         });
     }
 
-
-
-
     render() {
 
         return (
-            <div className="body-landing">
-                <div className="container-fluid body-landing" id="container-fluid">
+            <div>
+            <div className="container-fluid" id="container-fluid landing-body">
 
-                    <div className="row">
-                        <div className="col-xs-12 logo-landing" id="container-fluid">
-                            <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12 wrapper" id="container-fluid">
-                            <h3>Welcome Food Waste Hater!</h3>
-                        </div>
+                <div className="row">
+                    <div className="col-xs-12" id="landing-logo">
+                        <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-12 body-landing" id="container-fluid">
-                        <div className="form-landing">
-                            <h4>Please login or sign up below:</h4>
-                            <input type="email" id="email" className="form-control input-md" placeholder="Email" />
-                            <br></br>
-                            <input type="password" id="password" className="form-control input-md" placeholder="Password" />
+                    <div className="col-xs-12" id="container-fluid">
+                        <h3 id="landing-welcome">Welcome Food Waste Hater!</h3>
+                        <h4 id="landing-prompt">Please login or sign up below:</h4>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-xs-12" id="landing-form">
+
+                        <div id="landing-inputs">
+                            <input type="email" className="form-control input-md" id="email" placeholder="Email" />
                             <br/>
-                            <div className="wrapper">
-                                 <span className="group-btn">
-                                     <LoginButton/>
-                                 </span>
+                            <input type="password" className="form-control input-md" id="password" placeholder="Password" />
+                        </div>
+                        <div id="landing-buttons-row">
+                            <div id="landing-buttons-group">
+                                <span className="group-btn">
+                                    <LoginButton/>
+                                </span>
                                 <span className="group-btn">
                                     <SignUpButton/>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-xs-12 img-landing" id="container-fluid">
-                            <img src={Cycle} alt="Meal.io feature cycle" className="img-responsive center-block"></img>
+                </div>
+
+                <div className="row">
+                    <div className="col-xs-12" id="container-fluid">
+                        <div id="landing-image">
+                            <img src={Cycle} className="center-block" id="landing-image-responsive" alt="Meal.io feature cycle"></img>
                         </div>
                     </div>
+                </div>
+
             </div>
                 <Link to="/list"><div id="DoNotTouch"> </div></Link>
             </div>
