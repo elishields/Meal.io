@@ -282,3 +282,17 @@ a, a:link, a:visited, a:hover, a:active {
 #bottom-thumbnail {
     margin-bottom: 100px;
 }
+
+/*ABOUT US */
+#mealIoLogo {
+    width: 100%;
+}
+
+#button {
+    background-color: #21c0c0;
+    color: white;
+}
+
+#team img {
+    width: 20%;
+}
