@@ -5,6 +5,7 @@ import { Header, Footer } from './Navigation.js';
 
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import '../src/App.css'
 import './landing-page.css';
 
 import MealIoLogo from '../res/Logo-str.png';
@@ -111,21 +112,21 @@ export class LandingPage extends Component {
 
         return (
             <div>
-                <div className="container-fluid" id="body-landing">
+                <div className="container-fluid body-landing" id="container-fluid">
                     <div className="row">
-                        <div className="col-xs-12 logo-landing">
+                        <div className="col-xs-12 logo-landing" id="container-fluid">
                             <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 wrapper">
+                        <div className="col-xs-12 wrapper" id="container-fluid">
                             <h3>Welcome Food Waste Hater!</h3>
                         </div>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
+                    <div className="col-xs-12 body-landing" id="container-fluid">
                         <div className="form-landing">
                             <h4>Please login or sign up below:</h4>
                             <input type="email" id="email" className="form-control input-md" placeholder="Email" />
@@ -143,7 +144,7 @@ export class LandingPage extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 img-landing">
+                        <div className="col-xs-12 img-landing" id="container-fluid">
                             <img src={Cycle} alt="Meal.io feature cycle" className="img-responsive center-block"></img>
                         </div>
                     </div>

@@ -8,14 +8,10 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 0;
 }
 
-html,body,#body-landing {
-    height:100%;
-    background-color: #21C0C0;
-}
-
-#body-landing {
+.body-landing {
     background-color: #21C0C0;
     font-family: 'Catamaran', sans-serif;
+    padding: 0;
 }
 
 .logo-landing {
@@ -35,6 +31,7 @@ html,body,#body-landing {
     margin-top: 15px;
     padding: 10px 20px 20px;
     border-radius: 15px;
+    background-color: #21C0C0;
 }
 
 h4 {
