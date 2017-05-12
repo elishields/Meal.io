@@ -7,6 +7,7 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
+// Import resources
 import CheckIcon from '../res/checked-checkbox.png';
 
 //import and initialize firebase
@@ -48,7 +49,7 @@ class ListItem extends React.Component {
      *  restores onChange function
      */
     restoreOnChange = function() {
-    	this.setState({onChange: this.props.onChange});
+        this.setState({onChange: this.props.onChange});
     }
 
     /*
@@ -75,12 +76,12 @@ class ListItem extends React.Component {
             <div className="input-group" id="grocery-item">
                 <input type="number" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
-                       onChange={this.clearOnChange} aria-describedby="item name"></input>
+                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 
-				<input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
-				<span className="input-group-addon">
-					<label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
-				</span>
+                <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+                <span className="input-group-addon">
+                    <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
+                </span>
             </div>
         );
     }
@@ -93,107 +94,107 @@ class ListItem extends React.Component {
  */
 export class GroceryList extends Component {
 
-	/*
-	 *  Constructor for GroceryList
-	 */
-	constructor(props) {
-		super(props);
-		
-		this.deleteItemse = this.deleteItems.bind(this);
-		this.handleAddItem = this.handleAddItem.bind(this);
-		this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    /*
+     *  Constructor for GroceryList
+     */
+    constructor(props) {
+        super(props);
 
-		/*
-		 * Create an empty array to store ListItems, then push one new ListItem
-		 * 
-		 * key: index of new element
-		 */
-		let rows = [];
-		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
-		
-		/*
-		 * set this.state.rows = rows
-		 */
-		this.state = {rows: rows};
-	}
-	
-	/*
-	 *  handler to add a ListItem to rows[]
-	 */
-	handleAddItem = function() {
+        this.deleteItemse = this.deleteItems.bind(this);
+        this.handleAddItem = this.handleAddItem.bind(this);
+        this.handleRemoveItem = this.handleRemoveItem.bind(this);
+
+        /*
+         * Create an empty array to store ListItems, then push one new ListItem
+         * 
+         * key: index of new element
+         */
+        let rows = [];
+        rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+
+        /*
+         * set this.state.rows = rows
+         */
+        this.state = {rows: rows};
+    }
+    
+    /*
+     *  handler to add a ListItem to rows[]
+     */
+    handleAddItem = function() {
         // reference to this GroceryList
-		let handle = this;
+        let handle = this;
 
-		// update component state...
-		this.setState((prevState, props) => {
+        // update component state...
+        this.setState((prevState, props) => {
 
-			// get rows from component's previous state
-			let newStateRows = prevState.rows;
-			// push a new ListItem to newStateRows
-			newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
+            // get rows from component's previous state
+            let newStateRows = prevState.rows;
+            // push a new ListItem to newStateRows
+            newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
 
-			// update GroceryList's state.rows = newStateRows
-			return({rows: newStateRows});
-		});
-	}
-	
-	handleRemoveItem = function(index) {
-		// Remove item at 'index' from the database
-	}
+            // update GroceryList's state.rows = newStateRows
+            return({rows: newStateRows});
+        });
+    }
 
-	deleteItems = function() {
-		let rows = this.state.rows;
-		let safe=0;
+    handleRemoveItem = function(index) {
+        // Remove item at 'index' from the database
+    }
 
-		for(let i=0; i<rows.length; i++, safe++) {
-			if(document.getElementById("check-" + i).checked) {
-				this.handleRemoveItem(i);
-			}
-		}
-	}
+    deleteItems = function() {
+        let rows = this.state.rows;
+        let safe=0;
 
-	readItems = function() {
-		this.setState((prevState, props) => {
+        for(let i=0; i<rows.length; i++, safe++) {
+            if(document.getElementById("check-" + i).checked) {
+                this.handleRemoveItem(i);
+            }
+        }
+    }
 
-			// Read items from the database
+    readItems = function() {
+        this.setState((prevState, props) => {
 
-			return({rows: prevState.rows});
-		});
-	}
-	
+            // Read items from the database
 
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-  	render() {
-    	return (
-    		<div>
-    			<Header />
+            return({rows: prevState.rows});
+        });
+    }
+    
 
-	      		<div className="container-fluid">
-					<div className="row">
-						<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-							<h3 className="page-header" id="header-all">
-								<span className="page-title-text">GROCERY LIST</span>
-							</h3>
-						</div>
-					</div>
-	    			{this.state.rows}
-	      		</div>
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div>
+                <Header />
 
-	      		<div className="grocery-button-row">
-	    			<div className="container-fluid">
-		    			<div className="row">
-		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
-		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
-		    			</div>
-	    			</div>
-      			</div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                            <h3 className="page-header" id="header-all">
+                                <span className="page-title-text">GROCERY LIST</span>
+                            </h3>
+                        </div>
+                    </div>
+                    {this.state.rows}
+                </div>
 
-	      		<Footer />
-      		</div>
-	    );
-  	}
+                <div className="grocery-button-row">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
+                            <button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
+                        </div>
+                    </div>
+                </div>
+
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default GroceryList;

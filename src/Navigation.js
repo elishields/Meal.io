@@ -16,12 +16,12 @@ import Logo from '../res/Logo-str.png';
  */
 export class Header extends Component {
 
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return (
-		    <div className="container-fluid" id="container-fluid">
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div className="container-fluid" id="container-fluid">
                 <row>
                     <nav className="navbar navbar-fixed-top" id="header">
                         <div>
@@ -44,8 +44,8 @@ export class Header extends Component {
                     </nav>
                 </row>
             </div>
-		);
-	}
+        );
+    }
 }
 
 /*
@@ -53,12 +53,12 @@ export class Header extends Component {
  */
 export class Footer extends React.Component {
 
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-	render() {
-		return (
-			<div className="container-fluid" id="container-fluid">
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div className="container-fluid" id="container-fluid">
                 <div className="row">
                     <div className="col-xs-12">
                         <nav className="navbar navbar-fixed-bottom" id="footer">
@@ -77,6 +77,6 @@ export class Footer extends React.Component {
                     </div>
                 </div>
             </div>
-		);
-	}
+        );
+    }
 }

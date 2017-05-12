@@ -1,6 +1,7 @@
 // Import classes from React
 import React, { Component } from 'react';
 
+// Import our classes
 import { Header, Footer } from './Navigation.js';
 
 //Import our resources
@@ -15,9 +16,7 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
 /*
- * FridgeTable: displays food categories within the fridge.
- *
- * Note: 'export' for classes we will use outside this file.
+ * Fridge: displays food categories within the fridge.
  */
 export class Fridge extends Component {
 
@@ -28,6 +27,9 @@ export class Fridge extends Component {
         super(props);
     }
 
+    /*
+     *
+     */
     render() {
         return (
             <div>
