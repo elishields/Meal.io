@@ -163,10 +163,10 @@ export class LandingPage extends Component {
                         </div>
                         <div id="landing-buttons-row">
                             <div id="landing-buttons-group">
-                                <span className="group-btn">
+                                <span className="group-btn pull-left">
                                     <LoginButton/>
                                 </span>
-                                <span className="group-btn">
+                                <span className="group-btn pull-right">
                                     <SignUpButton/>
                                 </span>
                             </div>

@@ -133,9 +133,11 @@ a, a:link, a:visited, a:hover, a:active {
 #landing-buttons-group {
     color: black;
     margin: 0 auto;
+    max-width: 300px;
 }
 .group-btn {
     padding: 0;
+    color: black;
 }
 #landing-image {
     margin: 0;
@@ -144,6 +146,12 @@ a, a:link, a:visited, a:hover, a:active {
 }
 #landing-image-responsive {
     max-width: 60%;
+}
+#btnLogin {
+    color: black;
+}
+#btnSignup {
+    color: black;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */

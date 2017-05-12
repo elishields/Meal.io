@@ -18,7 +18,6 @@ import { Footer } from './Navigation.js';
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-import './landing-page.css';
 
 /*
  *  Main is our viewport; it is filled by BrowserRouter according to the url path.
@@ -45,7 +44,7 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <div className="container-fluid">
+                <div className="container-fluid" id="container-fluid">
                     
                     <Main/>
                 
