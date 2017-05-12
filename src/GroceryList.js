@@ -74,10 +74,9 @@ class ListItem extends React.Component {
     render() {
         return (
             <div className="input-group" id="grocery-item">
-                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
-                <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
-                        onChange={this.clearOnChange} aria-describedby="item name"></input>
-
+                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
+                <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
+                       onChange={this.clearOnChange} aria-describedby="item name"></input>
                 <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
                 <span className="input-group-addon">
                     <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
@@ -94,115 +93,128 @@ class ListItem extends React.Component {
  */
 export class GroceryList extends Component {
 
-    /*
-     *  Constructor for GroceryList
-     */
-    constructor(props) {
-        super(props);
+	/*
+	 *  Constructor for GroceryList
+	 */
+	constructor(props) {
+		super(props);
 
-        this.deleteItemse = this.deleteItems.bind(this);
-        this.handleAddItem = this.handleAddItem.bind(this);
-        this.handleRemoveItem = this.handleRemoveItem.bind(this);
+		this.deleteItems = this.deleteItems.bind(this);
+		this.handleAddItem = this.handleAddItem.bind(this);
+		this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    this.readItems = this.readItems.bind(this);
 
-        /*
-         * Create an empty array to store ListItems, then push one new ListItem
-         * 
-         * key: index of new element
-         */
-        let rows = [];
-        rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+		/*
+		 * Create an empty array to store ListItems, then push one new ListItem
+		 * 
+		 * key: index of new element
+		 */
+		let rows = [];
+		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
 
-        /*
-         * set this.state.rows = rows
-         */
-        this.state = {rows: rows};
-    }
-    
-    /*
-     *  handler to add a ListItem to rows[]
-     */
-    handleAddItem = function() {
+		/*
+		 * set this.state.rows = rows
+		 */
+		this.state = {rows: rows};
+	}
+	
+	/*
+	 *  handler to add a ListItem to rows[]
+	 */
+	handleAddItem = function(name, quan) {
         // reference to this GroceryList
+		let handle = this;
+
+		// update component state...
+		this.setState((prevState, props) => {
+
+			// get rows from component's previous state
+			let newStateRows = prevState.rows;
+			// push a new ListItem to newStateRows
+			newStateRows.push(<ListItem key={newStateRows.length} itemName={name} itemQuan={quan} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
+
+			// update GroceryList's state.rows = newStateRows
+			return({rows: newStateRows});
+		});
+	}
+
+	handleAddEmptyItem = function (){
+
+	    //TODO:LIAM WORK YOUR WIZARDRY
+
+    }
+
+	handleRemoveItem = function(index) {
+		// Remove item at 'index' from the database
+	}
+
+	deleteItems = function() {
+		let rows = this.state.rows;
+		let safe=0;
+
+		for(let i=0; i<rows.length; i++, safe++) {
+			if(document.getElementById("check-" + i).checked) {
+				this.handleRemoveItem(i);
+			}
+		}
+	}
+
+	readItems = function() {
+		this.setState((prevState, props) => {
+        let newRows = [];
+        let rowId = 0;
         let handle = this;
+			// Read items from the database
+			let listPath = firebase.auth().currentUser.uid + "/shopList/";
+			let ref = new firebase.database().ref(listPath);
+            ref.once("value")
+                .then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var itemName = childSnapshot.key;
+                        var itemQuan = childSnapshot.val();
+                        handle.handleAddItem(itemName, itemQuan);
+                        console.log("we got: " + itemQuan + " " + itemName);
+                        rowId ++;
+                    })
+                })
+            handle.handleAddEmptyItem();
+			return({rows: newRows});
+		});
+	}
+	
 
-        // update component state...
-        this.setState((prevState, props) => {
+	/*
+	 *  render() defines the HTML template for this class.
+	 */
+  	render() {
+    	return (
+    		<div>
+    			<Header />
 
-            // get rows from component's previous state
-            let newStateRows = prevState.rows;
-            // push a new ListItem to newStateRows
-            newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
+	      		<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+							<h3 className="page-header" id="header-all">
+								<span className="page-title-text">GROCERY LIST</span>
+							</h3>
+						</div>
+					</div>
+	    			{this.state.rows}
+	      		</div>
 
-            // update GroceryList's state.rows = newStateRows
-            return({rows: newStateRows});
-        });
-    }
+	      		<div className="grocery-button-row">
+	    			<div className="container-fluid">
+		    			<div className="row">
+		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
+		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
+		    			</div>
+	    			</div>
+      			</div>
 
-    /*
-     *  Removes a ListItem from rows. Not yet implemented.
-     */
-    handleRemoveItem = function(index) {
-        // Remove item at 'index' from the database
-    }
-
-    /*
-     *  Iterate over rows, firing handleRemoveItem for all checked.
-     */
-    deleteItems = function() {
-        let rows = this.state.rows;
-
-        for(let i=0; i<rows.length; i++) {
-            if(document.getElementById("check-" + i).checked) {
-                this.handleRemoveItem(i);
-            }
-        }
-    }
-
-    /*
-     *  Read item list from database.
-     */
-    readItems = function() {
-        this.setState((prevState, props) => {
-
-            // Read items from the database
-
-            return({rows: prevState.rows});
-        });
-    }
-    
-
-    /*
-     *  render() returns the HTML template for this class.
-     */
-    render() {
-        return (
-            <div>
-                <Header />
-
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-                            <h3 className="page-header" id="header-all">
-                                <span className="page-title-text">GROCERY LIST</span>
-                            </h3>
-                        </div>
-                    </div>
-                    {this.state.rows}
-                </div>
-
-                <div className="grocery-button-row">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
-                            <button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
-                        </div>
-                    </div>
-                </div>
-
-                <Footer />
-            </div>
-        );
-    }
+	      		<Footer />
+      		</div>
+	    );
+  	}
 }
 
 export default GroceryList;

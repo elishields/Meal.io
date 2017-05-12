@@ -73,7 +73,7 @@ class SignUpButton extends Component {
         const promise = auth.createUserWithEmailAndPassword(email, passw);
         firebase.database().ref(firebase.auth().currentUser.uid).set({
             email: email,
-        })
+        });
         promise.catch(e => console.log(e.message));
     }
 
@@ -181,7 +181,6 @@ export class LandingPage extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
                 <Link to="/list"><div id="DoNotTouch"> </div></Link>
             </div>
