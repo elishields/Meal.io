@@ -91,8 +91,10 @@ a, a:link, a:visited, a:hover, a:active {
 #grocery-item {
     margin: 0.2em 0em;
 }
+
 #grocery-item-quantity {
     background-color: #21C0C0;
+    color: #ffffff;
     font-style: italic;
     font-weight: bold;
     text-align: center;
@@ -101,6 +103,7 @@ a, a:link, a:visited, a:hover, a:active {
     border-right: none;
     width: 10%;
 }
+
 #grocery-item-input {
     font-style: italic;
     width: 90%;
@@ -115,10 +118,16 @@ a, a:link, a:visited, a:hover, a:active {
     display: none;
 }
 .confirm-check + span {
-    background-color: #ffffff;
+    background-image: url("../res/unchecked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .confirm-check:checked + span {
-    background-color: #21c0c0;
+    background-image: url("../res/checked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .remove-check + span {
     background-color: #ffffff;
