@@ -1,13 +1,17 @@
+// Import classes from React
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+// Import our classes
 import { Header, Footer } from './Navigation.js';
 
+// Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import '../src/App.css'
 import './landing-page.css';
 
+// Import resources
 import MealIoLogo from '../res/Logo-str.png';
 import Cycle from '../res/cycle-landing.png';
 import * as firebase from "firebase";
@@ -102,7 +106,6 @@ export class LandingPage extends Component {
                 console.log('User is not logged in');
             }
         });
-
     }
 
 
