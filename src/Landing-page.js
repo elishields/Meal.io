@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+
+import { Header, Footer } from './Navigation.js';
+
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './landing-page.css';
+
 import MealIoLogo from '../res/Logo-str.png';
 import Cycle from '../res/cycle-landing.png';
 import * as firebase from "firebase";
@@ -107,15 +111,16 @@ export class LandingPage extends Component {
 
         return (
             <div>
-            <div className="container-fluid" id="body-landing">
-                <div className="row">
-                    <div className="col-xs-12 logo-landing">
-                        <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
+                <div className="container-fluid" id="body-landing">
+                    <div className="row">
+                        <div className="col-xs-12 logo-landing">
+                            <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12 wrapper">
-                        <h3>Welcome Food Waste Hater!</h3>
+                    <div className="row">
+                        <div className="col-xs-12 wrapper">
+                            <h3>Welcome Food Waste Hater!</h3>
+                        </div>
                     </div>
                 </div>
 
@@ -137,17 +142,15 @@ export class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12 img-landing">
-                        <img src={Cycle} alt="Meal.io feature cycle" className="img-responsive center-block"></img>
+                    <div className="row">
+                        <div className="col-xs-12 img-landing">
+                            <img src={Cycle} alt="Meal.io feature cycle" className="img-responsive center-block"></img>
+                        </div>
                     </div>
                 </div>
-
             </div>
                 <Link to="/list"><div id="DoNotTouch"> </div></Link>
             </div>
-
         )
     }
 }
