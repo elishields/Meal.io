@@ -9,9 +9,14 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 .body-landing {
+    height: 100%;
     background-color: #21C0C0;
     font-family: 'Catamaran', sans-serif;
     padding: 0;
+}
+
+.group-btn {
+    color: black;
 }
 
 .logo-landing {
@@ -32,6 +37,14 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 10px 20px 20px;
     border-radius: 15px;
     background-color: #21C0C0;
+}
+
+#btnSignup {
+    color: black;;
+}
+
+#btnLogin {
+    color: black;
 }
 
 h4 {

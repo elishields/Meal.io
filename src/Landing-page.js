@@ -111,8 +111,9 @@ export class LandingPage extends Component {
     render() {
 
         return (
-            <div>
+            <div className="body-landing">
                 <div className="container-fluid body-landing" id="container-fluid">
+
                     <div className="row">
                         <div className="col-xs-12 logo-landing" id="container-fluid">
                             <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
