@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
+import * as firebase from "firebase";
 
 //Import our resources
 import GroceryListIcon from '../res/NavGroceryListIcon.svg';
@@ -15,6 +16,10 @@ import Logo from '../res/Logo-str.png';
  *  Header: defines the header common to all pages
  */
 export class Header extends Component {
+    //called when logout button is pressed to log user out
+    logout = function(){
+        firebase.auth().signOut();
+    }
 
 	/*
 	 *  render() defines the HTML template for this class.
@@ -37,7 +42,7 @@ export class Header extends Component {
                                         <Link to="/about-page">About Us</Link>
                                     </MenuItem>
                                     <MenuItem divider/>
-                                    <MenuItem className="menu-item" eventKey="3">Log Out</MenuItem>
+                                    <MenuItem className="menu-item" eventKey="3" onClick={this.logout}>Log Out</MenuItem>
                                 </DropdownButton>
                             </ButtonGroup>
                         </div>

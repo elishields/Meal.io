@@ -99,7 +99,7 @@ export class GroceryList extends Component {
 	constructor(props) {
 		super(props);
 
-		this.deleteItemse = this.deleteItems.bind(this);
+		this.deleteItems = this.deleteItems.bind(this);
 		this.handleAddItem = this.handleAddItem.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
         this.readItems = this.readItems.bind(this);
@@ -111,7 +111,7 @@ export class GroceryList extends Component {
 		 */
 		let rows = [];
 		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
-		
+
 		/*
 		 * set this.state.rows = rows
 		 */
@@ -205,7 +205,7 @@ export class GroceryList extends Component {
 	      		<div className="grocery-button-row">
 	    			<div className="container-fluid">
 		    			<div className="row">
-		    				<button id="remove-button" onClick={this.readItems} className="col-xs-6 btn btn-secondary">delete</button>
+		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
 		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
 		    			</div>
 	    			</div>

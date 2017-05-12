@@ -53,7 +53,7 @@ class SignUpButton extends Component {
         const promise = auth.createUserWithEmailAndPassword(email, passw);
         firebase.database().ref(firebase.auth().currentUser.uid).set({
             email: email,
-        })
+        });
         promise.catch(e => console.log(e.message));
     }
 
