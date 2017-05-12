@@ -15,15 +15,22 @@ import MealIoLogo from '../res/Logo-str.png';
 import Cycle from '../res/cycle-landing.png';
 import * as firebase from "firebase";
 
-
+/*
+ *  LoginButton: defines the button clicked to sign a user in
+ */
 class LoginButton extends Component {
 
+    /*
+     *  Constructor for LoginButton
+     */
     constructor(props) {
         super(props);
         this.handler = this.handler.bind(this);
     }
 
-    //called when login button is clicked
+    /*
+     *  handler: function called when login button is clicked
+     */
     handler = function() {
         let email = document.getElementById('email').value;
         let passw = document.getElementById('password').value;
@@ -32,7 +39,9 @@ class LoginButton extends Component {
         promise.catch(e => console.log(e.message));
     }
 
-    //creates the html for the button
+    /*
+     *  render() returns the HTML for LoginButton
+     */
     render () {
         return (
             <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnLogin">Login</a>
@@ -40,14 +49,22 @@ class LoginButton extends Component {
     }
 }
 
+/*
+ *  SignUpButton: defines the button used to sign up a new user
+ */
 class SignUpButton extends Component {
 
+    /*
+     *  Constructor for SignUpButton
+     */
     constructor(props) {
         super(props);
         this.handler = this.handler.bind(this);
     }
 
-    //called when signup button is clicked
+    /*
+     *  handler: function called when signup button is clicked
+     */
     handler = function() {
         let email = document.getElementById('email').value;
         let passw = document.getElementById('password').value;
@@ -60,7 +77,9 @@ class SignUpButton extends Component {
         promise.catch(e => console.log(e.message));
     }
 
-    //creates the html for the button
+    /*
+     *  render() returns the HTML template for SignUpButton
+     */
     render () {
         return (
             <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnSignup">SignUp</a>
@@ -68,13 +87,18 @@ class SignUpButton extends Component {
     }
 }
 
-
+/*
+ *  LandingPage: defines the landing page used for login, signup, and welcome
+ */
 export class LandingPage extends Component {
 
+    /*
+     *  Constructor for LandingPage
+     */
     constructor(props) {
         super(props);
 
-        //initialize firebase for the app
+        //initialize firebase
         const config ={
             apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
             authDomain: "mealio-d047c.firebaseapp.com",
@@ -107,6 +131,9 @@ export class LandingPage extends Component {
         });
     }
 
+    /*
+     *  render() returns the HTML template for LandingPage
+     */
     render() {
 
         return (

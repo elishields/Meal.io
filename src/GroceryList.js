@@ -138,13 +138,18 @@ export class GroceryList extends Component {
         });
     }
 
+    /*
+     *  Removes a ListItem from rows. Not yet implemented.
+     */
     handleRemoveItem = function(index) {
         // Remove item at 'index' from the database
     }
 
+    /*
+     *  Iterate over rows, firing handleRemoveItem for all checked.
+     */
     deleteItems = function() {
         let rows = this.state.rows;
-        let safe=0;
 
         for(let i=0; i<rows.length; i++, safe++) {
             if(document.getElementById("check-" + i).checked) {
@@ -153,6 +158,9 @@ export class GroceryList extends Component {
         }
     }
 
+    /*
+     *  Read item list from database.
+     */
     readItems = function() {
         this.setState((prevState, props) => {
 
@@ -164,7 +172,7 @@ export class GroceryList extends Component {
     
 
     /*
-     *  render() defines the HTML template for this class.
+     *  render() returns the HTML template for this class.
      */
     render() {
         return (
