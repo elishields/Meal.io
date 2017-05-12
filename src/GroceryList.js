@@ -27,13 +27,13 @@ class ListItem extends React.Component {
         this.state = {amount: 1, onChange: props.onChange};
         this.checkId = "check-" + this.props.myId;
         this.removeId = "remove-" + this.props.myId;
-        this.groupId = "radgroup-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
         this.clearOnChange = this.clearOnChange.bind(this);
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-        //this.setAmount = this.setAmount.bind(this);
+        this.restoreOnChange = this.restoreOnChange.bind(this);
+
+        this.getAmount = this.getAmount.bind(this);
+        this.setAmount = this.setAmount.bind(this);
     }
 
     /*
@@ -45,22 +45,10 @@ class ListItem extends React.Component {
     }
 
     /*
-     *  Increments this ListItem's amount.
+     *  restores onChange function
      */
-    increment = function() {
-        this.setState((prevState, props) => {
-            return({amount: prevState.amount + 1});
-        });
-
-    }
-
-    /*
-     *  Decrements this ListItem's amount.
-     */
-    decrement = function() {
-        this.setState((prevState, props) => {
-            return({amount: prevState.amount - 1});
-        });
+    restoreOnChange = function() {
+    	this.setState({onChange: this.props.onChange});
     }
 
     /*
@@ -85,11 +73,11 @@ class ListItem extends React.Component {
     render() {
         return (
             <div className="input-group" id="grocery-item">
-                <input type="tel" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
+                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 
-				<input type="checkbox" name={this.groupId} className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+				<input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
 				<span className="input-group-addon">
 					<label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
 				</span>
@@ -99,7 +87,7 @@ class ListItem extends React.Component {
 }
 
 /*
- * GroceryList: defines our grocery list page.
+ * GroceryList: defines our grocery list component.
  *
  * note: 'export' for classes we will use outside this file.
  */
@@ -111,6 +99,10 @@ export class GroceryList extends Component {
 	constructor(props) {
 		super(props);
 		
+		this.deleteItemse = this.deleteItems.bind(this);
+		this.handleAddItem = this.handleAddItem.bind(this);
+		this.handleRemoveItem = this.handleRemoveItem.bind(this);
+
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
 		 * 
@@ -137,44 +129,35 @@ export class GroceryList extends Component {
 
 			// get rows from component's previous state
 			let newStateRows = prevState.rows;
-			let nsrLength = newStateRows.length;
 			// push a new ListItem to newStateRows
 			newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
 
 			// update GroceryList's state.rows = newStateRows
 			return({rows: newStateRows});
 		});
-		
-		// this isn't working yet, disregard!
-		this.rebuildList();
 	}
 	
-
-	/*
-	 *  This isn't working yet, disregard!
-	 */
 	handleRemoveItem = function(index) {
-		this.setState((prevState, props) => {
-			let newStateRows = prevState.rows;
-			newStateRows.splice(index, 1);
-			return({rows: newStateRows});
-		});
+		// Remove item at 'index' from the database
 	}
 
-	/*
-	 *  this doesn't work yet, disregard!
-	 */
-	rebuildList = function() {
-		this.setState((prevState, props) => {
-	
-			let newStateRows = prevState.rows;
-	
-			for(let i=0; i<newStateRows.length; i++) {
-				if(newStateRows[i].amount === 0) {
-					this.handleRemoveItem(i);
-					i--;
-				}
+	deleteItems = function() {
+		let rows = this.state.rows;
+		let safe=0;
+
+		for(let i=0; i<rows.length; i++, safe++) {
+			if(document.getElementById("check-" + i).checked) {
+				this.handleRemoveItem(i);
 			}
+		}
+	}
+
+	readItems = function() {
+		this.setState((prevState, props) => {
+
+			// Read items from the database
+
+			return({rows: prevState.rows});
 		});
 	}
 	
@@ -196,7 +179,16 @@ export class GroceryList extends Component {
 						</div>
 					</div>
 	    			{this.state.rows}
-	      		</div>												
+	      		</div>
+
+	      		<div className="grocery-button-row">
+	    			<div className="container-fluid">
+		    			<div className="row">
+		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
+		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
+		    			</div>
+	    			</div>
+      			</div>
 
 	      		<Footer />
       		</div>
