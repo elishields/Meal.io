@@ -151,7 +151,7 @@ export class GroceryList extends Component {
     deleteItems = function() {
         let rows = this.state.rows;
 
-        for(let i=0; i<rows.length; i++, safe++) {
+        for(let i=0; i<rows.length; i++) {
             if(document.getElementById("check-" + i).checked) {
                 this.handleRemoveItem(i);
             }
