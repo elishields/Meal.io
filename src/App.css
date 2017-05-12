@@ -45,7 +45,6 @@ a, a:link, a:visited, a:hover, a:active {
     margin-top: 8px;
     font-size: 2.5em;
 }
-
 #bg-nested-dropdown {
     font-size: 0.8em;
     border: none;
@@ -53,18 +52,15 @@ a, a:link, a:visited, a:hover, a:active {
     background-color: #21C0C0;
     box-shadow: none;
 }
-
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
     font-family: 'Catamaran', sans-serif;
 }
-
 .menu-item a {
     color: white;
     text-decoration: none;
 }
-
 .open>.dropdown-menu {
     background-color: #21C0C0;
 }
@@ -85,6 +81,69 @@ a, a:link, a:visited, a:hover, a:active {
     height: 78px;
     width: auto;
     margin: 6px 17px;
+}
+
+/* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
+
+#landing-body {
+    background-color: #21C0C0;
+    font-family: 'Catamaran', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#landing-logo {
+    background-color: #21C0C0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#landing-welcome {
+    margin: 0;
+    padding: 10px;
+    background-color: #21C0C0;
+    border: none;
+    text-align: center;
+    color: white;
+}
+#landing-prompt {
+    background-color: #21C0C0;
+    margin: 0;
+    padding: 20px 0;
+    border: none;
+    border-bottom: 2px solid #FFFFFF;
+    text-align: center;
+    color: white;
+}
+#landing-form {
+    background-color: #21C0C0;
+    padding: 25px 0;
+}
+.form-control {
+    border-radius: 10px;
+    font-family: 'Catamaran', sans-serif;
+}
+#landing-inputs {
+    width: 70%;
+    margin: 25px auto;
+}
+#landing-buttons-row {
+    margin: 0 auto;
+    width: 50%;
+}
+#landing-buttons-group {
+    color: black;
+    margin: 0 auto;
+}
+.group-btn {
+    padding: 0;
+}
+#landing-image {
+    margin: 0;
+    padding: 0;
+    background-color: #21C0C0;
+}
+#landing-image-responsive {
+    max-width: 60%;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
