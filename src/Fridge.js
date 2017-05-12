@@ -28,7 +28,7 @@ export class Fridge extends Component {
     }
 
     /*
-     *
+     *  render() returns the HTML template for Fridge
      */
     render() {
         return (
