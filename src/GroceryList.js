@@ -94,7 +94,7 @@ class ListItem extends React.Component {
     render() {
         return (
             <div className="input-group" id="grocery-item">
-                <input type="number" className="form-control" id="grocery-item-quantity" placeholder="1"></input>
+                <input type="tel" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
                 <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 

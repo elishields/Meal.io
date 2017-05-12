@@ -91,8 +91,10 @@ a, a:link, a:visited, a:hover, a:active {
 #grocery-item {
     margin: 0.2em 0em;
 }
+
 #grocery-item-quantity {
     background-color: #21C0C0;
+    color: #ffffff;
     font-style: italic;
     font-weight: bold;
     text-align: center;
@@ -101,6 +103,7 @@ a, a:link, a:visited, a:hover, a:active {
     border-right: none;
     width: 10%;
 }
+
 #grocery-item-input {
     font-style: italic;
     width: 90%;
