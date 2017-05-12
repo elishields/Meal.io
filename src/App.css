@@ -123,3 +123,22 @@ input[type="checkbox"]:checked + span {
 #last-div{
     padding-bottom: 75px;
 }
+
+/*ABOUT US */
+#mealIoLogo{
+    width: 100%;
+}
+
+#button{
+    background-color: #21c0c0;
+    color: white;
+}
+
+#team img{
+    width: 20%;
+}
+
+
+
+
+
