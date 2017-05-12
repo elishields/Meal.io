@@ -149,7 +149,7 @@ export class LandingPage extends Component {
                             <img src={Cycle} alt="Meal.io feature cycle" className="img-responsive center-block"></img>
                         </div>
                     </div>
-            </div>
+                </div>
                 <Link to="/list"><div id="DoNotTouch"> </div></Link>
             </div>
         )

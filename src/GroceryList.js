@@ -73,8 +73,8 @@ class ListItem extends React.Component {
     render() {
         return (
             <div className="input-group" id="grocery-item">
-                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue="1"></input>
-                <input type="text" className="form-control" id="grocery-item-input" placeholder="enter an item"
+                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
+                <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
                        onChange={this.clearOnChange} aria-describedby="item name"></input>
 
 				<input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
@@ -98,10 +98,11 @@ export class GroceryList extends Component {
 	 */
 	constructor(props) {
 		super(props);
-		
+
 		this.deleteItemse = this.deleteItems.bind(this);
 		this.handleAddItem = this.handleAddItem.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
+        this.readItems = this.readItems.bind(this);
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
@@ -120,7 +121,7 @@ export class GroceryList extends Component {
 	/*
 	 *  handler to add a ListItem to rows[]
 	 */
-	handleAddItem = function() {
+	handleAddItem = function(name, quan) {
         // reference to this GroceryList
 		let handle = this;
 
@@ -130,13 +131,19 @@ export class GroceryList extends Component {
 			// get rows from component's previous state
 			let newStateRows = prevState.rows;
 			// push a new ListItem to newStateRows
-			newStateRows.push(<ListItem key={newStateRows.length} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
+			newStateRows.push(<ListItem key={newStateRows.length} itemName={name} itemQuan={quan} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
 
 			// update GroceryList's state.rows = newStateRows
 			return({rows: newStateRows});
 		});
 	}
-	
+
+	handleAddEmptyItem = function (){
+
+	    //TODO:LIAM WORK YOUR WIZARDRY
+
+    }
+
 	handleRemoveItem = function(index) {
 		// Remove item at 'index' from the database
 	}
@@ -154,10 +161,24 @@ export class GroceryList extends Component {
 
 	readItems = function() {
 		this.setState((prevState, props) => {
-
+        let newRows = [];
+        let rowId = 0;
+        let handle = this;
 			// Read items from the database
-
-			return({rows: prevState.rows});
+			let listPath = firebase.auth().currentUser.uid + "/shopList/";
+			let ref = new firebase.database().ref(listPath);
+            ref.once("value")
+                .then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var itemName = childSnapshot.key;
+                        var itemQuan = childSnapshot.val();
+                        handle.handleAddItem(itemName, itemQuan);
+                        console.log("we got: " + itemQuan + " " + itemName);
+                        rowId ++;
+                    })
+                })
+            handle.handleAddEmptyItem();
+			return({rows: newRows});
 		});
 	}
 	
@@ -184,7 +205,7 @@ export class GroceryList extends Component {
 	      		<div className="grocery-button-row">
 	    			<div className="container-fluid">
 		    			<div className="row">
-		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
+		    				<button id="remove-button" onClick={this.readItems} className="col-xs-6 btn btn-secondary">delete</button>
 		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
 		    			</div>
 	    			</div>
