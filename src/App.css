@@ -1,40 +1,298 @@
-.App {
-    height: 719px;
-}
+/* GLOBAL *//* GLOBAL *//* GLOBAL */
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
 
-.Header {
-    background-color: #21C0C0;
-    height: 10%;
-    margin-bottom: 20px;
+.app {
+    font-family: 'Catamaran', sans-serif;
+    font-size: 1.1em;
+}
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
     color: white;
 }
-.Logo {
-    display: block;
-    margin-left: 10px;
-    margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: auto;
-    height: 50px;
+#container-fluid {
+    padding: 0;
+}
+.page-header {
+    margin: 20px 0;
+    text-align: center;
+}
+#header-all {
+    border: none;
+    margin: 110px 20px 20px 20px;
+}
+.page-title-text {
+    color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 700;
+}
+
+/* NAVIGATION */
+    /* HEADER */
+#header {
+    background-color: #21C0C0;
+    height: 70px;
+}
+.logo {
+    height: 40px;
     width: auto;
 }
-
-.Body {
-    height: 80%;
+#menu-icon {
+    margin-top: 8px;
+    font-size: 2.5em;
 }
-
-.Nav{
+#bg-nested-dropdown {
+    font-size: 0.8em;
+    border: none;
+    color: white;
     background-color: #21C0C0;
-    height: 10%;
+    box-shadow: none;
 }
-.Icon-Group {
+.menu-item {
+    font-size: 1.5em;
+    padding: 5px;
+    font-family: 'Catamaran', sans-serif;
+}
+.menu-item a {
+    color: white;
+    text-decoration: none;
+}
+.open>.dropdown-menu {
+    background-color: #21C0C0;
+}
+
+    /* FOOTER *//* FOOTER *//* FOOTER */
+#footer {
+    background-color: #21C0C0;
+    margin: 20px 0 0 0;
+    padding: 0;
+    height: 90px;
+}
+.icon-group {
     margin-right: auto;
     margin-left: auto;
-    height: auto;
-    width: 50%;
-
+    text-align: center;
 }
-.Nav-Icon {
-    margin: 10px;
-    height: 20%;
+.nav-icon {
+    height: 78px;
+    width: auto;
+    margin: 6px 17px;
+}
+
+/* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
+
+#landing-body {
+    background-color: #21C0C0;
+    font-family: 'Catamaran', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#landing-logo {
+    background-color: #21C0C0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#landing-welcome {
+    margin: 0;
+    padding: 10px;
+    background-color: #21C0C0;
+    border: none;
+    text-align: center;
+    color: white;
+}
+#landing-prompt {
+    background-color: #21C0C0;
+    margin: 0;
+    padding: 20px 0;
+    border: none;
+    border-bottom: 2px solid #FFFFFF;
+    text-align: center;
+    color: white;
+}
+#landing-form {
+    background-color: #21C0C0;
+    padding: 25px 0;
+}
+.form-control {
+    border-radius: 10px;
+    font-family: 'Catamaran', sans-serif;
+}
+#landing-inputs {
+    width: 70%;
+    margin: 25px auto;
+}
+#landing-buttons-row {
+    margin: 0 auto;
+    width: 50%;
+}
+#landing-buttons-group {
+    color: black;
+    margin: 0 auto;
+    max-width: 300px;
+}
+.group-btn {
+    padding: 0;
+    color: black;
+}
+#landing-image {
+    margin: 0;
+    padding: 0;
+    background-color: #21C0C0;
+}
+#landing-image-responsive {
+    max-width: 60%;
+}
+#btnLogin {
+    color: black;
+}
+#btnSignup {
+    color: black;
+}
+
+/* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
+#grocery-item {
+    margin: 0.2em 0em;
+}
+
+#grocery-item-quantity {
+    background-color: #21C0C0;
+    color: #ffffff;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+    width: 10%;
+}
+
+#grocery-item-input {
+    font-style: italic;
+    width: 90%;
+}
+#grocery-item-check-bg {
+    padding: 5px 10px;
+}
+
+#to-fridge-button {
+    border: 2px solid #21C0C0;
+    border-left: none;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: #21c0c0;
+    font-weight: bold;
+}
+
+#remove-button {
+    border: 2px solid #21C0C0;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: #21c0c0;
+    font-weight: bold;
+}
+
+.grocery-button-row {
+    position: fixed;
+    left: 0;
+    bottom: 90px;
+    width: 100%;
+
+    z-index: 1000;
+}
+
+.remove-check {
+    display: none;
+}
+.confirm-check {
+    display: none;
+}
+.confirm-check + span {
+    background-image: url("../res/unchecked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.confirm-check:checked + span {
+    background-image: url("../res/checked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.remove-check + span {
+    background-color: #ffffff;
+}
+.remove-check:checked + span {
+    background-color: #ff0000;
+}
+.grocery-item-check-bg {
+    width: 20px;
+    height: 16px;
+    margin: 0;
+}
+
+/* FRIDGE *//* FRIDGE *//* FRIDGE */
+
+#fridge-table {
+    margin: 50px 0;
+    border: none;
+    table-layout: fixed;
+}
+.fridge-table-row {
+    margin-left: auto;
+    margin-right: auto;
+}
+.fridge-category {
+    padding: 8px 0;
+    text-align: center;
+}
+.fridge-category-icon {
+    width: 120px;
+    height: auto;
+    text-align: center;
+}
+
+/* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
+#affiliate-blurb {
+    margin: 15px auto;
+    text-align: center;
+}
+#top-thumbnail {
+    padding-top: 5px;
+}
+.affiliate-title {
+    color: black;
+    font-weight: bold;
+}
+.affiliate-image {
+    width: 60%;
+}
+#bottom-thumbnail {
+    margin-bottom: 100px;
+}
+
+/*ABOUT US */
+#mealIoLogo {
+    width: 100%;
+}
+
+#button {
+    background-color: #21c0c0;
+    color: white;
+}
+
+#team img {
     width: 20%;
 }

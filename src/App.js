@@ -1,34 +1,54 @@
+//Import classes from React
 import React, { Component } from 'react';
-import GroceryList from '../res/NavGroceryListIcon.svg';
-import MyFridge from '../res/NavFridgeIcon.png';
-import MealPlan from '../res/NavMealPlanIcon.png';
-import Logo from '../res/Logo.png'
-import './App.css';
-import '../src/bootstrap-3.3.7-dist/css/bootstrap.css'
-import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css'
+import { Switch, Route } from 'react-router-dom';
 
+//Import classes for our pages
+
+import { GroceryList } from './GroceryList.js';
+import { Fridge } from './Fridge.js';
+import { LandingPage } from './Landing-page.js';
+
+//Import our resources
+import { AffiliatedPage } from './affiliated-page';
+
+import { Header } from './Navigation.js';
+import { Footer } from './Navigation.js';
+
+//Import our styles
+import './bootstrap-3.3.7-dist/css/bootstrap.css';
+import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import './App.css';
+
+/*
+ *  Main is our viewport; it is filled by BrowserRouter according to the url path.
+ */
+const Main = () => (
+    <main>
+        <Switch>
+            <Route exact path='/' component={LandingPage} />
+            <Route path='/list' component={GroceryList} />
+            <Route path='/fridge' component={Fridge} />
+            <Route path='/affiliated-page' component={AffiliatedPage} />
+        </Switch>
+    </main>
+)
+
+/*
+ * App: this is the 'entry point' for our app. It is loaded in index.js
+ */
 class App extends Component {
+
+    /*
+    *  render() defines the HTML template for this class.
+    */
     render() {
         return (
-            <div className="App">
-
-                <div className="Header">
-                    <img src={Logo} className="Logo" alt="Meal.io"/>
+            <div className="app">
+                <div className="container-fluid" id="container-fluid">
+                    
+                    <Main/>
+                
                 </div>
-                <div className="Body">
-
-                </div>
-                <div className="Nav">
-                    <div className="Icon-Group">
-                        {/* GroceryList */}
-                        <a href=""><img src={GroceryList} className="Nav-Icon" alt="Grocery List"/></a>
-                        {/* MyFridge */}
-                        <a href=""><img src={MyFridge} className="Nav-Icon" alt="My Fridge"/></a>
-                        {/* MealPlan */}
-                        <a href=""><img src={MealPlan} className="Nav-Icon" alt="Meal Plan"/></a>
-                    </div>
-                </div>
-
             </div>
         );
     }

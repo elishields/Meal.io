@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^3.9.0",
     "react": "^15.5.4",
+    "react-burger-menu": "^2.0.2",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
@@ -14,5 +16,21 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+
+  },
+  "description": "CST-2910 Web App",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elishields/Meal.io.git"
+  },
+  "keywords": [
+    "mealio"
+  ],
+  "author": "Danny DiIorio, Eli Shields, Liam MacIntyre, Prabhvir Saran,  Tony Pacheco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elishields/Meal.io/issues"
+  },
+  "homepage": "https://github.com/elishields/Meal.io#readme"
 }
