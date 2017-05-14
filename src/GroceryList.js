@@ -205,8 +205,8 @@ export class GroceryList extends Component {
 	      		<div className="grocery-button-row">
 	    			<div className="container-fluid">
 		    			<div className="row">
-		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
-		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
+		    				<button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
+		    				<button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
 		    			</div>
 	    			</div>
       			</div>
