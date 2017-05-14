@@ -11,6 +11,9 @@ import GroceryListIcon from '../res/NavGroceryListIcon.svg';
 import MyFridgeIcon from '../res/FridgeIcon.png';
 import MealPlanIcon from '../res/NavMealPlanIcon.png';
 import Logo from '../res/Logo-str.png';
+import NavIconList from '../res/Nav-Icons/list.svg';
+import NavIconFridge from '../res/Nav-Icons/fridge.svg';
+import NavIconPlate from '../res/Nav-Icons/plate.svg'
 
 /*
  *  Header: defines the header common to all pages
@@ -67,16 +70,30 @@ export class Footer extends React.Component {
                 <div className="row">
                     <div className="col-xs-12">
                         <nav className="navbar navbar-fixed-bottom" id="footer">
-                            <div className="icon-group">
-                                <Link to="/list">
-                                    <img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>
-                                </Link>
-                                <Link to="/fridge">
-                                    <img src={MyFridgeIcon} className="nav-icon" alt="My Fridge"/>
-                                </Link>
-                                <Link to="/">
-                                    <img src={MealPlanIcon} className="nav-icon" alt="Meal Plan"/>
-                                </Link>
+                            <div className="nav-icon-group">
+                                <div className="col-xs-4">
+                                    <Link to="/list">
+                                        {/*<img src={GroceryListIcon} className="nav-icon" alt="Grocery List"/>*/}
+                                        {/*<i className="fa fa-list-ul nav-icon" id="nav-icon-grocery" aria-hidden="true"></i>*/}
+                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
+                                        <br/>
+                                        <p className="nav-icon-caption">Grocery List</p>
+                                    </Link>
+                                </div>
+                                <div className="col-xs-4">
+                                    <Link to="/fridge">
+                                        {/*<img src={MyFridgeIcon} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>*/}
+                                        <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
+                                        <p className="nav-icon-caption">My Fridge</p>
+                                    </Link>
+                                </div>
+                                <div className="col-xs-4">
+                                    <Link to="/">
+                                        {/*<img src={MealPlanIcon} className="nav-icon" id="nav-icon-plan" alt="Meal Plan"/>*/}
+                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
+                                        <p className="nav-icon-caption">Meal Plan</p>
+                                    </Link>
+                                </div>
                             </div>
                         </nav>
                     </div>

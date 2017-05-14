@@ -15,8 +15,10 @@ import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
 
 //Import our styles
+import './font-awesome-4.7.0/css/font-awesome.css';
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+// App.css is imported after bootstrap.css so that App.css rules have primacy
 import './App.css';
 
 /*
