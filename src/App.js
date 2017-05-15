@@ -11,9 +11,6 @@ import { LandingPage } from './Landing-page.js';
 //Import our resources
 import { AffiliatedPage } from './affiliated-page';
 
-import { Header } from './Navigation.js';
-import { Footer } from './Navigation.js';
-
 //Import our styles
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';

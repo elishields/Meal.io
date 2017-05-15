@@ -21,13 +21,6 @@ import './App.css';
 export class Fridge extends Component {
 
     /*
-     *  Constructor for Fridge.
-     */
-    constructor(props) {
-        super(props);
-    }
-
-    /*
      *  render() returns the HTML template for Fridge
      */
     render() {

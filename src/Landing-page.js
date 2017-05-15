@@ -2,9 +2,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-// Import our classes
-import { Header, Footer } from './Navigation.js';
-
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
