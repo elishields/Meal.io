@@ -272,20 +272,6 @@ a, a:link, a:visited, a:hover, a:active {
 .grocery-subheader-text {
     border-bottom: 2px solid #21C0C0;
 }
-#header-all {
-    border: none;
-    margin: 110px 20px 20px 20px;
-}
-.page-title-text {
-    color: #21C0C0;
-    border: 2px solid #21C0C0;
-    -webkit-border-radius:;
-    -moz-border-radius:;
-    border-radius: 15px;
-    padding: 6px;
-    font-family: 'Catamaran', sans-serif;
-    font-weight: 700;
-}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
