@@ -193,7 +193,7 @@ export class GroceryList extends Component {
 
 	      		<div className="container-fluid">
 					<div className="row">
-						<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+						<div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
 							<h3 className="page-header" id="header-all">
 								<span className="page-title-text">GROCERY LIST</span>
 							</h3>
@@ -202,9 +202,9 @@ export class GroceryList extends Component {
 	    			{this.state.rows}
 	      		</div>
 
-	      		<div className="grocery-button-row">
-	    			<div className="container-fluid">
-		    			<div className="row">
+				<div className="container-fluid">
+					<div className="row">
+						<div className="grocery-button-row">
 		    				<button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
 		    				<button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
 		    			</div>

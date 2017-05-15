@@ -35,7 +35,10 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 0;
 }
 .row {
-    margin: 0px;
+    margin: 0;
+}
+.col-xs-12 {
+    padding: 0;
 }
 
 /* NAVIGATION */
@@ -86,9 +89,9 @@ a, a:link, a:visited, a:hover, a:active {
     text-align: center;
 }
 .nav-icon {
-    height: 75px;
+    height: 60px;
     width: auto;
-    padding: 0%;
+    padding: 0;
 }
 #nav-icon-list {
 
@@ -116,6 +119,9 @@ a, a:link, a:visited, a:hover, a:active {
     padding-top: 25px;
     padding-bottom: 25px;
 }
+#landing-blurb {
+    background-color: #21C0C0;
+}
 #landing-welcome {
     margin: 0;
     padding: 10px;
@@ -139,7 +145,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .form-control {
     border-radius: 10px;
-    font-family: 'Catamaran', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 #landing-inputs {
     width: 70%;
@@ -221,8 +227,8 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .grocery-button-row {
     position: fixed;
+    bottom: 90px;
     left: 0;
-    bottom: 100px;
     width: 100%;
 
     z-index: 1000;
