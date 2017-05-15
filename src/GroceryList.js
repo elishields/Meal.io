@@ -7,9 +7,6 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
-// Import resources
-import CheckIcon from '../res/checked-checkbox.png';
-
 //import and initialize firebase
 import * as firebase from "firebase";
 
@@ -42,7 +39,7 @@ class ListItem extends React.Component {
      */
     clearOnChange = function() {
         this.state.onChange();
-        this.state.onChange = () => {};
+        this.setState({onChange: () => {}});
     }
 
     /*
@@ -162,7 +159,6 @@ export class GroceryList extends Component {
 	readItems = function() {
 		this.setState((prevState, props) => {
         let newRows = [];
-        let rowId = 0;
         let handle = this;
 			// Read items from the database
 			let listPath = firebase.auth().currentUser.uid + "/shopList/";
@@ -174,7 +170,6 @@ export class GroceryList extends Component {
                         var itemQuan = childSnapshot.val();
                         handle.handleAddItem(itemName, itemQuan);
                         console.log("we got: " + itemQuan + " " + itemName);
-                        rowId ++;
                     })
                 })
             handle.handleAddEmptyItem();
