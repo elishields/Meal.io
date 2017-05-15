@@ -1,16 +1,15 @@
 /* GLOBAL *//* GLOBAL *//* GLOBAL */
 @import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .app {
-    font-family: 'Catamaran', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
+    height: 100%;
 }
 a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
-}
-#container-fluid {
-    padding: 0;
 }
 .page-header {
     margin: 20px 0;
@@ -29,6 +28,17 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 6px;
     font-family: 'Catamaran', sans-serif;
     font-weight: 700;
+}
+
+/* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
+.container-fluid {
+    padding: 0;
+}
+.row {
+    margin: 0;
+}
+.col-xs-12 {
+    padding: 0;
 }
 
 /* NAVIGATION */
@@ -68,23 +78,35 @@ a, a:link, a:visited, a:hover, a:active {
     /* FOOTER *//* FOOTER *//* FOOTER */
 #footer {
     background-color: #21C0C0;
-    margin: 20px 0 0 0;
     padding: 0;
     height: 90px;
+    border-top: 1px solid #21C0C0;
 }
-.icon-group {
-    margin-right: auto;
-    margin-left: auto;
+.nav-icon-group {
+    max-width: 80%;
+    margin: 5px auto;
+    padding: 0;
     text-align: center;
 }
 .nav-icon {
-    height: 78px;
+    height: 60px;
     width: auto;
-    margin: 6px 17px;
+    padding: 0;
+}
+#nav-icon-list {
+
+}
+#nav-icon-fridge {
+
+}
+#nav-icon-plate {
+
+}
+.nav-icon-caption {
+    text-align: center;
 }
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
-@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
 
 #landing-body {
     background-color: #21C0C0;
@@ -96,6 +118,9 @@ a, a:link, a:visited, a:hover, a:active {
     background-color: #21C0C0;
     padding-top: 25px;
     padding-bottom: 25px;
+}
+#landing-blurb {
+    background-color: #21C0C0;
 }
 #landing-welcome {
     margin: 0;
@@ -120,7 +145,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .form-control {
     border-radius: 10px;
-    font-family: 'Catamaran', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 #landing-inputs {
     width: 70%;
@@ -170,7 +195,6 @@ a, a:link, a:visited, a:hover, a:active {
     border-right: none;
     width: 10%;
 }
-
 #grocery-item-input {
     font-style: italic;
     width: 90%;
@@ -178,8 +202,7 @@ a, a:link, a:visited, a:hover, a:active {
 #grocery-item-check-bg {
     padding: 5px 10px;
 }
-
-#to-fridge-button {
+#add-to-fridge-button {
     border: 2px solid #21C0C0;
     border-left: none;
     border-radius: 5px;
@@ -191,7 +214,6 @@ a, a:link, a:visited, a:hover, a:active {
     color: #21c0c0;
     font-weight: bold;
 }
-
 #remove-button {
     border: 2px solid #21C0C0;
     border-radius: 5px;
@@ -203,16 +225,14 @@ a, a:link, a:visited, a:hover, a:active {
     color: #21c0c0;
     font-weight: bold;
 }
-
 .grocery-button-row {
     position: fixed;
-    left: 0;
     bottom: 90px;
+    left: 0;
     width: 100%;
 
     z-index: 1000;
 }
-
 .remove-check {
     display: none;
 }
@@ -287,12 +307,10 @@ a, a:link, a:visited, a:hover, a:active {
 #mealIoLogo {
     width: 100%;
 }
-
 #button {
     background-color: #21c0c0;
     color: white;
 }
-
 #team img {
     width: 20%;
 }

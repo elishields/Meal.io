@@ -135,7 +135,7 @@ export class LandingPage extends Component {
 
         return (
             <div>
-            <div className="container-fluid" id="container-fluid landing-body">
+            <div className="container-fluid" id="landing-body">
 
                 <div className="row">
                     <div className="col-xs-12" id="landing-logo">
@@ -144,7 +144,7 @@ export class LandingPage extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-12" id="container-fluid">
+                    <div className="col-xs-12" id="landing-blurb">
                         <h3 id="landing-welcome">Welcome Food Waste Hater!</h3>
                         <h4 id="landing-prompt">Please login or sign up below:</h4>
                     </div>
@@ -152,7 +152,6 @@ export class LandingPage extends Component {
 
                 <div className="row">
                     <div className="col-xs-12" id="landing-form">
-
                         <div id="landing-inputs">
                             <input type="email" className="form-control input-md" id="email" placeholder="Email" />
                             <br/>
@@ -172,10 +171,8 @@ export class LandingPage extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-12" id="container-fluid">
-                        <div id="landing-image">
-                            <img src={Cycle} className="center-block" id="landing-image-responsive" alt="Meal.io feature cycle"></img>
-                        </div>
+                    <div className="col-xs-12" id="landing-image">
+                        <img src={Cycle} className="center-block" id="landing-image-responsive" alt="Meal.io feature cycle"></img>
                     </div>
                 </div>
             </div>

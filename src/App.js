@@ -14,6 +14,7 @@ import { AffiliatedPage } from './affiliated-page';
 //Import our styles
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+// App.css is imported after bootstrap.css so that App.css rules have primacy
 import './App.css';
 
 /*
@@ -41,7 +42,7 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <div className="container-fluid" id="container-fluid">
+                <div className="container-fluid">
                     
                     <Main/>
                 

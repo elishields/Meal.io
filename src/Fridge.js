@@ -28,7 +28,7 @@ export class Fridge extends Component {
             <div>
                 <Header />
 
-                <div className="container-fluid" id="container-fluid">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12">
                             <h3 className="page-header" id="header-all">
