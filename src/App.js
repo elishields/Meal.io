@@ -42,10 +42,12 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <div className="container-fluid">
-                    
-                    <Main/>
-                
+                <div id="bootstrap-overrides">
+                    <div className="container-fluid">
+
+                        <Main/>
+
+                    </div>
                 </div>
             </div>
         );
