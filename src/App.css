@@ -7,7 +7,7 @@
     font-size: 1.1em;
     height: 100%;
 }
-a, a:link, a:visited, a:hover, a:active {
+#bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
 }
@@ -327,26 +327,25 @@ a, a:link, a:visited, a:hover, a:active {
 .buttons{
     background-color: #21c0c0;
     color: white;
+    text-decoration: none;
 }
-
 /* Control how big the team image is */
-#team img {
+#aboutus-team-image {
     width: 60%;
 }
-
 #second-heading{
     border: none;
 }
-
 #clear-thumbnail-border{
     border: 0 none;
     box-shadow: none;
 }
-
-#first-paragraph{
+#first-paragraph {
     padding-left: 20px;
 }
-
 .three-icons{
     width: 80%;
+}
+#aboutus-button-email {
+    margin-bottom: 100px;
 }
