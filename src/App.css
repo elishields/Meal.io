@@ -36,9 +36,6 @@ a, a:link, a:visited, a:hover, a:active {
 }
 #bootstrap-overrides .row {
     margin: 0;
-    padding: 0 10px;
-}
-#bootstrap-overrides .col-xs-12 {
     padding: 0;
 }
 /* Targets all className's that begin with 'col-' */
@@ -288,7 +285,7 @@ a, a:link, a:visited, a:hover, a:active {
     text-align: center;
 }
 .fridge-category-icon {
-    width: 80px;
+    width: 70px;
     height: auto;
 }
 #fridge-list {
@@ -304,9 +301,6 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .fridge-category-content {
     padding-left: 20px;
-}
-#fridge-table {
-    margin-left: auto;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */

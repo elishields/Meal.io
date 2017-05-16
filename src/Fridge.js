@@ -38,31 +38,27 @@ export class Fridge extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-12" id="fridge-icon-row">
-                            <table className="table" id="fridge-table">
-                                <tr className="fridge-table-row" id="fridge-icon-row">
-                                    <td className="fridge-category-col">
-                                        <a href="#fridge-category-fruit-veg">
-                                            <img className="fridge-category-icon" src={FruitVeg} alt="FruitVeg"/>
-                                        </a>
-                                    </td>
-                                    <td className="fridge-category-col">
-                                        <a href="#fridge-category-dairy">
-                                            <img className="fridge-category-icon" src={Dairy} alt="Dairy"/>
-                                        </a>
-                                    </td>
-                                    <td className="fridge-category-col">
-                                        <a href="#fridge-category-meat">
-                                            <img className="fridge-category-icon" src={Meat} alt="Meat"/>
-                                        </a>
-                                    </td>
-                                    <td className="fridge-category-col">
-                                        <a href="#fridge-category-other">
-                                            <img className="fridge-category-icon" src={OtherIcon} alt="OtherIcon"/>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div id="fridge-icon-row">
+                            <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">
+                                <a href="#fridge-category-fruit-veg">
+                                    <img className="fridge-category-icon" src={FruitVeg} alt="FruitVeg"/>
+                                </a>
+                            </div>
+                            <div className="fridge-category-col col-xs-3 col-md-2">
+                                <a href="#fridge-category-dairy">
+                                    <img className="fridge-category-icon" src={Dairy} alt="Dairy"/>
+                                </a>
+                            </div>
+                            <div className="fridge-category-col col-xs-3 col-md-2">
+                                <a href="#fridge-category-meat">
+                                    <img className="fridge-category-icon" src={Meat} alt="Meat"/>
+                                </a>
+                            </div>
+                            <div className="fridge-category-col col-xs-3 col-md-2">
+                                <a href="#fridge-category-other">
+                                    <img className="fridge-category-icon" src={OtherIcon} alt="OtherIcon"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
