@@ -107,6 +107,8 @@ export class GroceryList extends Component {
         this.handleAddOther = this.handleAddOther.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
         this.readItems = this.readItems.bind(this);
+        this.writeItems = this.writeItems.bind(this);
+        this.listToFridge = this.listToFridge.bind(this);
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
@@ -217,8 +219,73 @@ export class GroceryList extends Component {
 		}
 	}
 
-    //writes items in shopping list display to the database
-	writeItems = function (){
+    /*
+     *  Writes items in shopping list display to the database
+     *  @param name is a string, the name of item being added
+     *  @param quan is an integer, the quantity of the item being added
+     *  @Param section is a string, the child in the database where info will be written to
+     */
+	writeItems = function (name, quan, section){
+        let path = firebase.auth().currentUser.uid;
+        let data = {
+            [name]: quan
+        };
+        return new firebase.database().ref(path + "/shop" + section).update(data);
+    }
+
+    //sends all the items in the grocery list db to the fridge db
+    listToFridge = function () {
+        let path = firebase.auth().currentUser.uid;
+        let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+        var fruitVeg = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    fruitVeg[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeFruitVeg").update(fruitVeg);
+            })
+        ref = new firebase.database().ref(path + "/shopDairy/");
+        var dairy = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    dairy[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeDairy").update(dairy);
+            })
+        ref = new firebase.database().ref(path + "/shopMeat/");
+        var meat = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    meat[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeMeat").update(meat);
+            })
+        ref = new firebase.database().ref(path + "/shopOther/");
+        var other = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    other[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeOther").update(other);
+            })
+
+
 
     }
 
@@ -351,7 +418,7 @@ export class GroceryList extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.listToFridge}>ADD TO FRIDGE</button>
                             </div>
                         </div>
 	    			</div>
