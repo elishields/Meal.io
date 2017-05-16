@@ -88,7 +88,7 @@ export class Footer extends React.Component {
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
                                     <Link to="/list">
-                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
+                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
                                         <br/>
                                         <p>Grocery</p>
                                     </Link>
@@ -100,8 +100,8 @@ export class Footer extends React.Component {
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
-                                    <Link to="/">
-                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
+                                    <Link to="/meal-plan">
+                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
                                         <p>Meal Plan</p>
                                     </Link>
                                 </div>
