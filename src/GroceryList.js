@@ -306,34 +306,32 @@ export class GroceryList extends Component {
 	      		</div>
 
                 <div className="container-fluid">
-                    <div className="row content-group">
-                        <div className="col-xs-12">
-                            <div id="grocery-subheadings">
-                                <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
-                                    </h4>
-                                </div>
-                                {this.state.rowsFruitVeg}
-                                <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">DAIRY</span>
-                                    </h4>
-                                </div>
-                                {this.state.rowsDairy}
-                                <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">MEAT</span>
-                                    </h4>
-                                </div>
-                                {this.state.rowsMeat}
-                                <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">OTHER</span>
-                                    </h4>
-                                </div>
-                                {this.state.rowsOther}
+                    <div className="row">
+                        <div className="col-xs-12" id="content-section">
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                </h4>
                             </div>
+                            {this.state.rowsFruitVeg}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">DAIRY</span>
+                                </h4>
+                            </div>
+                            {this.state.rowsDairy}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">MEAT</span>
+                                </h4>
+                            </div>
+                            {this.state.rowsMeat}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">OTHER</span>
+                                </h4>
+                            </div>
+                            {this.state.rowsOther}
                         </div>
                     </div>
                 </div>
