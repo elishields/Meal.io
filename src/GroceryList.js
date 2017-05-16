@@ -110,7 +110,7 @@ export class GroceryList extends Component {
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
-		 * 
+		 *
 		 * key: index of new element
 		 */
 		let rowsFruitVeg = [];
@@ -132,6 +132,7 @@ export class GroceryList extends Component {
         };
 	}
 
+    //adds new item to Frut & Veg in shoppling list display
 	handleAddFruitVeg = function(name, quan){
         // reference to this GroceryList
 	    let handle = this;
@@ -148,6 +149,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Meat in shoppling list display
     handleAddMeat = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -164,6 +166,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Dairy in shoppling list display
     handleAddDairy = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -180,6 +183,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Other in shoppling list display
     handleAddOther = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -196,10 +200,12 @@ export class GroceryList extends Component {
         });
     }
 
+    //removes items from database (not shopping list display)
 	handleRemoveItem = function(index) {
-		// Remove item at 'index' from the database
+        //TODO : Tony add code to remove items from database
 	}
 
+	//removes items from shopping list display (not database)
 	deleteItems = function() {
 		let rows = this.state.rows;
 		let safe=0;
@@ -211,6 +217,12 @@ export class GroceryList extends Component {
 		}
 	}
 
+    //writes items in shopping list display to the database
+	writeItems = function (){
+
+    }
+
+	//reads database and populates shopping list
 	readItems = function() {
 		this.setState((prevState, props) => {
 	    let newRowsFruitVeg = [];
@@ -281,7 +293,7 @@ export class GroceryList extends Component {
                 rowsOther: newRowsOther});
 		});
 	}
-	
+
 
 	/*
 	 *  render() defines the HTML template for this class.
