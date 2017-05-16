@@ -31,13 +31,13 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
-.container-fluid {
+#bootstrap-overrides .container-fluid {
     padding: 0;
 }
-.row {
+#bootstrap-overrides .row {
     margin: 0;
 }
-.col-xs-12 {
+#bootstrap-overrides .col-xs-12 {
     padding: 0;
 }
 
@@ -276,8 +276,7 @@ a, a:link, a:visited, a:hover, a:active {
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
 #fridge-icon-row {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
 }
 .fridge-category-col {
     padding: 0;
@@ -286,6 +285,19 @@ a, a:link, a:visited, a:hover, a:active {
     width: 80px;
     height: auto;
     text-align: center;
+}
+#fridge-list {
+    margin: 10px 0;
+}
+.fridge-category {
+
+}
+.fridge-category-title {
+    color: #21C0C0;
+    font-weight: bold;
+}
+.fridge-category-content {
+    padding-left: 20px;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */

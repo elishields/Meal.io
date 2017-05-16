@@ -42,7 +42,7 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <div className="container-fluid">
+                <div className="container-fluid" id="bootstrap-overrides">
                     
                     <Main/>
                 
