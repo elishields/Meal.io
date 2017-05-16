@@ -84,6 +84,15 @@ class SignUpButton extends Component {
     }
 }
 
+const config ={
+    apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
+    authDomain: "mealio-d047c.firebaseapp.com",
+    databaseURL: "https://mealio-d047c.firebaseio.com",
+    projectId: "mealio-d047c",
+    storageBucket: "mealio-d047c.appspot.com",
+    messagingSenderId: "280670219948"
+};
+
 /*
  *  LandingPage: defines the landing page used for login, signup, and welcome
  */
@@ -96,15 +105,8 @@ export class LandingPage extends Component {
         super(props);
 
         //initialize firebase
-        const config ={
-            apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
-            authDomain: "mealio-d047c.firebaseapp.com",
-            databaseURL: "https://mealio-d047c.firebaseio.com",
-            projectId: "mealio-d047c",
-            storageBucket: "mealio-d047c.appspot.com",
-            messagingSenderId: "280670219948"
-        };
-        firebase.initializeApp(config);
+ 
+        if (!firebase.apps.length) firebase.initializeApp(config);
 
         //realtime 'signed in' listener (redirects to grocery list once auth)
         firebase.auth().onAuthStateChanged(firebaseUser => {

@@ -1,6 +1,6 @@
 //Import classes from React
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
@@ -11,6 +11,24 @@ import Logo from '../res/Logo-str.png';
 import NavIconList from '../res/Nav-Icons/list.svg';
 import NavIconFridge from '../res/Nav-Icons/fridge.svg';
 import NavIconPlate from '../res/Nav-Icons/plate.svg'
+
+const logoutButton = withRouter(({ history }) => (
+    <span>Hi</span>
+));
+
+
+
+const LogoutButton = withRouter(({ history }) => (
+      <button onClick={() => {
+        firebase.auth().signOut();
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (!firebaseUser) {
+                history.push('/');
+            }
+        });
+      }}>Sign out</button>
+))
+
 
 /*
  *  Header: defines the header common to all pages
@@ -42,7 +60,7 @@ export class Header extends Component {
                                         <Link to="/about-page">About Us</Link>
                                     </MenuItem>
                                     <MenuItem divider/>
-                                    <MenuItem className="menu-item" eventKey="3" onClick={this.logout}>Log Out</MenuItem>
+                                    <MenuItem className="menu-item" eventKey="3"><LogoutButton /></MenuItem>
                                 </DropdownButton>
                             </ButtonGroup>
                         </div>
