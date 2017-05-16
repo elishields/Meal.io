@@ -58,19 +58,19 @@ export class Fridge extends Component {
                         <div className="col-xs-12" id="fridge-list">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">Sample</p>
+                                <p className="fridge-category-content">Apple</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="fridge-category-title">Dairy</h4>
-                                <p className="fridge-category-content">Sample</p>
+                                <p className="fridge-category-content">Milk</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
                                 <h4 className="fridge-category-title">Meat</h4>
-                                <p className="fridge-category-content">Sample</p>
+                                <p className="fridge-category-content">Bacon</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
                                 <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">Sample</p>
+                                <p className="fridge-category-content">Mustard</p>
                             </div>
                         </div>
                     </div>

@@ -300,6 +300,7 @@ a, a:link, a:visited, a:hover, a:active {
 .fridge-category-title {
     color: #21C0C0;
     font-weight: bold;
+    padding: 5px;
 }
 .fridge-category-content {
     padding-left: 20px;
