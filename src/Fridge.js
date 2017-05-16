@@ -63,7 +63,7 @@ export class Fridge extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-12" id="fridge-list">
+                        <div className="col-xs-12" id="fridge-list content-section">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="fridge-category-title">Fruits & Vegetables</h4>
                                 <p className="fridge-category-content">Apple</p>
