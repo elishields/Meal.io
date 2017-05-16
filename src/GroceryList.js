@@ -101,43 +101,100 @@ export class GroceryList extends Component {
 		super(props);
 
 		this.deleteItems = this.deleteItems.bind(this);
-		this.handleAddItem = this.handleAddItem.bind(this);
+		this.handleAddFruitVeg = this.handleAddFruitVeg.bind(this);
+        this.handleAddDairy = this.handleAddDairy.bind(this);
+        this.handleAddMeat = this.handleAddMeat.bind(this);
+        this.handleAddOther = this.handleAddOther.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
-    this.readItems = this.readItems.bind(this);
+        this.readItems = this.readItems.bind(this);
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
 		 * 
 		 * key: index of new element
 		 */
-		let rows = [];
-		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+		let rowsFruitVeg = [];
+		rowsFruitVeg.push(<ListItem key={0} myId={0} onChange={this.handleAddFruitVeg.bind(this)} name="NAME" />);
+        let rowsMeat = [];
+        rowsMeat.push(<ListItem key={0} myId={0} onChange={this.handleAddMeat.bind(this)} name="NAME" />);
+        let rowsDairy = [];
+        rowsDairy.push(<ListItem key={0} myId={0} onChange={this.handleAddDairy.bind(this)} name="NAME" />);
+        let rowsOther = [];
+        rowsOther.push(<ListItem key={0} myId={0} onChange={this.handleAddOther.bind(this)} name="NAME" />);
 
 		/*
 		 * set this.state.rows = rows
 		 */
-		this.state = {rows: rows};
+		this.state = {rowsFruitVeg: rowsFruitVeg,
+            rowsMeat: rowsMeat,
+            rowsDairy: rowsDairy,
+            rowsOther: rowsOther
+        };
 	}
-	
-	/*
-	 *  handler to add a ListItem to rows[]
-	 */
-	handleAddItem = function(name, quan) {
+
+	handleAddFruitVeg = function(name, quan){
         // reference to this GroceryList
-		let handle = this;
+	    let handle = this;
+        // update component state...
+        this.setState((prevState, props) => {
 
-		// update component state...
-		this.setState((prevState, props) => {
+            // get rows from component's previous state
+            let newStateRowsFruitVeg = prevState.rowsFruitVeg;
+            // push a new ListItem to newStateRows
+            newStateRowsFruitVeg.push(<ListItem key={newStateRowsFruitVeg.length} itemName={name} itemQuan={quan} myId={newStateRowsFruitVeg.length} name="Added Item" onChange={handle.handleAddFruitVeg.bind(handle)} />);
 
-			// get rows from component's previous state
-			let newStateRows = prevState.rows;
-			// push a new ListItem to newStateRows
-			newStateRows.push(<ListItem key={newStateRows.length} itemName={name} itemQuan={quan} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
+            // update GroceryList's state.rows = newStateRows
+            return({rowsFruitVeg: newStateRowsFruitVeg});
+        });
+    }
 
-			// update GroceryList's state.rows = newStateRows
-			return({rows: newStateRows});
-		});
-	}
+    handleAddMeat = function(name, quan){
+        // reference to this GroceryList
+        let handle = this;
+        // update component state...
+        this.setState((prevState, props) => {
+
+            // get rows from component's previous state
+            let newStateRowsMeat = prevState.rowsMeat;
+            // push a new ListItem to newStateRows
+            newStateRowsMeat.push(<ListItem key={newStateRowsMeat.length} itemName={name} itemQuan={quan} myId={newStateRowsMeat.length} name="Added Item" onChange={handle.handleAddMeat.bind(handle)} />);
+
+            // update GroceryList's state.rows = newStateRows
+            return({rowsMeat: newStateRowsMeat});
+        });
+    }
+
+    handleAddDairy = function(name, quan){
+        // reference to this GroceryList
+        let handle = this;
+        // update component state...
+        this.setState((prevState, props) => {
+
+            // get rows from component's previous state
+            let newStateRowsDairy = prevState.rowsDairy;
+            // push a new ListItem to newStateRows
+            newStateRowsDairy.push(<ListItem key={newStateRowsDairy.length} itemName={name} itemQuan={quan} myId={newStateRowsDairy.length} name="Added Item" onChange={handle.handleAddDairy.bind(handle)} />);
+
+            // update GroceryList's state.rows = newStateRows
+            return({rowsDairy: newStateRowsDairy});
+        });
+    }
+
+    handleAddOther = function(name, quan){
+        // reference to this GroceryList
+        let handle = this;
+        // update component state...
+        this.setState((prevState, props) => {
+
+            // get rows from component's previous state
+            let newStateRowsOther = prevState.rowsOther;
+            // push a new ListItem to newStateRows
+            newStateRowsOther.push(<ListItem key={newStateRowsOther.length} itemName={name} itemQuan={quan} myId={newStateRowsOther.length} name="Added Item" onChange={handle.handleAddOther.bind(handle)} />);
+
+            // update GroceryList's state.rows = newStateRows
+            return({rowsOther: newStateRowsOther});
+        });
+    }
 
 	handleAddEmptyItem = function (){
 
@@ -162,22 +219,70 @@ export class GroceryList extends Component {
 
 	readItems = function() {
 		this.setState((prevState, props) => {
-        let newRows = [];
+	    let newRowsFruitVeg = [];
+        let newRowsDairy = [];
+        let newRowsMeat = [];
+        let newRowsOther = [];
         let handle = this;
-			// Read items from the database
-			let listPath = firebase.auth().currentUser.uid + "/shopList/";
-			let ref = new firebase.database().ref(listPath);
-            ref.once("value")
+			// Read FruitVeg from the database
+			let listPathFruitVeg = firebase.auth().currentUser.uid + "/shopFruitVeg/";
+			let refFruitVeg = new firebase.database().refFruitVeg(listPathFruitVeg);
+            refFruitVeg.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
                         var itemQuan = childSnapshot.val();
-                        handle.handleAddItem(itemName, itemQuan);
+                        handle.handleAddFruitVeg(itemName, itemQuan);
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
             handle.handleAddEmptyItem();
-			return({rows: newRows});
+			return({rowsFruitVeg: newRowsFruitVeg});
+
+            // Read Dairy from the database
+            let listPathDairy = firebase.auth().currentUser.uid + "/shopDairy/";
+            let refDairy = new firebase.database().refDairy(listPathDairy);
+            refDairy.once("value")
+                .then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var itemName = childSnapshot.key;
+                        var itemQuan = childSnapshot.val();
+                        handle.handleAddDairy(itemName, itemQuan);
+                        console.log("we got: " + itemQuan + " " + itemName);
+                    })
+                })
+            handle.handleAddEmptyItem();
+            return({rowsDairy: newRowsDairy});
+
+            // Read Meat from the database
+            let listPathMeat = firebase.auth().currentUser.uid + "/shopMeat/";
+            let refMeat = new firebase.database().refMeat(listPathMeat);
+            refMeat.once("value")
+                .then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var itemName = childSnapshot.key;
+                        var itemQuan = childSnapshot.val();
+                        handle.handleAddMeat(itemName, itemQuan);
+                        console.log("we got: " + itemQuan + " " + itemName);
+                    })
+                })
+            handle.handleAddEmptyItem();
+            return({rowsMeat: newRowsMeat});
+
+            // Read Other from the database
+            let listPathOther = firebase.auth().currentUser.uid + "/shopOther/";
+            let refOther = new firebase.database().refOther(listPathOther);
+            refOther.once("value")
+                .then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var itemName = childSnapshot.key;
+                        var itemQuan = childSnapshot.val();
+                        handle.handleAddOther(itemName, itemQuan);
+                        console.log("we got: " + itemQuan + " " + itemName);
+                    })
+                })
+            handle.handleAddEmptyItem();
+            return({rowsOther: newRowsOther});
 		});
 	}
 	
@@ -198,7 +303,6 @@ export class GroceryList extends Component {
 							</h3>
 						</div>
 					</div>
-	    			{this.state.rows}
 	      		</div>
 
                 <div className="container-fluid">
@@ -210,25 +314,25 @@ export class GroceryList extends Component {
                                         <span className="grocery-subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
-                                {this.state.rows}
+                                {this.state.rowsFruitVeg}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
-                                {this.state.rows}
+                                {this.state.rowsDairy}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">MEAT</span>
                                     </h4>
                                 </div>
-                                {this.state.rows}
+                                {this.state.rowsMeat}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">OTHER</span>
                                     </h4>
                                 </div>
-                                {this.state.rows}
+                                {this.state.rowsOther}
                             </div>
                         </div>
                     </div>
