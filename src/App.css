@@ -281,18 +281,18 @@ a, a:link, a:visited, a:hover, a:active {
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
 #fridge-icon-row {
-    margin: 10px auto;
+    margin: 0 auto;
 }
 .fridge-category-col {
     padding: 0;
     text-align: center;
 }
 .fridge-category-icon {
-    width: 50px;
+    width: 80px;
     height: auto;
 }
 #fridge-list {
-    margin: 10px 0;
+    margin: 0;
 }
 .fridge-category {
 
@@ -304,6 +304,9 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .fridge-category-content {
     padding-left: 20px;
+}
+#fridge-table {
+    margin-left: auto;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
