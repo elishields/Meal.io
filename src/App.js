@@ -10,6 +10,7 @@ import { LandingPage } from './Landing-page.js';
 
 //Import our resources
 import { AffiliatedPage } from './affiliated-page';
+import { AboutusPage } from './about-us';
 
 //Import our styles
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -27,6 +28,7 @@ const Main = () => (
             <Route path='/list' component={GroceryList} />
             <Route path='/fridge' component={Fridge} />
             <Route path='/affiliated-page' component={AffiliatedPage} />
+            <Route path='/about-us' component={AboutusPage} />
         </Switch>
     </main>
 )
