@@ -7,6 +7,10 @@
     font-size: 1.1em;
     height: 100%;
 }
+#bootstrap-overrides {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+}
 #bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
@@ -26,8 +30,10 @@
     -moz-border-radius:;
     border-radius: 15px;
     padding: 6px;
-    font-family: 'Catamaran', sans-serif;
     font-weight: 700;
+}
+#content-section {
+    margin-bottom: 150px;
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
@@ -67,7 +73,6 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
-    font-family: 'Catamaran', sans-serif;
 }
 .menu-item a {
     color: white;
@@ -121,7 +126,6 @@
 
 #landing-body {
     background-color: #21C0C0;
-    font-family: 'Catamaran', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -156,7 +160,6 @@
 }
 .form-control {
     border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
 }
 #landing-inputs {
     width: 70%;
@@ -272,9 +275,6 @@
     width: 20px;
     height: 16px;
     margin: 0;
-}
-#grocery-subheadings {
-
 }
 .grocery-subheader {
     margin: 20px;
