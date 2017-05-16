@@ -47,7 +47,7 @@ class App extends Component {
                 <div id="bootstrap-overrides">
                     <div className="container-fluid">
 
-                        <AboutusPage/>
+                        <Main/>
 
                     </div>
                 </div>
