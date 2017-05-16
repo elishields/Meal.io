@@ -36,8 +36,13 @@ a, a:link, a:visited, a:hover, a:active {
 }
 #bootstrap-overrides .row {
     margin: 0;
+    padding: 0 10px;
 }
 #bootstrap-overrides .col-xs-12 {
+    padding: 0;
+}
+/* Targets all className's that begin with 'col-' */
+#bootstrap-overrides [class^='col-'] {
     padding: 0;
 }
 

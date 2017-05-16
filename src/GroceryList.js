@@ -70,14 +70,18 @@ class ListItem extends React.Component {
      */
     render() {
         return (
-            <div className="input-group" id="grocery-item">
-                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
-                <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
-                       onChange={this.clearOnChange} aria-describedby="item name"></input>
-                <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
-                <span className="input-group-addon">
-                    <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
-                </span>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="input-group" id="grocery-item">
+                        <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
+                        <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
+                               onChange={this.clearOnChange} aria-describedby="item name"></input>
+                        <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+                        <span className="input-group-addon">
+                            <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
+                        </span>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -199,41 +203,45 @@ export class GroceryList extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-                        <div id="grocery-subheadings">
-                            <div>
-                                <h4 className="grocery-subheader">
-                                    <span className="grocery-subheader-text">FRUIT & VEG</span>
-                                </h4>
+                        <div className="col-xs-12">
+                            <div id="grocery-subheadings">
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                    </h4>
+                                </div>
+                                {this.state.rows}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">DAIRY</span>
+                                    </h4>
+                                </div>
+                                {this.state.rows}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">MEAT</span>
+                                    </h4>
+                                </div>
+                                {this.state.rows}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">OTHER</span>
+                                    </h4>
+                                </div>
+                                {this.state.rows}
                             </div>
-                            {this.state.rows}
-                            <div>
-                                <h4 className="grocery-subheader">
-                                    <span className="grocery-subheader-text">DAIRY</span>
-                                </h4>
-                            </div>
-                            {this.state.rows}
-                            <div>
-                                <h4 className="grocery-subheader">
-                                    <span className="grocery-subheader-text">MEAT</span>
-                                </h4>
-                            </div>
-                            {this.state.rows}
-                            <div>
-                                <h4 className="grocery-subheader">
-                                    <span className="grocery-subheader-text">OTHER</span>
-                                </h4>
-                            </div>
-                            {this.state.rows}
                         </div>
                     </div>
                 </div>
 
 				<div className="container-fluid">
 					<div className="row">
-						<div className="grocery-button-row">
-		    				<button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
-		    				<button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
-		    			</div>
+                        <div className="col-xs-12">
+                            <div className="grocery-button-row">
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
+                            </div>
+                        </div>
 	    			</div>
       			</div>
 
