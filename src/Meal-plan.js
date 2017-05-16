@@ -5,10 +5,7 @@ import React, { Component } from 'react';
 import { Header, Footer } from './Navigation.js';
 
 //Import our resources
-import FruitVeg from '../res/fruit-veg-icon.png';
-import Dairy from '../res/dairy-icon.png';
-import Meat from '../res/meat-icon.png';
-import OtherIcon from '../res/other-icon.png';
+import MealPlate from '../res/dinner.png'
 
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -34,6 +31,12 @@ export class MealPlan extends Component {
                             <h3 className="page-header" id="header-all">
                                 <span className="page-title-text">MEAL PLAN</span>
                             </h3>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-4 col-xs-8 col-xs-offset-2">
+                            <img src={MealPlate} className="center-block" id="meal-plan-plate" alt="Meal Plan"/>
                         </div>
                     </div>
 
