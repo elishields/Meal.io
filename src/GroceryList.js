@@ -196,12 +196,6 @@ export class GroceryList extends Component {
         });
     }
 
-	handleAddEmptyItem = function (){
-
-	    //TODO:LIAM WORK YOUR WIZARDRY
-
-    }
-
 	handleRemoveItem = function(index) {
 		// Remove item at 'index' from the database
 	}
@@ -224,10 +218,10 @@ export class GroceryList extends Component {
         let newRowsMeat = [];
         let newRowsOther = [];
         let handle = this;
+        let path = firebase.auth().currentUser.uid;
 			// Read FruitVeg from the database
-			let listPathFruitVeg = firebase.auth().currentUser.uid + "/shopFruitVeg/";
-			let refFruitVeg = new firebase.database().refFruitVeg(listPathFruitVeg);
-            refFruitVeg.once("value")
+			let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -236,13 +230,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-			return({rowsFruitVeg: newRowsFruitVeg});
+            handle.handleAddFruitVeg();
+
 
             // Read Dairy from the database
-            let listPathDairy = firebase.auth().currentUser.uid + "/shopDairy/";
-            let refDairy = new firebase.database().refDairy(listPathDairy);
-            refDairy.once("value")
+            ref = new firebase.database().ref(path + "/shopDairy/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -251,13 +244,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsDairy: newRowsDairy});
+            handle.handleAddDairy();
+
 
             // Read Meat from the database
-            let listPathMeat = firebase.auth().currentUser.uid + "/shopMeat/";
-            let refMeat = new firebase.database().refMeat(listPathMeat);
-            refMeat.once("value")
+            ref = new firebase.database().ref(path + "/shopMeat/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -266,13 +258,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsMeat: newRowsMeat});
+            handle.handleAddMeat();
+
 
             // Read Other from the database
-            let listPathOther = firebase.auth().currentUser.uid + "/shopOther/";
-            let refOther = new firebase.database().refOther(listPathOther);
-            refOther.once("value")
+            ref = new firebase.database().ref(path + "/shopOther/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -281,8 +272,13 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsOther: newRowsOther});
+            handle.handleAddOther();
+
+
+            return({rowsFruitVeg: newRowsFruitVeg,
+                rowsDairy: newRowsDairy,
+                rowsMeat: newRowsMeat,
+                rowsOther: newRowsOther});
 		});
 	}
 	
