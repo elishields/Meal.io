@@ -13,7 +13,7 @@ import * as firebase from "firebase";
 /*
  * ListItem: defines a single item for the grocery list
  */
-class ListItem extends React.Component {
+export class ListItem extends React.Component {
 
     /*
      *  Constructor for ListItem
@@ -97,7 +97,7 @@ export class GroceryList extends Component {
 	/*
 	 *  Constructor for GroceryList
 	 */
-	constructor(props) {
+	constructor(props, context) {
 		super(props);
 
 		this.deleteItems = this.deleteItems.bind(this);
@@ -320,7 +320,7 @@ export class GroceryList extends Component {
                                         <span className="grocery-subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsDairy}
+                                {this.props.rowsDairy}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">MEAT</span>
