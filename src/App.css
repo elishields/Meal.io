@@ -262,6 +262,16 @@ a, a:link, a:visited, a:hover, a:active {
     height: 16px;
     margin: 0;
 }
+#grocery-subheadings {
+
+}
+.grocery-subheader {
+    margin: 20px;
+    text-align: center;
+}
+.grocery-subheader-text {
+    border-bottom: 2px solid #21C0C0;
+}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 

@@ -197,6 +197,37 @@ export class GroceryList extends Component {
 	    			{this.state.rows}
 	      		</div>
 
+                <div className="container-fluid">
+                    <div className="row">
+                        <div id="grocery-subheadings">
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                </h4>
+                            </div>
+                            {this.state.rows}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">DAIRY</span>
+                                </h4>
+                            </div>
+                            {this.state.rows}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">MEAT</span>
+                                </h4>
+                            </div>
+                            {this.state.rows}
+                            <div>
+                                <h4 className="grocery-subheader">
+                                    <span className="grocery-subheader-text">OTHER</span>
+                                </h4>
+                            </div>
+                            {this.state.rows}
+                        </div>
+                    </div>
+                </div>
+
 				<div className="container-fluid">
 					<div className="row">
 						<div className="grocery-button-row">
