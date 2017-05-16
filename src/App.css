@@ -284,25 +284,15 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 /*ABOUT US */
-.buttons{
+#mealIoLogo {
+    width: 100%;
+}
+
+#button {
     background-color: #21c0c0;
     color: white;
 }
 
-/* Control how big the team image is */
 #team img {
-    width: 70%;
-}
-
-#second-heading{
-    border: none;
-}
-
-#clear-thumbnail-border{
-    border: 0 none;
-    box-shadow: none;
-}
-
-#first-paragraph{
-    padding-left: 30px;
+    width: 20%;
 }
