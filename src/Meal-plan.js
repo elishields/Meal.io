@@ -51,10 +51,6 @@ export class MealPlan extends Component {
                                 <h4 className="fridge-category-title">Meat</h4>
                                 <p className="fridge-category-content">Bacon</p>
                             </div>
-                            <div className="fridge-category" id="fridge-category-other">
-                                <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">Mustard</p>
-                            </div>
                         </div>
                     </div>
                 </div>
