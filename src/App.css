@@ -26,8 +26,7 @@
     -moz-border-radius:;
     border-radius: 15px;
     padding: 6px;
-    font-family: 'Catamaran', sans-serif;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
@@ -67,7 +66,6 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
-    font-family: 'Catamaran', sans-serif;
 }
 .menu-item a {
     color: white;
@@ -112,7 +110,6 @@
 
 #landing-body {
     background-color: #21C0C0;
-    font-family: 'Catamaran', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -285,7 +282,7 @@
     text-align: center;
 }
 .fridge-category-icon {
-    width: 70px;
+    width: 75px;
     height: auto;
 }
 #fridge-list {
@@ -353,5 +350,5 @@
 /* MEAL PLAN */
 
 #meal-plan-plate {
-    width: 100%;
+    max-width: 90%;
 }
