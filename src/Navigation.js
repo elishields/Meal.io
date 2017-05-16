@@ -39,7 +39,7 @@ export class Header extends Component {
                                         <Link to="/affiliated-page">Affiliated Apps</Link>
                                     </MenuItem>
                                     <MenuItem className="menu-item" eventKey="2">
-                                        <Link to="/about-page">About Us</Link>
+                                        <Link to="/about-us">About Us</Link>
                                     </MenuItem>
                                     <MenuItem divider/>
                                     <MenuItem className="menu-item" eventKey="3" onClick={this.logout}>Log Out</MenuItem>
