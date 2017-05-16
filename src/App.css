@@ -275,21 +275,15 @@ a, a:link, a:visited, a:hover, a:active {
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
-#fridge-table {
-    margin: 50px 0;
-    border: none;
-    table-layout: fixed;
-}
-.fridge-table-row {
+#fridge-icon-row {
     margin-left: auto;
     margin-right: auto;
 }
-.fridge-category {
-    padding: 8px 0;
-    text-align: center;
+.fridge-category-col {
+    padding: 0;
 }
 .fridge-category-icon {
-    width: 120px;
+    width: 80px;
     height: auto;
     text-align: center;
 }
