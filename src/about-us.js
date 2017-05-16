@@ -20,17 +20,15 @@ export class AboutusPage extends Component {
                 <div className="container-fluid">
 
                     <div className="row">
-                        <div className="col-xm-12 col-lg-6 col-md-offset-3">
-
+                        <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <h3 className="page-header" id="header-all">
                                 <span className="page-title-text">ABOUT US</span>
                             </h3>
                         </div>
                     </div>
 
-
                     <div className="row">
-                        <div className="col-xm-12 col-lg-6 col-md-offset-3">
+                        <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <p id="first-paragraph">
                                 Meal.io helps manage perishable food in order to reduce food waste.
                                 Users can create a grocery list, add the food purchased to the fridge
@@ -42,21 +40,20 @@ export class AboutusPage extends Component {
                     <br></br>
 
                     <div className="row">
-
-                        <div className="col-xs-3 col-xs-offset-1 col-lg-2 col-md-offset-3">
+                        <div className="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
                             <img className="three-icons" src={GroceryListIcon} alt="Grocery List Logo"></img>
                         </div>
-
-                        <div className="col-xs-8 col-lg-4">Create your shopping list before you go shopping and
-                            check off the items as you buy them. Bought items are added to the Fridge.</div>
-
+                        <div className="col-xs-8 col-lg-4">
+                            Create your shopping list before you go shopping and
+                            check off the items as you buy them. Bought items are added to the Fridge.
+                        </div>
                     </div>
 
                     <br></br>
 
                     <div className="row">
 
-                        <div className="col-xs-3 col-xs-offset-1 col-lg-2 col-md-offset-3">
+                        <div className="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
                             <img className="three-icons" src={MyFridgeIcon} alt="Fridge Logo"></img>
                         </div>
 
@@ -69,7 +66,7 @@ export class AboutusPage extends Component {
 
                     <div className="row">
 
-                        <div className="col-xs-3 col-xs-offset-1 col-lg-2 col-md-offset-3">
+                        <div className="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
                             <img className="three-icons" src={MealPlanningIcon} alt="Meal Planning Logo"></img>
                         </div>
                         <div className="col-xs-8 col-lg-4">Create your own meals using items from the fridge
@@ -81,14 +78,14 @@ export class AboutusPage extends Component {
 
                     <div className="row" id="team">
 
-                        <div className="col-sm-12 col-lg-6 col-md-offset-3">
+                        <div className="col-sm-12 col-md-6 col-md-offset-3">
 
                             <h4 className="page-header" id="second-heading">
                                 <span className="page-title-text">Meet the Team</span>
                             </h4>
 
                             <div className="thumbnail" id="clear-thumbnail-border">
-                                <img src={TeamPicture} alt="Team Picture"></img>
+                                <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
                                 <div className="caption">
                                     <p>
                                         Meal.io was created by first term BCIT CST students. The app was
@@ -101,7 +98,7 @@ export class AboutusPage extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-sm-12 col-lg-6 col-md-offset-3">
+                        <div className="col-sm-12 col-md-6 col-md-offset-3">
                             <a href="https://github.com/elishields/Meal.io">
                                 <button type="button" className="btn btn-info btn-block buttons">
                                     Checkout our Github Repo </button>
@@ -113,7 +110,7 @@ export class AboutusPage extends Component {
                     <br></br>
 
                     <div className="row">
-                        <div className="col-sm-12 col-lg-6 col-md-offset-3">
+                        <div className="col-sm-12 col-md-6 col-md-offset-3" id="aboutus-button-email">
                             <a href="mailto:studyingatbcit@gmail.com">
                                 <button type="button" className="btn btn-info btn-block buttons">
                                     Email: info@meal.io.ca </button>
