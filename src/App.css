@@ -77,6 +77,15 @@ a, a:link, a:visited, a:hover, a:active {
     background-color: #21C0C0;
 }
 
+#logout-button {
+    border: none;
+    width: 100%;
+    color: #ffffff;
+    background-color: #21c0c0;
+    text-align: left;
+    padding: 0;
+}
+
     /* FOOTER *//* FOOTER *//* FOOTER */
 #footer {
     background-color: #21C0C0;

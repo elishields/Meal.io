@@ -19,7 +19,7 @@ const logoutButton = withRouter(({ history }) => (
 
 
 const LogoutButton = withRouter(({ history }) => (
-      <button onClick={() => {
+      <button id="logout-button" onClick={() => {
         firebase.auth().signOut();
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if (!firebaseUser) {
