@@ -30,7 +30,7 @@
     -moz-border-radius:;
     border-radius: 15px;
     padding: 6px;
-    font-weight: 700;
+    font-weight: bold;
 }
 #content-section {
     margin-bottom: 150px;
@@ -222,7 +222,7 @@
     border-radius: 5px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
@@ -233,7 +233,7 @@
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
@@ -294,7 +294,7 @@
     text-align: center;
 }
 .fridge-category-icon {
-    width: 70px;
+    width: 75px;
     height: auto;
 }
 #fridge-list {
@@ -357,4 +357,10 @@
 }
 #aboutus-button-email {
     margin-bottom: 100px;
+}
+
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 90%;
 }

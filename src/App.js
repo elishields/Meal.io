@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 //Import classes for our pages
-
 import { GroceryList } from './GroceryList.js';
 import { Fridge } from './Fridge.js';
 import { LandingPage } from './Landing-page.js';
-
-//Import our resources
 import { AffiliatedPage } from './affiliated-page';
 import { AboutusPage } from './about-us';
+import { MealPlan } from './Meal-plan';
 
 //Import our styles
 import './bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -29,6 +27,7 @@ const Main = () => (
             <Route path='/fridge' component={Fridge} />
             <Route path='/affiliated-page' component={AffiliatedPage} />
             <Route path='/about-us' component={AboutusPage} />
+            <Route path='/meal-plan' component={MealPlan} />
         </Switch>
     </main>
 )
