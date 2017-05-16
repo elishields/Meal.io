@@ -29,6 +29,9 @@
     font-family: 'Catamaran', sans-serif;
     font-weight: 700;
 }
+.content-group {
+    margin-bottom: 110px;
+}
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
 #bootstrap-overrides .container-fluid {
