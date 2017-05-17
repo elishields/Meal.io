@@ -44,7 +44,7 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={GroceryListIcon} alt="Grocery List Logo"></img>
                         </div>
                         <div className="col-xs-8 col-lg-4">
-                            Plan ahead by writing up a grocery list before you go shopping.<br/>
+                            Plan ahead by writing up a grocery list before you go shopping.<br/><br/>
                             Once you've bought your groceries, simply tap to send them to your fridge!
                         </div>
                     </div>
@@ -58,7 +58,7 @@ export class AboutusPage extends Component {
                         </div>
 
                         <div className="col-xs-8 col-lg-4">
-                            Your fridge has 4 categories: Fruits & Veggies, Dairy, Meats, and Other items.<br/>
+                            Your fridge has 4 categories: Fruits & Veggies, Dairy, Meats, and Other items.<br/><br/>
                             Find your items by simply scrolling through your inventory, or tap the icons to jump to them!
                         </div>
 
@@ -72,7 +72,7 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={MealPlanningIcon} alt="Meal Planning Logo"></img>
                         </div>
                         <div className="col-xs-8 col-lg-4">
-                            Dream up delicious meals using the Meal Planner!<br/>
+                            Dream up delicious meals using the Meal Planner!<br/><br/>
                             It's easy to add foods from your fridge!
                         </div>
                     </div>
