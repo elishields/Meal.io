@@ -51,6 +51,7 @@ export class ListItem extends React.Component {
      */
     clearOnChange = function() {
         this.state.onChange();
+        this.props.addHandler();
 
         this.setState({onChange: () => {}});
     }
@@ -114,6 +115,10 @@ export class GroceryList extends Component {
     constructor(props) {
         super(props);
 
+        let handle = this;
+
+        this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
+
         let rowsFruitandveg = [];
         props.rowsFruitandveg.forEach(function(item) {
             console.log(item.itemQuan + ", " + item.itemName);
@@ -125,11 +130,36 @@ export class GroceryList extends Component {
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
+                    addHandler={handle.handleAddFruitandveg}
                     container={rowsFruitandveg}/>
             )
         });
 
         this.state = {rowsFruitandveg: rowsFruitandveg};
+    }
+
+    handleAddFruitandveg = function() {
+        this.setState((prevState, props) => {
+            let srcRows = props.rowsFruitandveg;
+            let itemRows = prevState.rowsFruitandveg;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (!srcRows.length != itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"F" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        container={itemRows}/>
+                )
+            }
+
+            return({rowsFruitandveg: itemRows});
+        });
     }
 
 	/*
