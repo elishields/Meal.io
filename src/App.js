@@ -1,7 +1,7 @@
-//Import classes from React
+//Import classes from React and Firebase
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import * as firebase from "firebase";
 //Import classes for our pages
 
 import { ListItem, GroceryList } from './GroceryList.js';
@@ -27,6 +27,8 @@ class App extends Component {
         super(props);
 
         this.handleUpdateFruitandveg = this.handleUpdateFruitandveg.bind(this);
+        this.readItems = this.readItems.bind(this);
+
 
         let listInitialFruitandveg = [];
         listInitialFruitandveg.push({
@@ -62,6 +64,7 @@ class App extends Component {
             rowsDairy={this.state.listRowsDairy}
             rowsMeat={this.state.listRowsMeat}
             rowsOther={this.state.listRowsOther}
+            readItems={this.readItems}
             {...props}
             />
         );
@@ -101,8 +104,8 @@ class App extends Component {
                 keyVal: newRowsFV.length,
                 itemName: name,
                 itemQuan: quantity,
-                onBlur: this.handleUpdateFruitandveg.bind(this),
-                onChange: this.handleAddListFruitandveg.bind(this)
+                onBlur: handle.handleUpdateFruitandveg.bind(handle),
+                onChange: handle.handleAddListFruitandveg.bind(handle)
             });
             
             console.log(newRowsFV[newRowsFV.length-1])
@@ -186,6 +189,33 @@ class App extends Component {
             return({listRowsOther: newStateListRowsOther});
         });
     }
+
+    writeItems = function (name, quan, section){
+        let path = firebase.auth().currentUser.uid;
+        let data = {
+            [name] : quan
+        };
+        return new firebase.database().ref(path + "/" + section + "/").update(data);
+    }
+
+    readItems = function (){
+        this.setState((prevState, props) => {
+            let handle = this;
+            let path = firebase.auth().currentUser.uid;
+
+            //pull fruit and veg
+            let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListFruitandveg(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+        })
+    }
+
 
     /*
     *  render() defines the HTML template for this class.
