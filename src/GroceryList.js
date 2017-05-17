@@ -107,10 +107,12 @@ export class GroceryList extends Component {
         this.handleAddOther = this.handleAddOther.bind(this);
 		this.handleRemoveItem = this.handleRemoveItem.bind(this);
         this.readItems = this.readItems.bind(this);
+        this.writeItems = this.writeItems.bind(this);
+        this.listToFridge = this.listToFridge.bind(this);
 
 		/*
 		 * Create an empty array to store ListItems, then push one new ListItem
-		 * 
+		 *
 		 * key: index of new element
 		 */
 		let rowsFruitVeg = [];
@@ -132,6 +134,7 @@ export class GroceryList extends Component {
         };
 	}
 
+    //adds new item to Frut & Veg in shoppling list display
 	handleAddFruitVeg = function(name, quan){
         // reference to this GroceryList
 	    let handle = this;
@@ -148,6 +151,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Meat in shoppling list display
     handleAddMeat = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -164,6 +168,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Dairy in shoppling list display
     handleAddDairy = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -180,6 +185,7 @@ export class GroceryList extends Component {
         });
     }
 
+    //adds new item to Other in shoppling list display
     handleAddOther = function(name, quan){
         // reference to this GroceryList
         let handle = this;
@@ -196,16 +202,12 @@ export class GroceryList extends Component {
         });
     }
 
-	handleAddEmptyItem = function (){
-
-	    //TODO:LIAM WORK YOUR WIZARDRY
-
-    }
-
+    //removes items from database (not shopping list display)
 	handleRemoveItem = function(index) {
-		// Remove item at 'index' from the database
+        //TODO : Tony add code to remove items from database
 	}
 
+	//removes items from shopping list display (not database)
 	deleteItems = function() {
 		let rows = this.state.rows;
 		let safe=0;
@@ -217,6 +219,77 @@ export class GroceryList extends Component {
 		}
 	}
 
+    /*
+     *  Writes items in shopping list display to the database
+     *  @param name is a string, the name of item being added
+     *  @param quan is an integer, the quantity of the item being added
+     *  @Param section is a string, the child in the database where info will be written to
+     */
+	writeItems = function (name, quan, section){
+        let path = firebase.auth().currentUser.uid;
+        let data = {
+            [name]: quan
+        };
+        return new firebase.database().ref(path + "/shop" + section).update(data);
+    }
+
+    //sends all the items in the grocery list db to the fridge db
+    listToFridge = function () {
+        let path = firebase.auth().currentUser.uid;
+        let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+        var fruitVeg = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    fruitVeg[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeFruitVeg").update(fruitVeg);
+            })
+        ref = new firebase.database().ref(path + "/shopDairy/");
+        var dairy = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    dairy[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeDairy").update(dairy);
+            })
+        ref = new firebase.database().ref(path + "/shopMeat/");
+        var meat = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    meat[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeMeat").update(meat);
+            })
+        ref = new firebase.database().ref(path + "/shopOther/");
+        var other = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    other[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeOther").update(other);
+            })
+
+
+
+    }
+
+	//reads database and populates shopping list
 	readItems = function() {
 		this.setState((prevState, props) => {
 	    let newRowsFruitVeg = [];
@@ -224,10 +297,10 @@ export class GroceryList extends Component {
         let newRowsMeat = [];
         let newRowsOther = [];
         let handle = this;
+        let path = firebase.auth().currentUser.uid;
 			// Read FruitVeg from the database
-			let listPathFruitVeg = firebase.auth().currentUser.uid + "/shopFruitVeg/";
-			let refFruitVeg = new firebase.database().refFruitVeg(listPathFruitVeg);
-            refFruitVeg.once("value")
+			let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -236,13 +309,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-			return({rowsFruitVeg: newRowsFruitVeg});
+            handle.handleAddFruitVeg();
+
 
             // Read Dairy from the database
-            let listPathDairy = firebase.auth().currentUser.uid + "/shopDairy/";
-            let refDairy = new firebase.database().refDairy(listPathDairy);
-            refDairy.once("value")
+            ref = new firebase.database().ref(path + "/shopDairy/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -251,13 +323,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsDairy: newRowsDairy});
+            handle.handleAddDairy();
+
 
             // Read Meat from the database
-            let listPathMeat = firebase.auth().currentUser.uid + "/shopMeat/";
-            let refMeat = new firebase.database().refMeat(listPathMeat);
-            refMeat.once("value")
+            ref = new firebase.database().ref(path + "/shopMeat/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -266,13 +337,12 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsMeat: newRowsMeat});
+            handle.handleAddMeat();
+
 
             // Read Other from the database
-            let listPathOther = firebase.auth().currentUser.uid + "/shopOther/";
-            let refOther = new firebase.database().refOther(listPathOther);
-            refOther.once("value")
+            ref = new firebase.database().ref(path + "/shopOther/");
+            ref.once("value")
                 .then(function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var itemName = childSnapshot.key;
@@ -281,11 +351,16 @@ export class GroceryList extends Component {
                         console.log("we got: " + itemQuan + " " + itemName);
                     })
                 })
-            handle.handleAddEmptyItem();
-            return({rowsOther: newRowsOther});
+            handle.handleAddOther();
+
+
+            return({rowsFruitVeg: newRowsFruitVeg,
+                rowsDairy: newRowsDairy,
+                rowsMeat: newRowsMeat,
+                rowsOther: newRowsOther});
 		});
 	}
-	
+
 
 	/*
 	 *  render() defines the HTML template for this class.
@@ -341,7 +416,7 @@ export class GroceryList extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.listToFridge}>ADD TO FRIDGE</button>
                             </div>
                         </div>
 	    			</div>
