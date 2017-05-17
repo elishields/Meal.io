@@ -30,9 +30,9 @@ export class AboutusPage extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <p id="first-paragraph">
-                                Meal.io helps manage perishable food in order to reduce food waste.
-                                Users can create a grocery list, add the food purchased to the fridge
-                                and finally create meal plans.
+                                Meal.io is your new meal manager!<br/><br/>
+                                Use it to make grocery lists, track perishable foods in your fridge, and create meal plans!<br/><br/>
+                                We hope it helps you waste less food!
                             </p>
                         </div>
                     </div>
