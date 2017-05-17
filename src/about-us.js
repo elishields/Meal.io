@@ -92,9 +92,11 @@ export class AboutusPage extends Component {
                                 <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
                                 <div className="caption">
                                     <p>
-                                        Meal.io was created by first term BCIT CST students. The app was
-                                        built over a 5 week period using Bootstrap, React Javascript framework and
-                                        FireBase for database.
+                                        Meal.io was created by a small-team of dedicated Computer Systems Technology students
+                                        at BCIT!<br/><br/>
+                                        Built for Metro Vancouver's food-waste reduction plan,
+                                        Meal.io offers users a simple way to manage the food in their lives!<br/><br/>
+                                        We built this fun app using ReactJS, Bootstrap, and Firebase. Please hire us!
                                     </p>
                                 </div>
                             </div>
