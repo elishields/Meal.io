@@ -19,21 +19,6 @@ import './bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
 /*
- *  Main is our viewport; it is filled by BrowserRouter according to the url path.
- */
-const Main = (props) => (
-    <main>
-        <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route path='/list' component={(props) => <GroceryList {...props} /> } />
-            <Route path='/fridge' component={Fridge} />
-            <Route path='/affiliated-page' component={AffiliatedPage} />
-            <Route path='/about-us' component={AboutusPage} />
-        </Switch>
-    </main>
-)
-
-/*
  * App: this is the 'entry point' for our app. It is loaded in index.js
  */
 class App extends Component {
@@ -41,17 +26,26 @@ class App extends Component {
     constructor(props) {
         super(props);
 
+        this.handleUpdateFruitandveg = this.handleUpdateFruitandveg.bind(this);
+
         let listInitialFruitandveg = [];
-        listInitialFruitandveg.push(<ListItem key={0} myId={0} itemQuan={1} onChange={this.handleAddListFruitandveg.bind(this)} name="NAME" />);
+        listInitialFruitandveg.push({
+            key: 0,
+            keyVal: 0,
+            itemName: "",
+            itemQuan: 1,
+            onBlur: this.handleUpdateFruitandveg.bind(this),
+            onChange: this.handleAddListFruitandveg.bind(this)
+        });
 
         let listInitialMeat = [];
-        listInitialMeat.push(<ListItem key={0} myId={0} itemQuan={1} onChange={this.handleAddListMeat.bind(this)} name="NAME" />);
+        listInitialMeat.push(<ListItem key={0} myId={"M" + 0} itemQuan={1} onChange={this.handleAddListMeat.bind(this)} name="NAME" />);
 
         let listInitialDairy = [];
-        listInitialDairy.push(<ListItem key={0} myId={0} itemQuan={1} onChange={this.handleAddListDairy.bind(this)} name="NAME" />);
+        listInitialDairy.push(<ListItem key={0} myId={"D" + 0} itemQuan={1} onChange={this.handleAddListDairy.bind(this)} name="NAME" />);
 
         let listInitialOther = [];
-        listInitialOther.push(<ListItem key={0} myId={0} itemQuan={1} onChange={this.handleAddListOther.bind(this)} name="NAME" />);
+        listInitialOther.push(<ListItem key={0} myId={"O" + 0} itemQuan={1} onChange={this.handleAddListOther.bind(this)} name="NAME" />);
 
         this.state = {
             listRowsFruitandveg: listInitialFruitandveg,
@@ -59,10 +53,6 @@ class App extends Component {
             listRowsDairy: listInitialDairy,
             listRowsOther: listInitialOther
         };
-    }
-
-    handleOnBlur = function() {
-        alert("blurred!!!!!!!!!!!!!!!!!")
     }
 
     WrapGroceryList = (props) => {
@@ -77,30 +67,46 @@ class App extends Component {
         );
     }
 
+    handleUpdateFruitandveg = function(key, newName, newQuan) {
+        console.log("updating item  " + key)
+
+        this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsFruitandveg;
+
+            newRowsFV[key] = {
+                key: key,
+                keyVal: key,
+                itemName: newName,
+                itemQuan: newQuan,
+                onBlur: this.handleUpdateFruitandveg.bind(this),
+                onChange: this.handleAddListFruitandveg.bind(this)
+            }
+            
+            console.log(newRowsFV[key])
+            return({listRowsFruitandveg: newRowsFV});
+        });
+    }
 
     handleAddListFruitandveg = function(name, quantity) {
         
+        console.log("adding new item..")
         // reference to this component
         let handle = this;
 
-        // update component state...
         this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsFruitandveg;
 
-            // get rows from component's previous state
-            let newStateListRowsFruitandveg = prevState.listRowsFruitandveg;
-
-            // push a new ListItem to newStateRows
-            newStateListRowsFruitandveg.push(
-                <ListItem key={newStateListRowsFruitandveg.length}
-                    itemName={name}
-                    itemQuan={quantity}
-                    myId={newStateListRowsFruitandveg.length}
-                    name="Added Item"
-                    onChange={handle.handleAddListFruitandveg.bind(handle)}
-                />);
-
-            // update GroceryList's state.rows = newStateRows
-            return({listRowsFruitandveg: newStateListRowsFruitandveg});
+            newRowsFV.push({
+                key: newRowsFV.length,
+                keyVal: newRowsFV.length,
+                itemName: name,
+                itemQuan: quantity,
+                onBlur: this.handleUpdateFruitandveg.bind(this),
+                onChange: this.handleAddListFruitandveg.bind(this)
+            });
+            
+            console.log(newRowsFV[newRowsFV.length-1])
+            return({listRowsFruitandveg: newRowsFV});
         });
     }
 
@@ -120,7 +126,7 @@ class App extends Component {
                 <ListItem key={newStateListRowsMeat.length}
                     itemName={name}
                     itemQuan={quantity}
-                    myId={newStateListRowsMeat.length}
+                    myId={"M" + newStateListRowsMeat.length}
                     name="Added Item"
                     onChange={handle.handleAddListMeat.bind(handle)}
                 />);
@@ -146,7 +152,7 @@ class App extends Component {
                 <ListItem key={newStateListRowsDairy.length}
                     itemName={name}
                     itemQuan={quantity}
-                    myId={newStateListRowsDairy.length}
+                    myId={"D" + newStateListRowsDairy.length}
                     name="Added Item"
                     onChange={handle.handleAddListDairy.bind(handle)}
                 />);
@@ -171,7 +177,7 @@ class App extends Component {
                 <ListItem key={newStateListRowsOther.length}
                     itemName={name}
                     itemQuan={quantity}
-                    myId={newStateListRowsOther.length}
+                    myId={"O" + newStateListRowsOther.length}
                     name="Added Item"
                     onChange={handle.handleAddListOther.bind(handle)}
                 />);

@@ -7,9 +7,6 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
-//import and initialize firebase
-import * as firebase from "firebase";
-
 /*
  * ListItem: defines a single item for the grocery list
  */
@@ -21,14 +18,32 @@ export class ListItem extends React.Component {
     constructor(props) {
         super(props);
 
+        console.log("ListItem constructor called. keyVal is " + this.props.keyVal)
+
         // Set state variables
-        this.state = {amount: 1, onChange: props.onChange};
+        this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
         this.checkId = "check-" + this.props.myId;
         this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
         this.clearOnChange = this.clearOnChange.bind(this);
         this.restoreOnChange = this.restoreOnChange.bind(this);
+        this.renderNameField = this.renderNameField.bind(this);
+        this.updateName = this.updateName.bind(this);
+    }
+
+    renderNameField = function() {
+        return (
+            <input type="text"
+                className="form-control"
+                id={"grocery-item-input" + this.props.myId}
+                placeholder="Enter an item"
+                defaultValue={this.state.itemName}
+                onChange={this.clearOnChange}
+                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value, 1)}
+                aria-describedby="item name">
+            </input>
+        );
     }
 
     /*
@@ -46,6 +61,15 @@ export class ListItem extends React.Component {
         this.setState({onChange: this.props.onChange});
     }
 
+    updateName = function() {
+        this.setState((prevState, props) => {
+            console.log("Value: " + document.getElementById("grocery-item-input" + this.props.myId).value);
+            return({itemName: document.getElementById("grocery-item-input" + this.props.myId).value});
+        });
+
+        console.log("State: " + this.state.itemName);
+    }
+
     /*
      *  render() defines the HTML template for this class.
      */
@@ -54,10 +78,21 @@ export class ListItem extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="input-group" id="grocery-item">
-                        <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
-                        <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
-                               onChange={this.clearOnChange} onBlur={() => {this.props.onBlur}} aria-describedby="item name"></input>
-                        <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
+
+                        <input type="number"
+                            className="form-control"
+                            id="grocery-item-quantity"
+                            defaultValue={this.state.itemQuan}>
+                        </input>
+
+                        {this.renderNameField()}
+                        
+                        <input type="checkbox"
+                            className="confirm-check"
+                            id={this.checkId}
+                            aria-label="confirm item">
+                        </input>
+                        
                         <span className="input-group-addon">
                             <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
                         </span>
@@ -74,6 +109,26 @@ export class ListItem extends React.Component {
  * note: 'export' for classes we will use outside this file.
  */
 export class GroceryList extends Component {
+
+    constructor(props) {
+        super(props);
+
+        let rowsFruitandveg = [];
+        props.rowsFruitandveg.forEach(function(item) {
+            console.log(item.itemQuan + ", " + item.itemName);
+            rowsFruitandveg.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId="F0"
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}/>
+            )
+        });
+
+        this.state = {rowsFruitandveg: rowsFruitandveg};
+    }
 
 	/*
 	 *  render() defines the HTML template for this class.
@@ -102,7 +157,7 @@ export class GroceryList extends Component {
                                         <span className="grocery-subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
-                                {this.props.rowsFruitandveg}
+                                {this.state.rowsFruitandveg}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">DAIRY</span>

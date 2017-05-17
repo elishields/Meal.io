@@ -12,12 +12,6 @@ import NavIconList from '../res/Nav-Icons/list.svg';
 import NavIconFridge from '../res/Nav-Icons/fridge.svg';
 import NavIconPlate from '../res/Nav-Icons/plate.svg'
 
-const logoutButton = withRouter(({ history }) => (
-    <span>Hi</span>
-));
-
-
-
 const LogoutButton = withRouter(({ history }) => (
       <button id="logout-button" onClick={() => {
         firebase.auth().signOut();
@@ -52,7 +46,7 @@ export class Header extends Component {
                                 <img className="logo" src={Logo} alt="Meal.io"/>
                             </a>
                             <ButtonGroup className="pull-right" id="menu-icon">
-                                <DropdownButton className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
+                                <DropdownButton title="" className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
                                     <MenuItem className="menu-item" eventKey="1">
                                         <Link to="/affiliated-page">Affiliated Apps</Link>
                                     </MenuItem>
