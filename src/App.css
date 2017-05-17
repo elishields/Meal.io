@@ -385,6 +385,10 @@
     padding: 4px 0;
 }
 
+#bootstrap-overrides .pagination-lg li:hover {
+    background-color: #eee;
+}
+
 #bootstrap-overrides .pagination-lg li a {
     color: dimgray;
 }

@@ -41,7 +41,7 @@ export class MealPlan extends Component {
                     </div>*/}
 
                     <div className="row">
-                        <div className="col-xs-12 col-md-8 col-md-offset-2">
+                        <div className="col-xs-8 col-xs-offset-1">
                             <div aria-label="Page navigation">
                                 <ul className="pagination-lg">
                                     <li><a href="#">1</a></li>
@@ -64,18 +64,18 @@ export class MealPlan extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Breakfast:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Breakfast:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Lunch:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Lunch:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Dinner:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Dinner:</p>
                         </div>
                     </div>
 
@@ -87,18 +87,18 @@ export class MealPlan extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Breakfast:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Breakfast:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Lunch:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Lunch:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
-                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Dinner:</p>
+                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                            <p className="meal-category">Dinner:</p>
                         </div>
                     </div>
                 </div>
