@@ -71,8 +71,10 @@ export class AboutusPage extends Component {
                         <div className="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
                             <img className="three-icons" src={MealPlanningIcon} alt="Meal Planning Logo"></img>
                         </div>
-                        <div className="col-xs-8 col-lg-4">Create your own meals using items from the fridge
-                            or view previously saved meals. </div>
+                        <div className="col-xs-8 col-lg-4">
+                            Dream up delicious meals using the Meal Planner!<br/>
+                            It's easy to add foods from your fridge!
+                        </div>
                     </div>
 
                     <br></br>
