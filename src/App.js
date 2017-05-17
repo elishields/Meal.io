@@ -287,6 +287,39 @@ class App extends Component {
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
             })
+
+            //pull meat
+            ref = new firebase.database().ref(path + "/shopMeat/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListMeat(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+
+            //pull dairy
+            ref = new firebase.database().ref(path + "/shopDairy/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListDairy(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+
+            //pull other
+            ref = new firebase.database().ref(path + "/shopOther/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListOther(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
         })
     }
 
