@@ -20,6 +20,20 @@ import './App.css';
  */
 export class Fridge extends Component {
 
+    constructor(props) {
+        super(props);
+
+        let namesFruitandveg = [];
+
+        props.rowsFruitandveg.forEach(function(item) {
+            namesFruitandveg.push(item.itemName);
+            namesFruitandveg.push(<br />);
+        });
+
+        this.state = {namesFruitandveg: namesFruitandveg}
+        console.log(namesFruitandveg)
+    }
+
     /*
      *  render() returns the HTML template for Fridge
      */
@@ -66,7 +80,7 @@ export class Fridge extends Component {
                         <div className="col-xs-12" id="fridge-list content-section">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">Apple</p>
+                                <p className="fridge-category-content">{this.state.namesFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="fridge-category-title">Dairy</h4>

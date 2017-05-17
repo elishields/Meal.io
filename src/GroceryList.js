@@ -110,8 +110,6 @@ export class GroceryList extends Component {
     constructor(props) {
         super(props);
 
-        let handle = this;
-
         this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
         this.handleAddMeat = this.handleAddMeat.bind(this);
         this.handleAddDairy = this.handleAddDairy.bind(this);
@@ -128,7 +126,7 @@ export class GroceryList extends Component {
                         rowsDairy: rowsDairy,
                         rowsOther: rowsOther};
     }
-    
+
     componentWillMount() {
         this.props.readItems();
         this.buildRows();
@@ -377,7 +375,7 @@ export class GroceryList extends Component {
                             <div className="grocery-button-row">
 
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
 
                             </div>
                         </div>
