@@ -32,17 +32,17 @@ class Example extends React.Component {
                 </h4>
                 <Panel collapsible expanded={this.state.open} bsStyle={ null } className="meal-panel">
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                        <div className="col-xs-12 meal-category">
                             <p className="meal-category">Breakfast:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                        <div className="col-xs-12 meal-category">
                             <p className="meal-category">Lunch:</p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4 meal-category">
+                        <div className="col-xs-12 meal-category">
                             <p className="meal-category">Dinner:</p>
                         </div>
                     </div>

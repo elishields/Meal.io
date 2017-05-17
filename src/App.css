@@ -373,12 +373,11 @@
 .meal-category-title {
     color: #21C0C0;
     font-weight: bold;
-    padding: 8px 5px;
-    background-color: #f7f7f7;
+    padding: 12px 5px;
+    background-color: whitesmoke;
 }
 
 .meal-category {
-    padding-left: 20px;
     font-size: 0.9em;
 }
 
