@@ -370,25 +370,25 @@
    /* margin: 0;*/
 }
 
+.meal-category-title {
+    color: #21C0C0;
+    font-weight: bold;
+    padding: 8px 5px;
+    background-color: #f7f7f7;
+}
+
 .meal-category {
     padding-left: 20px;
     font-size: 0.9em;
 }
 
-#bootstrap-overrides .pagination-lg li {
-    display: inline;
-    list-style-type: none;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    padding: 4px 0;
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
 }
 
-#bootstrap-overrides .pagination-lg li:hover {
-    background-color: #eee;
-}
-
-#bootstrap-overrides .pagination-lg li a {
-    color: dimgray;
+.meal-panel {
+    border: none;
+    box-shadow: none;
 }
