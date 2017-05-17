@@ -285,6 +285,7 @@ class App extends Component {
                     var itemQuan = childSnapshot.val();
                     handle.handleAddListFruitandveg(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
+
                 })
             })
 

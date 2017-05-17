@@ -18,8 +18,6 @@ export class ListItem extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("ListItem constructor called. keyVal is " + this.props.keyVal + ". myId is " + this.props.myId)
-
         // Set state variables
         this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
         this.checkId = "check-" + this.props.myId;
@@ -65,11 +63,8 @@ export class ListItem extends React.Component {
 
     updateName = function() {
         this.setState((prevState, props) => {
-            console.log("Value: " + document.getElementById("grocery-item-input" + this.props.myId).value);
             return({itemName: document.getElementById("grocery-item-input" + this.props.myId).value});
         });
-
-        console.log("State: " + this.state.itemName);
     }
 
     /*
@@ -121,10 +116,10 @@ export class GroceryList extends Component {
         this.handleAddMeat = this.handleAddMeat.bind(this);
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
+        this.readAndBuild = this.readAndBuild.bind(this);
 
         let rowsFruitandveg = [];
         props.rowsFruitandveg.forEach(function(item) {
-            console.log(item.itemQuan + ", " + item.itemName);
             rowsFruitandveg.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
@@ -140,7 +135,6 @@ export class GroceryList extends Component {
 
         let rowsMeat = [];
         props.rowsMeat.forEach(function(item) {
-            console.log(item.itemQuan + ", " + item.itemName);
             rowsMeat.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
@@ -156,7 +150,6 @@ export class GroceryList extends Component {
 
         let rowsDairy = [];
         props.rowsDairy.forEach(function(item) {
-            console.log(item.itemQuan + ", " + item.itemName);
             rowsDairy.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
@@ -172,7 +165,6 @@ export class GroceryList extends Component {
 
         let rowsOther = [];
         props.rowsOther.forEach(function(item) {
-            console.log(item.itemQuan + ", " + item.itemName);
             rowsOther.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
@@ -192,6 +184,10 @@ export class GroceryList extends Component {
                         rowsOther: rowsOther};
     }
 
+    componentWillMount() {
+        this.props.readItems();
+    }
+
     handleAddFruitandveg = function() {
         this.setState((prevState, props) => {
             let handle = this;
@@ -201,8 +197,7 @@ export class GroceryList extends Component {
 
             let item = srcRows[srcRows.length - 1];
 
-            if (srcRows.length != itemRows.length) {
-                console.log("CONDITION MET")
+            if (srcRows.length !== itemRows.length) {
                 itemRows.push(
                     <ListItem key={item.key}
                         keyVal={item.key}
@@ -229,8 +224,7 @@ export class GroceryList extends Component {
 
             let item = srcRows[srcRows.length - 1];
 
-            if (srcRows.length != itemRows.length) {
-                console.log("CONDITION MET")
+            if (srcRows.length !== itemRows.length) {
                 itemRows.push(
                     <ListItem key={item.key}
                         keyVal={item.key}
@@ -257,8 +251,7 @@ export class GroceryList extends Component {
 
             let item = srcRows[srcRows.length - 1];
 
-            if (srcRows.length != itemRows.length) {
-                console.log("CONDITION MET")
+            if (srcRows.length !== itemRows.length) {
                 itemRows.push(
                     <ListItem key={item.key}
                         keyVal={item.key}
@@ -285,8 +278,7 @@ export class GroceryList extends Component {
 
             let item = srcRows[srcRows.length - 1];
 
-            if (srcRows.length != itemRows.length) {
-                console.log("CONDITION MET")
+            if (srcRows.length !== itemRows.length) {
                 itemRows.push(
                     <ListItem key={item.key}
                         keyVal={item.key}
@@ -302,6 +294,82 @@ export class GroceryList extends Component {
             
             return({rowsOther: itemRows});
         });
+    }
+
+    readAndBuild = function() {
+
+        this.props.readItems();
+
+        let handle = this;
+        let rowsFruitandveg = [];
+        this.props.rowsFruitandveg.forEach(function(item) {
+            rowsFruitandveg.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddFruitandveg}
+                    container={rowsFruitandveg}/>
+            )
+        });
+
+        let rowsMeat = [];
+        this.props.rowsMeat.forEach(function(item) {
+            rowsMeat.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"M" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddMeat}
+                    container={rowsMeat}/>
+            )
+        });
+
+        let rowsDairy = [];
+        this.props.rowsDairy.forEach(function(item) {
+            rowsDairy.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"D" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddDairy}
+                    container={rowsDairy}/>
+            )
+        });
+
+        let rowsOther = [];
+        this.props.rowsOther.forEach(function(item) {
+            rowsOther.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"O" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddOther}
+                    container={rowsOther}/>
+            )
+        });
+
+        this.setState((prevState, sprops) => {
+
+            return({rowsFruitandveg: rowsFruitandveg,
+                rowsMeat: rowsMeat,
+                rowsDairy: rowsDairy,
+                rowsOther: rowsOther});
+        });
+
+        console.log("returning.")
     }
 
 	/*
@@ -361,7 +429,7 @@ export class GroceryList extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
 
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.props.readItems}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
 
                             </div>
