@@ -35,7 +35,7 @@ export class ListItem extends React.Component {
     renderNameField = function() {
         return (
             <input type="text"
-                className="form-control grocery-item-input"
+                className="grocery-item-input"
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
@@ -144,7 +144,7 @@ export class GroceryList extends Component {
             rowsMeat.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
-                    myId={"F" + item.key}
+                    myId={"M" + item.key}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -160,7 +160,7 @@ export class GroceryList extends Component {
             rowsDairy.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
-                    myId={"F" + item.key}
+                    myId={"D" + item.key}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -176,7 +176,7 @@ export class GroceryList extends Component {
             rowsOther.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
-                    myId={"F" + item.key}
+                    myId={"O" + item.key}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
