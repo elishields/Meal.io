@@ -65,14 +65,6 @@ class ListItem extends React.Component {
         });
     }
 
-    easterEgg = function (){
-
-        var userInput = document.getElementById(grocery-item-input).innerHTML;
-
-        alert(userInput);
-
-    }
-
     /*
      *  render() defines the HTML template for this class.
      */
