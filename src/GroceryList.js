@@ -119,73 +119,19 @@ export class GroceryList extends Component {
         this.readAndBuild = this.readAndBuild.bind(this);
 
         let rowsFruitandveg = [];
-        props.rowsFruitandveg.forEach(function(item) {
-            rowsFruitandveg.push(
-                <ListItem key={item.key}
-                    keyVal={item.key}
-                    myId={"F" + item.key}
-                    itemName={item.itemName}
-                    itemQuan={item.itemQuan}
-                    onBlur={item.onBlur}
-                    onChange={item.onChange}
-                    addHandler={handle.handleAddFruitandveg}
-                    container={rowsFruitandveg}/>
-            )
-        });
-
         let rowsMeat = [];
-        props.rowsMeat.forEach(function(item) {
-            rowsMeat.push(
-                <ListItem key={item.key}
-                    keyVal={item.key}
-                    myId={"M" + item.key}
-                    itemName={item.itemName}
-                    itemQuan={item.itemQuan}
-                    onBlur={item.onBlur}
-                    onChange={item.onChange}
-                    addHandler={handle.handleAddMeat}
-                    container={rowsMeat}/>
-            )
-        });
-
         let rowsDairy = [];
-        props.rowsDairy.forEach(function(item) {
-            rowsDairy.push(
-                <ListItem key={item.key}
-                    keyVal={item.key}
-                    myId={"D" + item.key}
-                    itemName={item.itemName}
-                    itemQuan={item.itemQuan}
-                    onBlur={item.onBlur}
-                    onChange={item.onChange}
-                    addHandler={handle.handleAddDairy}
-                    container={rowsDairy}/>
-            )
-        });
-
         let rowsOther = [];
-        props.rowsOther.forEach(function(item) {
-            rowsOther.push(
-                <ListItem key={item.key}
-                    keyVal={item.key}
-                    myId={"O" + item.key}
-                    itemName={item.itemName}
-                    itemQuan={item.itemQuan}
-                    onBlur={item.onBlur}
-                    onChange={item.onChange}
-                    addHandler={handle.handleAddOther}
-                    container={rowsOther}/>
-            )
-        });
 
         this.state = {rowsFruitandveg: rowsFruitandveg,
                         rowsMeat: rowsMeat,
                         rowsDairy: rowsDairy,
                         rowsOther: rowsOther};
     }
-
+    
     componentWillMount() {
         this.props.readItems();
+        this.buildRows();
     }
 
     handleAddFruitandveg = function() {
@@ -296,10 +242,7 @@ export class GroceryList extends Component {
         });
     }
 
-    readAndBuild = function() {
-
-        this.props.readItems();
-
+    buildRows = function() {
         let handle = this;
         let rowsFruitandveg = [];
         this.props.rowsFruitandveg.forEach(function(item) {
@@ -368,7 +311,11 @@ export class GroceryList extends Component {
                 rowsDairy: rowsDairy,
                 rowsOther: rowsOther});
         });
+    }
 
+    readAndBuild = function() {
+
+        this.buildRows();
         console.log("returning.")
     }
 

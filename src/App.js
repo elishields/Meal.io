@@ -29,53 +29,23 @@ class App extends Component {
         this.handleUpdateMeat = this.handleUpdateMeat.bind(this);
         this.handleUpdateDairy = this.handleUpdateDairy.bind(this);
         this.handleUpdateOther = this.handleUpdateOther.bind(this);
+        this.clearGroceryList = this.clearGroceryList.bind(this);
         this.readItems = this.readItems.bind(this);
 
         let listInitialFruitandveg = [];
-        listInitialFruitandveg.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateFruitandveg.bind(this),
-            onChange: this.handleAddListFruitandveg.bind(this)
-        });
-
         let listInitialMeat = [];
-        listInitialMeat.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateMeat.bind(this),
-            onChange: this.handleAddListMeat.bind(this)
-        });
-
         let listInitialDairy = [];
-        listInitialDairy.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateDairy.bind(this),
-            onChange: this.handleAddListDairy.bind(this)
-        });
-
         let listInitialOther = [];
-        listInitialOther.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateOther.bind(this),
-            onChange: this.handleAddListOther.bind(this)
-        });
+
+        let fridgeInitialFruitandveg = [];
 
         this.state = {
             listRowsFruitandveg: listInitialFruitandveg,
             listRowsMeat: listInitialMeat,
             listRowsDairy: listInitialDairy,
-            listRowsOther: listInitialOther
+            listRowsOther: listInitialOther,
+
+            fridgeInitialFruitandveg: fridgeInitialFruitandveg
         };
     }
 
@@ -90,6 +60,12 @@ class App extends Component {
             {...props}
             />
         );
+    }
+
+    clearGroceryList = function() {
+        this.setState((prevState, props) => {
+            return({listRowsFruitandveg: []});
+        });
     }
 
     handleUpdateFruitandveg = function(key, newName, newQuan) {
@@ -273,6 +249,8 @@ class App extends Component {
     }
 
     readItems = function (){
+        this.clearGroceryList();
+
         this.setState((prevState, props) => {
             let handle = this;
             let path = firebase.auth().currentUser.uid;
@@ -288,6 +266,8 @@ class App extends Component {
 
                 })
             })
+
+            handle.handleAddListFruitandveg("", 1);
 
             //pull meat
             ref = new firebase.database().ref(path + "/shopMeat/");
