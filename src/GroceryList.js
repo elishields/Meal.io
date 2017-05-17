@@ -18,7 +18,7 @@ export class ListItem extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("ListItem constructor called. keyVal is " + this.props.keyVal)
+        console.log("ListItem constructor called. keyVal is " + this.props.keyVal + ". myId is " + this.props.myId)
 
         // Set state variables
         this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
@@ -51,6 +51,7 @@ export class ListItem extends React.Component {
      */
     clearOnChange = function() {
         this.state.onChange();
+
         this.setState({onChange: () => {}});
     }
 
@@ -119,11 +120,12 @@ export class GroceryList extends Component {
             rowsFruitandveg.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
-                    myId="F0"
+                    myId={"F" + item.key}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
-                    onChange={item.onChange}/>
+                    onChange={item.onChange}
+                    container={rowsFruitandveg}/>
             )
         });
 
