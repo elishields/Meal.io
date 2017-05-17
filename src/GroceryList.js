@@ -84,7 +84,7 @@ export class ListItem extends React.Component {
                         <input type="number"
                             className="form-control"
                             id="grocery-item-quantity"
-                            defaultValue={this.state.itemQuan}>
+                            defaultValue={this.props.itemQuan}>
                         </input>
 
                         {this.renderNameField()}
@@ -359,7 +359,7 @@ export class GroceryList extends Component {
 					<div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button">DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.props.readItems}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" >ADD TO FRIDGE</button>
                             </div>
                         </div>
