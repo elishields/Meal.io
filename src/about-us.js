@@ -44,8 +44,8 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={GroceryListIcon} alt="Grocery List Logo"></img>
                         </div>
                         <div className="col-xs-8 col-lg-4">
-                            Create your shopping list before you go shopping and
-                            check off the items as you buy them. Bought items are added to the Fridge.
+                            Plan ahead by writing up a grocery list before you go shopping.<br/>
+                            Once you've bought your groceries, simply tap to send them to your fridge!
                         </div>
                     </div>
 
