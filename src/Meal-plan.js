@@ -34,18 +34,71 @@ export class MealPlan extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
+                    {/*<div className="row">
                         <div className="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
                             <img src={MealPlate} className="center-block" id="meal-plan-plate" alt="Meal Plan"/>
+                        </div>
+                    </div>*/}
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-8 col-md-offset-2">
+                            <div aria-label="Page navigation">
+                                <ul className="pagination-lg">
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">6</a></li>
+                                    <li><a href="#">7</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="fridge-list">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">Apple</p>
+                                <h4 className="fridge-category-title">Day 1</h4>
                             </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Breakfast:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Lunch:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Dinner:</p>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <h4 className="fridge-category-title">Day 2</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Breakfast:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Lunch:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-list">
+                            <p className="meal-category col-xs-3 col-md-2 col-md-offset-4">Dinner:</p>
                         </div>
                     </div>
                 </div>
