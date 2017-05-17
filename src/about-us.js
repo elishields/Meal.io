@@ -57,8 +57,10 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={MyFridgeIcon} alt="Fridge Logo"></img>
                         </div>
 
-                        <div className="col-xs-8 col-lg-4">Bought items are displayed in four categories, Fruits & Vegetables, Meats,
-                            Dairy and Other items. All items can also be searched using the search bar.</div>
+                        <div className="col-xs-8 col-lg-4">
+                            Your fridge has 4 categories: Fruits & Veggies, Dairy, Meats, and Other items.<br/>
+                            Find your items by simply scrolling through your inventory, or tap the icons to jump to them!
+                        </div>
 
                     </div>
 
