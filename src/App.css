@@ -206,7 +206,7 @@
     border-right: none;
     width: 10%;
 }
-#grocery-item-input {
+#bootstrap-overrides .grocery-item-input .form-control {
     font-style: italic;
     width: 90%;
 }

@@ -35,7 +35,7 @@ export class ListItem extends React.Component {
     renderNameField = function() {
         return (
             <input type="text"
-                className="form-control"
+                className="form-control grocery-item-input"
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
@@ -118,6 +118,9 @@ export class GroceryList extends Component {
         let handle = this;
 
         this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
+        this.handleAddMeat = this.handleAddMeat.bind(this);
+        this.handleAddDairy = this.handleAddDairy.bind(this);
+        this.handleAddOther = this.handleAddOther.bind(this);
 
         let rowsFruitandveg = [];
         props.rowsFruitandveg.forEach(function(item) {
@@ -135,17 +138,71 @@ export class GroceryList extends Component {
             )
         });
 
-        this.state = {rowsFruitandveg: rowsFruitandveg};
+        let rowsMeat = [];
+        props.rowsMeat.forEach(function(item) {
+            console.log(item.itemQuan + ", " + item.itemName);
+            rowsMeat.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddMeat}
+                    container={rowsMeat}/>
+            )
+        });
+
+        let rowsDairy = [];
+        props.rowsDairy.forEach(function(item) {
+            console.log(item.itemQuan + ", " + item.itemName);
+            rowsDairy.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddDairy}
+                    container={rowsDairy}/>
+            )
+        });
+
+        let rowsOther = [];
+        props.rowsOther.forEach(function(item) {
+            console.log(item.itemQuan + ", " + item.itemName);
+            rowsOther.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddOther}
+                    container={rowsOther}/>
+            )
+        });
+
+        this.state = {rowsFruitandveg: rowsFruitandveg,
+                        rowsMeat: rowsMeat,
+                        rowsDairy: rowsDairy,
+                        rowsOther: rowsOther};
     }
 
     handleAddFruitandveg = function() {
         this.setState((prevState, props) => {
+            let handle = this;
+
             let srcRows = props.rowsFruitandveg;
             let itemRows = prevState.rowsFruitandveg;
 
             let item = srcRows[srcRows.length - 1];
 
-            if (!srcRows.length != itemRows.length) {
+            if (srcRows.length != itemRows.length) {
+                console.log("CONDITION MET")
                 itemRows.push(
                     <ListItem key={item.key}
                         keyVal={item.key}
@@ -154,11 +211,96 @@ export class GroceryList extends Component {
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
                         onChange={item.onChange}
+                        addHandler={handle.handleAddFruitandveg}
                         container={itemRows}/>
                 )
             }
 
             return({rowsFruitandveg: itemRows});
+        });
+    }
+
+    handleAddMeat = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsMeat;
+            let itemRows = prevState.rowsMeat;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length != itemRows.length) {
+                console.log("CONDITION MET")
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"M" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddMeat}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsMeat: itemRows});
+        });
+    }
+
+    handleAddDairy = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsDairy;
+            let itemRows = prevState.rowsDairy;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length != itemRows.length) {
+                console.log("CONDITION MET")
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"D" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddDairy}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsDairy: itemRows});
+        });
+    }
+
+    handleAddOther = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsOther;
+            let itemRows = prevState.rowsOther;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length != itemRows.length) {
+                console.log("CONDITION MET")
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"O" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddOther}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsOther: itemRows});
         });
     }
 
@@ -195,19 +337,19 @@ export class GroceryList extends Component {
                                         <span className="grocery-subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
-                                {this.props.rowsDairy}
+                                {this.state.rowsDairy}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">MEAT</span>
                                     </h4>
                                 </div>
-                                {this.props.rowsMeat}
+                                {this.state.rowsMeat}
                                 <div>
                                     <h4 className="grocery-subheader">
                                         <span className="grocery-subheader-text">OTHER</span>
                                     </h4>
                                 </div>
-                                {this.props.rowsOther}
+                                {this.state.rowsOther}
                             </div>
                         </div>
                     </div>

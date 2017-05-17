@@ -27,6 +27,9 @@ class App extends Component {
         super(props);
 
         this.handleUpdateFruitandveg = this.handleUpdateFruitandveg.bind(this);
+        this.handleUpdateMeat = this.handleUpdateMeat.bind(this);
+        this.handleUpdateDairy = this.handleUpdateDairy.bind(this);
+        this.handleUpdateOther = this.handleUpdateOther.bind(this);
 
         let listInitialFruitandveg = [];
         listInitialFruitandveg.push({
@@ -39,13 +42,34 @@ class App extends Component {
         });
 
         let listInitialMeat = [];
-        listInitialMeat.push(<ListItem key={0} myId={"M" + 0} itemQuan={1} onChange={this.handleAddListMeat.bind(this)} name="NAME" />);
+        listInitialMeat.push({
+            key: 0,
+            keyVal: 0,
+            itemName: "",
+            itemQuan: 1,
+            onBlur: this.handleUpdateMeat.bind(this),
+            onChange: this.handleAddListMeat.bind(this)
+        });
 
         let listInitialDairy = [];
-        listInitialDairy.push(<ListItem key={0} myId={"D" + 0} itemQuan={1} onChange={this.handleAddListDairy.bind(this)} name="NAME" />);
+        listInitialDairy.push({
+            key: 0,
+            keyVal: 0,
+            itemName: "",
+            itemQuan: 1,
+            onBlur: this.handleUpdateDairy.bind(this),
+            onChange: this.handleAddListDairy.bind(this)
+        });
 
         let listInitialOther = [];
-        listInitialOther.push(<ListItem key={0} myId={"O" + 0} itemQuan={1} onChange={this.handleAddListOther.bind(this)} name="NAME" />);
+        listInitialOther.push({
+            key: 0,
+            keyVal: 0,
+            itemName: "",
+            itemQuan: 1,
+            onBlur: this.handleUpdateOther.bind(this),
+            onChange: this.handleAddListOther.bind(this)
+        });
 
         this.state = {
             listRowsFruitandveg: listInitialFruitandveg,
@@ -110,82 +134,135 @@ class App extends Component {
         });
     }
 
+    handleUpdateMeat = function(key, newName, newQuan) {
+        console.log("updating item  " + key)
+
+        this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsMeat;
+
+            newRowsFV[key] = {
+                key: key,
+                keyVal: key,
+                itemName: newName,
+                itemQuan: newQuan,
+                onBlur: this.handleUpdateMeat.bind(this),
+                onChange: this.handleAddListMeat.bind(this)
+            }
+            
+            console.log(newRowsFV[key])
+            return({listRowsMeat: newRowsFV});
+        });
+    }
+
     handleAddListMeat = function(name, quantity) {
         
+        console.log("adding new item..")
         // reference to this component
         let handle = this;
 
-        // update component state...
         this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsMeat;
 
-            // get rows from component's previous state
-            let newStateListRowsMeat = prevState.listRowsMeat;
+            newRowsFV.push({
+                key: newRowsFV.length,
+                keyVal: newRowsFV.length,
+                itemName: name,
+                itemQuan: quantity,
+                onBlur: this.handleUpdateMeat.bind(this),
+                onChange: this.handleAddListMeat.bind(this)
+            });
+            
+            console.log(newRowsFV[newRowsFV.length-1])
+            return({listRowsMeat: newRowsFV});
+        });
+    }
 
-            // push a new ListItem to newStateRows
-            newStateListRowsMeat.push(
-                <ListItem key={newStateListRowsMeat.length}
-                    itemName={name}
-                    itemQuan={quantity}
-                    myId={"M" + newStateListRowsMeat.length}
-                    name="Added Item"
-                    onChange={handle.handleAddListMeat.bind(handle)}
-                />);
+    handleUpdateDairy = function(key, newName, newQuan) {
+        console.log("updating item  " + key)
 
-            // update GroceryList's state.rows = newStateRows
-            return({listRowsMeat: newStateListRowsMeat});
+        this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsDairy;
+
+            newRowsFV[key] = {
+                key: key,
+                keyVal: key,
+                itemName: newName,
+                itemQuan: newQuan,
+                onBlur: this.handleUpdateDairy.bind(this),
+                onChange: this.handleAddListDairy.bind(this)
+            }
+            
+            console.log(newRowsFV[key])
+            return({listRowsDairy: newRowsFV});
         });
     }
 
     handleAddListDairy = function(name, quantity) {
-
+        
+        console.log("adding new item..")
         // reference to this component
         let handle = this;
 
-        // update component state...
         this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsDairy;
 
-            // get rows from component's previous state
-            let newStateListRowsDairy = prevState.listRowsDairy;
+            newRowsFV.push({
+                key: newRowsFV.length,
+                keyVal: newRowsFV.length,
+                itemName: name,
+                itemQuan: quantity,
+                onBlur: this.handleUpdateDairy.bind(this),
+                onChange: this.handleAddListDairy.bind(this)
+            });
+            
+            console.log(newRowsFV[newRowsFV.length-1])
+            return({listRowsDairy: newRowsFV});
+        });
+    }
 
-            // push a new ListItem to newStateRows
-            newStateListRowsDairy.push(
-                <ListItem key={newStateListRowsDairy.length}
-                    itemName={name}
-                    itemQuan={quantity}
-                    myId={"D" + newStateListRowsDairy.length}
-                    name="Added Item"
-                    onChange={handle.handleAddListDairy.bind(handle)}
-                />);
+    handleUpdateOther = function(key, newName, newQuan) {
+        console.log("updating item  " + key)
 
-            // update GroceryList's state.rows = newStateRows
-            return({listRowsDairy: newStateListRowsDairy});
+        this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsOther;
+
+            newRowsFV[key] = {
+                key: key,
+                keyVal: key,
+                itemName: newName,
+                itemQuan: newQuan,
+                onBlur: this.handleUpdateOther.bind(this),
+                onChange: this.handleAddListOther.bind(this)
+            }
+            
+            console.log(newRowsFV[key])
+            return({listRowsOther: newRowsFV});
         });
     }
 
     handleAddListOther = function(name, quantity) {
+        
+        console.log("adding new item..")
         // reference to this component
         let handle = this;
 
-        // update component state...
         this.setState((prevState, props) => {
+            let newRowsFV = prevState.listRowsOther;
 
-            // get rows from component's previous state
-            let newStateListRowsOther = prevState.listRowsOther;
-
-            // push a new ListItem to newStateRows
-            newStateListRowsOther.push(
-                <ListItem key={newStateListRowsOther.length}
-                    itemName={name}
-                    itemQuan={quantity}
-                    myId={"O" + newStateListRowsOther.length}
-                    name="Added Item"
-                    onChange={handle.handleAddListOther.bind(handle)}
-                />);
-
-            // update GroceryList's state.rows = newStateRows
-            return({listRowsOther: newStateListRowsOther});
+            newRowsFV.push({
+                key: newRowsFV.length,
+                keyVal: newRowsFV.length,
+                itemName: name,
+                itemQuan: quantity,
+                onBlur: this.handleUpdateOther.bind(this),
+                onChange: this.handleAddListOther.bind(this)
+            });
+            
+            console.log(newRowsFV[newRowsFV.length-1])
+            return({listRowsOther: newRowsFV});
         });
     }
+
 
     /*
     *  render() defines the HTML template for this class.
@@ -199,7 +276,7 @@ class App extends Component {
                         <main>
                             <Switch>
                                 <Route exact path='/' component={LandingPage} />
-                                <Route path='/list' render={this.WrapGroceryList}/>
+                                <Route path='/list' render={this.WrapGroceryList} />
                                 <Route path='/fridge' component={Fridge} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
