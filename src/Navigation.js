@@ -14,12 +14,8 @@ import NavIconPlate from '../res/Nav-Icons/plate.svg'
 
 const LogoutButton = withRouter(({ history }) => (
       <button id="logout-button" onClick={() => {
+        history.push('/');
         firebase.auth().signOut();
-        firebase.auth().onAuthStateChanged(firebaseUser => {
-            if (!firebaseUser) {
-                history.push('/');
-            }
-        });
       }}>Sign out</button>
 ))
 

@@ -91,6 +91,10 @@ class App extends Component {
         });
     }
 
+    handleUpdateArray = function(target, key, newName, newQuan) {
+        
+    }
+
     handleUpdateFruitandveg = function(key, newName, newQuan) {
         console.log("updating item  " + key)
 
@@ -344,6 +348,7 @@ class App extends Component {
                                 <Route exact path='/' component={LandingPage} />
                                 <Route path='/list' render={this.WrapGroceryList} />
                                 <Route path='/fridge' render={this.WrapFridge} />
+                                <Route path='/meal-plan' component={MealPlan} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
                             </Switch>
