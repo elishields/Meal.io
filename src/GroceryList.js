@@ -38,7 +38,8 @@ export class ListItem extends React.Component {
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
                 onChange={this.clearOnChange}
-                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value, 1)}
+                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                    parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
             </input>
         );
@@ -78,8 +79,10 @@ export class ListItem extends React.Component {
 
                         <input type="number"
                             className="form-control"
-                            id="grocery-item-quantity"
-                            defaultValue={this.props.itemQuan}>
+                            id={"grocery-item-quantity" + this.props.myId}
+                            defaultValue={this.props.itemQuan}
+                            onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                                parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}>
                         </input>
 
                         {this.renderNameField()}
@@ -316,23 +319,23 @@ export class GroceryList extends Component {
         console.log("returning.")
     }
 
-	/*
-	 *  render() defines the HTML template for this class.
-	 */
-  	render() {
-    	return (
-    		<div>
-    			<Header />
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div>
+                <Header />
 
-	      		<div className="container-fluid">
-					<div className="row">
-						<div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
-							<h3 className="page-header" id="header-all">
-								<span className="page-title-text">GROCERY LIST</span>
-							</h3>
-						</div>
-					</div>
-	      		</div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="page-header" id="header-all">
+                                <span className="page-title-text">GROCERY LIST</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="container-fluid">
                     <div className="row">
@@ -368,8 +371,8 @@ export class GroceryList extends Component {
                     </div>
                 </div>
 
-				<div className="container-fluid">
-					<div className="row">
+                <div className="container-fluid">
+                    <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
 
@@ -378,13 +381,13 @@ export class GroceryList extends Component {
 
                             </div>
                         </div>
-	    			</div>
-      			</div>
+                    </div>
+                </div>
 
-	      		<Footer myprop="" />
-      		</div>
-	    );
-  	}
+                <Footer myprop="" />
+            </div>
+        );
+    }
 }
 
 export default GroceryList;
