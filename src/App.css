@@ -1,16 +1,19 @@
 /* GLOBAL *//* GLOBAL *//* GLOBAL */
 @import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .app {
-    font-family: 'Catamaran', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    height: 100%;
+}
+#bootstrap-overrides {
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
 }
-a, a:link, a:visited, a:hover, a:active {
+#bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
-}
-#container-fluid {
-    padding: 0;
 }
 .page-header {
     margin: 20px 0;
@@ -27,8 +30,27 @@ a, a:link, a:visited, a:hover, a:active {
     -moz-border-radius:;
     border-radius: 15px;
     padding: 6px;
-    font-family: 'Catamaran', sans-serif;
-    font-weight: 700;
+    font-weight: bold;
+}
+#content-section {
+    margin-bottom: 150px;
+}
+
+/* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
+#bootstrap-overrides .container-fluid {
+    padding: 0;
+}
+#bootstrap-overrides .row {
+    margin: 0;
+    padding: 0;
+}
+/* Targets all className's that begin with 'col-' */
+#bootstrap-overrides [class^='col-'] {
+    padding: 0;
+}
+
+#bootstrap-overrides [id^='grocery-item-input'] {
+    width: 90%;
 }
 
 /* NAVIGATION */
@@ -55,7 +77,6 @@ a, a:link, a:visited, a:hover, a:active {
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
-    font-family: 'Catamaran', sans-serif;
 }
 .menu-item a {
     color: white;
@@ -65,30 +86,50 @@ a, a:link, a:visited, a:hover, a:active {
     background-color: #21C0C0;
 }
 
+#logout-button {
+    border: none;
+    width: 100%;
+    color: #ffffff;
+    background-color: #21c0c0;
+    text-align: left;
+    padding: 0;
+}
+
     /* FOOTER *//* FOOTER *//* FOOTER */
 #footer {
     background-color: #21C0C0;
-    margin: 20px 0 0 0;
     padding: 0;
     height: 90px;
+    border-top: 1px solid #21C0C0;
 }
-.icon-group {
-    margin-right: auto;
-    margin-left: auto;
+.nav-icon-group {
+    max-width: 80%;
+    margin: 5px auto;
+    padding: 0;
     text-align: center;
 }
 .nav-icon {
-    height: 78px;
+    height: 60px;
     width: auto;
-    margin: 6px 17px;
+    padding: 0;
+}
+#nav-icon-list {
+
+}
+#nav-icon-fridge {
+
+}
+#nav-icon-plate {
+
+}
+.nav-icon-caption {
+    text-align: center;
 }
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
-@import url('https://fonts.googleapis.com/css?family=Catamaran:400,700,800');
 
 #landing-body {
     background-color: #21C0C0;
-    font-family: 'Catamaran', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -96,6 +137,9 @@ a, a:link, a:visited, a:hover, a:active {
     background-color: #21C0C0;
     padding-top: 25px;
     padding-bottom: 25px;
+}
+#landing-blurb {
+    background-color: #21C0C0;
 }
 #landing-welcome {
     margin: 0;
@@ -120,7 +164,6 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .form-control {
     border-radius: 10px;
-    font-family: 'Catamaran', sans-serif;
 }
 #landing-inputs {
     width: 70%;
@@ -159,7 +202,7 @@ a, a:link, a:visited, a:hover, a:active {
     margin: 0.2em 0em;
 }
 
-#grocery-item-quantity {
+#bootstrap-overrides [id^='grocery-item-quantity'] {
     background-color: #21C0C0;
     color: #ffffff;
     font-style: italic;
@@ -170,49 +213,44 @@ a, a:link, a:visited, a:hover, a:active {
     border-right: none;
     width: 10%;
 }
-
-#grocery-item-input {
+#bootstrap-overrides .grocery-item-input .form-control {
     font-style: italic;
     width: 90%;
 }
 #grocery-item-check-bg {
     padding: 5px 10px;
 }
-
-#to-fridge-button {
+#add-to-fridge-button {
     border: 2px solid #21C0C0;
     border-left: none;
     border-radius: 5px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
     font-weight: bold;
 }
-
 #remove-button {
     border: 2px solid #21C0C0;
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
     font-weight: bold;
 }
-
 .grocery-button-row {
     position: fixed;
-    left: 0;
     bottom: 90px;
+    left: 0;
     width: 100%;
 
     z-index: 1000;
 }
-
 .remove-check {
     display: none;
 }
@@ -242,26 +280,41 @@ a, a:link, a:visited, a:hover, a:active {
     height: 16px;
     margin: 0;
 }
+.grocery-subheader {
+    margin: 20px;
+    text-align: center;
+}
+.grocery-subheader-text {
+    border-bottom: 2px solid #21C0C0;
+}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
-#fridge-table {
-    margin: 50px 0;
-    border: none;
-    table-layout: fixed;
+#fridge-icon-row {
+    margin: 0 auto;
 }
-.fridge-table-row {
-    margin-left: auto;
-    margin-right: auto;
-}
-.fridge-category {
-    padding: 8px 0;
+.fridge-category-col {
+    padding: 0;
     text-align: center;
 }
 .fridge-category-icon {
-    width: 120px;
+    width: 75px;
     height: auto;
-    text-align: center;
+}
+#fridge-list {
+    /*margin: 0;*/
+}
+.fridge-category {
+
+}
+.fridge-category-title {
+    color: #21C0C0;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #f7f7f7;
+}
+.fridge-category-content {
+    padding-left: 20px;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
@@ -283,16 +336,62 @@ a, a:link, a:visited, a:hover, a:active {
     margin-bottom: 100px;
 }
 
-/*ABOUT US */
-#mealIoLogo {
-    width: 100%;
-}
 
-#button {
+/*ABOUT US */
+.buttons{
     background-color: #21c0c0;
     color: white;
+    text-decoration: none;
+}
+/* Control how big the team image is */
+#aboutus-team-image {
+    width: 60%;
+}
+#second-heading{
+    border: none;
+}
+#clear-thumbnail-border{
+    border: 0 none;
+    box-shadow: none;
+}
+#first-paragraph {
+    padding-left: 20px;
+}
+.three-icons{
+    width: 80%;
+}
+#aboutus-button-email {
+    margin-bottom: 100px;
 }
 
-#team img {
-    width: 20%;
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 20%;
+}
+
+#meal-list {
+   /* margin: 0;*/
+}
+
+.meal-category-title {
+    color: #21C0C0;
+    font-weight: bold;
+    padding: 12px 5px;
+    background-color: whitesmoke;
+}
+
+.meal-category {
+    font-size: 0.9em;
+}
+
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
+}
+
+.meal-panel {
+    border: none;
+    box-shadow: none;
 }
