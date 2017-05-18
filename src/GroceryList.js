@@ -302,7 +302,7 @@ export class GroceryList extends Component {
             )
         });
 
-        this.setState((prevState, sprops) => {
+        this.setState((prevState, props) => {
 
             return({rowsFruitandveg: rowsFruitandveg,
                 rowsMeat: rowsMeat,
