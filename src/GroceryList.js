@@ -6,6 +6,7 @@ import { Header, Footer } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 //import and initialize firebase
 import * as firebase from "firebase";
@@ -302,7 +303,8 @@ export class GroceryList extends Component {
 					<div className="row">
 						<div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
 							<h3 className="page-header" id="header-all">
-								<span className="page-title-text">GROCERY LIST</span>
+								<span className="page-title-text">
+                                    <Link to="/easter-egg-page">GROCERY LIST</Link></span>
 							</h3>
 						</div>
 					</div>

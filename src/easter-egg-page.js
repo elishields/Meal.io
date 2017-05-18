@@ -6,7 +6,7 @@ import { EasterHeader, EasterFooter } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-
+import { Link } from 'react-router-dom';
 
 
 /*
@@ -29,7 +29,7 @@ export class EasterGroceryList extends Component {
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
                             <h3 className="page-header" id="header-all">
                                 <span className="page-title-text" id="easter-page-title-text">
-                                    <Link to="/about-us">EASTER GROCERY LIST</Link></span>
+                                    <Link to="/list"> EASTER GROCERY LIST</Link></span>
                             </h3>
                         </div>
                     </div>
@@ -156,8 +156,8 @@ export class EasterGroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
-                                <button className="col-xs-6 btn btn-secondary" id="easter-remove-button">DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="easter-add-to-fridge-button">ADD TO FRIDGE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="easter-remove-button">Eat Everything</button>
+                                <button className="col-xs-6 btn btn-secondary" id="easter-add-to-fridge-button">Eat Everything</button>
                             </div>
                         </div>
                     </div>

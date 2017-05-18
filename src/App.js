@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { GroceryList } from './GroceryList.js';
 import { Fridge } from './Fridge.js';
-//import { LandingPage } from './Landing-page.js';
+import { LandingPage } from './Landing-page.js';
 import { EasterGroceryList } from './easter-egg-page.js';
 
 
@@ -26,11 +26,12 @@ import './App.css';
 const Main = () => (
     <main>
         <Switch>
-            <Route exact path='/' component={EasterGroceryList} />
+            <Route exact path='/' component={LandingPage} />
             <Route path='/list' component={GroceryList} />
             <Route path='/fridge' component={Fridge} />
             <Route path='/affiliated-page' component={AffiliatedPage} />
             <Route path='/about-us' component={AboutusPage} />
+            <Route path='/easter-egg-page' component={EasterGroceryList} />
         </Switch>
     </main>
 )

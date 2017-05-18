@@ -91,23 +91,11 @@ export class EasterHeader extends Component {
                 <row>
                     <nav className="navbar navbar-fixed-top" id="easter-header">
                         <div>
-                            <a href="" className="navbar-brand">
+                            <div href="" className="navbar-brand">
                                 <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
-                            </a>
+                            </div>
                             <ButtonGroup className="pull-right" id="menu-icon">
-                                <DropdownButton className="glyphicon glyphicon-menu-hamburger" pullRight noCaret
-                                                id="easter-bg-nested-dropdown">
-
-                                    <MenuItem className="menu-item" eventKey="1">
-                                        <Link to="/affiliated-page">Affiliated Apps</Link>
-                                    </MenuItem>
-                                    <MenuItem className="menu-item" eventKey="2">
-                                        <Link to="/about-us">About Us</Link>
-                                    </MenuItem>
-                                    <MenuItem divider/>
-                                    <MenuItem className="menu-item" eventKey="3"><LogoutButton /></MenuItem>
-
-                                </DropdownButton>
+                                <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
                             </ButtonGroup>
                         </div>
                     </nav>
@@ -174,20 +162,14 @@ export class EasterFooter extends React.Component {
                         <nav className="navbar navbar-fixed-bottom" id="easter-footer">
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
-                                    <Link to="/list">
                                         <img src={EasterEgg1} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
                                         <br/>
-                                    </Link>
                                 </div>
                                 <div className="col-xs-4">
-                                    <Link to="/fridge">
                                         <img src={EasterEgg2} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
-                                    </Link>
                                 </div>
                                 <div className="col-xs-4">
-                                    <Link to="/">
                                         <img src={EasterEgg3} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
-                                    </Link>
                                 </div>
                             </div>
                         </nav>
