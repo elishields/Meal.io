@@ -128,8 +128,7 @@ export class GroceryList extends Component {
     }
 
     componentWillMount() {
-        this.props.readItems();
-        this.buildRows();
+        this.props.readItems(this.buildRows.bind(this));
     }
 
     handleAddFruitandveg = function() {

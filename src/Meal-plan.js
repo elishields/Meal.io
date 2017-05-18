@@ -1,19 +1,60 @@
 // Import classes from React
 import React, { Component } from 'react';
+import { ButtonGroup } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 
 // Import our classes
 import { Header, Footer } from './Navigation.js';
 
 //Import our resources
-import MealPlate from '../res/dinner.png'
+
 
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
+class Example extends React.Component {
+    constructor(...args) {
+        super(...args);
+        this.state = {
+            open: false
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <h4 className="meal-category-title" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                    Day {this.props.dayNum}
+                </h4>
+                <Panel collapsible expanded={this.state.open} bsStyle={ null } className="meal-panel">
+                    <div className="row">
+                        <div className="col-xs-12 meal-category">
+                            <p className="meal-category">Breakfast:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 meal-category">
+                            <p className="meal-category">Lunch:</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 meal-category">
+                            <p className="meal-category">Dinner:</p>
+                        </div>
+                    </div>
+                </Panel>
+            </div>
+        );
+    }
+}
+
+
 /*
- * Fridge: displays food categories within the fridge.
+ * MealPlan: displays 7 days worth of meals planned, 3 for each day.
  */
 export class MealPlan extends Component {
 
@@ -34,17 +75,80 @@ export class MealPlan extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
+                    {/*<div className="row">
                         <div className="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
                             <img src={MealPlate} className="center-block" id="meal-plan-plate" alt="Meal Plan"/>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="fridge-list">
+                        <div className="col-xs-8 col-xs-offset-2">
+                            <ButtonToolbar>
+                                <ButtonGroup className="meal-nav">
+                                    <Button><a href="#meal-day-1">1</a></Button>
+                                    <Button><a href="#meal-day-2">2</a></Button>
+                                    <Button><a href="#meal-day-3">3</a></Button>
+                                    <Button><a href="#meal-day-4">4</a></Button>
+                                    <Button><a href="#meal-day-5">5</a></Button>
+                                    <Button><a href="#meal-day-6">6</a></Button>
+                                    <Button><a href="#meal-day-7">7</a></Button>
+                                </ButtonGroup>
+                            </ButtonToolbar>
+                        </div>
+                    </div> */}
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">Apple</p>
+                                <Example dayNum={1} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={2} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={3} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={4} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={5} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={6} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                            <div className="fridge-category" id="fridge-category-fruit-veg">
+                                <Example dayNum={7} />
                             </div>
                         </div>
                     </div>
