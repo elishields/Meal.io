@@ -1,6 +1,6 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { Header, Footer } from './Navigation.js';
+import { EasterHeader, EasterFooter } from './Navigation.js';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -14,7 +14,7 @@ import './App.css';
  *
  * note: 'export' for classes we will use outside this file.
  */
-export class GroceryList extends Component {
+export class EasterGroceryList extends Component {
 
     /*
      *  render() defines the HTML template for this class.
@@ -22,13 +22,14 @@ export class GroceryList extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <EasterHeader />
 
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
                             <h3 className="page-header" id="header-all">
-                                <span className="page-title-text">GROCERY LIST</span>
+                                <span className="page-title-text" id="easter-page-title-text">
+                                    <Link to="/about-us">EASTER GROCERY LIST</Link></span>
                             </h3>
                         </div>
                     </div>
@@ -40,17 +41,17 @@ export class GroceryList extends Component {
                             <div id="grocery-subheadings">
                                 <div>
                                     <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                        <span className="easter-grocery-subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="input-group" id="grocery-item">
-                                            <input type="number" className="form-control" id="grocery-item-quantity">
+                                            <input type="number" className="form-control" id="easter-grocery-item-quantity">
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="Enter an item"
+                                                   placeholder="EW ! "
                                                    aria-describedby="item name">
 
                                             </input>
@@ -67,17 +68,17 @@ export class GroceryList extends Component {
                                 </div>
                                 <div>
                                     <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">DAIRY</span>
+                                        <span className="easter-grocery-subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="input-group" id="grocery-item">
-                                            <input type="number" className="form-control" id="grocery-item-quantity">
+                                            <input type="number" className="form-control" id="easter-grocery-item-quantity">
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="Enter an item"
+                                                   placeholder="EVEN WORSE THAN FRUITS AND VEG !"
                                                    aria-describedby="item name">
 
                                             </input>
@@ -94,17 +95,17 @@ export class GroceryList extends Component {
                                 </div>
                                 <div>
                                     <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">MEAT</span>
+                                        <span className="easter-grocery-subheader-text">MEAT</span>
                                     </h4>
                                 </div>
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="input-group" id="grocery-item">
-                                            <input type="number" className="form-control" id="grocery-item-quantity">
+                                            <input type="number" className="form-control" id="easter-grocery-item-quantity">
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="Enter an item"
+                                                   placeholder="NOW WERE TALKING !"
                                                    aria-describedby="item name">
 
                                             </input>
@@ -121,17 +122,17 @@ export class GroceryList extends Component {
                                 </div>
                                 <div>
                                     <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">OTHER</span>
+                                        <span className="easter-grocery-subheader-text">OTHER</span>
                                     </h4>
                                 </div>
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="input-group" id="grocery-item">
-                                            <input type="number" className="form-control" id="grocery-item-quantity">
+                                            <input type="number" className="form-control" id="easter-grocery-item-quantity">
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="Enter an item"
+                                                   placeholder="PIZZA PIZZA PIZZA PIZZA !"
                                                    aria-describedby="item name">
 
                                             </input>
@@ -155,17 +156,17 @@ export class GroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row">
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button">DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button">ADD TO FRIDGE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="easter-remove-button">DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="easter-add-to-fridge-button">ADD TO FRIDGE</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <Footer />
+                <EasterFooter />
             </div>
         );
     }
 }
 
-export default GroceryList;
+export default EasterGroceryList;

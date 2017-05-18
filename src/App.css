@@ -379,3 +379,49 @@
     height: 90px;
     border-top: 1px solid deeppink;
 }
+
+#easter-page-title-text{
+    color: deeppink;
+    border: 2px solid deeppink;
+
+}
+
+#easter-grocery-item-quantity {
+    background-color: deeppink;
+    color: #ffffff;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+    width: 10%;
+}
+
+.easter-grocery-subheader-text {
+    border-bottom: 2px solid deeppink;
+}
+
+#easter-add-to-fridge-button {
+    border: 2px solid deeppink;
+    border-left: none;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: deeppink;
+    font-weight: bold;
+}
+#easter-remove-button {
+    border: 2px solid deeppink;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: deeppink;
+    font-weight: bold;
+}
