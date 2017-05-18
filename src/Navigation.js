@@ -72,15 +72,18 @@ export class Tips extends Component {
     }
 
     showAlert = () => {
-        this.msg.show('Some text or component', {
-            time: 6000,
+        let foodTips = ['food tip 1', 'food tip 2', 'food tip 3'];
+        let foodTip = foodTips[Math.floor(Math.random()*foodTips.length)];
+
+        this.msg.show(foodTip, {
+            time: 5000,
             type: 'success',
             icon: <img src="path/to/some/img/32x32.png" />
         })
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.showAlert(), 15000);
+        this.interval = setInterval(() => this.showAlert(), 10000);
     }
 
     render () {
