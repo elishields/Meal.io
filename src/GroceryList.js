@@ -6,6 +6,7 @@ import { Header, Footer } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 /*
  * ListItem: defines a single item for the grocery list
@@ -48,20 +49,19 @@ export class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function() {
+    clearOnChange = function () {
         this.state.onChange();
         this.props.addHandler();
-
         this.setState({onChange: () => {}});
     }
 
     /*
      *  restores onChange function
      */
-    restoreOnChange = function() {
+    restoreOnChange = function () {
         this.setState({onChange: this.props.onChange});
     }
-
+    
     updateName = function() {
         this.setState((prevState, props) => {
             return({itemName: document.getElementById("grocery-item-input" + this.props.myId).value});
@@ -319,14 +319,24 @@ export class GroceryList extends Component {
         console.log("returning.")
     }
 
-    /*
-     *  render() defines the HTML template for this class.
-     */
-    render() {
-        return (
-            <div>
-                <Header />
+	/*
+	 *  render() defines the HTML template for this class.
+	 */
+  	render() {
+    	return (
+    		<div>
+    			<Header />
 
+	      		<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+							<h3 className="page-header" id="header-all">
+								<span className="page-title-text">
+                                    <Link to="/easter-egg-page">GROCERY LIST</Link></span>
+							</h3>
+						</div>
+					</div>
+	      		</div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">

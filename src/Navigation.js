@@ -10,7 +10,11 @@ import * as firebase from "firebase";
 import Logo from '../res/Logo-str.png';
 import NavIconList from '../res/Nav-Icons/list.svg';
 import NavIconFridge from '../res/Nav-Icons/fridge.svg';
-import NavIconPlate from '../res/Nav-Icons/plate.svg'
+import NavIconPlate from '../res/Nav-Icons/plate.svg';
+import EasterEgg1 from '../res/easter-egg/easter-egg-1.png';
+import EasterEgg2 from '../res/easter-egg/easter-egg-2.png';
+import EasterEgg3 from '../res/easter-egg/easter-egg-3.png';
+import EasterHeaderLogo from '../res/easter-egg/easter-header-logo.png';
 
 const LogoutButton = withRouter(({ history }) => (
       <button id="logout-button" onClick={() => {
@@ -57,10 +61,40 @@ export class Header extends Component {
                     </nav>
                 </row>
             </div>
+
         );
     }
 }
 
+export class EasterHeader extends Component {
+    //called when logout button is pressed to log user out
+    logout = function(){
+        firebase.auth().signOut();
+    }
+
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div className="container-fluid">
+                <row>
+                    <nav className="navbar navbar-fixed-top" id="easter-header">
+                        <div>
+                            <div href="" className="navbar-brand">
+                                <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
+                            </div>
+                            <ButtonGroup className="pull-right" id="menu-icon">
+                                <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
+                            </ButtonGroup>
+                        </div>
+                    </nav>
+                </row>
+            </div>
+
+        );
+    }
+}
 /*
  *  Footer: defines the navbar common to all pages.
  */
@@ -100,6 +134,39 @@ export class Footer extends React.Component {
                     </div>
                 </div>
             </div>
+
+        );
+    }
+}
+
+export class EasterFooter extends React.Component {
+
+    /*
+     *  render() defines the HTML template for this class.
+     */
+    render() {
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-xs-12">
+                        <nav className="navbar navbar-fixed-bottom" id="easter-footer">
+                            <div className="nav-icon-group">
+                                <div className="col-xs-4">
+                                        <img src={EasterEgg1} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
+                                        <br/>
+                                </div>
+                                <div className="col-xs-4">
+                                        <img src={EasterEgg2} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
+                                </div>
+                                <div className="col-xs-4">
+                                        <img src={EasterEgg3} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
         );
     }
 }

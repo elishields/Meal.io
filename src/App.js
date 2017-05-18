@@ -7,6 +7,9 @@ import * as firebase from "firebase";
 import { GroceryList } from './GroceryList.js';
 import { Fridge } from './Fridge.js';
 import { LandingPage } from './Landing-page.js';
+import { EasterGroceryList } from './easter-egg-page.js';
+
+//Import our resources
 import { AffiliatedPage } from './affiliated-page';
 import { AboutusPage } from './about-us';
 import { MealPlan } from './Meal-plan';
@@ -461,6 +464,7 @@ class App extends Component {
                                 <Route path='/meal-plan' component={MealPlan} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
+                                <Route path='/easter-egg-page' component={EasterGroceryList} />
                             </Switch>
                         </main>
 
