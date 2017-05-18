@@ -163,7 +163,7 @@ class App extends Component {
             return({listRowsFruitandveg: newRowsFV});
         });
 
-        this.writeItems(newName, newQuan, "shopFruitVeg");
+        this.writeItems(key, newName, newQuan, "shopFruitVeg");
 
     }
 
@@ -209,7 +209,7 @@ class App extends Component {
             return({listRowsMeat: newRowsFV});
         });
 
-        this.writeItems(newName, newQuan, "shopMeat");
+        this.writeItems(key, newName, newQuan, "shopMeat");
 
     }
 
@@ -255,7 +255,7 @@ class App extends Component {
             return({listRowsDairy: newRowsFV});
         });
 
-        this.writeItems(newName, newQuan, "shopDairy");
+        this.writeItems(key, newName, newQuan, "shopDairy");
 
     }
 
@@ -301,7 +301,7 @@ class App extends Component {
             return({listRowsOther: newRowsFV});
         });
 
-        this.writeItems(newName, newQuan, "shopOther");
+        this.writeItems(key, newName, newQuan, "shopOther");
 
     }
 
@@ -328,67 +328,48 @@ class App extends Component {
         });
     }
 
-    writeItems = function (name, quan, section){
+    writeItems = function (key, name, quan, section){
         let path = firebase.auth().currentUser.uid;
-        let data = {
-            [name] : quan
+        let amntData = {
+            [key] : quan
         };
-        return new firebase.database().ref(path + "/" + section + "/").update(data);
+        let nameData = {
+            [key] : name
+        };
+        new firebase.database().ref(path + "/" + section + "Amnt").update(amntData);
+        new firebase.database().ref(path + "/" + section + "Name").update(nameData);
     }
 
     readItems = function (callback){
         this.clearGroceryList();
-
         this.setState((prevState, props) => {
             let handle = this;
             let path = firebase.auth().currentUser.uid;
-
+            let amnts = [];
+            let names = [];
+            var key = 0;
             //pull fruit and veg
-            let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+            let ref = new firebase.database().ref(path + "/shopFruitVegAmnt");
             ref.once("value").then(function(snapshot){
                 snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    handle.handleAddListFruitandveg(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
+                    amnts[key] = childSnapshot.val();
+                    console.log(" Key:" + key + "  Amnt:" + amnts[key]);
+                    key ++;
                 })
-                handle.handleAddListFruitandveg("", 1)
-            }).then(callback);
-
-            //pull meat
-            ref = new firebase.database().ref(path + "/shopMeat/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    handle.handleAddListMeat(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
+                key = 0;
+                ref = new firebase.database().ref(path + "/shopFruitVegName");
+                ref.once("value").then(function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        names[key] = childSnapshot.val();
+                        console.log(" Key:" + key + "  Name:" + names[key]);
+                        key ++;
+                    })
                 })
-                handle.handleAddListMeat("", 1)
-            }).then(callback);
-
-            //pull dairy
-            ref = new firebase.database().ref(path + "/shopDairy/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    handle.handleAddListDairy(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListDairy("", 1)
-            }).then(callback);
-
-            //pull other
-            ref = new firebase.database().ref(path + "/shopOther/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    handle.handleAddListOther(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListOther("", 1)
+                console.log(key);
+                for(let i = 0;i < amnts.length;i ++){
+                    console.log("about to add " + amnts[key] + " " + names[key]);
+                    if(amnts[key] != 0) handle.handleAddListFruitandveg(names[key], amnts[key]);
+                }
             }).then(callback);
         })
     }
