@@ -40,13 +40,20 @@ class App extends Component {
         let listInitialOther = [];
 
         let fridgeInitialFruitandveg = [];
+        let fridgeInitialMeat = [];
+        let fridgeInitialDairy = [];
+        let fridgeInitialOther = [];
 
         this.state = {
             listRowsFruitandveg: listInitialFruitandveg,
             listRowsMeat: listInitialMeat,
             listRowsDairy: listInitialDairy,
             listRowsOther: listInitialOther,
-            fridgeRowsFruitandveg: fridgeInitialFruitandveg
+
+            fridgeRowsFruitandveg: fridgeInitialFruitandveg,
+            fridgeRowsMeat: fridgeInitialMeat,
+            fridgeRowsDairy: fridgeInitialDairy,
+            fridgeRowsOther: fridgeInitialOther
         };
     }
 
@@ -68,6 +75,9 @@ class App extends Component {
         return (
             <Fridge
             rowsFruitandveg={this.state.fridgeRowsFruitandveg}
+            rowsMeat={this.state.fridgeRowsMeat}
+            rowsDairy={this.state.fridgeRowsDairy}
+            rowsOther={this.state.fridgeRowsOther}
             {...props}
             />
         );
@@ -77,8 +87,46 @@ class App extends Component {
         console.log("sendToFridge called");
 
         this.setState((prevState, props) => {
-            console.log("list rows: " + prevState.listRowsFruitandveg);
-            return({fridgeRowsFruitandveg: prevState.listRowsFruitandveg});
+
+            let newRowsFV = prevState.fridgeRowsFruitandveg;
+            let newRowsM = prevState.fridgeRowsMeat;
+            let newRowsD = prevState.fridgeRowsDairy;
+            let newRowsO = prevState.fridgeRowsOther;
+
+            prevState.listRowsFruitandveg.forEach(function(item) {
+                if (document.getElementById("check-F" + item.key).checked) {
+                    console.log("added " + item.itemName);
+                    newRowsFV.push(item);
+                }
+            });
+
+            console.log(prevState.listRowsDairy.length)
+            prevState.listRowsDairy.forEach(function(item) {
+                console.log("check-D" + item.key)
+                if (document.getElementById("check-D" + item.key).checked) {
+                    console.log("added " + item.itemName);
+                    newRowsD.push(item);
+                }
+            });
+
+            prevState.listRowsMeat.forEach(function(item) {
+                if (document.getElementById("check-M" + item.key).checked) {
+                    console.log("added " + item.itemName);
+                    newRowsM.push(item);
+                }
+            });
+
+            prevState.listRowsOther.forEach(function(item) {
+                if (document.getElementById("check-O" + item.key).checked) {
+                    console.log("added " + item.itemName);
+                    newRowsO.push(item);
+                }
+            });
+
+            return({fridgeRowsFruitandveg: newRowsFV,
+                fridgeRowsMeat: newRowsM,
+                fridgeRowsDairy: newRowsD,
+                fridgeRowsOther: newRowsO});
         });
 
         console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
@@ -94,10 +142,6 @@ class App extends Component {
                     listRowsOther: []
             });
         });
-    }
-
-    handleUpdateArray = function(target, key, newName, newQuan) {
-        
     }
 
     handleUpdateFruitandveg = function(key, newName, newQuan) {

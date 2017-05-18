@@ -43,7 +43,7 @@ export class ListItem extends React.Component {
             </input>
         );
     }
-
+    
     /*
      *  fires onChange function and then clears it.
      */
@@ -301,7 +301,7 @@ export class GroceryList extends Component {
             )
         });
 
-        this.setState((prevState, sprops) => {
+        this.setState((prevState, props) => {
 
             return({rowsFruitandveg: rowsFruitandveg,
                 rowsMeat: rowsMeat,
@@ -381,7 +381,7 @@ export class GroceryList extends Component {
 	    			</div>
       			</div>
 
-	      		<Footer />
+	      		<Footer myprop="" />
       		</div>
 	    );
   	}
