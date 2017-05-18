@@ -127,9 +127,8 @@ export class GroceryList extends Component {
                         rowsOther: rowsOther};
     }
 
-    componentDidMount() {
-        this.props.readItems();
-        this.buildRows();
+    componentWillMount() {
+        this.props.readItems(this.buildRows.bind(this));
     }
 
     handleAddFruitandveg = function() {

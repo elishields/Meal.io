@@ -321,7 +321,7 @@ class App extends Component {
         return new firebase.database().ref(path + "/" + section + "/").update(data);
     }
 
-    readItems = function (){
+    readItems = function (callback){
         this.clearGroceryList();
 
         this.setState((prevState, props) => {
@@ -338,7 +338,7 @@ class App extends Component {
                     console.log("Pulled: " + itemQuan + " " + itemName);
 
                 })
-            })
+            }).then(callback);
 
             //pull meat
             ref = new firebase.database().ref(path + "/shopMeat/");
