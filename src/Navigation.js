@@ -5,6 +5,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
 import * as firebase from "firebase";
+import AlertContainer from 'react-alert'
 
 //Import our resources
 import Logo from '../res/Logo-str.png';
@@ -34,7 +35,7 @@ export class Header extends Component {
      */
     render() {
         return (
-            <div className="container-fluid">
+            <row className="container-fluid">
                 <row>
                     <nav className="navbar navbar-fixed-top" id="header">
                         <div>
@@ -56,8 +57,39 @@ export class Header extends Component {
                         </div>
                     </nav>
                 </row>
-            </div>
+            </row>
         );
+    }
+}
+
+export class Tips extends Component {
+    alertOptions = {
+        offset: 14,
+        position: 'top right',
+        theme: 'light',
+        time: 10000,
+        transition: 'fade'
+    }
+
+    showAlert = () => {
+        this.msg.show('Some text or component', {
+            time: 6000,
+            type: 'success',
+            icon: <img src="path/to/some/img/32x32.png" />
+        })
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.showAlert(), 15000);
+    }
+
+    render () {
+        return (
+            <div>
+                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+                {/*<button onClick={this.showAlert}>Show Alert</button>*/}
+            </div>
+        )
     }
 }
 

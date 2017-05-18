@@ -16,7 +16,7 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
 
-class Example extends React.Component {
+class MealDay extends React.Component {
     constructor(...args) {
         super(...args);
         this.state = {
@@ -100,7 +100,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={1} />
+                                <MealDay dayNum={1} />
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={2} />
+                                <MealDay dayNum={2} />
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={3} />
+                                <MealDay dayNum={3} />
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={4} />
+                                <MealDay dayNum={4} />
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={5} />
+                                <MealDay dayNum={5} />
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={6} />
+                                <MealDay dayNum={6} />
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@ export class MealPlan extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <Example dayNum={7} />
+                                <MealDay dayNum={7} />
                             </div>
                         </div>
                     </div>

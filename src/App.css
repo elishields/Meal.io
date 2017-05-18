@@ -199,7 +199,7 @@
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
 #grocery-item {
-    margin: 0.2em 0em;
+    margin: 0.2em 0;
 }
 
 #grocery-item-quantity {
@@ -394,4 +394,23 @@
 .meal-panel {
     border: none;
     box-shadow: none;
+}
+
+/*  TIP DROPDOWN */
+
+.tip-dropdown {
+    background-color: #000; color: #FFF;
+    font-size: 1.5em;
+    width: 100%;
+    top: 80px;
+    background-color: #21C0C0;
+}
+
+.tips-title {
+    color: white;
+    font-weight: bold;
+    padding: 12px 5px;
+    background-color: #21C0C0;
+    width: 100%;
+    top: 70px;
 }
