@@ -33,6 +33,7 @@ class App extends Component {
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
 
+
         let listInitialFruitandveg = [];
         let listInitialMeat = [];
         let listInitialDairy = [];
@@ -45,7 +46,6 @@ class App extends Component {
             listRowsMeat: listInitialMeat,
             listRowsDairy: listInitialDairy,
             listRowsOther: listInitialOther,
-
             fridgeRowsFruitandveg: fridgeInitialFruitandveg
         };
     }
@@ -83,11 +83,16 @@ class App extends Component {
 
         console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
         console.log("sendToFridge returning");
+        this.listToFridge();
     }
 
     clearGroceryList = function() {
         this.setState((prevState, props) => {
-            return({listRowsFruitandveg: []});
+            return({listRowsFruitandveg: [],
+                    listRowsDairy: [],
+                    listRowsMeat: [],
+                    listRowsOther: []
+            });
         });
     }
 
@@ -113,6 +118,9 @@ class App extends Component {
             console.log(newRowsFV[key])
             return({listRowsFruitandveg: newRowsFV});
         });
+
+        this.writeItems(newName, newQuan, "shopFruitVeg");
+
     }
 
     handleAddListFruitandveg = function(name, quantity) {
@@ -156,6 +164,9 @@ class App extends Component {
             console.log(newRowsFV[key])
             return({listRowsMeat: newRowsFV});
         });
+
+        this.writeItems(newName, newQuan, "shopMeat");
+
     }
 
     handleAddListMeat = function(name, quantity) {
@@ -199,6 +210,9 @@ class App extends Component {
             console.log(newRowsFV[key])
             return({listRowsDairy: newRowsFV});
         });
+
+        this.writeItems(newName, newQuan, "shopDairy");
+
     }
 
     handleAddListDairy = function(name, quantity) {
@@ -242,6 +256,9 @@ class App extends Component {
             console.log(newRowsFV[key])
             return({listRowsOther: newRowsFV});
         });
+
+        this.writeItems(newName, newQuan, "shopOther");
+
     }
 
     handleAddListOther = function(name, quantity) {
@@ -290,8 +307,8 @@ class App extends Component {
                     var itemQuan = childSnapshot.val();
                     handle.handleAddListFruitandveg(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
-
                 })
+                handle.handleAddListFruitandveg("", 1)
             }).then(callback);
 
             //pull meat
@@ -303,7 +320,8 @@ class App extends Component {
                     handle.handleAddListMeat(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
-            })
+                handle.handleAddListMeat("", 1)
+            }).then(callback);
 
             //pull dairy
             ref = new firebase.database().ref(path + "/shopDairy/");
@@ -314,7 +332,8 @@ class App extends Component {
                     handle.handleAddListDairy(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
-            })
+                handle.handleAddListDairy("", 1)
+            }).then(callback);
 
             //pull other
             ref = new firebase.database().ref(path + "/shopOther/");
@@ -325,13 +344,63 @@ class App extends Component {
                     handle.handleAddListOther(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
-            })
-
-            handle.handleAddListFruitandveg("", 1);
-            handle.handleAddListMeat("", 1);
-            handle.handleAddListDairy("", 1);
-            handle.handleAddListOther("", 1);
+                handle.handleAddListOther("", 1)
+            }).then(callback);
         })
+    }
+
+
+    //sends all the items in the grocery list db to the fridge db
+    listToFridge = function () {
+        let path = firebase.auth().currentUser.uid;
+        let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+        var fruitVeg = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    fruitVeg[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeFruitVeg").update(fruitVeg);
+            })
+        ref = new firebase.database().ref(path + "/shopDairy/");
+        var dairy = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    dairy[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeDairy").update(dairy);
+            })
+        ref = new firebase.database().ref(path + "/shopMeat/");
+        var meat = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    meat[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeMeat").update(meat);
+            })
+        ref = new firebase.database().ref(path + "/shopOther/");
+        var other = {};
+        ref.once("value")
+            .then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    other[itemName] = itemQuan;
+
+                })
+                firebase.database().ref(path + "/fridgeOther").update(other);
+            })
     }
 
     /*
