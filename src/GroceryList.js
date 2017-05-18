@@ -33,7 +33,7 @@ export class ListItem extends React.Component {
     renderNameField = function() {
         return (
             <input type="text"
-                className="grocery-item-input"
+                className="form-control"
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
