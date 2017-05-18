@@ -38,9 +38,9 @@ export class Header extends Component {
                 <row>
                     <nav className="navbar navbar-fixed-top" id="header">
                         <div>
-                            <div id="navabar-brand" className="navbar-brand">
+                            <a href="" className="navbar-brand">
                                 <img className="logo" src={Logo} alt="Meal.io"/>
-                            </div>
+                            </a>
                             <ButtonGroup className="pull-right" id="menu-icon">
                                 <DropdownButton title="" className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
                                     <MenuItem className="menu-item" eventKey="1">
