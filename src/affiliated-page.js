@@ -16,6 +16,7 @@ export class AffiliatedPage extends Component {
         return (
             <div>
             <Header/>
+            <Tips />
             <div className="container-fluid">
 
                 <div className="row">

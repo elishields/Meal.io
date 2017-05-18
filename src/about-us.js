@@ -17,6 +17,7 @@ export class AboutusPage extends Component {
         return (
             <div>
                 <Header/>
+                <Tips />
                 <div className="container-fluid">
 
                     <div className="row">

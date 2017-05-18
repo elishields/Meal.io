@@ -65,7 +65,7 @@ export class MealPlan extends Component {
         return (
             <div>
                 <Header />
-
+                <Tips />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12">

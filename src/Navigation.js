@@ -72,13 +72,30 @@ export class Tips extends Component {
     }
 
     showAlert = () => {
-        let foodTips = ['food tip 1', 'food tip 2', 'food tip 3'];
+        let foodTips = ['Shop smart and realistically',
+            'When cooking, don\'t over-serve food',
+            'Save – and actually eat – leftovers',
+            'Store food in the right places',
+            'Avoid clutter in your fridge, pantry and freezer',
+            'Treat expiration and sell-by dates as guidelines',
+            'Donate to food banks and farms',
+            'When unpacking groceries, move older products to the front',
+            'Save leftovers and pack them for lunch',
+            'Store chips/cereal/crackers in airtight containers',
+            'Donate food that you won’t use',
+            'Preserve fruits and veggies by canning or pickling',
+            'Educate other people on the issue with food waste!',
+            'Store food according to the instructions on pack',
+            'Sugaring is a great way to preserve fruits like apples, apricots and plums',
+            'Plan your meals for the week to only buy what you need',
+            'Wait to wash berries until you want to eat them to prevent mold',
+            'Plan an "eat the leftovers" night each week'];
         let foodTip = foodTips[Math.floor(Math.random()*foodTips.length)];
 
         this.msg.show(foodTip, {
             time: 5000,
             type: 'success',
-            icon: <img src="path/to/some/img/32x32.png" />
+            icon: null
         })
     }
 
