@@ -24,13 +24,35 @@ export class Fridge extends Component {
         super(props);
 
         let namesFruitandveg = [];
+        let namesMeat = [];
+        let namesDairy = [];
+        let namesOther = [];
 
         props.rowsFruitandveg.forEach(function(item) {
             namesFruitandveg.push(item.itemName);
             namesFruitandveg.push(<br />);
         });
 
-        this.state = {namesFruitandveg: namesFruitandveg}
+        props.rowsMeat.forEach(function(item) {
+            namesMeat.push(item.itemName);
+            namesMeat.push(<br />);
+        });
+
+        props.rowsDairy.forEach(function(item) {
+            namesDairy.push(item.itemName);
+            namesDairy.push(<br />);
+        });
+
+        props.rowsOther.forEach(function(item) {
+            namesOther.push(item.itemName);
+            namesOther.push(<br />);
+        });
+
+        this.state = {namesFruitandveg: namesFruitandveg,
+            namesMeat: namesMeat,
+            namesDairy: namesDairy,
+            namesOther: namesOther}
+
         console.log(namesFruitandveg)
     }
 
@@ -84,15 +106,15 @@ export class Fridge extends Component {
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="fridge-category-title">Dairy</h4>
-                                <p className="fridge-category-content">Milk</p>
+                                <p className="fridge-category-content">{this.state.namesDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
                                 <h4 className="fridge-category-title">Meat</h4>
-                                <p className="fridge-category-content">Bacon</p>
+                                <p className="fridge-category-content">{this.state.namesMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
                                 <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">Mustard</p>
+                                <p className="fridge-category-content">{this.state.namesOther}</p>
                             </div>
                         </div>
                     </div>
