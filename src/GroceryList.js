@@ -127,7 +127,7 @@ export class GroceryList extends Component {
                         rowsOther: rowsOther};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.readItems();
         this.buildRows();
     }
@@ -382,7 +382,7 @@ export class GroceryList extends Component {
 	    			</div>
       			</div>
 
-	      		<Footer />
+	      		<Footer myprop="" />
       		</div>
 	    );
   	}
