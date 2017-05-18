@@ -16,20 +16,10 @@ import EasterEgg2 from '../res/easter-egg/easter-egg-2.png';
 import EasterEgg3 from '../res/easter-egg/easter-egg-3.png';
 import EasterHeaderLogo from '../res/easter-egg/easter-header-logo.png';
 
-const logoutButton = withRouter(({ history }) => (
-    <span>Hi</span>
-));
-
-
-
 const LogoutButton = withRouter(({ history }) => (
       <button id="logout-button" onClick={() => {
+        history.push('/');
         firebase.auth().signOut();
-        firebase.auth().onAuthStateChanged(firebaseUser => {
-            if (!firebaseUser) {
-                history.push('/');
-            }
-        });
       }}>Sign out</button>
 ))
 
@@ -56,7 +46,7 @@ export class Header extends Component {
                                 <img className="logo" src={Logo} alt="Meal.io"/>
                             </a>
                             <ButtonGroup className="pull-right" id="menu-icon">
-                                <DropdownButton className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
+                                <DropdownButton title="" className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
                                     <MenuItem className="menu-item" eventKey="1">
                                         <Link to="/affiliated-page">Affiliated Apps</Link>
                                     </MenuItem>
@@ -122,7 +112,7 @@ export class Footer extends React.Component {
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
                                     <Link to="/list">
-                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
+                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
                                         <br/>
                                         <p>Grocery</p>
                                     </Link>
@@ -134,8 +124,8 @@ export class Footer extends React.Component {
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
-                                    <Link to="/">
-                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
+                                    <Link to="/meal-plan">
+                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
                                         <p>Meal Plan</p>
                                     </Link>
                                 </div>

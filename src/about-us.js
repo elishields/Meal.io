@@ -30,9 +30,9 @@ export class AboutusPage extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <p id="first-paragraph">
-                                Meal.io helps manage perishable food in order to reduce food waste.
-                                Users can create a grocery list, add the food purchased to the fridge
-                                and finally create meal plans.
+                                Meal.io is your new meal manager!<br/><br/>
+                                Use it to make grocery lists, track perishable foods in your fridge, and create meal plans!<br/><br/>
+                                We hope it helps you waste less food!
                             </p>
                         </div>
                     </div>
@@ -44,8 +44,8 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={GroceryListIcon} alt="Grocery List Logo"></img>
                         </div>
                         <div className="col-xs-8 col-lg-4">
-                            Create your shopping list before you go shopping and
-                            check off the items as you buy them. Bought items are added to the Fridge.
+                            Plan ahead by writing up a grocery list before you go shopping.<br/><br/>
+                            Once you've bought your groceries, simply tap to send them to your fridge!
                         </div>
                     </div>
 
@@ -57,8 +57,10 @@ export class AboutusPage extends Component {
                             <img className="three-icons" src={MyFridgeIcon} alt="Fridge Logo"></img>
                         </div>
 
-                        <div className="col-xs-8 col-lg-4">Bought items are displayed in four categories, Fruits & Vegetables, Meats,
-                            Dairy and Other items. All items can also be searched using the search bar.</div>
+                        <div className="col-xs-8 col-lg-4">
+                            Your fridge has 4 categories: Fruits & Veggies, Dairy, Meats, and Other items.<br/><br/>
+                            Find your items by simply scrolling through your inventory, or tap the icons to jump to them!
+                        </div>
 
                     </div>
 
@@ -69,8 +71,10 @@ export class AboutusPage extends Component {
                         <div className="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
                             <img className="three-icons" src={MealPlanningIcon} alt="Meal Planning Logo"></img>
                         </div>
-                        <div className="col-xs-8 col-lg-4">Create your own meals using items from the fridge
-                            or view previously saved meals. </div>
+                        <div className="col-xs-8 col-lg-4">
+                            Dream up delicious meals using the Meal Planner!<br/><br/>
+                            It's easy to add foods from your fridge!
+                        </div>
                     </div>
 
                     <br></br>
@@ -88,9 +92,11 @@ export class AboutusPage extends Component {
                                 <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
                                 <div className="caption">
                                     <p>
-                                        Meal.io was created by first term BCIT CST students. The app was
-                                        built over a 5 week period using Bootstrap, React Javascript framework and
-                                        FireBase for database.
+                                        Meal.io was created by a small-team of dedicated Computer Systems Technology students
+                                        at BCIT!<br/><br/>
+                                        Built for Metro Vancouver's food-waste reduction plan,
+                                        Meal.io offers users a simple way to manage the food in their lives!<br/><br/>
+                                        We built this fun app using ReactJS, Bootstrap, and Firebase. Please hire us!
                                     </p>
                                 </div>
                             </div>

@@ -7,6 +7,10 @@
     font-size: 1.1em;
     height: 100%;
 }
+#bootstrap-overrides {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+}
 #bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
@@ -26,8 +30,10 @@
     -moz-border-radius:;
     border-radius: 15px;
     padding: 6px;
-    font-family: 'Catamaran', sans-serif;
-    font-weight: 700;
+    font-weight: bold;
+}
+#content-section {
+    margin-bottom: 150px;
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
@@ -41,6 +47,10 @@
 /* Targets all className's that begin with 'col-' */
 #bootstrap-overrides [class^='col-'] {
     padding: 0;
+}
+
+#bootstrap-overrides [id^='grocery-item-input'] {
+    width: 90%;
 }
 
 /* NAVIGATION */
@@ -67,7 +77,6 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
-    font-family: 'Catamaran', sans-serif;
 }
 .menu-item a {
     color: white;
@@ -121,7 +130,6 @@
 
 #landing-body {
     background-color: #21C0C0;
-    font-family: 'Catamaran', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -156,7 +164,6 @@
 }
 .form-control {
     border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
 }
 #landing-inputs {
     width: 70%;
@@ -195,7 +202,7 @@
     margin: 0.2em 0em;
 }
 
-#grocery-item-quantity {
+#bootstrap-overrides [id^='grocery-item-quantity'] {
     background-color: #21C0C0;
     color: #ffffff;
     font-style: italic;
@@ -206,7 +213,7 @@
     border-right: none;
     width: 10%;
 }
-#grocery-item-input {
+#bootstrap-overrides .grocery-item-input .form-control {
     font-style: italic;
     width: 90%;
 }
@@ -219,7 +226,7 @@
     border-radius: 5px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
@@ -230,7 +237,7 @@
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    height: 34px;
+    height: 45px;
 
     background-color: #ffffff;
     color: #21c0c0;
@@ -273,9 +280,6 @@
     height: 16px;
     margin: 0;
 }
-#grocery-subheadings {
-
-}
 .grocery-subheader {
     margin: 20px;
     text-align: center;
@@ -294,11 +298,11 @@
     text-align: center;
 }
 .fridge-category-icon {
-    width: 70px;
+    width: 75px;
     height: auto;
 }
 #fridge-list {
-    margin: 0;
+    /*margin: 0;*/
 }
 .fridge-category {
 
@@ -307,6 +311,7 @@
     color: #21C0C0;
     font-weight: bold;
     padding: 5px;
+    background-color: #f7f7f7;
 }
 .fridge-category-content {
     padding-left: 20px;
@@ -425,4 +430,35 @@
     background-color: #ffffff;
     color: deeppink;
     font-weight: bold;
+  
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 20%;
+}
+
+#meal-list {
+   /* margin: 0;*/
+}
+
+.meal-category-title {
+    color: #21C0C0;
+    font-weight: bold;
+    padding: 12px 5px;
+    background-color: whitesmoke;
+}
+
+.meal-category {
+    font-size: 0.9em;
+}
+
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
+}
+
+.meal-panel {
+    border: none;
+    box-shadow: none;
 }
