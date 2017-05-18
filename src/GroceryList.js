@@ -37,31 +37,34 @@ class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function() {
+    clearOnChange = function () {
         this.state.onChange();
-        this.setState({onChange: () => {}});
+        this.setState({
+            onChange: () => {
+            }
+        });
     }
 
     /*
      *  restores onChange function
      */
-    restoreOnChange = function() {
+    restoreOnChange = function () {
         this.setState({onChange: this.props.onChange});
     }
 
     /*
      *  Getter for amount.
      */
-    getAmount = function() {
-        return(this.state.amount);
+    getAmount = function () {
+        return (this.state.amount);
     }
 
     /*
      *  Setter for amount.
      */
-    setAmount = function(n) {
+    setAmount = function (n) {
         this.setState((prevState, props) => {
-            return({amount: n});
+            return ({amount: n});
         });
     }
 

@@ -4,9 +4,11 @@ import { Switch, Route } from 'react-router-dom';
 
 //Import classes for our pages
 
-import { GroceryList } from './GroceryList.js';
+//import { GroceryList } from './GroceryList.js';
 import { Fridge } from './Fridge.js';
 import { LandingPage } from './Landing-page.js';
+import { GroceryList } from './easter-egg-page.js';
+
 
 //Import our resources
 import { AffiliatedPage } from './affiliated-page';
@@ -24,7 +26,7 @@ import './App.css';
 const Main = () => (
     <main>
         <Switch>
-            <Route exact path='/' component={LandingPage} />
+            <Route exact path='/' component={GroceryList} />
             <Route path='/list' component={GroceryList} />
             <Route path='/fridge' component={Fridge} />
             <Route path='/affiliated-page' component={AffiliatedPage} />

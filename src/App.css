@@ -358,3 +358,24 @@
 #aboutus-button-email {
     margin-bottom: 100px;
 }
+
+/*EASTER EGG */
+#easter-bg-nested-dropdown {
+    font-size: 0.8em;
+    border: none;
+    color: white;
+    background-color: deeppink;
+    box-shadow: none;
+}
+
+#easter-header {
+    background-color: deeppink;
+    height: 70px;
+}
+
+#easter-footer {
+    background-color: deeppink;
+    padding: 0;
+    height: 90px;
+    border-top: 1px solid deeppink;
+}

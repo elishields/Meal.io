@@ -16,7 +16,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-
   },
   "description": "CST-2910 Web App",
   "main": "index.js",
