@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import * as firebase from "firebase";
 
 //Import classes for our pages
-import { ListItem, GroceryList } from './GroceryList.js';
+import { GroceryList } from './GroceryList.js';
 import { Fridge } from './Fridge.js';
 import { LandingPage } from './Landing-page.js';
 import { AffiliatedPage } from './affiliated-page';
@@ -29,53 +29,24 @@ class App extends Component {
         this.handleUpdateMeat = this.handleUpdateMeat.bind(this);
         this.handleUpdateDairy = this.handleUpdateDairy.bind(this);
         this.handleUpdateOther = this.handleUpdateOther.bind(this);
+        this.clearGroceryList = this.clearGroceryList.bind(this);
+        this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
 
         let listInitialFruitandveg = [];
-        listInitialFruitandveg.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateFruitandveg.bind(this),
-            onChange: this.handleAddListFruitandveg.bind(this)
-        });
-
         let listInitialMeat = [];
-        listInitialMeat.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateMeat.bind(this),
-            onChange: this.handleAddListMeat.bind(this)
-        });
-
         let listInitialDairy = [];
-        listInitialDairy.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateDairy.bind(this),
-            onChange: this.handleAddListDairy.bind(this)
-        });
-
         let listInitialOther = [];
-        listInitialOther.push({
-            key: 0,
-            keyVal: 0,
-            itemName: "",
-            itemQuan: 1,
-            onBlur: this.handleUpdateOther.bind(this),
-            onChange: this.handleAddListOther.bind(this)
-        });
+
+        let fridgeInitialFruitandveg = [];
 
         this.state = {
             listRowsFruitandveg: listInitialFruitandveg,
             listRowsMeat: listInitialMeat,
             listRowsDairy: listInitialDairy,
-            listRowsOther: listInitialOther
+            listRowsOther: listInitialOther,
+
+            fridgeRowsFruitandveg: fridgeInitialFruitandveg
         };
     }
 
@@ -87,9 +58,41 @@ class App extends Component {
             rowsMeat={this.state.listRowsMeat}
             rowsOther={this.state.listRowsOther}
             readItems={this.readItems}
+            sendToFridge={this.sendToFridge}
             {...props}
             />
         );
+    }
+
+    WrapFridge = (props) => {
+        return (
+            <Fridge
+            rowsFruitandveg={this.state.fridgeRowsFruitandveg}
+            {...props}
+            />
+        );
+    }
+
+    sendToFridge = function() {
+        console.log("sendToFridge called");
+
+        this.setState((prevState, props) => {
+            console.log("list rows: " + prevState.listRowsFruitandveg);
+            return({fridgeRowsFruitandveg: prevState.listRowsFruitandveg});
+        });
+
+        console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
+        console.log("sendToFridge returning");
+    }
+
+    clearGroceryList = function() {
+        this.setState((prevState, props) => {
+            return({listRowsFruitandveg: []});
+        });
+    }
+
+    handleUpdateArray = function(target, key, newName, newQuan) {
+        
     }
 
     handleUpdateFruitandveg = function(key, newName, newQuan) {
@@ -169,8 +172,8 @@ class App extends Component {
                 keyVal: newRowsFV.length,
                 itemName: name,
                 itemQuan: quantity,
-                onBlur: this.handleUpdateMeat.bind(this),
-                onChange: this.handleAddListMeat.bind(this)
+                onBlur: handle.handleUpdateMeat.bind(this),
+                onChange: handle.handleAddListMeat.bind(this)
             });
             
             console.log(newRowsFV[newRowsFV.length-1])
@@ -212,8 +215,8 @@ class App extends Component {
                 keyVal: newRowsFV.length,
                 itemName: name,
                 itemQuan: quantity,
-                onBlur: this.handleUpdateDairy.bind(this),
-                onChange: this.handleAddListDairy.bind(this)
+                onBlur: handle.handleUpdateDairy.bind(this),
+                onChange: handle.handleAddListDairy.bind(this)
             });
             
             console.log(newRowsFV[newRowsFV.length-1])
@@ -255,8 +258,8 @@ class App extends Component {
                 keyVal: newRowsFV.length,
                 itemName: name,
                 itemQuan: quantity,
-                onBlur: this.handleUpdateOther.bind(this),
-                onChange: this.handleAddListOther.bind(this)
+                onBlur: handle.handleUpdateOther.bind(this),
+                onChange: handle.handleAddListOther.bind(this)
             });
             
             console.log(newRowsFV[newRowsFV.length-1])
@@ -273,6 +276,8 @@ class App extends Component {
     }
 
     readItems = function (){
+        this.clearGroceryList();
+
         this.setState((prevState, props) => {
             let handle = this;
             let path = firebase.auth().currentUser.uid;
@@ -285,8 +290,47 @@ class App extends Component {
                     var itemQuan = childSnapshot.val();
                     handle.handleAddListFruitandveg(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
+
                 })
             })
+
+            //pull meat
+            ref = new firebase.database().ref(path + "/shopMeat/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListMeat(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+
+            //pull dairy
+            ref = new firebase.database().ref(path + "/shopDairy/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListDairy(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+
+            //pull other
+            ref = new firebase.database().ref(path + "/shopOther/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.key;
+                    var itemQuan = childSnapshot.val();
+                    handle.handleAddListOther(itemName, itemQuan);
+                    console.log("Pulled: " + itemQuan + " " + itemName);
+                })
+            })
+
+            handle.handleAddListFruitandveg("", 1);
+            handle.handleAddListMeat("", 1);
+            handle.handleAddListDairy("", 1);
+            handle.handleAddListOther("", 1);
         })
     }
 
@@ -303,7 +347,8 @@ class App extends Component {
                             <Switch>
                                 <Route exact path='/' component={LandingPage} />
                                 <Route path='/list' render={this.WrapGroceryList} />
-                                <Route path='/fridge' component={Fridge} />
+                                <Route path='/fridge' render={this.WrapFridge} />
+                                <Route path='/meal-plan' component={MealPlan} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
                             </Switch>
