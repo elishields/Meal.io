@@ -7,6 +7,7 @@ import MealPlanningIcon from '../res/plate-about-us.svg';
 import TeamPicture from '../res/fruit-veg-icon.png';
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
+import { Tips } from './Navigation.js';
 import './App.css';
 
 

@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 
 // Import our classes
-import { Header, Footer } from './Navigation.js';
+import { Header, Footer, Tips } from './Navigation.js';
 
 //Import our resources
 
