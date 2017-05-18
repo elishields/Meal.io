@@ -43,7 +43,7 @@ export class ListItem extends React.Component {
             </input>
         );
     }
-
+    
     /*
      *  fires onChange function and then clears it.
      */

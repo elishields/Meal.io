@@ -77,8 +77,18 @@ class App extends Component {
         console.log("sendToFridge called");
 
         this.setState((prevState, props) => {
-            console.log("list rows: " + prevState.listRowsFruitandveg);
-            return({fridgeRowsFruitandveg: prevState.listRowsFruitandveg});
+
+            let newRows = prevState.fridgeRowsFruitandveg;
+
+            prevState.listRowsFruitandveg.forEach(function(item) {
+                if (document.getElementById("check-F" + item.key).checked) {
+                    console.log("added " + item.itemName);
+                    newRows.push(item);
+                }
+
+            });
+
+            return({fridgeRowsFruitandveg: newRows});
         });
 
         console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
@@ -89,10 +99,6 @@ class App extends Component {
         this.setState((prevState, props) => {
             return({listRowsFruitandveg: []});
         });
-    }
-
-    handleUpdateArray = function(target, key, newName, newQuan) {
-        
     }
 
     handleUpdateFruitandveg = function(key, newName, newQuan) {
