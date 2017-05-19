@@ -354,7 +354,7 @@ export class GroceryList extends Component {
                 <div className="container-fluid">
                     <div className="row">
 
-                        <div className="col-xs-12">
+                        <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
                                     <h4 className="grocery-subheader">

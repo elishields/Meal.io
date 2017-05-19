@@ -96,59 +96,60 @@ export class MealPlan extends Component {
                             </ButtonToolbar>
                         </div>
                     </div> */}
-
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={1} />
+                    <div id="content-section">
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={1} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={2} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={2} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={3} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={3} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={4} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={4} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={5} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={5} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={6} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={6} />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                            <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <MealDay dayNum={7} />
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
+                                <div className="fridge-category" id="fridge-category-fruit-veg">
+                                    <MealDay dayNum={7} />
+                                </div>
                             </div>
                         </div>
                     </div>
