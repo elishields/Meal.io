@@ -345,7 +345,7 @@
 }
 /* Control how big the team image is */
 #aboutus-team-image {
-    width: 60%;
+    width: 70%;
 }
 #second-heading{
     border: none;
@@ -354,11 +354,8 @@
     border: 0 none;
     box-shadow: none;
 }
-#first-paragraph {
-    padding-left: 20px;
-}
 .three-icons{
-    width: 90%;
+    width: 80%;
 }
 #aboutus-button-email {
     margin-bottom: 100px;
