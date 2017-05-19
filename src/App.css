@@ -169,13 +169,13 @@
     margin: 0 auto;
     max-width: 300px;
 }
-.group-btn {
-    padding: 0;
+#bootstrap-overrides .group-btn a {
     color: black;
 }
+
 #landing-image {
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     background-color: #21C0C0;
 }
 #landing-image-responsive {
