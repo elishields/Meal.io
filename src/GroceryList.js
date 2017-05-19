@@ -1,6 +1,6 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { Header, Footer } from './Navigation.js';
+import { Header, Footer, Tips } from './Navigation.js';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -327,6 +327,7 @@ export class GroceryList extends Component {
     		<div>
     			<Header />
 
+                <Tips />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">

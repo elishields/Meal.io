@@ -5,6 +5,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
 import * as firebase from "firebase";
+import AlertContainer from 'react-alert'
 
 //Import our resources
 import Logo from '../res/Logo-str.png';
@@ -62,10 +63,61 @@ export class Header extends Component {
                     </nav>
                 </row>
             </div>
-
         );
     }
 }
+
+export class Tips extends Component {
+    alertOptions = {
+        offset: 14,
+        position: 'top right',
+        theme: 'light',
+        time: 10000,
+        transition: 'fade'
+    }
+
+    showAlert = () => {
+        let foodTips = ['Shop smart and realistically',
+            'When cooking, don\'t over-serve food',
+            'Save – and actually eat – leftovers',
+            'Store food in the right places',
+            'Avoid clutter in your fridge, pantry and freezer',
+            'Treat expiration and sell-by dates as guidelines',
+            'Donate to food banks and farms',
+            'When unpacking groceries, move older products to the front',
+            'Save leftovers and pack them for lunch',
+            'Store chips/cereal/crackers in airtight containers',
+            'Donate food that you won’t use',
+            'Preserve fruits and veggies by canning or pickling',
+            'Educate other people on the issue with food waste!',
+            'Store food according to the instructions on pack',
+            'Sugaring is a great way to preserve fruits like apples, apricots and plums',
+            'Plan your meals for the week to only buy what you need',
+            'Wait to wash berries until you want to eat them to prevent mold',
+            'Plan an "eat the leftovers" night each week'];
+        let foodTip = foodTips[Math.floor(Math.random()*foodTips.length)];
+
+        this.msg.show(foodTip, {
+            time: 5000,
+            type: 'success',
+            icon: null
+        })
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.showAlert(), 15000);
+    }
+
+    render () {
+        return (
+            <div>
+                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+                {/*<button onClick={this.showAlert}>Show Alert</button>*/}
+            </div>
+        )
+    }
+}
+
 
 export class EasterHeader extends Component {
     //called when logout button is pressed to log user out
@@ -96,6 +148,7 @@ export class EasterHeader extends Component {
         );
     }
 }
+
 /*
  *  Footer: defines the navbar common to all pages.
  */

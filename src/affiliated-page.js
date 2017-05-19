@@ -7,7 +7,7 @@ import FoodFactoryLogo from '../res/Foodfactorylogo.png';
 import Pocketpantry from '../res/Pocketpantry.png';
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
-
+import { Tips } from './Navigation.js';
 
 export class AffiliatedPage extends Component {
 
@@ -16,6 +16,7 @@ export class AffiliatedPage extends Component {
         return (
             <div>
             <Header/>
+            <Tips />
             <div className="container-fluid">
 
                 <div className="row">

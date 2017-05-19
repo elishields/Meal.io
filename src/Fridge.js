@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Import our classes
-import { Header, Footer } from './Navigation.js';
+import { Header, Footer, Tips } from './Navigation.js';
 
 //Import our resources
 import FruitVeg from '../res/fruit-veg-icon.png';
@@ -63,7 +63,6 @@ export class Fridge extends Component {
         return (
             <div>
                 <Header />
-
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12">
@@ -72,7 +71,7 @@ export class Fridge extends Component {
                             </h3>
                         </div>
                     </div>
-
+                    <Tips />
                     <div className="row">
                         <div id="fridge-icon-row">
                             <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">

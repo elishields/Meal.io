@@ -190,7 +190,7 @@
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
 #grocery-item {
-    margin: 0.2em 0em;
+    margin: 0.2em 0;
 }
 
 #bootstrap-overrides [id^='grocery-item-quantity'] {
