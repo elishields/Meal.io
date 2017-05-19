@@ -68,7 +68,7 @@ export class EasterGroceryList extends Component {
                                                    aria-describedby="item name">
 
                                             </input>
-                                            <input type="checkbox" className="confirm-check" aria-label="confirm item">
+                                            <input type="checkbox" className="easter-confirm-check" aria-label="confirm item">
 
                                             </input>
                                             <span className="input-group-addon">
@@ -95,7 +95,7 @@ export class EasterGroceryList extends Component {
                                                    aria-describedby="item name">
 
                                             </input>
-                                            <input type="checkbox" className="confirm-check" aria-label="confirm item">
+                                            <input type="checkbox" className="easter-confirm-check" aria-label="confirm item">
 
                                             </input>
                                             <span className="input-group-addon">
@@ -122,7 +122,7 @@ export class EasterGroceryList extends Component {
                                                    aria-describedby="item name">
 
                                             </input>
-                                            <input type="checkbox" className="confirm-check" aria-label="confirm item">
+                                            <input type="checkbox" className="easter-confirm-check" aria-label="confirm item">
 
                                             </input>
                                             <span className="input-group-addon">
@@ -149,7 +149,7 @@ export class EasterGroceryList extends Component {
                                                    aria-describedby="item name">
 
                                             </input>
-                                            <input type="checkbox" className="confirm-check" aria-label="confirm item">
+                                            <input type="checkbox" className="easter-confirm-check" aria-label="confirm item">
 
                                             </input>
                                             <span className="input-group-addon">
