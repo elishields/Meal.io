@@ -329,14 +329,14 @@
 
 
 /*ABOUT US */
-.buttons{
+#buttons{
     background-color: #21c0c0;
     color: white;
     text-decoration: none;
 }
 /* Control how big the team image is */
 #aboutus-team-image {
-    width: 60%;
+    width: 70%;
 }
 #second-heading{
     border: none;
@@ -344,9 +344,6 @@
 #clear-thumbnail-border{
     border: 0 none;
     box-shadow: none;
-}
-#first-paragraph {
-    padding-left: 20px;
 }
 .three-icons{
     width: 80%;
