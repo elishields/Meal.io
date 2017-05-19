@@ -454,6 +454,22 @@
     font-weight: bold;
 }
 
+.easter-confirm-check {
+    display: none;
+}
+.easter-confirm-check + span {
+    background-image: url("../res/unchecked-checkbox-easter.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.easter-confirm-check:checked + span {
+    background-image: url("../res/checked-checkbox.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 /* MEAL PLAN */
 
 #meal-plan-plate {
