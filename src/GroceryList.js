@@ -6,6 +6,7 @@ import { Header, Footer, Tips } from './Navigation.js';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 /*
  * ListItem: defines a single item for the grocery list
@@ -38,7 +39,8 @@ export class ListItem extends React.Component {
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
                 onChange={this.clearOnChange}
-                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value, 1)}
+                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                    parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
             </input>
         );
@@ -47,20 +49,19 @@ export class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function() {
+    clearOnChange = function () {
         this.state.onChange();
         this.props.addHandler();
-
         this.setState({onChange: () => {}});
     }
 
     /*
      *  restores onChange function
      */
-    restoreOnChange = function() {
+    restoreOnChange = function () {
         this.setState({onChange: this.props.onChange});
     }
-
+    
     updateName = function() {
         this.setState((prevState, props) => {
             return({itemName: document.getElementById("grocery-item-input" + this.props.myId).value});
@@ -78,8 +79,10 @@ export class ListItem extends React.Component {
 
                         <input type="number"
                             className="form-control"
-                            id="grocery-item-quantity"
-                            defaultValue={this.props.itemQuan}>
+                            id={"grocery-item-quantity" + this.props.myId}
+                            defaultValue={this.props.itemQuan}
+                            onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                                parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}>
                         </input>
 
                         {this.renderNameField()}
@@ -127,9 +130,8 @@ export class GroceryList extends Component {
                         rowsOther: rowsOther};
     }
 
-    componentDidMount() {
-        this.props.readItems();
-        this.buildRows();
+    componentWillMount() {
+        this.props.readItems(this.buildRows.bind(this));
     }
 
     handleAddFruitandveg = function() {
@@ -324,16 +326,30 @@ export class GroceryList extends Component {
     	return (
     		<div>
     			<Header />
+
                 <Tips />
-	      		<div className="container-fluid">
-					<div className="row">
-						<div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
-							<h3 className="page-header" id="header-all">
-								<span className="page-title-text">GROCERY LIST</span>
-							</h3>
-						</div>
-					</div>
-	      		</div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="page-header" id="header-all">
+                                <span className="page-title-text">GROCERY LIST</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="hidden-page-header" id="hidden-header-all">
+								<span className="hidden-page-title-text">
+                                    <Link to="/easter-egg-page">
+                                        x
+                                    </Link></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="container-fluid">
                     <div className="row">
@@ -369,23 +385,23 @@ export class GroceryList extends Component {
                     </div>
                 </div>
 
-				<div className="container-fluid">
-					<div className="row">
+                <div className="container-fluid">
+                    <div className="row">
                         <div className="col-xs-12">
-                            <div className="grocery-button-row">
+                            <div className="grocery-button-row" id="grocery-button-row">
 
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
 
                             </div>
                         </div>
-	    			</div>
-      			</div>
+                    </div>
+                </div>
 
-	      		<Footer myprop="" />
-      		</div>
-	    );
-  	}
+                <Footer myprop="" />
+            </div>
+        );
+    }
 }
 
 export default GroceryList;

@@ -113,15 +113,6 @@
     width: auto;
     padding: 0;
 }
-#nav-icon-list {
-
-}
-#nav-icon-fridge {
-
-}
-#nav-icon-plate {
-
-}
 .nav-icon-caption {
     text-align: center;
 }
@@ -178,13 +169,13 @@
     margin: 0 auto;
     max-width: 300px;
 }
-.group-btn {
-    padding: 0;
+#bootstrap-overrides .group-btn a {
     color: black;
 }
+
 #landing-image {
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     background-color: #21C0C0;
 }
 #landing-image-responsive {
@@ -202,7 +193,7 @@
     margin: 0.2em 0;
 }
 
-#grocery-item-quantity {
+#bootstrap-overrides [id^='grocery-item-quantity'] {
     background-color: #21C0C0;
     color: #ffffff;
     font-style: italic;
@@ -319,7 +310,7 @@
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
 #affiliate-blurb {
-    margin: 15px auto;
+    margin: 15px;
     text-align: center;
 }
 #top-thumbnail {
@@ -364,6 +355,109 @@
     margin-bottom: 100px;
 }
 
+/*EASTER EGG */
+#easter-header {
+    background-color: deeppink;
+    height: 70px;
+}
+
+#easter-footer {
+    background-color: deeppink;
+    padding: 0;
+    height: 90px;
+    border-top: 1px solid deeppink;
+}
+
+.easter-footer-icon {
+    height: 75px;
+    width: auto;
+    padding: 0;
+}
+
+#easter-page-title-text{
+    color: deeppink;
+    border: 2px solid deeppink;
+
+}
+
+#easter-grocery-item-quantity {
+    background-color: deeppink;
+    color: #ffffff;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: none;
+    width: 10%;
+}
+
+.easter-grocery-subheader-text {
+    border-bottom: 2px solid deeppink;
+    color: deeppink;
+}
+
+#easter-add-to-fridge-button {
+    border: 2px solid deeppink;
+    border-left: none;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: deeppink;
+    font-weight: bold;
+}
+
+#easter-remove-button {
+    border: 2px solid deeppink;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 34px;
+
+    background-color: #ffffff;
+    color: deeppink;
+    font-weight: bold;
+}
+
+.hidden-page-header {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#hidden-header-all {
+    border: none;
+    margin: -10px;
+}
+
+.hidden-page-title-text {
+    color: #21C0C0;
+    /* removing this will make the button hidden button visible*/
+    /*border: 2px solid deeppink;*/
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
+    font-weight: bold;
+}
+
+.easter-confirm-check {
+    display: none;
+}
+.easter-confirm-check + span {
+    background-image: url("../res/easter-egg/unchecked-checkbox-easter.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#easter-nav-icon {
+    margin: 12px 8px 8px 8px;
+
+}
+
 /* MEAL PLAN */
 
 #meal-plan-plate {
@@ -394,4 +488,31 @@
 .meal-panel {
     border: none;
     box-shadow: none;
+}
+
+/* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
+
+/* Smartphone
+    iPhone 6 (375 * 667 or 14/25 ratio)
+ */
+@media screen and (max-width: 426px) and (min-aspect-ratio: 6/7) {
+    #hide-footer {
+        visibility: hidden;
+    }
+    #grocery-button-row {
+        position: fixed;
+        bottom: 0;
+    }
+}
+/* Tablet
+    (768 * 701)
+ */
+@media screen and (min-width: 427px) and (max-width: 768px) and (min-aspect-ratio: 4/2 ) {
+    #hide-footer {
+        visibility: hidden;
+    }
+    #grocery-button-row {
+        position: fixed;
+        bottom: 0;
+    }
 }
