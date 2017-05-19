@@ -100,7 +100,7 @@ export class Tips extends Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.showAlert(), 10000);
+        this.interval = setInterval(() => this.showAlert(), 15000);
     }
 
     render () {
