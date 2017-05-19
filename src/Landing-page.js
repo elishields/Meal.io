@@ -140,7 +140,7 @@ export class LandingPage extends Component {
             <div className="container-fluid" id="landing-body">
 
                 <div className="row">
-                    <div className="col-xs-12" id="landing-logo">
+                    <div className="col-xs-10 col-xs-offset-1" id="landing-logo">
                         <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
                     </div>
                 </div>
