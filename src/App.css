@@ -126,14 +126,12 @@
 }
 #landing-logo {
     background-color: #21C0C0;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    margin-top: 125px;
 }
 #landing-blurb {
     background-color: #21C0C0;
 }
 #landing-welcome {
-    margin: 0;
     padding: 10px;
     background-color: #21C0C0;
     border: none;
@@ -157,7 +155,7 @@
     border-radius: 10px;
 }
 #landing-inputs {
-    width: 70%;
+    width: 75%;
     margin: 25px auto;
 }
 #landing-buttons-row {
