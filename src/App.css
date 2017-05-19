@@ -338,7 +338,7 @@
 
 
 /*ABOUT US */
-.buttons{
+#buttons{
     background-color: #21c0c0;
     color: white;
     text-decoration: none;
@@ -358,7 +358,7 @@
     padding-left: 20px;
 }
 .three-icons{
-    width: 80%;
+    width: 90%;
 }
 #aboutus-button-email {
     margin-bottom: 100px;

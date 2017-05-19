@@ -103,10 +103,10 @@ export class AboutusPage extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col-sm-12 col-md-6 col-md-offset-3">
-                            <a href="https://github.com/elishields/Meal.io">
-                                <button type="button" className="btn btn-info btn-block buttons">
+                    <div className="row" >
+                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
+                            <a href="https://github.com/elishields/Meal.io"  >
+                                <button id="buttons" type="button" className="btn btn-info btn-block">
                                     Checkout our Github Repo </button>
                             </a>
                         </div>
@@ -116,9 +116,9 @@ export class AboutusPage extends Component {
                     <br></br>
 
                     <div className="row">
-                        <div className="col-sm-12 col-md-6 col-md-offset-3" id="aboutus-button-email">
+                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="aboutus-button-email">
                             <a href="mailto:studyingatbcit@gmail.com">
-                                <button type="button" className="btn btn-info btn-block buttons">
+                                <button id="buttons" type="button" className="btn btn-info btn-block">
                                     Email: info@meal.io.ca </button>
                             </a>
                         </div>
