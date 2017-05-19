@@ -456,7 +456,7 @@
     display: none;
 }
 .easter-confirm-check + span {
-    background-image: url("../res/unchecked-checkbox-easter.png");
+    background-image: url("../res/easter-egg/unchecked-checkbox-easter.png");
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
