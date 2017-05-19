@@ -57,7 +57,7 @@ export class Fridge extends Component {
     }
 
     componentWillMount() {
-        this.props.readItems(this.readFridge.bind(this));
+        this.props.readFridge();
     }
 
 
