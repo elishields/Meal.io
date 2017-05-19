@@ -27,7 +27,7 @@ export class AffiliatedPage extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1" id="affiliate-blurb">
+                    <div className="col-xs-11 col-xs-offset-1" id="affiliate-blurb">
                         <p>Check out these food-waste reduction apps created by BCIT students:</p>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ export class AffiliatedPage extends Component {
                 <div className="row">
                     <div className="col-md-4 col-xs-10 col-xs-offset-1">
                         <div className="thumbnail">
-                            <a href="">
+                            <a href="https://foodfactoryzero.firebaseapp.com/">
                                 <img src={FoodFactoryLogo} className="affiliate-image" id="top-thumbnail" alt="Food Factory Logo"></img>
                             </a>
                             <div className="caption">
@@ -66,7 +66,7 @@ export class AffiliatedPage extends Component {
 
                     <div className="col-md-4 col-xs-10 col-xs-offset-1" id="bottom-thumbnail">
                         <div className="thumbnail">
-                            <a href="">
+                            <a href="www.students.bcitdev.com/A01005523/comp2910/PocketPantry/sign_in.html">
                                 <img src={Pocketpantry} className="affiliate-image" alt="PocketPantry Logo"></img>
                             </a>
                             <div className="caption">
