@@ -113,15 +113,6 @@
     width: auto;
     padding: 0;
 }
-#nav-icon-list {
-
-}
-#nav-icon-fridge {
-
-}
-#nav-icon-plate {
-
-}
 .nav-icon-caption {
     text-align: center;
 }
@@ -485,3 +476,24 @@
     border: none;
     box-shadow: none;
 }
+
+/* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
+
+/* Small to Medium Smartphone
+   375 * 667
+   14/25
+ */
+@media screen and (max-width: 426px) and (min-aspect-ratio: 6/7) {
+    #hide-footer {
+        visibility: hidden;
+    }
+    #grocery-button-row {
+        position: fixed;
+        bottom: 0;
+    }
+}
+/* Large Smartphone and Tablet */
+
+/* Laptop */
+
+/* Desktop */

@@ -105,7 +105,7 @@ export class Footer extends React.Component {
      */
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" id="hide-footer">
                 <div className="row">
                     <div className="col-xs-12">
                         <nav className="navbar navbar-fixed-bottom" id="footer">
