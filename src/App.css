@@ -420,6 +420,7 @@
     color: deeppink;
     font-weight: bold;
 }
+
 #easter-remove-button {
     border: 2px solid deeppink;
     border-radius: 5px;
@@ -431,7 +432,28 @@
     color: deeppink;
     font-weight: bold;
 }
- 
+
+.hidden-page-header {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#hidden-header-all {
+    border: none;
+    margin: -10px;
+}
+
+.hidden-page-title-text {
+    color: #21C0C0;
+    /* removing this will make the button hidden button visible*/
+    /*border: 2px solid deeppink;*/
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 15px;
+    padding: 6px;
+    font-weight: bold;
+}
+
 /* MEAL PLAN */
 
 #meal-plan-plate {

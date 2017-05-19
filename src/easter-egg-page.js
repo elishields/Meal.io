@@ -29,7 +29,20 @@ export class EasterGroceryList extends Component {
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
                             <h3 className="page-header" id="header-all">
                                 <span className="page-title-text" id="easter-page-title-text">
-                                    <Link to="/list"> EASTER GROCERY LIST</Link></span>
+                                    EASTER GROCERY LIST </span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="hidden-page-header" id="hidden-header-all">
+								<span className="hidden-page-title-text">
+                                    <Link to="/list">
+                                        x
+                                    </Link></span>
                             </h3>
                         </div>
                     </div>
