@@ -1,22 +1,17 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { Header, Footer } from './Navigation.js';
+import { Header, Footer, Tips } from './Navigation.js';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import './App.css';
-
-// Import resources
-import CheckIcon from '../res/checked-checkbox.png';
-
-//import and initialize firebase
-import * as firebase from "firebase";
+import { Link } from 'react-router-dom';
 
 /*
  * ListItem: defines a single item for the grocery list
  */
-class ListItem extends React.Component {
+export class ListItem extends React.Component {
 
     /*
      *  Constructor for ListItem
@@ -25,46 +20,51 @@ class ListItem extends React.Component {
         super(props);
 
         // Set state variables
-        this.state = {amount: 1, onChange: props.onChange};
+        this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
         this.checkId = "check-" + this.props.myId;
         this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
         this.clearOnChange = this.clearOnChange.bind(this);
         this.restoreOnChange = this.restoreOnChange.bind(this);
-
-        this.getAmount = this.getAmount.bind(this);
-        this.setAmount = this.setAmount.bind(this);
+        this.renderNameField = this.renderNameField.bind(this);
+        this.updateName = this.updateName.bind(this);
     }
 
+    renderNameField = function() {
+        return (
+            <input type="text"
+                className="form-control"
+                id={"grocery-item-input" + this.props.myId}
+                placeholder="Enter an item"
+                defaultValue={this.state.itemName}
+                onChange={this.clearOnChange}
+                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                    parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
+                aria-describedby="item name">
+            </input>
+        );
+    }
+    
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function() {
+    clearOnChange = function () {
         this.state.onChange();
-        this.state.onChange = () => {};
+        this.props.addHandler();
+        this.setState({onChange: () => {}});
     }
 
     /*
      *  restores onChange function
      */
-    restoreOnChange = function() {
+    restoreOnChange = function () {
         this.setState({onChange: this.props.onChange});
     }
-
-    /*
-     *  Getter for amount.
-     */
-    getAmount = function() {
-        return(this.state.amount);
-    }
-
-    /*
-     *  Setter for amount.
-     */
-    setAmount = function(n) {
+    
+    updateName = function() {
         this.setState((prevState, props) => {
-            return({amount: n});
+            return({itemName: document.getElementById("grocery-item-input" + this.props.myId).value});
         });
     }
 
@@ -73,14 +73,31 @@ class ListItem extends React.Component {
      */
     render() {
         return (
-            <div className="input-group" id="grocery-item">
-                <input type="number" className="form-control" id="grocery-item-quantity" defaultValue={this.props.itemQuan}></input>
-                <input type="text" className="form-control" id="grocery-item-input" placeholder="Enter an item" defaultValue={this.props.itemName}
-                       onChange={this.clearOnChange} aria-describedby="item name"></input>
-                <input type="checkbox" className="confirm-check" id={this.checkId} aria-label="confirm item"></input>
-                <span className="input-group-addon">
-                    <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
-                </span>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="input-group" id="grocery-item">
+
+                        <input type="number"
+                            className="form-control"
+                            id={"grocery-item-quantity" + this.props.myId}
+                            defaultValue={this.props.itemQuan}
+                            onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                                parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}>
+                        </input>
+
+                        {this.renderNameField()}
+                        
+                        <input type="checkbox"
+                            className="confirm-check"
+                            id={this.checkId}
+                            aria-label="confirm item">
+                        </input>
+                        
+                        <span className="input-group-addon">
+                            <label htmlFor={this.checkId} className="grocery-item-check-bg"><span></span></label>
+                        </span>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -93,95 +110,214 @@ class ListItem extends React.Component {
  */
 export class GroceryList extends Component {
 
-	/*
-	 *  Constructor for GroceryList
-	 */
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		this.deleteItems = this.deleteItems.bind(this);
-		this.handleAddItem = this.handleAddItem.bind(this);
-		this.handleRemoveItem = this.handleRemoveItem.bind(this);
-    this.readItems = this.readItems.bind(this);
+        this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
+        this.handleAddMeat = this.handleAddMeat.bind(this);
+        this.handleAddDairy = this.handleAddDairy.bind(this);
+        this.handleAddOther = this.handleAddOther.bind(this);
+        this.readAndBuild = this.readAndBuild.bind(this);
 
-		/*
-		 * Create an empty array to store ListItems, then push one new ListItem
-		 * 
-		 * key: index of new element
-		 */
-		let rows = [];
-		rows.push(<ListItem key={0} myId={0} onChange={this.handleAddItem.bind(this)} name="NAME" />);
+        let rowsFruitandveg = [];
+        let rowsMeat = [];
+        let rowsDairy = [];
+        let rowsOther = [];
 
-		/*
-		 * set this.state.rows = rows
-		 */
-		this.state = {rows: rows};
-	}
-	
-	/*
-	 *  handler to add a ListItem to rows[]
-	 */
-	handleAddItem = function(name, quan) {
-        // reference to this GroceryList
-		let handle = this;
-
-		// update component state...
-		this.setState((prevState, props) => {
-
-			// get rows from component's previous state
-			let newStateRows = prevState.rows;
-			// push a new ListItem to newStateRows
-			newStateRows.push(<ListItem key={newStateRows.length} itemName={name} itemQuan={quan} myId={newStateRows.length} name="Added Item" onChange={handle.handleAddItem.bind(handle)} />);
-
-			// update GroceryList's state.rows = newStateRows
-			return({rows: newStateRows});
-		});
-	}
-
-	handleAddEmptyItem = function (){
-
-	    //TODO:LIAM WORK YOUR WIZARDRY
-
+        this.state = {rowsFruitandveg: rowsFruitandveg,
+                        rowsMeat: rowsMeat,
+                        rowsDairy: rowsDairy,
+                        rowsOther: rowsOther};
     }
 
-	handleRemoveItem = function(index) {
-		// Remove item at 'index' from the database
-	}
+    componentWillMount() {
+        this.props.readItems(this.buildRows.bind(this));
+    }
 
-	deleteItems = function() {
-		let rows = this.state.rows;
-		let safe=0;
+    handleAddFruitandveg = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
 
-		for(let i=0; i<rows.length; i++, safe++) {
-			if(document.getElementById("check-" + i).checked) {
-				this.handleRemoveItem(i);
-			}
-		}
-	}
+            let srcRows = props.rowsFruitandveg;
+            let itemRows = prevState.rowsFruitandveg;
 
-	readItems = function() {
-		this.setState((prevState, props) => {
-        let newRows = [];
-        let rowId = 0;
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"F" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddFruitandveg}
+                        container={itemRows}/>
+                )
+            }
+
+            return({rowsFruitandveg: itemRows});
+        });
+    }
+
+    handleAddMeat = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsMeat;
+            let itemRows = prevState.rowsMeat;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"M" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddMeat}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsMeat: itemRows});
+        });
+    }
+
+    handleAddDairy = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsDairy;
+            let itemRows = prevState.rowsDairy;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"D" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddDairy}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsDairy: itemRows});
+        });
+    }
+
+    handleAddOther = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsOther;
+            let itemRows = prevState.rowsOther;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"O" + item.key}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddOther}
+                        container={itemRows}/>
+                )
+            }
+            
+            return({rowsOther: itemRows});
+        });
+    }
+
+    buildRows = function() {
         let handle = this;
-			// Read items from the database
-			let listPath = firebase.auth().currentUser.uid + "/shopList/";
-			let ref = new firebase.database().ref(listPath);
-            ref.once("value")
-                .then(function(snapshot){
-                    snapshot.forEach(function(childSnapshot){
-                        var itemName = childSnapshot.key;
-                        var itemQuan = childSnapshot.val();
-                        handle.handleAddItem(itemName, itemQuan);
-                        console.log("we got: " + itemQuan + " " + itemName);
-                        rowId ++;
-                    })
-                })
-            handle.handleAddEmptyItem();
-			return({rows: newRows});
-		});
-	}
-	
+        let rowsFruitandveg = [];
+        this.props.rowsFruitandveg.forEach(function(item) {
+            rowsFruitandveg.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddFruitandveg}
+                    container={rowsFruitandveg}/>
+            )
+        });
+
+        let rowsMeat = [];
+        this.props.rowsMeat.forEach(function(item) {
+            rowsMeat.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"M" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddMeat}
+                    container={rowsMeat}/>
+            )
+        });
+
+        let rowsDairy = [];
+        this.props.rowsDairy.forEach(function(item) {
+            rowsDairy.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"D" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddDairy}
+                    container={rowsDairy}/>
+            )
+        });
+
+        let rowsOther = [];
+        this.props.rowsOther.forEach(function(item) {
+            rowsOther.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"O" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddOther}
+                    container={rowsOther}/>
+            )
+        });
+
+        this.setState((prevState, props) => {
+
+            return({rowsFruitandveg: rowsFruitandveg,
+                rowsMeat: rowsMeat,
+                rowsDairy: rowsDairy,
+                rowsOther: rowsOther});
+        });
+    }
+
+    readAndBuild = function() {
+
+        this.buildRows();
+        console.log("returning.")
+    }
 
 	/*
 	 *  render() defines the HTML template for this class.
@@ -191,30 +327,81 @@ export class GroceryList extends Component {
     		<div>
     			<Header />
 
-	      		<div className="container-fluid">
-					<div className="row">
-						<div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-							<h3 className="page-header" id="header-all">
-								<span className="page-title-text">GROCERY LIST</span>
-							</h3>
-						</div>
-					</div>
-	    			{this.state.rows}
-	      		</div>
+                {/*<Tips />*/}
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="page-header" id="header-all">
+                                <span className="page-title-text">GROCERY LIST</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
 
-	      		<div className="grocery-button-row">
-	    			<div className="container-fluid">
-		    			<div className="row">
-		    				<button id="remove-button" onClick={this.deleteItems} className="col-xs-6 btn btn-secondary">delete</button>
-		    				<button id="to-fridge-button" className="col-xs-6 btn btn-secondary">send to fridge</button>
-		    			</div>
-	    			</div>
-      			</div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                            <h3 className="hidden-page-header" id="hidden-header-all">
+								<span className="hidden-page-title-text">
+                                    <Link to="/easter-egg-page">
+                                        x
+                                    </Link></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
 
-	      		<Footer />
-      		</div>
-	    );
-  	}
+                <div className="container-fluid">
+                    <div className="row">
+
+                        <div className="col-xs-12" id="content-section">
+                            <div id="grocery-subheadings">
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                    </h4>
+                                </div>
+                                {this.state.rowsFruitandveg}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">DAIRY</span>
+                                    </h4>
+                                </div>
+                                {this.state.rowsDairy}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">MEAT</span>
+                                    </h4>
+                                </div>
+                                {this.state.rowsMeat}
+                                <div>
+                                    <h4 className="grocery-subheader">
+                                        <span className="grocery-subheader-text">OTHER</span>
+                                    </h4>
+                                </div>
+                                {this.state.rowsOther}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <div className="grocery-button-row" id="grocery-button-row">
+
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <Footer myprop="" />
+            </div>
+        );
+    }
 }
 
 export default GroceryList;
