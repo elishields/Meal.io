@@ -147,26 +147,30 @@ class App extends Component {
     }
 
     handleUpdateFruitandveg = function(key, newName, newQuan) {
-        console.log("updating item  " + key)
 
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsFruitandveg;
+        if(newName != "" && newQuan > 0) {
+            console.log("updating item  " + key)
 
-            newRowsFV[key] = {
-                key: key,
-                keyVal: key,
-                itemName: newName,
-                itemQuan: newQuan,
-                onBlur: this.handleUpdateFruitandveg.bind(this),
-                onChange: this.handleAddListFruitandveg.bind(this)
-            }
-            
-            console.log(newRowsFV[key])
-            return({listRowsFruitandveg: newRowsFV});
-        });
+            this.setState((prevState, props) => {
+                let newRowsFV = prevState.listRowsFruitandveg;
 
-        this.writeItems(key, newName, newQuan, "shopFruitVeg");
+                newRowsFV[key] = {
+                    key: key,
+                    keyVal: key,
+                    itemName: newName,
+                    itemQuan: newQuan,
+                    onBlur: this.handleUpdateFruitandveg.bind(this),
+                    onChange: this.handleAddListFruitandveg.bind(this)
+                }
 
+                console.log(newRowsFV[key])
+                return ({listRowsFruitandveg: newRowsFV});
+            });
+
+            this.writeItems(key, newName, newQuan, "shopFruitVeg");
+        } else {
+            console.log("no update: empty fields onBlur");
+        }
     }
 
     handleAddListFruitandveg = function(name, quantity) {
@@ -193,30 +197,31 @@ class App extends Component {
     }
 
     handleUpdateMeat = function(key, newName, newQuan) {
-        console.log("updating item  " + key)
+        if(newName != "" && newQuan > 0) {
+            console.log("updating item  " + key)
 
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsMeat;
+            this.setState((prevState, props) => {
+                let newRowsFV = prevState.listRowsMeat;
 
-            newRowsFV[key] = {
-                key: key,
-                keyVal: key,
-                itemName: newName,
-                itemQuan: newQuan,
-                onBlur: this.handleUpdateMeat.bind(this),
-                onChange: this.handleAddListMeat.bind(this)
-            }
-            
-            console.log(newRowsFV[key])
-            return({listRowsMeat: newRowsFV});
-        });
+                newRowsFV[key] = {
+                    key: key,
+                    keyVal: key,
+                    itemName: newName,
+                    itemQuan: newQuan,
+                    onBlur: this.handleUpdateMeat.bind(this),
+                    onChange: this.handleAddListMeat.bind(this)
+                }
 
-        this.writeItems(key, newName, newQuan, "shopMeat");
+                console.log(newRowsFV[key])
+                return ({listRowsMeat: newRowsFV});
+            });
 
+            this.writeItems(key, newName, newQuan, "shopMeat");
+        }
     }
 
     handleAddListMeat = function(name, quantity) {
-        
+
         console.log("adding new item..")
         // reference to this component
         let handle = this;
@@ -239,25 +244,27 @@ class App extends Component {
     }
 
     handleUpdateDairy = function(key, newName, newQuan) {
-        console.log("updating item  " + key)
+        if(newName != "" && newQuan > 0) {
+            console.log("updating item  " + key)
 
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsDairy;
+            this.setState((prevState, props) => {
+                let newRowsFV = prevState.listRowsDairy;
 
-            newRowsFV[key] = {
-                key: key,
-                keyVal: key,
-                itemName: newName,
-                itemQuan: newQuan,
-                onBlur: this.handleUpdateDairy.bind(this),
-                onChange: this.handleAddListDairy.bind(this)
-            }
-            
-            console.log(newRowsFV[key])
-            return({listRowsDairy: newRowsFV});
-        });
+                newRowsFV[key] = {
+                    key: key,
+                    keyVal: key,
+                    itemName: newName,
+                    itemQuan: newQuan,
+                    onBlur: this.handleUpdateDairy.bind(this),
+                    onChange: this.handleAddListDairy.bind(this)
+                }
 
-        this.writeItems(key, newName, newQuan, "shopDairy");
+                console.log(newRowsFV[key])
+                return ({listRowsDairy: newRowsFV});
+            });
+
+            this.writeItems(key, newName, newQuan, "shopDairy");
+        }
 
     }
 
@@ -285,25 +292,27 @@ class App extends Component {
     }
 
     handleUpdateOther = function(key, newName, newQuan) {
-        console.log("updating item  " + key)
+        if(newName != "" && newQuan > 0) {
+            console.log("updating item  " + key)
 
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsOther;
+            this.setState((prevState, props) => {
+                let newRowsFV = prevState.listRowsOther;
 
-            newRowsFV[key] = {
-                key: key,
-                keyVal: key,
-                itemName: newName,
-                itemQuan: newQuan,
-                onBlur: this.handleUpdateOther.bind(this),
-                onChange: this.handleAddListOther.bind(this)
-            }
-            
-            console.log(newRowsFV[key])
-            return({listRowsOther: newRowsFV});
-        });
+                newRowsFV[key] = {
+                    key: key,
+                    keyVal: key,
+                    itemName: newName,
+                    itemQuan: newQuan,
+                    onBlur: this.handleUpdateOther.bind(this),
+                    onChange: this.handleAddListOther.bind(this)
+                }
 
-        this.writeItems(key, newName, newQuan, "shopOther");
+                console.log(newRowsFV[key])
+                return ({listRowsOther: newRowsFV});
+            });
+
+            this.writeItems(key, newName, newQuan, "shopOther");
+        }
 
     }
 
@@ -363,7 +372,7 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListFruitandveg(itemName, itemQuan);
+                    handle.handleAddListDairy(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
                 handle.handleAddListDairy("", 1)
@@ -374,7 +383,7 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListFruitandveg(itemName, itemQuan);
+                    handle.handleAddListMeat(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
                 handle.handleAddListMeat("", 1)
@@ -385,7 +394,7 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListFruitandveg(itemName, itemQuan);
+                    handle.handleAddListOther(itemName, itemQuan);
                     console.log("Pulled: " + itemQuan + " " + itemName);
                 })
                 handle.handleAddListOther("", 1)

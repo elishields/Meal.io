@@ -437,10 +437,12 @@
     margin: 20px 0;
     text-align: center;
 }
+
 #hidden-header-all {
     border: none;
     margin: -10px;
 }
+
 .hidden-page-title-text {
     color: #21C0C0;
     /* removing this will make the button hidden button visible*/
@@ -451,7 +453,7 @@
     padding: 6px;
     font-weight: bold;
 }
-  
+
 /* MEAL PLAN */
 
 #meal-plan-plate {
