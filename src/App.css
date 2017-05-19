@@ -479,9 +479,8 @@
 
 /* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
 
-/* Small to Medium Smartphone
-   375 * 667
-   14/25
+/* Smartphone
+    iPhone 6 (375 * 667 or 14/25 ratio)
  */
 @media screen and (max-width: 426px) and (min-aspect-ratio: 6/7) {
     #hide-footer {
@@ -492,8 +491,15 @@
         bottom: 0;
     }
 }
-/* Large Smartphone and Tablet */
-
-/* Laptop */
-
-/* Desktop */
+/* Tablet
+    (768 * 701)
+ */
+@media screen and (min-width: 427px) and (max-width: 768px) and (min-aspect-ratio: 4/2 ) {
+    #hide-footer {
+        visibility: hidden;
+    }
+    #grocery-button-row {
+        position: fixed;
+        bottom: 0;
+    }
+}

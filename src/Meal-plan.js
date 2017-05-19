@@ -157,7 +157,7 @@ export class MealPlan extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="grocery-button-row">
+                            <div className="grocery-button-row" id="grocery-button-row">
                                 <button className="col-xs-4 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>CLEAR</button>
                                 <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SEE ALL MEALS</button>
                                 <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SAVE</button>
