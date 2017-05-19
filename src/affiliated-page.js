@@ -27,7 +27,7 @@ export class AffiliatedPage extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1" id="affiliate-blurb">
+                    <div className="col-xs-11 col-xs-offset-4" id="affiliate-blurb">
                         <p>Check out these food-waste reduction apps created by BCIT students:</p>
                     </div>
                 </div>
