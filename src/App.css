@@ -365,14 +365,6 @@
 }
 
 /*EASTER EGG */
-#easter-bg-nested-dropdown {
-    font-size: 0.8em;
-    border: none;
-    color: white;
-    background-color: deeppink;
-    box-shadow: none;
-}
-
 #easter-header {
     background-color: deeppink;
     height: 70px;
@@ -383,6 +375,12 @@
     padding: 0;
     height: 90px;
     border-top: 1px solid deeppink;
+}
+
+.easter-footer-icon {
+    height: 75px;
+    width: auto;
+    padding: 0;
 }
 
 #easter-page-title-text{
@@ -463,11 +461,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-.easter-confirm-check:checked + span {
-    background-image: url("../res/checked-checkbox.png");
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
+
+#easter-nav-icon {
+    margin: 12px 8px 8px 8px;
+
 }
 
 /* MEAL PLAN */

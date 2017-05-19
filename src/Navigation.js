@@ -15,6 +15,7 @@ import EasterEgg1 from '../res/easter-egg/easter-egg-1.png';
 import EasterEgg2 from '../res/easter-egg/easter-egg-2.png';
 import EasterEgg3 from '../res/easter-egg/easter-egg-3.png';
 import EasterHeaderLogo from '../res/easter-egg/easter-header-logo.png';
+import EasterHeaderLogo2 from '../res/easter-egg/easter-header-logo-2.png';
 
 const LogoutButton = withRouter(({ history }) => (
       <button id="logout-button" onClick={() => {
@@ -81,12 +82,12 @@ export class EasterHeader extends Component {
                 <row>
                     <nav className="navbar navbar-fixed-top" id="easter-header">
                         <div>
-                            <div href="" className="navbar-brand">
+                            <div className="pull-left" id="easter-nav-icon">
                                 <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
                             </div>
-                            <ButtonGroup className="pull-right" id="menu-icon">
-                                <img className="logo" src={EasterHeaderLogo} alt="Meal.io"/>
-                            </ButtonGroup>
+                            <div className="pull-right" id="easter-nav-icon">
+                                <img className="logo" src={EasterHeaderLogo2} alt="Meal.io"/>
+                            </div>
                         </div>
                     </nav>
                 </row>
@@ -152,14 +153,14 @@ export class EasterFooter extends React.Component {
                         <nav className="navbar navbar-fixed-bottom" id="easter-footer">
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
-                                        <img src={EasterEgg1} className="nav-icon" id="nav-icon-list" alt="My Fridge"/>
+                                        <img src={EasterEgg1} className="easter-footer-icon" id="nav-icon-list" alt="My Fridge"/>
                                         <br/>
                                 </div>
                                 <div className="col-xs-4">
-                                        <img src={EasterEgg2} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
+                                        <img src={EasterEgg2} className="easter-footer-icon" id="nav-icon-fridge" alt="My Fridge"/>
                                 </div>
                                 <div className="col-xs-4">
-                                        <img src={EasterEgg3} className="nav-icon" id="nav-icon-plate" alt="My Fridge"/>
+                                        <img src={EasterEgg3} className="easter-footer-icon" id="nav-icon-plate" alt="My Fridge"/>
                                 </div>
                             </div>
                         </nav>
