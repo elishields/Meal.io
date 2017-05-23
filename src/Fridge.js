@@ -1,5 +1,6 @@
 // Import classes from React
 import React, { Component } from 'react';
+import { ListItem } from './GroceryList.js';
 
 // Import our classes
 import { Header, Footer, Tips } from './Navigation.js';
