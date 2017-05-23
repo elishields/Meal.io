@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
+import FacebookProvider, { ShareButton } from 'react-facebook';
+
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+
 import GroceryListIcon from '../res/grocery-list-about-us.svg';
 import MyFridgeIcon from '../res/fridge-about-us.svg';
 import MealPlanningIcon from '../res/plate-about-us.svg';
 import TeamPicture from '../res/fruit-veg-icon.png';
+
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
 import { Tips } from './Navigation.js';
 import './App.css';
 
+class ShareMealio extends Component {
+  render() {
+    return (
+      <FacebookProvider appId="816345498530418">
+        <ShareButton href="http://www.facebook.com" />
+      </FacebookProvider>
+    );
+  }
+}
 
 export class AboutusPage extends Component {
 
@@ -162,6 +175,12 @@ export class AboutusPage extends Component {
                             </a>
                         </div>
 
+                    </div>
+
+                    <div className="row" >
+                        <div className="col-xs-10 col-xs-offset-1">
+                            <ShareMealio />
+                        </div>
                     </div>
 
                     <br></br>
