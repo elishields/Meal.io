@@ -67,6 +67,10 @@ export class Header extends Component {
     }
 }
 
+/*
+ *  Tips: Timed pop up notification that gives users helpful food saving tips.
+ */
+
 export class Tips extends Component {
     alertOptions = {
         offset: 14,
