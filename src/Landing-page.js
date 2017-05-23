@@ -84,6 +84,51 @@ class SignUpButton extends Component {
     }
 }
 
+class FacebookButton extends Component {
+    /*
+     *  Constructor for FBButton
+     */
+    constructor(props) {
+        super(props);
+        this.handler = this.handler.bind(this);
+    }
+
+    /*
+     *  handler: function called when FB button is clicked
+     */
+    handler = function() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithRedirect(provider);
+        firebase.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                var token = result.credential.accessToken;
+                // ...
+            }
+            // The signed-in user info.
+            var user = result.user;
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
+    /*
+     *  render() returns the HTML template for FBButton
+     */
+    render () {
+        return (
+            <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">Sign In With Facebook</a>
+        )
+    }
+}
+
 const config ={
     apiKey: "AIzaSyAjPS62DlOOIhne2zZyU59mdIV-LrFLxjw",
     authDomain: "mealio-d047c.firebaseapp.com",
@@ -166,7 +211,8 @@ export class LandingPage extends Component {
                                 </span>
                                 <span className="group-btn pull-right">
                                     <SignUpButton/>
-                                </span>
+                                </span> <br/>
+                                <FacebookButton/>
                             </div>
                         </div>
                     </div>
