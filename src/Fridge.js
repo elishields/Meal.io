@@ -56,6 +56,11 @@ export class Fridge extends Component {
         console.log(namesFruitandveg)
     }
 
+    componentWillMount() {
+        this.props.readFridge();
+    }
+
+
     /*
      *  render() returns the HTML template for Fridge
      */
