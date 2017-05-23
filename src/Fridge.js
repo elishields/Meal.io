@@ -23,37 +23,49 @@ export class Fridge extends Component {
     constructor(props) {
         super(props);
 
-        let namesFruitandveg = [];
-        let namesMeat = [];
-        let namesDairy = [];
-        let namesOther = [];
+        this.buildRows = this.buildRows.bind(this);
 
-        props.rowsFruitandveg.forEach(function(item) {
-            namesFruitandveg.push(item.itemName);
-            namesFruitandveg.push(<br />);
+        this.state = {};
+    }
+
+    componentWillMount() {
+        this.props.readFridge(this.buildRows.bind(this));
+    }
+
+    buildRows() {
+        this.setState((prevState, props) => {
+            let newFruitandveg = [];
+            let newMeat = [];
+            let newDairy = [];
+            let newOther = [];
+
+            this.props.rowsFruitandveg.forEach(function(item) {
+                newFruitandveg.push(item.itemName);
+                newFruitandveg.push(<br />);
+            });
+
+            this.props.rowsMeat.forEach(function(item) {
+                newMeat.push(item.itemName);
+                newMeat.push(<br />);
+            });
+
+            this.props.rowsDairy.forEach(function(item) {
+                newDairy.push(item.itemName);
+                newDairy.push(<br />);
+            });
+
+            this.props.rowsOther.forEach(function(item) {
+                newOther.push(item.itemName);
+                newOther.push(<br />);
+            });
+
+            return({
+                rowsFruitandveg: newFruitandveg,
+                rowsMeat: newMeat,
+                rowsDairy: newDairy,
+                rowsOther: newOther
+            });
         });
-
-        props.rowsMeat.forEach(function(item) {
-            namesMeat.push(item.itemName);
-            namesMeat.push(<br />);
-        });
-
-        props.rowsDairy.forEach(function(item) {
-            namesDairy.push(item.itemName);
-            namesDairy.push(<br />);
-        });
-
-        props.rowsOther.forEach(function(item) {
-            namesOther.push(item.itemName);
-            namesOther.push(<br />);
-        });
-
-        this.state = {namesFruitandveg: namesFruitandveg,
-            namesMeat: namesMeat,
-            namesDairy: namesDairy,
-            namesOther: namesOther}
-
-        console.log(namesFruitandveg)
     }
 
     /*
@@ -101,19 +113,19 @@ export class Fridge extends Component {
                         <div className="col-xs-12" id="fridge-list content-section">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">{this.state.namesFruitandveg}</p>
+                                <p className="fridge-category-content">{this.state.rowsFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="fridge-category-title">Dairy</h4>
-                                <p className="fridge-category-content">{this.state.namesDairy}</p>
+                                <p className="fridge-category-content">{this.state.rowsDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
                                 <h4 className="fridge-category-title">Meat</h4>
-                                <p className="fridge-category-content">{this.state.namesMeat}</p>
+                                <p className="fridge-category-content">{this.state.rowsMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
                                 <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">{this.state.namesOther}</p>
+                                <p className="fridge-category-content">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>

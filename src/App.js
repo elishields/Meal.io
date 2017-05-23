@@ -35,7 +35,7 @@ class App extends Component {
         this.clearGroceryList = this.clearGroceryList.bind(this);
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
-
+        this.readFridge = this.readFridge.bind(this);
 
         let listInitialFruitandveg = [];
         let listInitialMeat = [];
@@ -81,6 +81,7 @@ class App extends Component {
             rowsMeat={this.state.fridgeRowsMeat}
             rowsDairy={this.state.fridgeRowsDairy}
             rowsOther={this.state.fridgeRowsOther}
+            readFridge={this.readFridge}
             {...props}
             />
         );
@@ -402,7 +403,65 @@ class App extends Component {
         })
     }
 
+    readFridge = function (callback){
+        this.setState((prevState, props) => {
+            let path = firebase.auth().currentUser.uid;
+            var fridgeRowsFruitandveg = [];
+            var fridgeRowsMeat = [];
+            var fridgeRowsDairy = [];
+            var fridgeRowsOther = [];
 
+            //pull fruit and veg
+            let ref = new firebase.database().ref(path + "/fridgeFruitVeg/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.val().itemName;
+                    var itemQuan = childSnapshot.val().itemQuan;
+                    fridgeRowsFruitandveg.push({itemName: itemName, itemQuan: itemQuan});
+                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
+                })
+            }).then(callback);
+
+            //pull dairy
+            ref = new firebase.database().ref(path + "/fridgeDairy/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.val().itemName;
+                    var itemQuan = childSnapshot.val().itemQuan;
+                    fridgeRowsDairy.push({itemName: itemName, itemQuan: itemQuan});
+                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
+                })
+            }).then(callback);
+
+            //pull meat
+            ref = new firebase.database().ref(path + "/fridgeMeat/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.val().itemName;
+                    var itemQuan = childSnapshot.val().itemQuan;
+                    fridgeRowsMeat.push({itemName: itemName, itemQuan: itemQuan});
+                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
+                })
+            }).then(callback);
+
+            //pull other
+            ref = new firebase.database().ref(path + "/fridgeOther/");
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var itemName = childSnapshot.val().itemName;
+                    var itemQuan = childSnapshot.val().itemQuan;
+                    fridgeRowsOther.push({itemName: itemName, itemQuan: itemQuan});
+                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
+                })
+            }).then(callback);
+            
+            return({fridgeRowsFruitandveg: fridgeRowsFruitandveg,
+                fridgeRowsMeat: fridgeRowsMeat,
+                fridgeRowsDairy: fridgeRowsDairy,
+                fridgeRowsOther: fridgeRowsOther});
+        })
+
+    }
     //sends all the items in the grocery list db to the fridge db
     listToFridge = function () {
         let path = firebase.auth().currentUser.uid;
