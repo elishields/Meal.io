@@ -126,10 +126,7 @@
 }
 #landing-logo {
     background-color: #21C0C0;
-    margin-top: 125px;
-}
-#landing-blurb {
-    background-color: #21C0C0;
+    margin-top: 30px;
 }
 #landing-welcome {
     padding: 10px;
@@ -138,52 +135,41 @@
     text-align: center;
     color: white;
 }
-#landing-prompt {
+#landing-image {
+    width: 100%;
+    margin: 10px auto;
     background-color: #21C0C0;
-    margin: 0;
-    padding: 20px 0;
-    border: none;
-    border-bottom: 2px solid #FFFFFF;
-    text-align: center;
-    color: white;
-}
-#landing-form {
-    background-color: #21C0C0;
-    padding: 25px 0;
 }
 .form-control {
     border-radius: 10px;
 }
 #landing-inputs {
-    width: 75%;
-    margin: 25px auto;
+    background-color: #21C0C0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-#landing-buttons-row {
-    margin: 0 auto;
-    width: 50%;
+.landing-input {
+    margin: 5px auto;
 }
 #landing-buttons-group {
-    color: black;
-    margin: 0 auto;
-    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 #bootstrap-overrides .group-btn a {
-    color: black;
-}
-
-#landing-image {
-    margin: 0;
-    padding: 20px 0;
+    color: white;
     background-color: #21C0C0;
+    margin: 5px auto;
+    padding: 5px 50px;
+    border: 2px solid white;
 }
-#landing-image-responsive {
-    max-width: 60%;
+#bootstrap-overrides #btnLogin {
+    margin-left: auto;
+    margin-right: auto;
 }
-#btnLogin {
-    color: black;
-}
-#btnSignup {
-    color: black;
+#bootstrap-overrides #btnSignup {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */

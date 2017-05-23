@@ -177,7 +177,7 @@ export class Footer extends React.Component {
                                     <Link to="/list">
                                         <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
                                         <br/>
-                                        <p>Grocery</p>
+                                        <p>Grocery List</p>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
