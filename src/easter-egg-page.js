@@ -29,7 +29,7 @@ export class EasterGroceryList extends Component {
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
                             <h3 className="page-header" id="header-all">
                                 <span className="page-title-text" id="easter-page-title-text">
-                                    EASTER GROCERY LIST </span>
+                                    EASTER LIST </span>
                             </h3>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ export class EasterGroceryList extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
                                     <h4 className="grocery-subheader">
@@ -91,7 +91,7 @@ export class EasterGroceryList extends Component {
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="EVEN WORSE THAN FRUITS AND VEG !"
+                                                   placeholder="EVEN WORSE THAN FRUITS AND VEGGIES !"
                                                    aria-describedby="item name">
 
                                             </input>
@@ -118,7 +118,7 @@ export class EasterGroceryList extends Component {
 
                                             </input>
                                             <input type="text" className="form-control" id="grocery-item-input"
-                                                   placeholder="NOW WERE TALKING !"
+                                                   placeholder="NOW WE'RE TALKING !"
                                                    aria-describedby="item name">
 
                                             </input>
