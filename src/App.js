@@ -403,7 +403,7 @@ class App extends Component {
         })
     }
 
-    readFridge = function (){
+    readFridge = function (callback){
         this.setState((prevState, props) => {
             let path = firebase.auth().currentUser.uid;
             var fridgeRowsFruitandveg = [];
@@ -420,7 +420,8 @@ class App extends Component {
                     fridgeRowsFruitandveg.push({itemName: itemName, itemQuan: itemQuan});
                     console.log("Pulled for fridge: " + itemQuan + " " + itemName);
                 })
-            })
+            }).then(callback);
+
             //pull dairy
             ref = new firebase.database().ref(path + "/fridgeDairy/");
             ref.once("value").then(function(snapshot){
@@ -430,7 +431,8 @@ class App extends Component {
                     fridgeRowsDairy.push({itemName: itemName, itemQuan: itemQuan});
                     console.log("Pulled for fridge: " + itemQuan + " " + itemName);
                 })
-            })
+            }).then(callback);
+
             //pull meat
             ref = new firebase.database().ref(path + "/fridgeMeat/");
             ref.once("value").then(function(snapshot){
@@ -440,7 +442,8 @@ class App extends Component {
                     fridgeRowsMeat.push({itemName: itemName, itemQuan: itemQuan});
                     console.log("Pulled for fridge: " + itemQuan + " " + itemName);
                 })
-            })
+            }).then(callback);
+
             //pull other
             ref = new firebase.database().ref(path + "/fridgeOther/");
             ref.once("value").then(function(snapshot){
@@ -450,7 +453,8 @@ class App extends Component {
                     fridgeRowsOther.push({itemName: itemName, itemQuan: itemQuan});
                     console.log("Pulled for fridge: " + itemQuan + " " + itemName);
                 })
-            })
+            }).then(callback);
+            
             return({fridgeRowsFruitandveg: fridgeRowsFruitandveg,
                 fridgeRowsMeat: fridgeRowsMeat,
                 fridgeRowsDairy: fridgeRowsDairy,
