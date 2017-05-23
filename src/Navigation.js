@@ -80,6 +80,9 @@ export class Tips extends Component {
         transition: 'fade'
     }
 
+    /*
+     *  Array of food saving tips that are randomly chosen.
+     */
     showAlert = () => {
         let foodTips = ['Shop smart and realistically',
             'When cooking, don\'t over-serve food',
@@ -112,11 +115,13 @@ export class Tips extends Component {
         this.interval = setInterval(() => this.showAlert(), 15000);
     }
 
+    /*
+     *  render() defines the HTML template for this class.
+     */
     render () {
         return (
             <div>
                 <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-                {/*<button onClick={this.showAlert}>Show Alert</button>*/}
             </div>
         )
     }
