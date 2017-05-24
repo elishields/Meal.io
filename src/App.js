@@ -161,6 +161,7 @@ class App extends Component {
             newRows[key] = {
                 key: key,
                 keyVal: key,
+                isLast: false,
                 page: sourcePage,
                 category: sourceCategory,
                 itemName: newName,
@@ -177,7 +178,7 @@ class App extends Component {
         }
     }
 
-    handleAddItem = function(targetPage, targetCategory, name, quantity) {
+    handleAddItem = function(targetPage, targetCategory, name, quantity, last) {
         let handle = this;
 
         let newRows = this.state.rows;
@@ -187,6 +188,7 @@ class App extends Component {
         newRows[targetPage][targetCategory].push({
             key: key,
             keyVal: key,
+            isLast: last,
             page: targetPage,
             category: targetCategory,
             itemName: name,
@@ -248,9 +250,9 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'FruitVeg', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'FruitVeg', itemName, itemQuan, false);
                 })
-                handle.handleAddItem(sourcePage, 'FruitVeg', '', 1);
+                handle.handleAddItem(sourcePage, 'FruitVeg', '', 1, true);
             }).then(callback);
 
             //pull dairy
@@ -259,9 +261,9 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Dairy', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'Dairy', itemName, itemQuan, false);
                 })
-                handle.handleAddItem(sourcePage, 'Dairy', '', 1);
+                handle.handleAddItem(sourcePage, 'Dairy', '', 1, true);
             }).then(callback);
 
             //pull meat
@@ -270,9 +272,9 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Meat', itemName, itemQuan)
+                    handle.handleAddItem(sourcePage, 'Meat', itemName, itemQuan, false)
                 })
-                handle.handleAddItem(sourcePage, 'Meat', '', 1);
+                handle.handleAddItem(sourcePage, 'Meat', '', 1, true);
             }).then(callback);
 
             //pull other
@@ -281,9 +283,9 @@ class App extends Component {
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Other', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'Other', itemName, itemQuan, false);
                 })
-                handle.handleAddItem(sourcePage, 'Other', '', 1)
+                handle.handleAddItem(sourcePage, 'Other', '', 1, true)
             }).then(callback);
         })
     }

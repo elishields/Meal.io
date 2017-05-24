@@ -24,9 +24,20 @@ export class Fridge extends Component {
     constructor(props) {
         super(props);
 
+        this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
+        this.handleAddMeat = this.handleAddMeat.bind(this);
+        this.handleAddDairy = this.handleAddDairy.bind(this);
+        this.handleAddOther = this.handleAddOther.bind(this);
         this.buildRows = this.buildRows.bind(this);
 
         this.state = {
+            rows: {
+                FruitVeg: [],
+                Meat: [],
+                Dairy: [],
+                Other: []
+            },
+
             rowsFruitandveg: [],
             rowsMeat: [],
             rowsDairy: [],
@@ -38,6 +49,122 @@ export class Fridge extends Component {
         this.props.readItems('fridge', this.buildRows.bind(this));
     }
 
+    handleAddFruitandveg = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsFruitandveg;
+            let itemRows = prevState.rowsFruitandveg;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"F" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddFruitandveg}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+
+            return({rowsFruitandveg: itemRows});
+        });
+    }
+
+    handleAddMeat = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsMeat;
+            let itemRows = prevState.rowsMeat;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"M" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddMeat}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsMeat: itemRows});
+        });
+    }
+
+    handleAddDairy = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsDairy;
+            let itemRows = prevState.rowsDairy;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"D" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddDairy}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsDairy: itemRows});
+        });
+    }
+
+    handleAddOther = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsOther;
+            let itemRows = prevState.rowsOther;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"O" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddOther}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsOther: itemRows});
+        });
+    }
+
     buildRows = function() {
         let handle = this;
         let rowsFruitandveg = [];
@@ -47,11 +174,13 @@ export class Fridge extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"F" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddFruitandveg}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -62,11 +191,13 @@ export class Fridge extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"M" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddMeat}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -77,11 +208,13 @@ export class Fridge extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"D" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddDairy}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -92,11 +225,13 @@ export class Fridge extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"O" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddOther}
+                    page={item.page}
                     category={item.category}/>
             )
         });
