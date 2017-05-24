@@ -45,7 +45,7 @@
     margin: 0;
     padding: 0;
 }
-/* Targets all className's that begin with 'col-' */
+    /* Targets all className's that begin with 'col-' */
 #bootstrap-overrides [class^='col-'] {
     padding: 0;
 }
@@ -96,7 +96,7 @@
     padding: 0;
 }
 
-    /* FOOTER *//* FOOTER *//* FOOTER */
+/* FOOTER *//* FOOTER *//* FOOTER */
 #footer {
     background-color: #21C0C0;
     padding: 0;
@@ -193,7 +193,6 @@
 #grocery-item {
     margin: 0.2em 0;
 }
-
 #bootstrap-overrides [id^='grocery-item-quantity'] {
     background-color: #21C0C0;
     color: #ffffff;
@@ -335,7 +334,7 @@
     color: white;
     text-decoration: none;
 }
-/* Control how big the team image is */
+    /* Control how big the team image is */
 #aboutus-team-image {
     width: 70%;
 }
@@ -358,26 +357,22 @@
     background-color: deeppink;
     height: 70px;
 }
-
 #easter-footer {
     background-color: deeppink;
     padding: 0;
     height: 90px;
     border-top: 1px solid deeppink;
 }
-
 .easter-footer-icon {
     height: 75px;
     width: auto;
     padding: 0;
 }
-
-#easter-page-title-text{
+#easter-page-title-text {
     color: deeppink;
     border: 2px solid deeppink;
 
 }
-
 #easter-grocery-item-quantity {
     background-color: deeppink;
     color: #ffffff;
@@ -389,12 +384,10 @@
     border-right: none;
     width: 10%;
 }
-
 .easter-grocery-subheader-text {
     border-bottom: 2px solid deeppink;
     color: deeppink;
 }
-
 #easter-add-to-fridge-button {
     border: 2px solid deeppink;
     border-left: none;
@@ -419,17 +412,14 @@
     color: deeppink;
     font-weight: bold;
 }
-
 .hidden-page-header {
     margin: 20px 0;
     text-align: center;
 }
-
 #hidden-header-all {
     border: none;
     margin: -10px;
 }
-
 .hidden-page-title-text {
     color: #21C0C0;
     /* removing this will make the button hidden button visible*/
@@ -440,7 +430,6 @@
     padding: 6px;
     font-weight: bold;
 }
-
 .easter-confirm-check {
     display: none;
 }
@@ -450,7 +439,6 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-
 #easter-nav-icon {
     margin: 12px 8px 8px 8px;
 
