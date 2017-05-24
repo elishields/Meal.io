@@ -23,11 +23,11 @@ export class ListItem extends React.Component {
         this.state = {
             itemName: props.itemName,
             amount: props.itemQuan,
-            onChange: props.onChange
+            onChange: props.onChange,
+            isLast: props.isLast
         };
 
         this.checkId = "check-" + this.props.myId;
-        this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
         this.fireOnChange = this.fireOnChange.bind(this);
@@ -57,9 +57,11 @@ export class ListItem extends React.Component {
      *  fires onChange function and then clears it.
      */
     fireOnChange = function () {
-        this.state.onChange('shop', this.props.category, '', 1);
-        this.props.addHandler();
-        this.clearOnChange();
+        if (this.state.isLast) {
+            this.state.onChange(this.props.page, this.props.category, '', 1);
+            this.props.addHandler();
+            this.clearOnChange();
+        }
     }
 
     clearOnChange = function () {
@@ -168,6 +170,7 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={category + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -193,6 +196,7 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"F" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
@@ -221,6 +225,7 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"M" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
@@ -249,6 +254,7 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"D" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
@@ -277,6 +283,7 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"O" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
@@ -299,6 +306,7 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"F" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -315,6 +323,7 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"M" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -331,6 +340,7 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"D" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
@@ -347,6 +357,7 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"O" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
