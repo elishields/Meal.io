@@ -31,6 +31,7 @@ class App extends Component {
         this.clearPage = this.clearPage.bind(this);
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
+        this.readMeals = this.readMeals.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -52,7 +53,10 @@ class App extends Component {
                     Dairy: [],
                     Other: []
                 }
+
             },
+
+            meals :[],
 
             fridgeRowsFruitandveg: fridgeInitialFruitandveg,
             fridgeRowsMeat: fridgeInitialMeat,
@@ -86,6 +90,16 @@ class App extends Component {
             readItems={this.readItems}
             {...props}
             />
+        );
+    }
+
+    WrapMeals = (props) => {
+        return (
+          <MealPlan
+          meals={this.state.meals}
+          readMeals={this.readMeals}
+          {...props}
+          />
         );
     }
 
@@ -193,6 +207,31 @@ class App extends Component {
             itemQuan : quan
         };
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
+    }
+
+    readMeals = function (callback){
+        console.log("Load planned meals from database.");
+        this.setState((prevState, props) => {
+            let handle = this;
+            let path = firebase.auth().currentUser.uid;
+            let ref = new firebase.database().ref(path + "/mealPlans/");
+            let key = 0;
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    //pulls the name and ingredients of each meal in the database
+                    var mealName = Object.keys(snapshot.val())[key];
+                    var ingredients = childSnapshot.val();
+
+                    //makes a meal object out of the name and ingredients from above
+                    handle.state.meals[key] = {
+                        mealName : mealName,
+                        ingredients : ingredients
+                    }
+                    key ++;
+                })
+            }).then(callback);
+
+        })
     }
 
     readItems = function (sourcePage, callback){
@@ -316,7 +355,7 @@ class App extends Component {
                                 <Route exact path='/' component={LandingPage} />
                                 <Route path='/list' render={this.WrapGroceryList} />
                                 <Route path='/fridge' render={this.WrapFridge} />
-                                <Route path='/meal-plan' component={MealPlan} />
+                                <Route path='/meal-plan' render={this.WrapMeals} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
                                 <Route path='/easter-egg-page' component={EasterGroceryList} />
