@@ -45,7 +45,7 @@ export class ListItem extends React.Component {
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
                 onChange={this.fireOnChange}
-                onBlur={() => this.props.onBlur('shop', this.props.category,
+                onBlur={() => this.props.onBlur(this.props.page, this.props.category,
                     this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
@@ -377,6 +377,15 @@ export class GroceryList extends Component {
         });
     }
 
+    deleteFromShop = function(){
+        //TODO: check what items have check marks
+        //TODO: loop through the list of checked items and pass
+            //TODO: the keys of the items in to this.props.deleteItems()
+            //TODO: as the first param, the second param is their section
+            //TODO: i.e. shopFruitVeg or shopMeat
+        //TODO: call a rebuild of the list based on the new DB
+    }
+
     readAndBuild = function() {
 
         this.buildRows();
@@ -454,7 +463,7 @@ export class GroceryList extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
 
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromShop}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
 
                             </div>

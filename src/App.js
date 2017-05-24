@@ -213,13 +213,12 @@ class App extends Component {
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
     }
 
-    //removes items from the database
+    //removes an item from the database
     deleteItems = function (key, section){
         console.log("Attempting to delete item keyed: " + key + " from section " + section);
-        let path = firebase.auth().currentUser.uid;
-        let ref = new firebase.database().ref(path + "/" + "section/");
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
         ref.once("value").then(function(snapshot){
-            ref.key.remove();
+            ref.remove();
         })
     }
 
