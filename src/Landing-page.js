@@ -10,6 +10,7 @@ import '../src/App.css'
 // Import resources
 import MealIoLogo from '../res/Logo-str.png';
 import Cycle from '../res/cycle-updated-2.png';
+import FacebookLogin from '../res/facebook-login.png';
 import * as firebase from "firebase";
 
 /*
@@ -125,7 +126,9 @@ class FacebookButton extends Component {
     render () {
         return (
             <div>
-                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">Facebook Login</a>
+                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">
+                    <img src={FacebookLogin} alt="Facebook Login" id="btnFacebookImage"/>
+                </a>
             </div>
         )
     }

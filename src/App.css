@@ -162,21 +162,31 @@
     color: white;
     background-color: #21C0C0;
     margin: 5px auto;
-    padding: 5px 50px;
-    border: 2px solid white;
 }
 #bootstrap-overrides #btnLogin {
     margin-left: auto;
     margin-right: auto;
+    padding: 5px 50px;
+    border: 2px solid white;
+    width: 240px;
 }
 #bootstrap-overrides #btnSignup {
     margin-left: auto;
     margin-right: auto;
+    padding: 5px 50px;
+    border: 2px solid white;
+    width: 240px;
 }
 #bootstrap-overrides #btnFacebook {
     margin-left: auto;
     margin-right: auto;
-
+    border: none;
+    padding: 0;
+}
+#bootstrap-overrides #btnFacebookImage {
+    width: 240px;
+    border: none;
+    padding: 0;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
