@@ -1,6 +1,7 @@
 // Import classes from React
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -143,6 +144,10 @@ const config ={
     messagingSenderId: "280670219948"
 };
 
+const tooltip = (
+    <Tooltip id="tooltip">Password must be at least 8 characters</Tooltip>
+)
+
 /*
  *  LandingPage: defines the landing page used for login, signup, and welcome
  */
@@ -210,7 +215,9 @@ export class LandingPage extends Component {
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1" id="landing-inputs">
                             <input type="email" className="form-control input-md landing-input" id="email" placeholder="Email" />
-                            <input type="password" className="form-control input-md landing-input" id="password" placeholder="Password" />
+                            <OverlayTrigger placement="top" overlay={tooltip}>
+                                <input type="password" className="form-control input-md landing-input" id="password" placeholder="Password" />
+                            </OverlayTrigger>
                         </div>
                     </div>
 
