@@ -12,9 +12,13 @@
     font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
 }
-#bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
+#bootstrap-overrides a, a:link, a:visited, a:hover {
     text-decoration: none;
     color: white;
+}
+#bootstrap-overrides a:active {
+    text-decoration: none;
+    color: #c02171;
 }
 .page-header {
     margin: 20px 0;
@@ -117,6 +121,7 @@
 .nav-icon-caption {
     text-align: center;
 }
+
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
 
