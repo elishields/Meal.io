@@ -40,11 +40,6 @@ export class Fridge extends Component {
             let newDairy = [];
             let newOther = [];
 
-            this.props.rowsFruitandveg.forEach(function(item) {
-                newFruitandveg.push(item.itemName);
-                newFruitandveg.push(<br />);
-            });
-
             this.props.rowsMeat.forEach(function(item) {
                 newMeat.push(item.itemName);
                 newMeat.push(<br />);

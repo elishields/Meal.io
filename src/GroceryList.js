@@ -39,7 +39,8 @@ export class ListItem extends React.Component {
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
                 onChange={this.clearOnChange}
-                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                onBlur={() => this.props.onBlur('shop', this.props.category,
+                    this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
             </input>
@@ -50,7 +51,8 @@ export class ListItem extends React.Component {
      *  fires onChange function and then clears it.
      */
     clearOnChange = function () {
-        this.state.onChange();
+        console.log("CAT: " + this.props.category);
+        this.state.onChange('shop', this.props.category, '', 1);
         this.props.addHandler();
         this.setState({onChange: () => {}});
     }
@@ -153,7 +155,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddFruitandveg}
-                        container={itemRows}/>
+                        category={item.category}/>
                 )
             }
 
@@ -180,7 +182,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddMeat}
-                        container={itemRows}/>
+                        category={item.category}/>
                 )
             }
             
@@ -207,7 +209,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddDairy}
-                        container={itemRows}/>
+                        category={item.category}/>
                 )
             }
             
@@ -234,7 +236,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddOther}
-                        container={itemRows}/>
+                        category={item.category}/>
                 )
             }
             
@@ -255,7 +257,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddFruitandveg}
-                    container={rowsFruitandveg}/>
+                    category={item.category}/>
             )
         });
 
@@ -270,7 +272,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddMeat}
-                    container={rowsMeat}/>
+                    category={item.category}/>
             )
         });
 
@@ -285,7 +287,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddDairy}
-                    container={rowsDairy}/>
+                    category={item.category}/>
             )
         });
 
@@ -300,7 +302,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddOther}
-                    container={rowsOther}/>
+                    category={item.category}/>
             )
         });
 
