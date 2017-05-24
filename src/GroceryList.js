@@ -20,11 +20,17 @@ export class ListItem extends React.Component {
         super(props);
 
         // Set state variables
-        this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
+        this.state = {
+            itemName: props.itemName,
+            amount: props.itemQuan,
+            onChange: props.onChange
+        };
+
         this.checkId = "check-" + this.props.myId;
         this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
+        this.fireOnChange = this.fireOnChange.bind(this);
         this.clearOnChange = this.clearOnChange.bind(this);
         this.restoreOnChange = this.restoreOnChange.bind(this);
         this.renderNameField = this.renderNameField.bind(this);
@@ -38,8 +44,9 @@ export class ListItem extends React.Component {
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
-                onChange={this.clearOnChange}
-                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                onChange={this.fireOnChange}
+                onBlur={() => this.props.onBlur('shop', this.props.category,
+                    this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
             </input>
@@ -49,9 +56,13 @@ export class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function () {
-        this.state.onChange();
+    fireOnChange = function () {
+        this.state.onChange('shop', this.props.category, '', 1);
         this.props.addHandler();
+        this.clearOnChange();
+    }
+
+    clearOnChange = function () {
         this.setState({onChange: () => {}});
     }
 
@@ -124,14 +135,48 @@ export class GroceryList extends Component {
         let rowsDairy = [];
         let rowsOther = [];
 
-        this.state = {rowsFruitandveg: rowsFruitandveg,
-                        rowsMeat: rowsMeat,
-                        rowsDairy: rowsDairy,
-                        rowsOther: rowsOther};
+        this.state = {
+
+            rows: {
+                FruitVeg: [],
+                Meat: [],
+                Dairy: [],
+                Other: []
+            },
+
+            rowsFruitandveg: rowsFruitandveg,
+            rowsMeat: rowsMeat,
+            rowsDairy: rowsDairy,
+            rowsOther: rowsOther
+        };
     }
 
     componentWillMount() {
-        this.props.readItems(this.buildRows.bind(this));
+        this.props.readItems('shop', this.buildRows.bind(this));
+    }
+
+    handleBuildItem = function(category) {
+        let handle = this;
+
+        let srcRows = this.props.rows[category];
+        let newRows = this.state.rows[category];
+
+        let item = srcRows[srcRows.length - 1];
+
+        if (srcRows.length !== newRows.length) {
+            newRows.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={category + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleBuildItem}
+                    page={item.page}
+                    category={item.category}/>
+            )
+        }
     }
 
     handleAddFruitandveg = function() {
@@ -153,7 +198,8 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddFruitandveg}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
 
@@ -180,7 +226,8 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddMeat}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -207,7 +254,8 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddDairy}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -234,7 +282,8 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddOther}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -255,7 +304,8 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddFruitandveg}
-                    container={rowsFruitandveg}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -270,7 +320,8 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddMeat}
-                    container={rowsMeat}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -285,7 +336,8 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddDairy}
-                    container={rowsDairy}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -300,7 +352,8 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddOther}
-                    container={rowsOther}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
