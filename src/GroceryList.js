@@ -45,7 +45,7 @@ export class ListItem extends React.Component {
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
                 onChange={this.fireOnChange}
-                onBlur={() => this.props.onBlur('shop', this.props.category,
+                onBlur={() => this.props.onBlur(this.props.page, this.props.category,
                     this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
@@ -130,7 +130,7 @@ export class GroceryList extends Component {
         this.handleAddMeat = this.handleAddMeat.bind(this);
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
-        this.readAndBuild = this.readAndBuild.bind(this);
+        this.deleteFromShop = this.deleteFromShop.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
@@ -377,10 +377,33 @@ export class GroceryList extends Component {
         });
     }
 
-    readAndBuild = function() {
+    deleteFromShop = function(){
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopFruitVeg");
+            }
+        })
 
-        this.buildRows();
-        console.log("returning.")
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopMeat");
+            }
+        })
+
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopDairy");
+            }
+        })
+
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopOther");
+            }
+        })
+
+        this.render();
     }
 
 	/*
@@ -454,7 +477,7 @@ export class GroceryList extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
 
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromShop}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
 
                             </div>

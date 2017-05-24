@@ -32,6 +32,7 @@ class App extends Component {
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
         this.readMeals = this.readMeals.bind(this);
+        this.deleteItems = this.deleteItems.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -75,6 +76,7 @@ class App extends Component {
             rowsOther={this.state.rows.shop.Other}
             readItems={this.readItems}
             sendToFridge={this.sendToFridge}
+            deleteItems={this.deleteItems}
             {...props}
             />
         );
@@ -209,6 +211,15 @@ class App extends Component {
             itemQuan : quan
         };
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
+    }
+
+    //removes an item from the database
+    deleteItems = function (key, section){
+        console.log("Attempting to delete item keyed: " + key + " from section " + section);
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
+        ref.once("value").then(function(snapshot){
+            ref.remove();
+        })
     }
 
     readMeals = function (callback){
