@@ -380,7 +380,7 @@ export class GroceryList extends Component {
     		<div>
     			<Header />
 
-                {/*<Tips />*/}
+                <Tips />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
