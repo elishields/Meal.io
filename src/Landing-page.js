@@ -125,7 +125,7 @@ class FacebookButton extends Component {
     render () {
         return (
             <div>
-                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">Sign In With Facebook</a>
+                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">Facebook Login</a>
             </div>
         )
     }
@@ -187,13 +187,13 @@ export class LandingPage extends Component {
                 <div className="container-fluid" id="landing-body">
 
                     <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2" id="landing-logo">
+                        <div className="col-xs-10 col-xs-offset-1" id="landing-logo">
                             <img src={MealIoLogo} className="img-responsive center-block" alt="Meal.io logo"></img>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2">
+                        <div className="col-xs-10 col-xs-offset-1">
                             <h3 id="landing-welcome">Manage Your Meals!</h3>
                         </div>
                     </div>
@@ -205,14 +205,14 @@ export class LandingPage extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2" id="landing-inputs">
+                        <div className="col-xs-10 col-xs-offset-1" id="landing-inputs">
                             <input type="email" className="form-control input-md landing-input" id="email" placeholder="Email" />
                             <input type="password" className="form-control input-md landing-input" id="password" placeholder="Password" />
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2">
+                        <div className="col-xs-10 col-xs-offset-1">
                             <div className="btn-group btn-group-justified" id="landing-buttons-group">
                                 <span className="group-btn">
                                     <LoginButton/>
