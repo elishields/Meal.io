@@ -26,41 +26,88 @@ export class Fridge extends Component {
 
         this.buildRows = this.buildRows.bind(this);
 
-        this.state = {};
+        this.state = {
+            rowsFruitandveg: [],
+            rowsMeat: [],
+            rowsDairy: [],
+            rowsOther: []
+        };
     }
 
     componentWillMount() {
-        this.props.readFridge(this.buildRows.bind(this));
+        this.props.readItems('fridge', this.buildRows.bind(this));
     }
 
-    buildRows() {
+    buildRows = function() {
+        let handle = this;
+        let rowsFruitandveg = [];
+        this.props.rowsFruitandveg.forEach(function(item) {
+            console.log("adding " + item.itemName)
+            rowsFruitandveg.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddFruitandveg}
+                    category={item.category}/>
+            )
+        });
+
+        let rowsMeat = [];
+        this.props.rowsMeat.forEach(function(item) {
+            rowsMeat.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"M" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddMeat}
+                    category={item.category}/>
+            )
+        });
+
+        let rowsDairy = [];
+        this.props.rowsDairy.forEach(function(item) {
+            rowsDairy.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"D" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddDairy}
+                    category={item.category}/>
+            )
+        });
+
+        let rowsOther = [];
+        this.props.rowsOther.forEach(function(item) {
+            rowsOther.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"O" + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddOther}
+                    category={item.category}/>
+            )
+        });
+
+        console.log("BUILT FRIDGE")
+
         this.setState((prevState, props) => {
-            let newFruitandveg = [];
-            let newMeat = [];
-            let newDairy = [];
-            let newOther = [];
-
-            this.props.rowsMeat.forEach(function(item) {
-                newMeat.push(item.itemName);
-                newMeat.push(<br />);
-            });
-
-            this.props.rowsDairy.forEach(function(item) {
-                newDairy.push(item.itemName);
-                newDairy.push(<br />);
-            });
-
-            this.props.rowsOther.forEach(function(item) {
-                newOther.push(item.itemName);
-                newOther.push(<br />);
-            });
-
-            return({
-                rowsFruitandveg: newFruitandveg,
-                rowsMeat: newMeat,
-                rowsDairy: newDairy,
-                rowsOther: newOther
-            });
+            return({rowsFruitandveg: rowsFruitandveg,
+                rowsMeat: rowsMeat,
+                rowsDairy: rowsDairy,
+                rowsOther: rowsOther});
         });
     }
 

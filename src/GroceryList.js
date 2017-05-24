@@ -20,11 +20,17 @@ export class ListItem extends React.Component {
         super(props);
 
         // Set state variables
-        this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
+        this.state = {
+            itemName: props.itemName,
+            amount: props.itemQuan,
+            onChange: props.onChange
+        };
+
         this.checkId = "check-" + this.props.myId;
         this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
+        this.fireOnChange = this.fireOnChange.bind(this);
         this.clearOnChange = this.clearOnChange.bind(this);
         this.restoreOnChange = this.restoreOnChange.bind(this);
         this.renderNameField = this.renderNameField.bind(this);
@@ -38,7 +44,7 @@ export class ListItem extends React.Component {
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
-                onChange={this.clearOnChange}
+                onChange={this.fireOnChange}
                 onBlur={() => this.props.onBlur('shop', this.props.category,
                     this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
@@ -50,10 +56,13 @@ export class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
-    clearOnChange = function () {
-        console.log("CAT: " + this.props.category);
+    fireOnChange = function () {
         this.state.onChange('shop', this.props.category, '', 1);
         this.props.addHandler();
+        this.clearOnChange();
+    }
+
+    clearOnChange = function () {
         this.setState({onChange: () => {}});
     }
 
@@ -126,14 +135,48 @@ export class GroceryList extends Component {
         let rowsDairy = [];
         let rowsOther = [];
 
-        this.state = {rowsFruitandveg: rowsFruitandveg,
-                        rowsMeat: rowsMeat,
-                        rowsDairy: rowsDairy,
-                        rowsOther: rowsOther};
+        this.state = {
+
+            rows: {
+                FruitVeg: [],
+                Meat: [],
+                Dairy: [],
+                Other: []
+            },
+
+            rowsFruitandveg: rowsFruitandveg,
+            rowsMeat: rowsMeat,
+            rowsDairy: rowsDairy,
+            rowsOther: rowsOther
+        };
     }
 
     componentWillMount() {
-        this.props.readItems(this.buildRows.bind(this));
+        this.props.readItems('shop', this.buildRows.bind(this));
+    }
+
+    handleBuildItem = function(category) {
+        let handle = this;
+
+        let srcRows = this.props.rows[category];
+        let newRows = this.state.rows[category];
+
+        let item = srcRows[srcRows.length - 1];
+
+        if (srcRows.length !== newRows.length) {
+            newRows.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={category + item.key}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleBuildItem}
+                    page={item.page}
+                    category={item.category}/>
+            )
+        }
     }
 
     handleAddFruitandveg = function() {
@@ -155,6 +198,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddFruitandveg}
+                        page={item.page}
                         category={item.category}/>
                 )
             }
@@ -182,6 +226,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddMeat}
+                        page={item.page}
                         category={item.category}/>
                 )
             }
@@ -209,6 +254,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddDairy}
+                        page={item.page}
                         category={item.category}/>
                 )
             }
@@ -236,6 +282,7 @@ export class GroceryList extends Component {
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddOther}
+                        page={item.page}
                         category={item.category}/>
                 )
             }
@@ -257,6 +304,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddFruitandveg}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -272,6 +320,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddMeat}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -287,6 +336,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddDairy}
+                    page={item.page}
                     category={item.category}/>
             )
         });
@@ -302,6 +352,7 @@ export class GroceryList extends Component {
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddOther}
+                    page={item.page}
                     category={item.category}/>
             )
         });

@@ -28,10 +28,9 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.clearGroceryList = this.clearGroceryList.bind(this);
+        this.clearPage = this.clearPage.bind(this);
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
-        this.readFridge = this.readFridge.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -65,6 +64,7 @@ class App extends Component {
     WrapGroceryList = (props) => {
         return (
             <GroceryList
+            rows={this.state.rows.shop}
             rowsFruitandveg={this.state.rows.shop.FruitVeg}
             rowsDairy={this.state.rows.shop.Dairy}
             rowsMeat={this.state.rows.shop.Meat}
@@ -79,70 +79,56 @@ class App extends Component {
     WrapFridge = (props) => {
         return (
             <Fridge
-            rowsFruitandveg={this.state.fridgeRowsFruitandveg}
-            rowsMeat={this.state.fridgeRowsMeat}
-            rowsDairy={this.state.fridgeRowsDairy}
-            rowsOther={this.state.fridgeRowsOther}
-            readFridge={this.readFridge}
+            rowsFruitandveg={this.state.rows.fridge.FruitVeg}
+            rowsMeat={this.state.rows.fridge.Meat}
+            rowsDairy={this.state.rows.fridge.Dairy}
+            rowsOther={this.state.rows.fridge.Other}
+            readItems={this.readItems}
             {...props}
             />
         );
     }
 
     sendToFridge = function() {
-        console.log("sendToFridge called");
-        this.setState((prevState, props) => {
 
-            let newRowsFV = prevState.fridgeRowsFruitandveg;
-            let newRowsM = prevState.fridgeRowsMeat;
-            let newRowsD = prevState.fridgeRowsDairy;
-            let newRowsO = prevState.fridgeRowsOther;
+        let newRows = this.state.rows;
 
-            prevState.listRowsFruitandveg.forEach(function(item) {
-                if (document.getElementById("check-F" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsFV.push(item);
-                }
-            });
-
-            console.log(prevState.listRowsDairy.length)
-            prevState.listRowsDairy.forEach(function(item) {
-                console.log("check-D" + item.key)
-                if (document.getElementById("check-D" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsD.push(item);
-                }
-            });
-
-            prevState.listRowsMeat.forEach(function(item) {
-                if (document.getElementById("check-M" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsM.push(item);
-                }
-            });
-
-            prevState.listRowsOther.forEach(function(item) {
-                if (document.getElementById("check-O" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsO.push(item);
-                }
-            });
-
-            return({fridgeRowsFruitandveg: newRowsFV,
-                fridgeRowsMeat: newRowsM,
-                fridgeRowsDairy: newRowsD,
-                fridgeRowsOther: newRowsO});
+        newRows.shop.FruitVeg.forEach(function(item) {
+            if (document.getElementById("check-F" + item.key).checked) {
+                newRows.fridge.FruitVeg.push(item);
+                console.log("sending " + item.itemQuan + " " + item.itemName)
+            }
         });
 
-        console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
-        console.log("sendToFridge returning");
+        newRows.shop.Dairy.forEach(function(item) {
+            if (document.getElementById("check-D" + item.key).checked) {
+                newRows.fridge.Dairy.push(item);
+            }
+        });
+
+        newRows.shop.Meat.forEach(function(item) {
+            if (document.getElementById("check-M" + item.key).checked) {
+                newRows.fridge.Meat.push(item);
+            }
+        });
+
+        newRows.shop.Other.forEach(function(item) {
+            if (document.getElementById("check-O" + item.key).checked) {
+                newRows.fridge.Other.push(item);
+            }
+        });
+
+        this.setState((prevState, props) => {
+            return({rows: newRows});
+        });
+
         this.listToFridge();
     }
 
-    clearGroceryList = function() {
+    clearPage = function(page) {
 
         let newRows = this.state.rows;
-        newRows.shop = {
+        newRows[page] = {
             FruitVeg: [],
             Dairy: [],
             Meat: [],
@@ -155,7 +141,6 @@ class App extends Component {
     }
 
     handleUpdateItem = function(sourcePage, sourceCategory, key, newName, newQuan) {
-        console.log("UPDATING: " + newName + " x " + newQuan);
         if (newName !== "" && newQuan > 0) {
 
             let newRows = this.state.rows[sourcePage][sourceCategory];
@@ -182,7 +167,6 @@ class App extends Component {
         let handle = this;
 
         let newRows = this.state.rows;
-        console.log("TARGET: " + targetPage + ", " + targetCategory)
         let target = this.state.rows[targetPage][targetCategory];
         let key = target.length;
 
@@ -211,118 +195,60 @@ class App extends Component {
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
     }
 
-    readItems = function (callback){
-        this.clearGroceryList();
+    readItems = function (sourcePage, callback){
+        this.clearPage(sourcePage);
+        console.log("read from " + sourcePage)
 
         this.setState((prevState, props) => {
             let handle = this;
             let path = firebase.auth().currentUser.uid;
 
             //pull fruit and veg
-            let ref = new firebase.database().ref(path + "/shopFruitVeg/");
+            let ref = new firebase.database().ref(path + "/" + sourcePage + "FruitVeg/");
             ref.once("value").then(function(snapshot){
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem('shop', 'FruitVeg', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'FruitVeg', itemName, itemQuan);
                 })
-                handle.handleAddItem('shop', 'FruitVeg', '', 1);
+                handle.handleAddItem(sourcePage, 'FruitVeg', '', 1);
             }).then(callback);
 
             //pull dairy
-            ref = new firebase.database().ref(path + "/shopDairy/");
+            ref = new firebase.database().ref(path + "/" + sourcePage + "Dairy/");
             ref.once("value").then(function(snapshot){
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem('shop', 'Dairy', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'Dairy', itemName, itemQuan);
                 })
-                handle.handleAddItem('shop', 'Dairy', '', 1);
+                handle.handleAddItem(sourcePage, 'Dairy', '', 1);
             }).then(callback);
 
             //pull meat
-            ref = new firebase.database().ref(path + "/shopMeat/");
+            ref = new firebase.database().ref(path + "/" + sourcePage + "Meat/");
             ref.once("value").then(function(snapshot){
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem('shop', 'Meat', itemName, itemQuan)
+                    handle.handleAddItem(sourcePage, 'Meat', itemName, itemQuan)
                 })
-                handle.handleAddItem('shop', 'Meat', '', 1);
+                handle.handleAddItem(sourcePage, 'Meat', '', 1);
             }).then(callback);
 
             //pull other
-            ref = new firebase.database().ref(path + "/shopOther/");
+            ref = new firebase.database().ref(path + "/" + sourcePage + "Other/");
             ref.once("value").then(function(snapshot){
                 snapshot.forEach(function(childSnapshot){
                     var itemName = childSnapshot.val().itemName;
                     var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem('shop', 'Other', itemName, itemQuan);
+                    handle.handleAddItem(sourcePage, 'Other', itemName, itemQuan);
                 })
-                handle.handleAddItem('shop', 'Other', '', 1)
+                handle.handleAddItem(sourcePage, 'Other', '', 1)
             }).then(callback);
         })
     }
 
-    readFridge = function (callback){
-        this.setState((prevState, props) => {
-            let path = firebase.auth().currentUser.uid;
-            var fridgeRowsFruitandveg = [];
-            var fridgeRowsMeat = [];
-            var fridgeRowsDairy = [];
-            var fridgeRowsOther = [];
-
-            //pull fruit and veg
-            let ref = new firebase.database().ref(path + "/fridgeFruitVeg/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    fridgeRowsFruitandveg.push({itemName: itemName, itemQuan: itemQuan});
-                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
-                })
-            }).then(callback);
-
-            //pull dairy
-            ref = new firebase.database().ref(path + "/fridgeDairy/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    fridgeRowsDairy.push({itemName: itemName, itemQuan: itemQuan});
-                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
-                })
-            }).then(callback);
-
-            //pull meat
-            ref = new firebase.database().ref(path + "/fridgeMeat/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    fridgeRowsMeat.push({itemName: itemName, itemQuan: itemQuan});
-                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
-                })
-            }).then(callback);
-
-            //pull other
-            ref = new firebase.database().ref(path + "/fridgeOther/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    fridgeRowsOther.push({itemName: itemName, itemQuan: itemQuan});
-                    console.log("Pulled for fridge: " + itemQuan + " " + itemName);
-                })
-            }).then(callback);
-            
-            return({fridgeRowsFruitandveg: fridgeRowsFruitandveg,
-                fridgeRowsMeat: fridgeRowsMeat,
-                fridgeRowsDairy: fridgeRowsDairy,
-                fridgeRowsOther: fridgeRowsOther});
-        })
-
-    }
     //sends all the items in the grocery list db to the fridge db
     listToFridge = function () {
         let path = firebase.auth().currentUser.uid;
