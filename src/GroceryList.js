@@ -402,8 +402,6 @@ export class GroceryList extends Component {
                 handle.props.deleteItems(item.key, "shopOther");
             }
         })
-
-        this.render();
     }
 
 	/*
