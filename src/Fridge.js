@@ -101,8 +101,6 @@ export class Fridge extends Component {
             )
         });
 
-        console.log("BUILT FRIDGE")
-
         this.setState((prevState, props) => {
             return({rowsFruitandveg: rowsFruitandveg,
                 rowsMeat: rowsMeat,
@@ -173,6 +171,19 @@ export class Fridge extends Component {
                         </div>
                     </div>
 
+                </div>
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <div className="grocery-button-row" id="grocery-button-row">
+
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>CREATE MEAL</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <Footer />
