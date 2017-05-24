@@ -87,6 +87,11 @@
     background-color: #21C0C0;
 }
 
+#bootstrap-overrides .dropdown-menu > li > a:hover {
+    background-color: #21C0C0;
+    background-image: none;
+}
+
 #logout-button {
     border: none;
     width: 100%;
@@ -187,6 +192,10 @@
     width: 240px;
     border: none;
     padding: 0;
+}
+
+#bootstrap-overrides .btn-default {
+    text-shadow: none;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
