@@ -29,6 +29,7 @@ export class Fridge extends Component {
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
         this.buildRows = this.buildRows.bind(this);
+        this.deleteFromFridge = this.deleteFromFridge.bind(this);
 
         this.state = {
             rows: {
@@ -47,6 +48,33 @@ export class Fridge extends Component {
 
     componentWillMount() {
         this.props.readItems('fridge', this.buildRows.bind(this));
+    }
+
+    deleteFromFridge = function(){
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeFruitVeg");
+            }
+        })
+
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeMeat");
+            }
+        })
+
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeDairy");
+            }
+        })
+
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeOther");
+            }
+        })
     }
 
     handleAddFruitandveg = function() {
@@ -313,7 +341,7 @@ export class Fridge extends Component {
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
 
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromFridge}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>CREATE MEAL</button>
 
                             </div>

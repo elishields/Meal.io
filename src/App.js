@@ -90,6 +90,7 @@ class App extends Component {
             rowsDairy={this.state.rows.fridge.Dairy}
             rowsOther={this.state.rows.fridge.Other}
             readItems={this.readItems}
+            deleteItems={this.deleteItems}
             {...props}
             />
         );
