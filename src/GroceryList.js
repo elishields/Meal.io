@@ -130,7 +130,7 @@ export class GroceryList extends Component {
         this.handleAddMeat = this.handleAddMeat.bind(this);
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
-        this.readAndBuild = this.readAndBuild.bind(this);
+        this.deleteFromShop = this.deleteFromShop.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
@@ -378,18 +378,32 @@ export class GroceryList extends Component {
     }
 
     deleteFromShop = function(){
-        //TODO: check what items have check marks
-        //TODO: loop through the list of checked items and pass
-            //TODO: the keys of the items in to this.props.deleteItems()
-            //TODO: as the first param, the second param is their section
-            //TODO: i.e. shopFruitVeg or shopMeat
-        //TODO: call a rebuild of the list based on the new DB
-    }
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopFruitVeg");
+            }
+        })
 
-    readAndBuild = function() {
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopMeat");
+            }
+        })
 
-        this.buildRows();
-        console.log("returning.")
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopDairy");
+            }
+        })
+
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopOther");
+            }
+        })
+
+        this.render();
     }
 
 	/*
