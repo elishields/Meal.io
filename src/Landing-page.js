@@ -1,6 +1,7 @@
 // Import classes from React
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // Import style
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
@@ -9,7 +10,8 @@ import '../src/App.css'
 
 // Import resources
 import MealIoLogo from '../res/Logo-str.png';
-import Cycle from '../res/cycle-landing.png';
+import Cycle from '../res/cycle-updated-2.png';
+import FacebookLogin from '../res/facebook-login.png';
 import * as firebase from "firebase";
 
 /*
@@ -79,7 +81,56 @@ class SignUpButton extends Component {
      */
     render () {
         return (
-            <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnSignup">SignUp</a>
+            <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnSignup">Sign Up</a>
+        )
+    }
+}
+
+class FacebookButton extends Component {
+    /*
+     *  Constructor for FBButton
+     */
+    constructor(props) {
+        super(props);
+        this.handler = this.handler.bind(this);
+    }
+
+    /*
+     *  handler: function called when FB button is clicked
+     */
+    handler = function() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithRedirect(provider);
+        firebase.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                var token = result.credential.accessToken;
+                // ...
+            }
+            // The signed-in user info.
+            var user = result.user;
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
+    /*
+     *  render() returns the HTML template for FBButton
+     */
+    render () {
+        return (
+            <div>
+                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">
+                    <img src={FacebookLogin} alt="Facebook Login" id="btnFacebookImage"/>
+                </a>
+            </div>
         )
     }
 }
@@ -92,6 +143,10 @@ const config ={
     storageBucket: "mealio-d047c.appspot.com",
     messagingSenderId: "280670219948"
 };
+
+const tooltip = (
+    <Tooltip id="tooltip">Password must be at least 8 characters</Tooltip>
+)
 
 /*
  *  LandingPage: defines the landing page used for login, signup, and welcome
@@ -137,48 +192,55 @@ export class LandingPage extends Component {
 
         return (
             <div>
-            <div className="container-fluid" id="landing-body">
+                <div className="container-fluid" id="landing-body">
 
-                <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1" id="landing-logo">
-                        <img src={MealIoLogo} alt="Meal.io logo" className="img-responsive center-block"></img>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-xs-12" id="landing-blurb">
-                        <h3 id="landing-welcome">Welcome Food Waste Hater!</h3>
-                        <h4 id="landing-prompt">Please login or sign up below:</h4>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-xs-12" id="landing-form">
-                        <div id="landing-inputs">
-                            <input type="email" className="form-control input-md" id="email" placeholder="Email" />
-                            <br/>
-                            <input type="password" className="form-control input-md" id="password" placeholder="Password" />
+                    <div className="row">
+                        <div className="col-xs-10 col-xs-offset-1" id="landing-logo">
+                            <img src={MealIoLogo} className="img-responsive center-block" alt="Meal.io logo"></img>
                         </div>
-                        <div id="landing-buttons-row">
-                            <div id="landing-buttons-group">
-                                <span className="group-btn pull-left">
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-10 col-xs-offset-1">
+                            <h3 id="landing-welcome">Manage Your Meals!</h3>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-8 col-xs-offset-2">
+                            <img src={Cycle} className="center-block" id="landing-image" alt="Meal.io feature cycle"></img>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-10 col-xs-offset-1" id="landing-inputs">
+                            <input type="email" className="form-control input-md landing-input" id="email" placeholder="Email" />
+                            <OverlayTrigger placement="top" overlay={tooltip}>
+                                <input type="password" className="form-control input-md landing-input" id="password" placeholder="Password" />
+                            </OverlayTrigger>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-xs-10 col-xs-offset-1">
+                            <div className="btn-group btn-group-justified" id="landing-buttons-group">
+                                <span className="group-btn">
                                     <LoginButton/>
                                 </span>
-                                <span className="group-btn pull-right">
+                                <br/>
+                                <span className="group-btn">
                                     <SignUpButton/>
+                                </span>
+                                <br/>
+                                <span className="group-btn">
+                                    <FacebookButton/>
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-xs-12" id="landing-image">
-                        <img src={Cycle} className="center-block" id="landing-image-responsive" alt="Meal.io feature cycle"></img>
-                    </div>
                 </div>
-            </div>
-                <Link to="/list"><div id="DoNotTouch"> </div></Link>
+                <Link to="/list"><div id="DoNotTouch"></div></Link>
             </div>
         )
     }

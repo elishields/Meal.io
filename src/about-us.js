@@ -1,15 +1,44 @@
 import React, { Component } from 'react';
+import FacebookProvider, { ShareButton } from 'react-facebook';
+
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+
 import GroceryListIcon from '../res/grocery-list-about-us.svg';
 import MyFridgeIcon from '../res/fridge-about-us.svg';
 import MealPlanningIcon from '../res/plate-about-us.svg';
 import TeamPicture from '../res/fruit-veg-icon.png';
+
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
 import { Tips } from './Navigation.js';
 import './App.css';
 
+class ShareMealio extends Component {
+  render() {
+    return (
+
+    <div className="row">
+
+        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
+
+            <FacebookProvider appId="816345498530418">
+
+                    <ShareButton  className="btn btn-info btn-block" href="http://www.mealio.tk"
+                                  quote="Meal.io is your new meal manager! Use it to make grocery lists,
+                                  track perishable foods in your fridge, and create meal plans!
+                                  We hope it helps you waste less food!" >
+                        Share on FaceBook
+                    </ShareButton>
+
+            </FacebookProvider>
+        </div>
+
+    </div>
+
+    );
+  }
+}
 
 export class AboutusPage extends Component {
 
@@ -163,6 +192,10 @@ export class AboutusPage extends Component {
                         </div>
 
                     </div>
+
+                    <br></br>
+
+                    <ShareMealio />
 
                     <br></br>
 
