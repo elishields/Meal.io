@@ -366,8 +366,13 @@
     margin-bottom: 100px;
 }
 .btn.btn-info.btn-block{
-    background-color: #21c0c0;
+    background-color: #3265AC;
 }
+
+#no-border-f-button{
+    border: 0 none;
+}
+
 
 /*EASTER EGG */
 #easter-header {

@@ -8,6 +8,7 @@ import GroceryListIcon from '../res/grocery-list-about-us.svg';
 import MyFridgeIcon from '../res/fridge-about-us.svg';
 import MealPlanningIcon from '../res/plate-about-us.svg';
 import TeamPicture from '../res/fruit-veg-icon.png';
+import FaceBookLogo from '../res/facebook-logo.png';
 
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
@@ -20,15 +21,16 @@ class ShareMealio extends Component {
 
     <div className="row">
 
-        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
+        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="aboutus-button-email">
 
             <FacebookProvider appId="816345498530418">
 
-                    <ShareButton  className="btn btn-info btn-block" href="http://www.mealio.tk"
-                                  quote="Meal.io is your new meal manager! Use it to make grocery lists,
+                <ShareButton  className="btn btn-default btn-xs" id="no-border-f-button" href="http://www.mealio.tk"
+                              quote="Meal.io is your new meal manager! Use it to make grocery lists,
                                   track perishable foods in your fridge, and create meal plans!
                                   We hope it helps you waste less food!" >
-                        Share on FaceBook
+                                <img className="three-icons" src={FaceBookLogo}>
+                                </img>
                     </ShareButton>
 
             </FacebookProvider>
@@ -186,8 +188,22 @@ export class AboutusPage extends Component {
                     <div className="row" >
                         <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
                             <a href="https://github.com/elishields/Meal.io"  >
-                                <button id="buttons" type="button" className="btn btn-info btn-block">
+                                <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
                                     Checkout our Github Repo </button>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                    <br></br>
+
+                    <div className="row">
+                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 btn-lg">
+                            <a href="mailto:studyingatbcit@gmail.com">
+                                <button id="buttons" type="button" className="btn btn-info btn-block">
+                                    Email: info@meal.io.ca </button>
                             </a>
                         </div>
 
@@ -196,18 +212,6 @@ export class AboutusPage extends Component {
                     <br></br>
 
                     <ShareMealio />
-
-                    <br></br>
-
-                    <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="aboutus-button-email">
-                            <a href="mailto:studyingatbcit@gmail.com">
-                                <button id="buttons" type="button" className="btn btn-info btn-block">
-                                    Email: info@meal.io.ca </button>
-                            </a>
-                        </div>
-
-                    </div>
 
                 </div>
                 <Footer/>
