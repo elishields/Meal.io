@@ -450,25 +450,25 @@ export class GroceryList extends Component {
                                         <span className="subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsFruitandveg}
+                                <p className="item-input-row">{this.state.rowsFruitandveg}</p>
                                 <div>
                                     <h4 className="subheader">
                                         <span className="subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsDairy}
+                                <p className="item-input-row">{this.state.rowsDairy}</p>
                                 <div>
                                     <h4 className="subheader">
                                         <span className="subheader-text">MEAT</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsMeat}
+                                <p className="item-input-row">{this.state.rowsMeat}</p>
                                 <div>
                                     <h4 className="subheader">
                                         <span className="subheader-text">OTHER</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsOther}
+                                <p className="item-input-row">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>

@@ -345,25 +345,25 @@ export class Fridge extends Component {
                                 <h4 className="subheader">
                                     <span className="subheader-text">FRUIT & VEG</span>
                                 </h4>
-                                <p className="fridge-category-content">{this.state.rowsFruitandveg}</p>
+                                <p className="item-input-row">{this.state.rowsFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="subheader">
                                     <span className="subheader-text">DAIRY</span>
                                 </h4>
-                                <p className="fridge-category-content">{this.state.rowsDairy}</p>
+                                <p className="item-input-row">{this.state.rowsDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
                                 <h4 className="subheader">
                                     <span className="subheader-text">MEAT</span>
                                 </h4>
-                                <p className="fridge-category-content">{this.state.rowsMeat}</p>
+                                <p className="item-input-row">{this.state.rowsMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
                                 <h4 className="subheader">
                                     <span className="subheader-text">OTHER</span>
                                 </h4>
-                                <p className="fridge-category-content">{this.state.rowsOther}</p>
+                                <p className="item-input-row">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>
