@@ -322,8 +322,8 @@
 .fridge-category {
 
 }
-.fridge-category-content {
-    padding-left: 20px;
+.item-input-row {
+    padding: 0 15px;
 }
 
 .fridge-category-other {
@@ -490,7 +490,7 @@
 
 }
 #meal-plan-chevron {
-    padding: 5px 3px 0px 0px;
+    padding: 5px 3px 0 0;
     font-size: 1.5em;
     color: #21C0C0;
 }
