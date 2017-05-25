@@ -40,7 +40,7 @@
     color: white;
     font-weight: bold;
     text-decoration: none;
-    background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
     background-blend-mode: normal;
 }
 .subheader-text {
@@ -310,27 +310,9 @@
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
-#fridge-icon-row {
-    margin: 0 auto;
-}
-.fridge-category-col {
-    padding: 0;
-    text-align: center;
-}
-.fridge-category-icon {
-    width: 75px;
-    height: auto;
-}
-#fridge-list {
-    /*margin: 0;*/
-}
-.fridge-category {
-
-}
 .item-input-row {
     padding: 0 15px;
 }
-
 .fridge-category-other {
     margin-bottom: 150px;
 }
@@ -488,7 +470,7 @@
     width: 100%;
     font-weight: bold;
     padding: 1px 15px;
-    background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
     background-blend-mode: normal;
 }
 .meal-category-title {
