@@ -127,9 +127,7 @@ class FacebookButton extends Component {
     render () {
         return (
             <div>
-                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">
-                    <img src={FacebookLogin} alt="Facebook Login" id="btnFacebookImage"/>
-                </a>
+                <img src={FacebookLogin} alt="Facebook Login"  onClick={this.handler} id="btnFacebookImage"/>
             </div>
         )
     }
