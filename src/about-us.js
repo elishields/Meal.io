@@ -21,7 +21,7 @@ class ShareMealio extends Component {
 
     <div className="row">
 
-        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="aboutus-button-email">
+        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="facebook-button">
 
             <FacebookProvider appId="816345498530418">
 
@@ -29,7 +29,7 @@ class ShareMealio extends Component {
                               quote="Meal.io is your new meal manager! Use it to make grocery lists,
                                   track perishable foods in your fridge, and create meal plans!
                                   We hope it helps you waste less food!" >
-                                <img className="three-icons" src={FaceBookLogo}>
+                                <img className="three-icons" src={FaceBookLogo} alt="Facebook">
                                 </img>
                     </ShareButton>
 
