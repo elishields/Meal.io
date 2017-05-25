@@ -58,7 +58,7 @@ export class ListItem extends React.Component {
      */
     fireOnChange = function () {
         if (this.state.isLast) {
-            this.state.onChange(this.props.page, this.props.category, '', 1);
+            this.state.onChange(this.props.page, this.props.category, '', 1, true);
             this.props.addHandler();
             this.clearOnChange();
         }
