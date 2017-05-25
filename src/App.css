@@ -247,7 +247,6 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     height: 45px;
-
     background-color: #ffffff;
     color: #21c0c0;
     font-weight: bold;
@@ -257,7 +256,6 @@
     bottom: 90px;
     left: 0;
     width: 100%;
-
     z-index: 1000;
 }
 #bootstrap-overrides .grocery-button-row button:active {
