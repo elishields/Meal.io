@@ -50,8 +50,8 @@ class MealDay extends React.Component {
     render() {
         return (
             <div>
-                <div id="meal-plan-meal-name">
-                    <h4 className="meal-category-title pull-left" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                <div id="meal-plan-meal-name" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                    <h4 className="meal-category-title pull-left">
                         {this.props.mealName}
                     </h4>
                     <span className="glyphicon glyphicon-menu-down pull-right" id="meal-plan-chevron" aria-hidden="true"></span>
