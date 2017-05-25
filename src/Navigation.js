@@ -175,25 +175,25 @@ export class Footer extends React.Component {
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
                                     <Link to="/list">
-                                        <span>
+                                        <span className="footer-link">
                                             <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
-                                            <p className="footer-link">Grocery List</p>
+                                            <p>Grocery List</p>
                                         </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/fridge">
-                                        <span>
+                                        <span className="footer-link">
                                             <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
-                                            <p className="footer-link">My Fridge</p>
+                                            <p>My Fridge</p>
                                         </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/meal-plan">
-                                        <span>
+                                        <span className="footer-link">
                                             <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
-                                            <p className="footer-link">Meal Plan</p>
+                                            <p>Meal Plan</p>
                                         </span>
                                     </Link>
                                 </div>

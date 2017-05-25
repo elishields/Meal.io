@@ -438,7 +438,6 @@ export class GroceryList extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-
                         <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
@@ -474,10 +473,8 @@ export class GroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
-
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromShop}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
-
                             </div>
                         </div>
                     </div>
