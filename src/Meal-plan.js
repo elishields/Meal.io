@@ -57,6 +57,8 @@ class MealDay extends React.Component {
                         <div className="col-xs-12 meal-category">
                             {this.state.rows}
                         </div>
+                        <br/>
+                        <a href="#" onClick={() => this.props.deleteMeal("myMeal")} style={{color:"#000000"}}>DelEAT Meal</a>
                     </div>
                 </Panel>
             </div>
@@ -90,13 +92,14 @@ export class MealPlan extends Component {
         var handle = this;
         var key = 0;
 
-        let newMeals = this.state.mealObjects;
+        let newMeals = [];
         this.props.meals.forEach(function(item) {
             newMeals.push(
                 <MealDay
                     key={key}
                     ingredients={item.ingredients}
                     mealName={item.mealName}
+                    deleteMeal={handle.props.deleteMeal}
                 />
             );
 
