@@ -67,15 +67,21 @@ export class MealPlan extends Component {
     buildMeals = function(){
         var handle = this;
         var key = 0;
-        handle.props.meals.forEach(function(item){
-            handle.state.mealObjects.push(
+
+        let newMeals = this.state.mealObjects;
+        this.props.meals.forEach(function(item) {
+            newMeals.push(
                 <MealDay
-                    key = {key}
-                    ingredients = {item.ingredients}
-                    mealName = {item.mealName}
-                />);
-            key ++;
-        })
+                    key={key}
+                    ingredients={item.ingredients}
+                    mealName={item.mealName}
+                />
+            );
+
+            key++;
+        });
+
+        this.setState({mealObjects: newMeals});
     }
 
     render() {
@@ -92,27 +98,6 @@ export class MealPlan extends Component {
                         </div>
                     </div>
 
-                    {/*<div className="row">
-                        <div className="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
-                            <img src={MealPlate} className="center-block" id="meal-plan-plate" alt="Meal Plan"/>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2">
-                            <ButtonToolbar>
-                                <ButtonGroup className="meal-nav">
-                                    <Button><a href="#meal-day-1">1</a></Button>
-                                    <Button><a href="#meal-day-2">2</a></Button>
-                                    <Button><a href="#meal-day-3">3</a></Button>
-                                    <Button><a href="#meal-day-4">4</a></Button>
-                                    <Button><a href="#meal-day-5">5</a></Button>
-                                    <Button><a href="#meal-day-6">6</a></Button>
-                                    <Button><a href="#meal-day-7">7</a></Button>
-                                </ButtonGroup>
-                            </ButtonToolbar>
-                        </div>
-                    </div> */}
                     <div id="content-section">
                         <div className="row">
                             <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
