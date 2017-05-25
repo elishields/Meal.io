@@ -120,13 +120,15 @@
 .nav-icon-caption {
     text-align: center;
 }
-.footer-link {
-
-}
-#footer .footer-link a:active {
+#bootstrap-overrides a:active .footer-link img {
     text-decoration: none;
-    color: white;
-    border-bottom: 5px solid white;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
+}
+#bootstrap-overrides a:active .footer-link p {
+    text-decoration: none;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
 }
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
