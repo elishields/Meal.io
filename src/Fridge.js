@@ -340,7 +340,7 @@ export class Fridge extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-12" id="fridge-list content-section">
+                        <div className="col-xs-12" id="fridge-list">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="subheader">
                                     <span className="subheader-text">FRUIT & VEG</span>
@@ -363,11 +363,10 @@ export class Fridge extends Component {
                                 <h4 className="subheader">
                                     <span className="subheader-text">OTHER</span>
                                 </h4>
-                                <p className="item-input-row">{this.state.rowsOther}</p>
+                                <p className="item-input-row" id="content-section">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div className="container-fluid">
