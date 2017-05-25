@@ -314,30 +314,6 @@ export class Fridge extends Component {
                         </div>
                     </div>
                     <Tips />
-                    <div className="row">
-                        <div id="fridge-icon-row">
-                            <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">
-                                <a href="#fridge-category-fruit-veg">
-                                    <img className="fridge-category-icon" src={FruitVeg} alt="FruitVeg"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-dairy">
-                                    <img className="fridge-category-icon" src={Dairy} alt="Dairy"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-meat">
-                                    <img className="fridge-category-icon" src={Meat} alt="Meat"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-other">
-                                    <img className="fridge-category-icon" src={OtherIcon} alt="OtherIcon"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div className="row">
                         <div className="col-xs-12" id="fridge-list">
