@@ -89,6 +89,7 @@
 }
 .open>.dropdown-menu {
     background-color: #21C0C0;
+    z-index: 2147483647;
 }
 
 #bootstrap-overrides .dropdown-menu > li > a:hover {
@@ -455,7 +456,6 @@
 }
 #easter-nav-icon {
     margin: 12px 8px 8px 8px;
-
 }
 
 /* MEAL PLAN */
@@ -504,9 +504,8 @@
         bottom: 0;
     }
 }
-/* Tablet
-    (768 * 701)
- */
+/* Tablet (768 * 701) */
+
 @media screen and (min-width: 427px) and (max-width: 768px) and (min-aspect-ratio: 4/2 ) {
     #hide-footer {
         visibility: hidden;
@@ -515,4 +514,18 @@
         position: fixed;
         bottom: 0;
     }
+}
+
+/* FOOD TIPS DROP DOWN */
+
+.css-hx30u2 {
+    background-color: #21C0C0;
+    color: white;
+    font-size: 1.1em;
+    z-index: 2;
+}
+
+.css-qci76b {
+    z-index: 25;
+    margin: 0;
 }
