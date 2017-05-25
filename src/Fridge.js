@@ -342,19 +342,27 @@ export class Fridge extends Component {
                     <div className="row">
                         <div className="col-xs-12" id="fridge-list content-section">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <h4 className="fridge-category-title">Fruits & Vegetables</h4>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">FRUIT & VEG</span>
+                                </h4>
                                 <p className="fridge-category-content">{this.state.rowsFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
-                                <h4 className="fridge-category-title">Dairy</h4>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">DAIRY</span>
+                                </h4>
                                 <p className="fridge-category-content">{this.state.rowsDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
-                                <h4 className="fridge-category-title">Meat</h4>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">MEAT</span>
+                                </h4>
                                 <p className="fridge-category-content">{this.state.rowsMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
-                                <h4 className="fridge-category-title">Other</h4>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">OTHER</span>
+                                </h4>
                                 <p className="fridge-category-content">{this.state.rowsOther}</p>
                             </div>
                         </div>

@@ -36,6 +36,18 @@
 #content-section {
     margin-bottom: 150px;
 }
+.subheader {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-filter: invert(.0);
+    filter: invert(.0);
+    background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
+    background-blend-mode: normal;
+}
+.subheader-text {
+    padding: 20px;
+}
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
 #bootstrap-overrides .container-fluid {
@@ -292,13 +304,6 @@
     height: 16px;
     margin: 0;
 }
-.grocery-subheader {
-    margin: 20px;
-    text-align: center;
-}
-.grocery-subheader-text {
-    border-bottom: 2px solid #21C0C0;
-}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
@@ -318,12 +323,6 @@
 }
 .fridge-category {
 
-}
-.fridge-category-title {
-    color: #21C0C0;
-    font-weight: bold;
-    padding: 5px;
-    background-color: #f7f7f7;
 }
 .fridge-category-content {
     padding-left: 20px;
