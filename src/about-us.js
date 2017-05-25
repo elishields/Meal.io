@@ -24,7 +24,7 @@ class ShareMealio extends Component {
 
             <FacebookProvider appId="816345498530418">
 
-                    <ShareButton  className="btn btn-info btn-block" href="https://mealio.tk"
+                    <ShareButton  className="btn btn-info btn-block" href="http://www.mealio.tk"
                                   quote="i love meal.io" >
 
                         Share on FaceBook
