@@ -37,12 +37,16 @@
     margin-bottom: 150px;
 }
 .subheader {
-    color: #21C0C0;
+    color: white;
     font-weight: bold;
-    background-color: #f7f7f7;
+    text-decoration: none;
+    -webkit-filter: invert(.0);
+    filter: invert(.0);
+    background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
+    background-blend-mode: normal;
 }
 .subheader-text {
-    padding: 15px;
+    padding: 20px;
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
