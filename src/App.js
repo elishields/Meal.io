@@ -34,6 +34,7 @@ class App extends Component {
         this.readMeals = this.readMeals.bind(this);
         this.deleteItems = this.deleteItems.bind(this);
         this.addToMealPlan = this.addToMealPlan.bind(this);
+        this.deleteMeal = this.deleteMeal.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -103,6 +104,7 @@ class App extends Component {
           <MealPlan
           meals={this.state.meals}
           readMeals={this.readMeals}
+          deleteMeal={this.deleteMeal}
           {...props}
           />
         );
@@ -235,10 +237,19 @@ class App extends Component {
         })
     }
 
+    deleteMeal = function (mealName) {
+        console.log("Attempting to remove " + mealName + " from meal plans");
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/mealPlans/" + mealName);
+        ref.once("value").then(function(snapshot){
+            ref.remove();
+        })
+    }
+
     readMeals = function (callback){
         console.log("Load planned meals from database.");
         this.setState((prevState, props) => {
             let handle = this;
+            let newMeals = [];
             let path = firebase.auth().currentUser.uid;
             let ref = new firebase.database().ref(path + "/mealPlans/");
             let key = 0;
@@ -249,12 +260,15 @@ class App extends Component {
                     var ingredients = childSnapshot.val();
 
                     //makes a meal object out of the name and ingredients from above
-                    handle.state.meals[key] = {
+                    newMeals.push({
                         mealName : mealName,
-                        ingredients : ingredients
-                    }
+                        ingredients: ingredients
+                    })
                     key ++;
                 })
+
+                handle.setState({meals: newMeals});
+
             }).then(callback);
 
         })
