@@ -441,26 +441,26 @@ export class GroceryList extends Component {
                         <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsFruitandveg}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">DAIRY</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsDairy}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">MEAT</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">MEAT</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsMeat}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">OTHER</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">OTHER</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsOther}
