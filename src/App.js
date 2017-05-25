@@ -33,6 +33,7 @@ class App extends Component {
         this.readItems = this.readItems.bind(this);
         this.readMeals = this.readMeals.bind(this);
         this.deleteItems = this.deleteItems.bind(this);
+        this.addToMealPlan = this.addToMealPlan.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -91,6 +92,7 @@ class App extends Component {
             rowsOther={this.state.rows.fridge.Other}
             readItems={this.readItems}
             deleteItems={this.deleteItems}
+            addToMealPlan={this.addToMealPlan}
             {...props}
             />
         );
@@ -104,6 +106,16 @@ class App extends Component {
           {...props}
           />
         );
+    }
+
+    addToMealPlan = function (itemName, amnt, section, meal){
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
+        let data = {
+            [itemName]: amnt
+        };
+        return new firebase.database().ref(path + "/mealPlans/" + meal + "/").update(data);
+
     }
 
     sendToFridge = function() {
