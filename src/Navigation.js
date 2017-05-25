@@ -77,7 +77,7 @@ export class Tips extends Component {
         position: 'top right',
         theme: 'light',
         time: 10000,
-        transition: 'fade'
+        transition: 'fade',
     }
 
     /*
@@ -120,8 +120,8 @@ export class Tips extends Component {
      */
     render () {
         return (
-            <div>
-                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+            <div className="food-tip">
+                <AlertContainer  ref={a => this.msg = a} {...this.alertOptions} />
             </div>
         )
     }
