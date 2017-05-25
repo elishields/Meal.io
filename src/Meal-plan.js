@@ -14,6 +14,7 @@ import { Header, Footer, Tips } from './Navigation.js';
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import '../src/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg';
 import './App.css';
 
 class MealIngredient extends Component {
@@ -49,9 +50,12 @@ class MealDay extends React.Component {
     render() {
         return (
             <div>
-                <h4 className="meal-category-title" onClick={ ()=> this.setState({ open: !this.state.open })}>
-                    {this.props.mealName}
-                </h4>
+                <div id="meal-plan-meal-name">
+                    <h4 className="meal-category-title pull-left" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                        {this.props.mealName}
+                    </h4>
+                    <span className="glyphicon glyphicon-menu-down pull-right" id="meal-plan-chevron" aria-hidden="true"></span>
+                </div>
                 <Panel collapsible expanded={this.state.open} bsStyle={ null } className="meal-panel">
                     <div className="row">
                         <div className="col-xs-12 meal-category">
