@@ -35,6 +35,7 @@ class App extends Component {
         this.deleteItems = this.deleteItems.bind(this);
         this.addToMealPlan = this.addToMealPlan.bind(this);
         this.deleteMeal = this.deleteMeal.bind(this);
+        this.addToMealPlan = this.addToMealPlan.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -94,6 +95,7 @@ class App extends Component {
             readItems={this.readItems}
             deleteItems={this.deleteItems}
             addToMealPlan={this.addToMealPlan}
+            meals={this.state.meals}
             {...props}
             />
         );
@@ -110,15 +112,30 @@ class App extends Component {
         );
     }
 
-    addToMealPlan = function (itemName, amnt, section, meal){
+    addToMealPlan = function (itemKey, itemName, amnt, section, meal){
         let handle = this;
         let path = firebase.auth().currentUser.uid;
         let data = {
             [itemName]: amnt
         };
-        return new firebase.database().ref(path + "/mealPlans/" + meal + "/").update(data);
-
+        let newAmnt = 0;
+        let ref = new firebase.database().ref(path + "/" + section + "/" + itemKey + "/itemQuan");
+        ref.once("value").then(function(snapshot){
+            newAmnt = snapshot.val();
+        }).then(function(){
+            newAmnt -= amnt;
+            if (newAmnt <= 0){
+                handle.deleteItems(itemKey, section);
+            }
+            let remData = {
+                itemName: itemName,
+                itemQuan: newAmnt
+            }
+            new firebase.database().ref(path + "/" + section + "/" + itemKey + "/").update(remData);
+            new firebase.database().ref(path + "/mealPlans/" + meal + "/").update(data);
+        })
     }
+
 
     sendToFridge = function() {
 
@@ -261,6 +278,8 @@ class App extends Component {
 
                     //makes a meal object out of the name and ingredients from above
                     newMeals.push({
+                        key : key,
+                        keyVal : key,
                         mealName : mealName,
                         ingredients: ingredients
                     })
