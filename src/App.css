@@ -149,6 +149,11 @@
     margin: 0;
     padding: 0;
 }
+
+#bootstrap-overrides #landing-lower {
+    margin-bottom: 50px;
+}
+
 #landing-logo {
     background-color: #21C0C0;
     margin-top: 30px;
