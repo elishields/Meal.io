@@ -472,28 +472,33 @@
 #meal-plan-plate {
     max-width: 20%;
 }
-
 #meal-list {
    /* margin: 0;*/
 }
-
-.meal-category-title {
+#meal-plan-meal-name {
     color: #21C0C0;
+    display: inline-block;
+    width: 100%;
     font-weight: bold;
-    padding: 12px 5px;
+    padding: 6px 15px;
     background-color: whitesmoke;
 }
+.meal-category-title {
 
+}
+#meal-plan-chevron {
+    padding: 5px 3px 0px 0px;
+    font-size: 1.5em;
+    color: #21C0C0;
+}
 .meal-category {
     font-size: 0.9em;
 }
-
 #bootstrap-overrides .panel {
     border: none;
     box-shadow: none;
     margin-bottom: -10px;
 }
-
 .meal-panel {
     border: none;
     box-shadow: none;
