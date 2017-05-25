@@ -526,14 +526,14 @@
 
 /* FOOD TIPS DROP DOWN */
 
-.css-hx30u2, [data-css-hx30u2] {
+#bootstrap-overrides.css-hx30u2 {
     background-color: #21C0C0;
     color: white;
     font-size: 1.1em;
     z-index: 2;
 }
 
-.css-qci76b, [data-css-qci76b] {
+#bootstrap-overrides.css-qci76b {
     z-index: 25;
     margin: 0;
 }
