@@ -140,37 +140,57 @@ class App extends Component {
     sendToFridge = function() {
 
         let newRows = this.state.rows;
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
 
         newRows.shop.FruitVeg.forEach(function(item) {
             if (document.getElementById("check-F" + item.key).checked) {
-                newRows.fridge.FruitVeg.push(item);
-                console.log("sending " + item.itemQuan + " " + item.itemName)
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeFruitVeg/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopFruitVeg");
             }
         });
 
+
         newRows.shop.Dairy.forEach(function(item) {
             if (document.getElementById("check-D" + item.key).checked) {
-                newRows.fridge.Dairy.push(item);
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeDairy/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopDairy");
             }
         });
 
         newRows.shop.Meat.forEach(function(item) {
             if (document.getElementById("check-M" + item.key).checked) {
-                newRows.fridge.Meat.push(item);
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeMeat/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopMeat");
             }
         });
 
         newRows.shop.Other.forEach(function(item) {
             if (document.getElementById("check-O" + item.key).checked) {
-                newRows.fridge.Other.push(item);
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeOther/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopOther");
             }
         });
 
         this.setState((prevState, props) => {
             return({rows: newRows});
         });
-
-        this.listToFridge();
     }
 
     clearPage = function(page) {
@@ -346,60 +366,7 @@ class App extends Component {
             }).then(callback);
         })
     }
-
-    //sends all the items in the grocery list db to the fridge db
-    listToFridge = function () {
-        let path = firebase.auth().currentUser.uid;
-        let ref = new firebase.database().ref(path + "/shopFruitVeg/");
-        var fruitVeg = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    fruitVeg[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeFruitVeg").update(fruitVeg);
-            })
-        ref = new firebase.database().ref(path + "/shopDairy/");
-        var dairy = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    dairy[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeDairy").update(dairy);
-            })
-        ref = new firebase.database().ref(path + "/shopMeat/");
-        var meat = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    meat[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeMeat").update(meat);
-            })
-        ref = new firebase.database().ref(path + "/shopOther/");
-        var other = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    other[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeOther").update(other);
-            })
-    }
-
+    
     /*
     *  render() defines the HTML template for this class.
     */
