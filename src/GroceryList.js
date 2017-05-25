@@ -20,11 +20,17 @@ export class ListItem extends React.Component {
         super(props);
 
         // Set state variables
-        this.state = {itemName: props.itemName, amount: props.itemQuan, onChange: props.onChange};
+        this.state = {
+            itemName: props.itemName,
+            amount: props.itemQuan,
+            onChange: props.onChange,
+            isLast: props.isLast
+        };
+
         this.checkId = "check-" + this.props.myId;
-        this.removeId = "remove-" + this.props.myId;
 
         // Bind reference to 'this' to member functions
+        this.fireOnChange = this.fireOnChange.bind(this);
         this.clearOnChange = this.clearOnChange.bind(this);
         this.restoreOnChange = this.restoreOnChange.bind(this);
         this.renderNameField = this.renderNameField.bind(this);
@@ -38,8 +44,9 @@ export class ListItem extends React.Component {
                 id={"grocery-item-input" + this.props.myId}
                 placeholder="Enter an item"
                 defaultValue={this.state.itemName}
-                onChange={this.clearOnChange}
-                onBlur={() => this.props.onBlur(this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
+                onChange={this.fireOnChange}
+                onBlur={() => this.props.onBlur(this.props.page, this.props.category,
+                    this.props.keyVal, document.getElementById("grocery-item-input" + this.props.myId).value,
                     parseInt(document.getElementById("grocery-item-quantity" + this.props.myId).value))}
                 aria-describedby="item name">
             </input>
@@ -49,9 +56,15 @@ export class ListItem extends React.Component {
     /*
      *  fires onChange function and then clears it.
      */
+    fireOnChange = function () {
+        if (this.state.isLast) {
+            this.state.onChange(this.props.page, this.props.category, '', 1, true);
+            this.props.addHandler();
+            this.clearOnChange();
+        }
+    }
+
     clearOnChange = function () {
-        this.state.onChange();
-        this.props.addHandler();
         this.setState({onChange: () => {}});
     }
 
@@ -117,21 +130,56 @@ export class GroceryList extends Component {
         this.handleAddMeat = this.handleAddMeat.bind(this);
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
-        this.readAndBuild = this.readAndBuild.bind(this);
+        this.deleteFromShop = this.deleteFromShop.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
         let rowsDairy = [];
         let rowsOther = [];
 
-        this.state = {rowsFruitandveg: rowsFruitandveg,
-                        rowsMeat: rowsMeat,
-                        rowsDairy: rowsDairy,
-                        rowsOther: rowsOther};
+        this.state = {
+
+            rows: {
+                FruitVeg: [],
+                Meat: [],
+                Dairy: [],
+                Other: []
+            },
+
+            rowsFruitandveg: rowsFruitandveg,
+            rowsMeat: rowsMeat,
+            rowsDairy: rowsDairy,
+            rowsOther: rowsOther
+        };
     }
 
     componentWillMount() {
-        this.props.readItems(this.buildRows.bind(this));
+        this.props.readItems('shop', this.buildRows.bind(this));
+    }
+
+    handleBuildItem = function(category) {
+        let handle = this;
+
+        let srcRows = this.props.rows[category];
+        let newRows = this.state.rows[category];
+
+        let item = srcRows[srcRows.length - 1];
+
+        if (srcRows.length !== newRows.length) {
+            newRows.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={category + item.key}
+                    isLast={item.isLast}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleBuildItem}
+                    page={item.page}
+                    category={item.category}/>
+            )
+        }
     }
 
     handleAddFruitandveg = function() {
@@ -148,12 +196,14 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"F" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddFruitandveg}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
 
@@ -175,12 +225,14 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"M" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddMeat}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -202,12 +254,14 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"D" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddDairy}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -229,12 +283,14 @@ export class GroceryList extends Component {
                     <ListItem key={item.key}
                         keyVal={item.key}
                         myId={"O" + item.key}
+                        isLast={item.isLast}
                         itemName={item.itemName}
                         itemQuan={item.itemQuan}
                         onBlur={item.onBlur}
                         onChange={item.onChange}
                         addHandler={handle.handleAddOther}
-                        container={itemRows}/>
+                        page={item.page}
+                        category={item.category}/>
                 )
             }
             
@@ -250,12 +306,14 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"F" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddFruitandveg}
-                    container={rowsFruitandveg}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -265,12 +323,14 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"M" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddMeat}
-                    container={rowsMeat}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -280,12 +340,14 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"D" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddDairy}
-                    container={rowsDairy}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -295,12 +357,14 @@ export class GroceryList extends Component {
                 <ListItem key={item.key}
                     keyVal={item.key}
                     myId={"O" + item.key}
+                    isLast={item.isLast}
                     itemName={item.itemName}
                     itemQuan={item.itemQuan}
                     onBlur={item.onBlur}
                     onChange={item.onChange}
                     addHandler={handle.handleAddOther}
-                    container={rowsOther}/>
+                    page={item.page}
+                    category={item.category}/>
             )
         });
 
@@ -313,10 +377,31 @@ export class GroceryList extends Component {
         });
     }
 
-    readAndBuild = function() {
+    deleteFromShop = function(){
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopFruitVeg");
+            }
+        })
 
-        this.buildRows();
-        console.log("returning.")
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopMeat");
+            }
+        })
+
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopDairy");
+            }
+        })
+
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.deleteItems(item.key, "shopOther");
+            }
+        })
     }
 
 	/*
@@ -327,7 +412,7 @@ export class GroceryList extends Component {
     		<div>
     			<Header />
 
-                {/*<Tips />*/}
+                <Tips />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
@@ -353,30 +438,29 @@ export class GroceryList extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-
                         <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsFruitandveg}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">DAIRY</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsDairy}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">MEAT</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">MEAT</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsMeat}
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">OTHER</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">OTHER</span>
                                     </h4>
                                 </div>
                                 {this.state.rowsOther}
@@ -389,10 +473,8 @@ export class GroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
-
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.readAndBuild}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromShop}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
-
                             </div>
                         </div>
                     </div>
