@@ -76,7 +76,7 @@ export class Tips extends Component {
         offset: 14,
         position: 'top right',
         theme: 'light',
-        time: 10000,
+        time: 16000,
         transition: 'fade',
     }
 
@@ -101,7 +101,8 @@ export class Tips extends Component {
             'Sugaring is a great way to preserve fruits like apples, apricots and plums',
             'Plan your meals for the week to only buy what you need',
             'Wait to wash berries until you want to eat them to prevent mold',
-            'Plan an "eat the leftovers" night each week'];
+            'Plan an "eat the leftovers" night each week',
+            'Try tapping just below the grocery list header ;)'];
         let foodTip = foodTips[Math.floor(Math.random()*foodTips.length)];
 
         this.msg.show(foodTip, {
