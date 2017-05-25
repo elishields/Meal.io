@@ -131,6 +131,7 @@ export class GroceryList extends Component {
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
         this.deleteFromShop = this.deleteFromShop.bind(this);
+        this.buildPage = this.buildPage.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
@@ -154,6 +155,10 @@ export class GroceryList extends Component {
     }
 
     componentWillMount() {
+        this.buildPage();
+    }
+
+    buildPage() {
         this.props.readItems('shop', this.buildRows.bind(this));
     }
 
