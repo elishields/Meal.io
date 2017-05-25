@@ -326,6 +326,54 @@
     margin-bottom: 150px;
 }
 
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 20%;
+}
+#meal-list {
+    /* margin: 0;*/
+}
+#meal-plan-meal-name {
+    color: white;
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    padding: 1px 15px;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
+    background-blend-mode: normal;
+}
+.meal-category-title {
+
+}
+#meal-plan-chevron {
+    padding: 5px 3px 0 0;
+    font-size: 1.5em;
+    color: #21C0C0;
+}
+.meal-category {
+    font-size: 0.9em;
+}
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
+}
+.meal-panel {
+    border: none;
+    box-shadow: none;
+}
+#delete-meal {
+    color: white;
+    background-color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 5%;
+    padding: 4px;
+    margin-top: 5px;
+}
+
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
 #affiliate-blurb {
     margin: 15px;
@@ -463,44 +511,6 @@
 }
 #easter-nav-icon {
     margin: 12px 8px 8px 8px;
-}
-
-/* MEAL PLAN */
-
-#meal-plan-plate {
-    max-width: 20%;
-}
-#meal-list {
-   /* margin: 0;*/
-}
-#meal-plan-meal-name {
-    color: white;
-    display: inline-block;
-    width: 100%;
-    font-weight: bold;
-    padding: 1px 15px;
-    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
-    background-blend-mode: normal;
-}
-.meal-category-title {
-
-}
-#meal-plan-chevron {
-    padding: 5px 3px 0 0;
-    font-size: 1.5em;
-    color: #21C0C0;
-}
-.meal-category {
-    font-size: 0.9em;
-}
-#bootstrap-overrides .panel {
-    border: none;
-    box-shadow: none;
-    margin-bottom: -10px;
-}
-.meal-panel {
-    border: none;
-    box-shadow: none;
 }
 
 /* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
