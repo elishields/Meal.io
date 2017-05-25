@@ -365,8 +365,9 @@
     border: 0 none;
     box-shadow: none;
 }
-.three-icons{
+.fb-icon{
     width: 80%;
+    padding: 3px;
 }
 #facebook-button {
     margin-bottom: 100px;
