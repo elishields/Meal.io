@@ -533,7 +533,7 @@
     z-index: 2;
 }
 
-.css-qci76b {
+.css-qci76b, [data-css-qci76b] {
     z-index: 25;
     margin: 0;
 }
