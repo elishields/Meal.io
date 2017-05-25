@@ -259,6 +259,11 @@
 
     z-index: 1000;
 }
+#bootstrap-overrides .grocery-button-row button:active {
+    text-decoration: none;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
+}
 .remove-check {
     display: none;
 }
