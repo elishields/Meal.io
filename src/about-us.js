@@ -29,7 +29,7 @@ class ShareMealio extends Component {
                               quote="Meal.io is your new meal manager! Use it to make grocery lists,
                                   track perishable foods in your fridge, and create meal plans!
                                   We hope it helps you waste less food!" >
-                                <img className="three-icons" src={FaceBookLogo} alt="Facebook-logo">
+                                <img className="fb-icon" src={FaceBookLogo} alt="Facebook-logo">
                                 </img>
                     </ShareButton>
 
