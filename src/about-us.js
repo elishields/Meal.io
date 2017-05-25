@@ -17,9 +17,22 @@ import './App.css';
 class ShareMealio extends Component {
   render() {
     return (
-      <FacebookProvider appId="816345498530418">
-        <ShareButton href="http://www.facebook.com" />
-      </FacebookProvider>
+
+    <div className="row">
+
+        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
+
+            <FacebookProvider appId="816345498530418">
+
+                    <ShareButton  className="btn btn-info btn-block" href="http://www.facebook.com" >
+                        Share on FaceBook
+                    </ShareButton>
+
+            </FacebookProvider>
+        </div>
+
+    </div>
+
     );
   }
 }
@@ -177,11 +190,9 @@ export class AboutusPage extends Component {
 
                     </div>
 
-                    <div className="row" >
-                        <div className="col-xs-10 col-xs-offset-1">
-                            <ShareMealio />
-                        </div>
-                    </div>
+                    <br></br>
+
+                    <ShareMealio />
 
                     <br></br>
 

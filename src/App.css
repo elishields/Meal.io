@@ -344,7 +344,7 @@
 
 /*ABOUT US */
 #buttons{
-    background-color: #21c0c0;
+    background-color: #21C0C0;
     color: white;
     text-decoration: none;
 }
@@ -364,6 +364,9 @@
 }
 #aboutus-button-email {
     margin-bottom: 100px;
+}
+.btn.btn-info.btn-block{
+    background-color: #21c0c0;
 }
 
 /*EASTER EGG */
