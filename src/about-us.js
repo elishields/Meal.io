@@ -25,7 +25,7 @@ class ShareMealio extends Component {
 
             <FacebookProvider appId="816345498530418">
 
-                <ShareButton  className="btn btn-default btn-xs" id="no-border-f-button" href="http://www.mealio.tk"
+                <ShareButton  className="btn btn-info btn-block btn-xs" id="no-border-f-button" href="http://www.mealio.tk"
                               quote="Meal.io is your new meal manager! Use it to make grocery lists,
                                   track perishable foods in your fridge, and create meal plans!
                                   We hope it helps you waste less food!" >
@@ -200,9 +200,9 @@ export class AboutusPage extends Component {
                     <br></br>
 
                     <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 btn-lg">
+                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             <a href="mailto:studyingatbcit@gmail.com">
-                                <button id="buttons" type="button" className="btn btn-info btn-block">
+                                <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
                                     Email: info@meal.io.ca </button>
                             </a>
                         </div>
