@@ -30,6 +30,7 @@ export class Fridge extends Component {
         this.handleAddOther = this.handleAddOther.bind(this);
         this.buildRows = this.buildRows.bind(this);
         this.deleteFromFridge = this.deleteFromFridge.bind(this);
+        this.sendToMeal = this.sendToMeal.bind(this);
 
         this.state = {
             rows: {
@@ -48,6 +49,31 @@ export class Fridge extends Component {
 
     componentWillMount() {
         this.props.readItems('fridge', this.buildRows.bind(this));
+    }
+
+    sendToMeal = function(){
+        console.log("send to meal called in fridgeJS");
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeFruitVeg", "myMeal");
+            }
+        })
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeDairy", "myMeal");
+            }
+        })
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeMeat", "myMeal");
+            }
+        })
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeOther", "myMeal");
+            }
+        })
     }
 
     deleteFromFridge = function(){
@@ -342,7 +368,7 @@ export class Fridge extends Component {
                             <div className="grocery-button-row" id="grocery-button-row">
 
                                 <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromFridge}>DELETE</button>
-                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>CREATE MEAL</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.sendToMeal}>CREATE MEAL</button>
 
                             </div>
                         </div>
