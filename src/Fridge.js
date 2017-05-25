@@ -313,7 +313,7 @@ export class Fridge extends Component {
                             </h3>
                         </div>
                     </div>
-                    {/*<Tips />*/}
+                    <Tips />
                     <div className="row">
                         <div id="fridge-icon-row">
                             <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">
