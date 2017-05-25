@@ -175,21 +175,26 @@ export class Footer extends React.Component {
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
                                     <Link to="/list">
-                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
-                                        <br/>
-                                        <p>Grocery List</p>
+                                        <span>
+                                            <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
+                                            <p className="footer-link">Grocery List</p>
+                                        </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/fridge">
-                                        <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
-                                        <p>My Fridge</p>
+                                        <span>
+                                            <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
+                                            <p className="footer-link">My Fridge</p>
+                                        </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/meal-plan">
-                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
-                                        <p>Meal Plan</p>
+                                        <span>
+                                            <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
+                                            <p className="footer-link">Meal Plan</p>
+                                        </span>
                                     </Link>
                                 </div>
                             </div>

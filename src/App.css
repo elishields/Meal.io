@@ -12,13 +12,9 @@
     font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
 }
-#bootstrap-overrides a, a:link, a:visited, a:hover {
+#bootstrap-overrides a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
-}
-#bootstrap-overrides a:active {
-    text-decoration: none;
-    color: #c02171;
 }
 .page-header {
     margin: 20px 0;
@@ -90,12 +86,10 @@
 .open>.dropdown-menu {
     background-color: #21C0C0;
 }
-
 #bootstrap-overrides .dropdown-menu > li > a:hover {
     background-color: #21C0C0;
     background-image: none;
 }
-
 #logout-button {
     border: none;
     width: 100%;
@@ -126,7 +120,14 @@
 .nav-icon-caption {
     text-align: center;
 }
+.footer-link {
 
+}
+#footer .footer-link a:active {
+    text-decoration: none;
+    color: white;
+    border-bottom: 5px solid white;
+}
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
 
