@@ -1,5 +1,6 @@
 // Import classes from React
 import React, { Component } from 'react';
+import { ListItem } from './GroceryList.js';
 
 // Import our classes
 import { Header, Footer, Tips } from './Navigation.js';
@@ -23,37 +24,278 @@ export class Fridge extends Component {
     constructor(props) {
         super(props);
 
-        let namesFruitandveg = [];
-        let namesMeat = [];
-        let namesDairy = [];
-        let namesOther = [];
+        this.handleAddFruitandveg = this.handleAddFruitandveg.bind(this);
+        this.handleAddMeat = this.handleAddMeat.bind(this);
+        this.handleAddDairy = this.handleAddDairy.bind(this);
+        this.handleAddOther = this.handleAddOther.bind(this);
+        this.buildRows = this.buildRows.bind(this);
+        this.deleteFromFridge = this.deleteFromFridge.bind(this);
+        this.sendToMeal = this.sendToMeal.bind(this);
 
-        props.rowsFruitandveg.forEach(function(item) {
-            namesFruitandveg.push(item.itemName);
-            namesFruitandveg.push(<br />);
+        this.state = {
+            rows: {
+                FruitVeg: [],
+                Meat: [],
+                Dairy: [],
+                Other: []
+            },
+
+            rowsFruitandveg: [],
+            rowsMeat: [],
+            rowsDairy: [],
+            rowsOther: []
+        };
+    }
+
+    componentWillMount() {
+        this.props.readItems('fridge', this.buildRows.bind(this));
+    }
+
+    sendToMeal = function(){
+        console.log("send to meal called in fridgeJS");
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeFruitVeg", "myMeal");
+            }
+        })
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeDairy", "myMeal");
+            }
+        })
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeMeat", "myMeal");
+            }
+        })
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.addToMealPlan(item.itemName, 1, "fridgeOther", "myMeal");
+            }
+        })
+    }
+
+    deleteFromFridge = function(){
+        let handle = this;
+        handle.props.rowsFruitandveg.forEach(function(item){
+            if (document.getElementById("check-F" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeFruitVeg");
+            }
+        })
+
+        handle.props.rowsMeat.forEach(function(item){
+            if (document.getElementById("check-M" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeMeat");
+            }
+        })
+
+        handle.props.rowsDairy.forEach(function(item){
+            if (document.getElementById("check-D" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeDairy");
+            }
+        })
+
+        handle.props.rowsOther.forEach(function(item){
+            if (document.getElementById("check-O" + item.key).checked) {
+                handle.props.deleteItems(item.key, "fridgeOther");
+            }
+        })
+    }
+
+    handleAddFruitandveg = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsFruitandveg;
+            let itemRows = prevState.rowsFruitandveg;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"F" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddFruitandveg}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+
+            return({rowsFruitandveg: itemRows});
+        });
+    }
+
+    handleAddMeat = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsMeat;
+            let itemRows = prevState.rowsMeat;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"M" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddMeat}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsMeat: itemRows});
+        });
+    }
+
+    handleAddDairy = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsDairy;
+            let itemRows = prevState.rowsDairy;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"D" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddDairy}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsDairy: itemRows});
+        });
+    }
+
+    handleAddOther = function() {
+        this.setState((prevState, props) => {
+            let handle = this;
+
+            let srcRows = props.rowsOther;
+            let itemRows = prevState.rowsOther;
+
+            let item = srcRows[srcRows.length - 1];
+
+            if (srcRows.length !== itemRows.length) {
+                itemRows.push(
+                    <ListItem key={item.key}
+                        keyVal={item.key}
+                        myId={"O" + item.key}
+                        isLast={item.isLast}
+                        itemName={item.itemName}
+                        itemQuan={item.itemQuan}
+                        onBlur={item.onBlur}
+                        onChange={item.onChange}
+                        addHandler={handle.handleAddOther}
+                        page={item.page}
+                        category={item.category}/>
+                )
+            }
+            
+            return({rowsOther: itemRows});
+        });
+    }
+
+    buildRows = function() {
+        let handle = this;
+        let rowsFruitandveg = [];
+        this.props.rowsFruitandveg.forEach(function(item) {
+            console.log("adding " + item.itemName)
+            rowsFruitandveg.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"F" + item.key}
+                    isLast={item.isLast}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddFruitandveg}
+                    page={item.page}
+                    category={item.category}/>
+            )
         });
 
-        props.rowsMeat.forEach(function(item) {
-            namesMeat.push(item.itemName);
-            namesMeat.push(<br />);
+        let rowsMeat = [];
+        this.props.rowsMeat.forEach(function(item) {
+            rowsMeat.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"M" + item.key}
+                    isLast={item.isLast}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddMeat}
+                    page={item.page}
+                    category={item.category}/>
+            )
         });
 
-        props.rowsDairy.forEach(function(item) {
-            namesDairy.push(item.itemName);
-            namesDairy.push(<br />);
+        let rowsDairy = [];
+        this.props.rowsDairy.forEach(function(item) {
+            rowsDairy.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"D" + item.key}
+                    isLast={item.isLast}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddDairy}
+                    page={item.page}
+                    category={item.category}/>
+            )
         });
 
-        props.rowsOther.forEach(function(item) {
-            namesOther.push(item.itemName);
-            namesOther.push(<br />);
+        let rowsOther = [];
+        this.props.rowsOther.forEach(function(item) {
+            rowsOther.push(
+                <ListItem key={item.key}
+                    keyVal={item.key}
+                    myId={"O" + item.key}
+                    isLast={item.isLast}
+                    itemName={item.itemName}
+                    itemQuan={item.itemQuan}
+                    onBlur={item.onBlur}
+                    onChange={item.onChange}
+                    addHandler={handle.handleAddOther}
+                    page={item.page}
+                    category={item.category}/>
+            )
         });
 
-        this.state = {namesFruitandveg: namesFruitandveg,
-            namesMeat: namesMeat,
-            namesDairy: namesDairy,
-            namesOther: namesOther}
-
-        console.log(namesFruitandveg)
+        this.setState((prevState, props) => {
+            return({rowsFruitandveg: rowsFruitandveg,
+                rowsMeat: rowsMeat,
+                rowsDairy: rowsDairy,
+                rowsOther: rowsOther});
+        });
     }
 
     /*
@@ -71,7 +313,7 @@ export class Fridge extends Component {
                             </h3>
                         </div>
                     </div>
-                    {/*<Tips />*/}
+                    <Tips />
                     <div className="row">
                         <div id="fridge-icon-row">
                             <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">
@@ -101,23 +343,36 @@ export class Fridge extends Component {
                         <div className="col-xs-12" id="fridge-list content-section">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
                                 <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">{this.state.namesFruitandveg}</p>
+                                <p className="fridge-category-content">{this.state.rowsFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
                                 <h4 className="fridge-category-title">Dairy</h4>
-                                <p className="fridge-category-content">{this.state.namesDairy}</p>
+                                <p className="fridge-category-content">{this.state.rowsDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
                                 <h4 className="fridge-category-title">Meat</h4>
-                                <p className="fridge-category-content">{this.state.namesMeat}</p>
+                                <p className="fridge-category-content">{this.state.rowsMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
                                 <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">{this.state.namesOther}</p>
+                                <p className="fridge-category-content">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>
 
+                </div>
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <div className="grocery-button-row" id="grocery-button-row">
+
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromFridge}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.sendToMeal}>CREATE MEAL</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <Footer />
