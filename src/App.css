@@ -40,8 +40,6 @@
     color: white;
     font-weight: bold;
     text-decoration: none;
-    -webkit-filter: invert(.0);
-    filter: invert(.0);
     background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
     background-blend-mode: normal;
 }
@@ -476,12 +474,13 @@
    /* margin: 0;*/
 }
 #meal-plan-meal-name {
-    color: #21C0C0;
+    color: white;
     display: inline-block;
     width: 100%;
     font-weight: bold;
-    padding: 6px 15px;
-    background-color: whitesmoke;
+    padding: 1px 15px;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 50%);
+    background-blend-mode: normal;
 }
 .meal-category-title {
 
