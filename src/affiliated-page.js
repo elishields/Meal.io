@@ -67,7 +67,7 @@ export class AffiliatedPage extends Component {
 
                     <div className="col-md-4 col-xs-10 col-xs-offset-1" id="bottom-thumbnail">
                         <div className="thumbnail">
-                            <a href="www.students.bcitdev.com/A01005523/comp2910/PocketPantry/sign_in.html">
+                            <a href="http://www.students.bcitdev.com/A01005523/comp2910/PocketPantry/sign_in.html">
                                 <img src={Pocketpantry} className="affiliate-image" alt="PocketPantry Logo"></img>
                             </a>
                             <div className="caption">
