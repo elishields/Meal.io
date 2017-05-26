@@ -44,9 +44,9 @@ export class Header extends Component {
                 <row>
                     <nav className="navbar navbar-fixed-top" id="header">
                         <div>
-                            <a href="" className="navbar-brand">
+                            <div className="navbar-brand">
                                 <img className="logo" src={Logo} alt="Meal.io"/>
-                            </a>
+                            </div>
                             <ButtonGroup className="pull-right" id="menu-icon">
                                 <DropdownButton title="" className="glyphicon glyphicon-menu-hamburger" pullRight noCaret id="bg-nested-dropdown">
                                     <MenuItem className="menu-item" eventKey="1">
@@ -67,15 +67,22 @@ export class Header extends Component {
     }
 }
 
+/*
+ *  Tips: Timed pop up notification that gives users helpful food saving tips.
+ */
+
 export class Tips extends Component {
     alertOptions = {
         offset: 14,
         position: 'top right',
         theme: 'light',
-        time: 10000,
-        transition: 'fade'
+        time: 16000,
+        transition: 'fade',
     }
 
+    /*
+     *  Array of food saving tips that are randomly chosen.
+     */
     showAlert = () => {
         let foodTips = ['Shop smart and realistically',
             'When cooking, don\'t over-serve food',
@@ -94,7 +101,8 @@ export class Tips extends Component {
             'Sugaring is a great way to preserve fruits like apples, apricots and plums',
             'Plan your meals for the week to only buy what you need',
             'Wait to wash berries until you want to eat them to prevent mold',
-            'Plan an "eat the leftovers" night each week'];
+            'Plan an "eat the leftovers" night each week',
+            'Try tapping just below the grocery list header ;)'];
         let foodTip = foodTips[Math.floor(Math.random()*foodTips.length)];
 
         this.msg.show(foodTip, {
@@ -108,11 +116,13 @@ export class Tips extends Component {
         this.interval = setInterval(() => this.showAlert(), 15000);
     }
 
+    /*
+     *  render() defines the HTML template for this class.
+     */
     render () {
         return (
-            <div>
-                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-                {/*<button onClick={this.showAlert}>Show Alert</button>*/}
+            <div className="food-tip">
+                <AlertContainer  ref={a => this.msg = a} {...this.alertOptions} />
             </div>
         )
     }
@@ -166,21 +176,26 @@ export class Footer extends React.Component {
                             <div className="nav-icon-group">
                                 <div className="col-xs-4">
                                     <Link to="/list">
-                                        <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
-                                        <br/>
-                                        <p>Grocery</p>
+                                        <span className="footer-link">
+                                            <img src={NavIconList} className="nav-icon" id="nav-icon-list" alt="Grocery List"/>
+                                            <p>Grocery List</p>
+                                        </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/fridge">
-                                        <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
-                                        <p>My Fridge</p>
+                                        <span className="footer-link">
+                                            <img src={NavIconFridge} className="nav-icon" id="nav-icon-fridge" alt="My Fridge"/>
+                                            <p>My Fridge</p>
+                                        </span>
                                     </Link>
                                 </div>
                                 <div className="col-xs-4">
                                     <Link to="/meal-plan">
-                                        <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
-                                        <p>Meal Plan</p>
+                                        <span className="footer-link">
+                                            <img src={NavIconPlate} className="nav-icon" id="nav-icon-plate" alt="Meal Plan"/>
+                                            <p>Meal Plan</p>
+                                        </span>
                                     </Link>
                                 </div>
                             </div>

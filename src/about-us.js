@@ -1,15 +1,46 @@
 import React, { Component } from 'react';
+import FacebookProvider, { ShareButton } from 'react-facebook';
+
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+
 import GroceryListIcon from '../res/grocery-list-about-us.svg';
 import MyFridgeIcon from '../res/fridge-about-us.svg';
 import MealPlanningIcon from '../res/plate-about-us.svg';
-import TeamPicture from '../res/fruit-veg-icon.png';
+import FaceBookLogo from '../res/facebook-logo.png';
+
 import { Header } from './Navigation.js';
 import { Footer } from './Navigation.js';
 import { Tips } from './Navigation.js';
 import './App.css';
 
+class ShareMealio extends Component {
+  render() {
+    return (
+
+    <div className="row">
+
+        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="facebook-button">
+
+            <FacebookProvider appId="816345498530418">
+
+                <ShareButton  className="btn btn-info btn-block btn-xs" id="no-border-f-button"
+                              href="http://www.mealio.tk"
+                              quote="Mealio is your new meal manager! Use it to make grocery lists,
+                                  track perishable foods in your fridge, and create meal plans!
+                                  We hope it helps you waste less food!" >
+                                <img className="fb-icon" src={FaceBookLogo} alt="Facebook-logo">
+                                </img>
+                    </ShareButton>
+
+            </FacebookProvider>
+        </div>
+
+    </div>
+
+    );
+  }
+}
 
 export class AboutusPage extends Component {
 
@@ -33,22 +64,13 @@ export class AboutusPage extends Component {
 
                         <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             <p>
-                                Meal.io is your new meal manager!
+                                Mealio is your new meal manager!
+                                <br/>
+                                Make grocery lists, track foods in your fridge, and create meal plans!
+                                <br/>
+                                We hope it helps you waste less food!
                             </p>
                         </div>
-
-                        <div className="row">
-                            <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                                Use it to make grocery lists, track perishable foods in your fridge, and create meal plans!
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                                We hope it helps you waste less food!
-                            </div>
-                        </div>
-
                     </div>
 
                     <br></br>
@@ -109,29 +131,21 @@ export class AboutusPage extends Component {
 
                     </div>
 
-
-
                     <br></br>
 
                     <div className="row">
                         <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <h4 className="page-header" id="second-heading">
-                                <span className="page-title-text">Meet the Team</span>
+                                <span className="page-title-text">About the Team</span>
                             </h4>
                         </div>
                     </div>
 
                     <div className="row">
 
-                        <div className="col-xs-9 col-xs-offset-3 col-md-6 col-md-offset-4">
-                            <p>
-                                <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
-                            </p>
-                        </div>
-
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                                Meal.io was created by a small-team of dedicated Computer Systems Technology students
+                                Mealio was created by a small-team of dedicated Computer Systems Technology students
                                 at BCIT!
                             </div>
                         </div>
@@ -139,42 +153,45 @@ export class AboutusPage extends Component {
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                                 Built for Metro Vancouver's food-waste reduction plan,
-                                Meal.io offers users a simple way to manage the food in their lives!
+                                Mealio offers users a simple way to manage the food in their lives!
                             </div>
                         </div>
 
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                                We built this fun app using ReactJS, Bootstrap, and Firebase. Please hire us!
+                                We built Mealio using ReactJS, Bootstrap, and Firebase. Please hire us!
                             </div>
                         </div>
 
                     </div>
 
-
                     <br></br>
 
                     <div className="row" >
                         <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" >
-                            <a href="https://github.com/elishields/Meal.io"  >
-                                <button id="buttons" type="button" className="btn btn-info btn-block">
-                                    Checkout our Github Repo </button>
+                            <a href="mailto:mealioapp@gmail.com">
+                                <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
+                                    Contact Us
+                                </button>
                             </a>
                         </div>
-
                     </div>
 
                     <br></br>
 
                     <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="aboutus-button-email">
-                            <a href="mailto:studyingatbcit@gmail.com">
-                                <button id="buttons" type="button" className="btn btn-info btn-block">
-                                    Email: info@meal.io.ca </button>
+                        <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                            <a href="https://github.com/elishields/Meal.io">
+                                <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
+                                    Our GitHub Repo
+                                </button>
                             </a>
                         </div>
-
                     </div>
+
+                    <br></br>
+
+                    <ShareMealio />
 
                 </div>
                 <Footer/>

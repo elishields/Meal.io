@@ -6,6 +6,7 @@
     font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
     height: 100%;
+    width: 100%;
 }
 #bootstrap-overrides {
     font-family: 'Roboto', sans-serif;
@@ -35,6 +36,17 @@
 #content-section {
     margin-bottom: 150px;
 }
+.subheader {
+    color: white;
+    font-weight: bold;
+    padding: 5px 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
+    background-blend-mode: normal;
+}
+.subheader-text {
+    padding: 0;
+}
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
 #bootstrap-overrides .container-fluid {
@@ -44,7 +56,7 @@
     margin: 0;
     padding: 0;
 }
-/* Targets all className's that begin with 'col-' */
+    /* Targets all className's that begin with 'col-' */
 #bootstrap-overrides [class^='col-'] {
     padding: 0;
 }
@@ -77,6 +89,7 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
+    z-index: 2147483647;
 }
 .menu-item a {
     color: white;
@@ -84,8 +97,12 @@
 }
 .open>.dropdown-menu {
     background-color: #21C0C0;
+    z-index: 2147483647;
 }
-
+#bootstrap-overrides .dropdown-menu > li > a:hover {
+    background-color: #21C0C0;
+    background-image: none;
+}
 #logout-button {
     border: none;
     width: 100%;
@@ -95,7 +112,7 @@
     padding: 0;
 }
 
-    /* FOOTER *//* FOOTER *//* FOOTER */
+/* FOOTER *//* FOOTER *//* FOOTER */
 #footer {
     background-color: #21C0C0;
     padding: 0;
@@ -116,6 +133,22 @@
 .nav-icon-caption {
     text-align: center;
 }
+#bootstrap-overrides a:link, a:visited, a:hover .footer-link img {
+    text-decoration: none;
+}
+#bootstrap-overrides a:active .footer-link img {
+    text-decoration: none;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
+}
+#bootstrap-overrides a:link, a:visited, a:hover .footer-link p {
+    text-decoration: none;
+}
+#bootstrap-overrides a:active .footer-link p {
+    text-decoration: none;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
+}
 
 /* LANDING PAGE *//* LANDING PAGE *//* LANDING PAGE */
 
@@ -124,12 +157,14 @@
     margin: 0;
     padding: 0;
 }
+
+#bootstrap-overrides #landing-lower {
+    margin-bottom: 50px;
+}
+
 #landing-logo {
     background-color: #21C0C0;
-    margin-top: 125px;
-}
-#landing-blurb {
-    background-color: #21C0C0;
+    margin-top: 30px;
 }
 #landing-welcome {
     padding: 10px;
@@ -138,59 +173,67 @@
     text-align: center;
     color: white;
 }
-#landing-prompt {
+#landing-image {
+    width: 100%;
+    margin: 10px auto;
     background-color: #21C0C0;
-    margin: 0;
-    padding: 20px 0;
-    border: none;
-    border-bottom: 2px solid #FFFFFF;
-    text-align: center;
-    color: white;
-}
-#landing-form {
-    background-color: #21C0C0;
-    padding: 25px 0;
 }
 .form-control {
     border-radius: 10px;
 }
 #landing-inputs {
-    width: 75%;
-    margin: 25px auto;
+    background-color: #21C0C0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-#landing-buttons-row {
-    margin: 0 auto;
-    width: 50%;
+.landing-input {
+    margin: 5px auto;
 }
 #landing-buttons-group {
-    color: black;
-    margin: 0 auto;
-    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 6px 0;
 }
 #bootstrap-overrides .group-btn a {
-    color: black;
+    color: white;
+    background-color: #21C0C0;
+    margin: 5px auto;
+}
+#bootstrap-overrides #btnLogin {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 50px;
+    border: 2px solid white;
+    width: 240px;
+}
+#bootstrap-overrides #btnSignup {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 50px;
+    border: 2px solid white;
+    width: 240px;
+}
+#bootstrap-overrides #btnFacebook {
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    padding: 0;
+}
+#bootstrap-overrides #btnFacebookImage {
+    width: 240px;
+    border: none;
+    padding: 0;
 }
 
-#landing-image {
-    margin: 0;
-    padding: 20px 0;
-    background-color: #21C0C0;
-}
-#landing-image-responsive {
-    max-width: 60%;
-}
-#btnLogin {
-    color: black;
-}
-#btnSignup {
-    color: black;
+#bootstrap-overrides .btn-default {
+    text-shadow: none;
 }
 
 /* GROCERY LIST *//* GROCERY LIST *//* GROCERY LIST */
 #grocery-item {
     margin: 0.2em 0;
 }
-
 #bootstrap-overrides [id^='grocery-item-quantity'] {
     background-color: #21C0C0;
     color: #ffffff;
@@ -227,7 +270,6 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     height: 45px;
-
     background-color: #ffffff;
     color: #21c0c0;
     font-weight: bold;
@@ -237,8 +279,15 @@
     bottom: 90px;
     left: 0;
     width: 100%;
-
     z-index: 1000;
+}
+#bootstrap-overrides .grocery-button-row button:link, button:visited, button:hover {
+    text-decoration: none;
+}
+#bootstrap-overrides .grocery-button-row button:active {
+    text-decoration: none;
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
 }
 .remove-check {
     display: none;
@@ -269,41 +318,64 @@
     height: 16px;
     margin: 0;
 }
-.grocery-subheader {
-    margin: 20px;
-    text-align: center;
-}
-.grocery-subheader-text {
-    border-bottom: 2px solid #21C0C0;
-}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
-#fridge-icon-row {
-    margin: 0 auto;
+.item-input-row {
+    padding: 0 15px;
 }
-.fridge-category-col {
-    padding: 0;
-    text-align: center;
+.fridge-category-other {
+    margin-bottom: 150px;
 }
-.fridge-category-icon {
-    width: 75px;
-    height: auto;
-}
-#fridge-list {
-    /*margin: 0;*/
-}
-.fridge-category {
 
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 20%;
 }
-.fridge-category-title {
-    color: #21C0C0;
+#meal-list {
+    /* margin: 0;*/
+}
+#meal-plan-meal-name {
+    color: white;
+    display: inline-block;
+    width: 100%;
     font-weight: bold;
-    padding: 5px;
-    background-color: #f7f7f7;
+    padding: 5px 25px;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
+    background-blend-mode: normal;
 }
-.fridge-category-content {
-    padding-left: 20px;
+.meal-category-title {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+#meal-plan-chevron {
+    padding: 0;
+    font-size: 1.5em;
+    color: #21C0C0;
+}
+.meal-category {
+    font-size: 0.9em;
+}
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
+}
+.meal-panel {
+    border: none;
+    box-shadow: none;
+}
+#bootstrap-overrides #delete-meal {
+    color: white;
+    background-color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 5%;
+    padding: 4px;
+    margin-top: 5px;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
@@ -328,14 +400,11 @@
 
 /*ABOUT US */
 #buttons{
-    background-color: #21c0c0;
+    background-color: #21C0C0;
     color: white;
     text-decoration: none;
 }
-/* Control how big the team image is */
-#aboutus-team-image {
-    width: 70%;
-}
+    /* Control how big the team image is */
 #second-heading{
     border: none;
 }
@@ -343,38 +412,42 @@
     border: 0 none;
     box-shadow: none;
 }
-.three-icons{
+.fb-icon{
     width: 80%;
+    padding: 3px;
 }
-#aboutus-button-email {
+#facebook-button {
     margin-bottom: 100px;
 }
+.btn.btn-info.btn-block{
+    background-color: #0065AC;
+}
+.three-icons{
+    width: 90%;
+}
+
 
 /*EASTER EGG */
 #easter-header {
     background-color: deeppink;
     height: 70px;
 }
-
 #easter-footer {
     background-color: deeppink;
     padding: 0;
     height: 90px;
     border-top: 1px solid deeppink;
 }
-
 .easter-footer-icon {
     height: 75px;
     width: auto;
     padding: 0;
 }
-
-#easter-page-title-text{
+#easter-page-title-text {
     color: deeppink;
     border: 2px solid deeppink;
 
 }
-
 #easter-grocery-item-quantity {
     background-color: deeppink;
     color: #ffffff;
@@ -386,12 +459,10 @@
     border-right: none;
     width: 10%;
 }
-
 .easter-grocery-subheader-text {
     border-bottom: 2px solid deeppink;
     color: deeppink;
 }
-
 #easter-add-to-fridge-button {
     border: 2px solid deeppink;
     border-left: none;
@@ -416,17 +487,14 @@
     color: deeppink;
     font-weight: bold;
 }
-
 .hidden-page-header {
     margin: 20px 0;
     text-align: center;
 }
-
 #hidden-header-all {
     border: none;
     margin: -10px;
 }
-
 .hidden-page-title-text {
     color: #21C0C0;
     /* removing this will make the button hidden button visible*/
@@ -437,7 +505,6 @@
     padding: 6px;
     font-weight: bold;
 }
-
 .easter-confirm-check {
     display: none;
 }
@@ -447,42 +514,8 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-
 #easter-nav-icon {
     margin: 12px 8px 8px 8px;
-
-}
-
-/* MEAL PLAN */
-
-#meal-plan-plate {
-    max-width: 20%;
-}
-
-#meal-list {
-   /* margin: 0;*/
-}
-
-.meal-category-title {
-    color: #21C0C0;
-    font-weight: bold;
-    padding: 12px 5px;
-    background-color: whitesmoke;
-}
-
-.meal-category {
-    font-size: 0.9em;
-}
-
-#bootstrap-overrides .panel {
-    border: none;
-    box-shadow: none;
-    margin-bottom: -10px;
-}
-
-.meal-panel {
-    border: none;
-    box-shadow: none;
 }
 
 /* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
@@ -499,9 +532,8 @@
         bottom: 0;
     }
 }
-/* Tablet
-    (768 * 701)
- */
+/* Tablet (768 * 701) */
+
 @media screen and (min-width: 427px) and (max-width: 768px) and (min-aspect-ratio: 4/2 ) {
     #hide-footer {
         visibility: hidden;
@@ -510,4 +542,18 @@
         position: fixed;
         bottom: 0;
     }
+}
+
+/* FOOD TIPS DROP DOWN */
+
+.css-hx30u2 {
+    background-color: #21C0C0 !important;
+    color: white !important;
+    font-size: 1.1em !important;
+    z-index: 2 !important;
+}
+
+.css-qci76b {
+    z-index: 25 !important;
+    margin: 0 !important;
 }

@@ -28,19 +28,15 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.handleUpdateFruitandveg = this.handleUpdateFruitandveg.bind(this);
-        this.handleUpdateMeat = this.handleUpdateMeat.bind(this);
-        this.handleUpdateDairy = this.handleUpdateDairy.bind(this);
-        this.handleUpdateOther = this.handleUpdateOther.bind(this);
-        this.clearGroceryList = this.clearGroceryList.bind(this);
+        this.clearPage = this.clearPage.bind(this);
         this.sendToFridge = this.sendToFridge.bind(this);
         this.readItems = this.readItems.bind(this);
-
-
-        let listInitialFruitandveg = [];
-        let listInitialMeat = [];
-        let listInitialDairy = [];
-        let listInitialOther = [];
+        this.readMeals = this.readMeals.bind(this);
+        this.deleteItems = this.deleteItems.bind(this);
+        this.deleteShopItems = this.deleteShopItems.bind(this);
+        this.addToMealPlan = this.addToMealPlan.bind(this);
+        this.deleteMeal = this.deleteMeal.bind(this);
+        this.addToMealPlan = this.addToMealPlan.bind(this);
 
         let fridgeInitialFruitandveg = [];
         let fridgeInitialMeat = [];
@@ -48,10 +44,24 @@ class App extends Component {
         let fridgeInitialOther = [];
 
         this.state = {
-            listRowsFruitandveg: listInitialFruitandveg,
-            listRowsMeat: listInitialMeat,
-            listRowsDairy: listInitialDairy,
-            listRowsOther: listInitialOther,
+            rows: {
+                shop: {
+                    Fruitandveg: [],
+                    Meat: [],
+                    Dairy: [],
+                    Other: []
+                },
+
+                fridge: {
+                    FruitVeg: [],
+                    Meat: [],
+                    Dairy: [],
+                    Other: []
+                }
+
+            },
+
+            meals :[],
 
             fridgeRowsFruitandveg: fridgeInitialFruitandveg,
             fridgeRowsMeat: fridgeInitialMeat,
@@ -63,12 +73,14 @@ class App extends Component {
     WrapGroceryList = (props) => {
         return (
             <GroceryList
-            rowsFruitandveg={this.state.listRowsFruitandveg}
-            rowsDairy={this.state.listRowsDairy}
-            rowsMeat={this.state.listRowsMeat}
-            rowsOther={this.state.listRowsOther}
+            rows={this.state.rows.shop}
+            rowsFruitandveg={this.state.rows.shop.FruitVeg}
+            rowsDairy={this.state.rows.shop.Dairy}
+            rowsMeat={this.state.rows.shop.Meat}
+            rowsOther={this.state.rows.shop.Other}
             readItems={this.readItems}
             sendToFridge={this.sendToFridge}
+            deleteItems={this.deleteShopItems}
             {...props}
             />
         );
@@ -77,269 +89,177 @@ class App extends Component {
     WrapFridge = (props) => {
         return (
             <Fridge
-            rowsFruitandveg={this.state.fridgeRowsFruitandveg}
-            rowsMeat={this.state.fridgeRowsMeat}
-            rowsDairy={this.state.fridgeRowsDairy}
-            rowsOther={this.state.fridgeRowsOther}
+            rowsFruitandveg={this.state.rows.fridge.FruitVeg}
+            rowsMeat={this.state.rows.fridge.Meat}
+            rowsDairy={this.state.rows.fridge.Dairy}
+            rowsOther={this.state.rows.fridge.Other}
+            readItems={this.readItems}
+            deleteItems={this.deleteItems}
+            addToMealPlan={this.addToMealPlan}
+            meals={this.state.meals}
             {...props}
             />
         );
     }
 
+    WrapMeals = (props) => {
+        return (
+          <MealPlan
+          meals={this.state.meals}
+          readMeals={this.readMeals}
+          deleteMeal={this.deleteMeal}
+          {...props}
+          />
+        );
+    }
+
+    addToMealPlan = function (itemKey, itemName, amnt, section, meal){
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
+        let data = {
+            [itemName]: amnt
+        };
+        let newAmnt = 0;
+        let ref = new firebase.database().ref(path + "/" + section + "/" + itemKey + "/itemQuan");
+        ref.once("value").then(function(snapshot){
+            newAmnt = snapshot.val();
+        }).then(function(){
+            newAmnt -= amnt;
+            if (newAmnt <= 0){
+                handle.deleteItems(itemKey, section);
+            }
+            let remData = {
+                itemName: itemName,
+                itemQuan: newAmnt
+            }
+            new firebase.database().ref(path + "/" + section + "/" + itemKey + "/").update(remData);
+            new firebase.database().ref(path + "/mealPlans/" + meal + "/").update(data);
+        })
+    }
+
+
     sendToFridge = function() {
-        console.log("sendToFridge called");
-        this.setState((prevState, props) => {
 
-            let newRowsFV = prevState.fridgeRowsFruitandveg;
-            let newRowsM = prevState.fridgeRowsMeat;
-            let newRowsD = prevState.fridgeRowsDairy;
-            let newRowsO = prevState.fridgeRowsOther;
+        let newRows = this.state.rows;
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
 
-            prevState.listRowsFruitandveg.forEach(function(item) {
-                if (document.getElementById("check-F" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsFV.push(item);
+        newRows.shop.FruitVeg.forEach(function(item) {
+            if (document.getElementById("check-F" + item.key).checked) {
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
                 }
-            });
-
-            console.log(prevState.listRowsDairy.length)
-            prevState.listRowsDairy.forEach(function(item) {
-                console.log("check-D" + item.key)
-                if (document.getElementById("check-D" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsD.push(item);
-                }
-            });
-
-            prevState.listRowsMeat.forEach(function(item) {
-                if (document.getElementById("check-M" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsM.push(item);
-                }
-            });
-
-            prevState.listRowsOther.forEach(function(item) {
-                if (document.getElementById("check-O" + item.key).checked) {
-                    console.log("added " + item.itemName);
-                    newRowsO.push(item);
-                }
-            });
-
-            return({fridgeRowsFruitandveg: newRowsFV,
-                fridgeRowsMeat: newRowsM,
-                fridgeRowsDairy: newRowsD,
-                fridgeRowsOther: newRowsO});
+                new firebase.database().ref(path + "/fridgeFruitVeg/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopFruitVeg");
+            }
         });
 
-        console.log("fridge rows: " + this.state.fridgeRowsFruitandveg)
-        console.log("sendToFridge returning");
-        this.listToFridge();
+
+        newRows.shop.Dairy.forEach(function(item) {
+            if (document.getElementById("check-D" + item.key).checked) {
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeDairy/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopDairy");
+            }
+        });
+
+        newRows.shop.Meat.forEach(function(item) {
+            if (document.getElementById("check-M" + item.key).checked) {
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeMeat/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopMeat");
+            }
+        });
+
+        newRows.shop.Other.forEach(function(item) {
+            if (document.getElementById("check-O" + item.key).checked) {
+                let itemUpdate = {
+                    itemName: item.itemName,
+                    itemQuan: item.itemQuan
+                }
+                new firebase.database().ref(path + "/fridgeOther/" + item.key + "/").update(itemUpdate);
+                handle.deleteItems(item.key, "shopOther");
+            }
+        });
+
+        this.setState((prevState, props) => {
+            return({rows: newRows});
+        });
+
+        document.getElementById("DoNotTouchAgain").click();
+
     }
 
-    clearGroceryList = function() {
+    clearPage = function(page) {
+
+        let newRows = this.state.rows;
+        newRows[page] = {
+            FruitVeg: [],
+            Dairy: [],
+            Meat: [],
+            Other: []
+        }
+
         this.setState((prevState, props) => {
-            return({listRowsFruitandveg: [],
-                    listRowsDairy: [],
-                    listRowsMeat: [],
-                    listRowsOther: []
-            });
+            return({rows: newRows});
         });
     }
 
-    handleUpdateFruitandveg = function(key, newName, newQuan) {
+    handleUpdateItem = function(sourcePage, sourceCategory, key, newName, newQuan) {
+        if (newName !== "" && newQuan > 0) {
 
-        if(newName != "" && newQuan > 0) {
-            console.log("updating item  " + key)
+            let newRows = this.state.rows[sourcePage][sourceCategory];
+            newRows[key] = {
+                key: key,
+                keyVal: key,
+                isLast: false,
+                page: sourcePage,
+                category: sourceCategory,
+                itemName: newName,
+                itemQuan: newQuan,
+                onBlur: this.handleUpdateItem.bind(this),
+                onChange: this.handleAddItem.bind(this)
+            }
 
             this.setState((prevState, props) => {
-                let newRowsFV = prevState.listRowsFruitandveg;
-
-                newRowsFV[key] = {
-                    key: key,
-                    keyVal: key,
-                    itemName: newName,
-                    itemQuan: newQuan,
-                    onBlur: this.handleUpdateFruitandveg.bind(this),
-                    onChange: this.handleAddListFruitandveg.bind(this)
-                }
-
-                console.log(newRowsFV[key])
-                return ({listRowsFruitandveg: newRowsFV});
+                rows: newRows;
             });
 
-            this.writeItems(key, newName, newQuan, "shopFruitVeg");
-        } else {
-            console.log("no update: empty fields onBlur");
+            this.writeItem(key, newName, newQuan, sourcePage + sourceCategory);
         }
     }
 
-    handleAddListFruitandveg = function(name, quantity) {
-        
-        console.log("adding new item..")
-        // reference to this component
+    handleAddItem = function(targetPage, targetCategory, name, quantity, last, key) {
         let handle = this;
 
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsFruitandveg;
+        let newRows = this.state.rows;
+        let target = this.state.rows[targetPage][targetCategory];
 
-            newRowsFV.push({
-                key: newRowsFV.length,
-                keyVal: newRowsFV.length,
-                itemName: name,
-                itemQuan: quantity,
-                onBlur: handle.handleUpdateFruitandveg.bind(handle),
-                onChange: handle.handleAddListFruitandveg.bind(handle)
-            });
-            
-            console.log(newRowsFV[newRowsFV.length-1])
-            return({listRowsFruitandveg: newRowsFV});
+        newRows[targetPage][targetCategory].push({
+            key: key,
+            keyVal: key,
+            isLast: last,
+            page: targetPage,
+            category: targetCategory,
+            itemName: name,
+            itemQuan: quantity,
+            onBlur: handle.handleUpdateItem.bind(this),
+            onChange: handle.handleAddItem.bind(this)
+        });
+
+        this.setState((prevState, props) => {
+            rows: newRows
         });
     }
 
-    handleUpdateMeat = function(key, newName, newQuan) {
-        if(newName != "" && newQuan > 0) {
-            console.log("updating item  " + key)
-
-            this.setState((prevState, props) => {
-                let newRowsFV = prevState.listRowsMeat;
-
-                newRowsFV[key] = {
-                    key: key,
-                    keyVal: key,
-                    itemName: newName,
-                    itemQuan: newQuan,
-                    onBlur: this.handleUpdateMeat.bind(this),
-                    onChange: this.handleAddListMeat.bind(this)
-                }
-
-                console.log(newRowsFV[key])
-                return ({listRowsMeat: newRowsFV});
-            });
-
-            this.writeItems(key, newName, newQuan, "shopMeat");
-        }
-    }
-
-    handleAddListMeat = function(name, quantity) {
-
-        console.log("adding new item..")
-        // reference to this component
-        let handle = this;
-
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsMeat;
-
-            newRowsFV.push({
-                key: newRowsFV.length,
-                keyVal: newRowsFV.length,
-                itemName: name,
-                itemQuan: quantity,
-                onBlur: handle.handleUpdateMeat.bind(this),
-                onChange: handle.handleAddListMeat.bind(this)
-            });
-            
-            console.log(newRowsFV[newRowsFV.length-1])
-            return({listRowsMeat: newRowsFV});
-        });
-    }
-
-    handleUpdateDairy = function(key, newName, newQuan) {
-        if(newName != "" && newQuan > 0) {
-            console.log("updating item  " + key)
-
-            this.setState((prevState, props) => {
-                let newRowsFV = prevState.listRowsDairy;
-
-                newRowsFV[key] = {
-                    key: key,
-                    keyVal: key,
-                    itemName: newName,
-                    itemQuan: newQuan,
-                    onBlur: this.handleUpdateDairy.bind(this),
-                    onChange: this.handleAddListDairy.bind(this)
-                }
-
-                console.log(newRowsFV[key])
-                return ({listRowsDairy: newRowsFV});
-            });
-
-            this.writeItems(key, newName, newQuan, "shopDairy");
-        }
-
-    }
-
-    handleAddListDairy = function(name, quantity) {
-        
-        console.log("adding new item..")
-        // reference to this component
-        let handle = this;
-
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsDairy;
-
-            newRowsFV.push({
-                key: newRowsFV.length,
-                keyVal: newRowsFV.length,
-                itemName: name,
-                itemQuan: quantity,
-                onBlur: handle.handleUpdateDairy.bind(this),
-                onChange: handle.handleAddListDairy.bind(this)
-            });
-            
-            console.log(newRowsFV[newRowsFV.length-1])
-            return({listRowsDairy: newRowsFV});
-        });
-    }
-
-    handleUpdateOther = function(key, newName, newQuan) {
-        if(newName != "" && newQuan > 0) {
-            console.log("updating item  " + key)
-
-            this.setState((prevState, props) => {
-                let newRowsFV = prevState.listRowsOther;
-
-                newRowsFV[key] = {
-                    key: key,
-                    keyVal: key,
-                    itemName: newName,
-                    itemQuan: newQuan,
-                    onBlur: this.handleUpdateOther.bind(this),
-                    onChange: this.handleAddListOther.bind(this)
-                }
-
-                console.log(newRowsFV[key])
-                return ({listRowsOther: newRowsFV});
-            });
-
-            this.writeItems(key, newName, newQuan, "shopOther");
-        }
-
-    }
-
-    handleAddListOther = function(name, quantity) {
-        
-        console.log("adding new item..")
-        // reference to this component
-        let handle = this;
-
-        this.setState((prevState, props) => {
-            let newRowsFV = prevState.listRowsOther;
-
-            newRowsFV.push({
-                key: newRowsFV.length,
-                keyVal: newRowsFV.length,
-                itemName: name,
-                itemQuan: quantity,
-                onBlur: handle.handleUpdateOther.bind(this),
-                onChange: handle.handleAddListOther.bind(this)
-            });
-            
-            console.log(newRowsFV[newRowsFV.length-1])
-            return({listRowsOther: newRowsFV});
-        });
-    }
-
-    writeItems = function (key, name, quan, section){
+    writeItem = function (key, name, quan, section){
         let path = firebase.auth().currentUser.uid;
         let data = {
             itemName : name,
@@ -348,114 +268,157 @@ class App extends Component {
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
     }
 
-    readItems = function (callback){
-        this.clearGroceryList();
-
-        this.setState((prevState, props) => {
-            let handle = this;
-            let path = firebase.auth().currentUser.uid;
-
-            //pull fruit and veg
-            let ref = new firebase.database().ref(path + "/shopFruitVeg/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListFruitandveg(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListFruitandveg("", 1)
-            }).then(callback);
-            //pull dairy
-            ref = new firebase.database().ref(path + "/shopDairy/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListDairy(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListDairy("", 1)
-            }).then(callback);
-            //pull meat
-            ref = new firebase.database().ref(path + "/shopMeat/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListMeat(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListMeat("", 1)
-            }).then(callback);
-            //pull other
-            ref = new firebase.database().ref(path + "/shopOther/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddListOther(itemName, itemQuan);
-                    console.log("Pulled: " + itemQuan + " " + itemName);
-                })
-                handle.handleAddListOther("", 1)
-            }).then(callback);
+    deleteMeal = function (mealName) {
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/mealPlans/" + mealName);
+        ref.once("value").then(function(snapshot){
+            ref.remove();
         })
     }
 
-
-    //sends all the items in the grocery list db to the fridge db
-    listToFridge = function () {
-        let path = firebase.auth().currentUser.uid;
-        let ref = new firebase.database().ref(path + "/shopFruitVeg/");
-        var fruitVeg = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    fruitVeg[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeFruitVeg").update(fruitVeg);
-            })
-        ref = new firebase.database().ref(path + "/shopDairy/");
-        var dairy = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    dairy[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeDairy").update(dairy);
-            })
-        ref = new firebase.database().ref(path + "/shopMeat/");
-        var meat = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    meat[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeMeat").update(meat);
-            })
-        ref = new firebase.database().ref(path + "/shopOther/");
-        var other = {};
-        ref.once("value")
-            .then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.key;
-                    var itemQuan = childSnapshot.val();
-                    other[itemName] = itemQuan;
-
-                })
-                firebase.database().ref(path + "/fridgeOther").update(other);
-            })
+    //removes an item from the database
+    deleteItems = function (key, section, callback){
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
+        ref.once("value").then(function(snapshot){
+            ref.remove();
+        }).then(callback);
     }
 
+    deleteShopItems = function(callback) {
+        let handle = this;
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/");
+        ref.once('value').then(function(snapshot) {
+            let db = snapshot.val();
+
+            handle.state.rows.shop.FruitVeg.forEach(function(item) {
+                if (document.getElementById('check-F' + item.keyVal).checked) {
+                    db['shopFruitVeg'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Dairy.forEach(function(item) {
+                if (document.getElementById('check-D' + item.keyVal).checked) {
+                    db['shopDairy'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Meat.forEach(function(item) {
+                if (document.getElementById('check-M' + item.keyVal).checked) {
+                    db['shopMeat'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Other.forEach(function(item) {
+                if (document.getElementById('check-O' + item.keyVal).checked) {
+                    db['shopOther'][item.keyVal] = null;
+                }
+            });
+
+            ref.set(db);
+        }).then(function(snapshot) {
+            callback();
+        });
+    }
+
+    readMeals = function (callback){
+        this.setState((prevState, props) => {
+            let handle = this;
+            let newMeals = [];
+            let path = firebase.auth().currentUser.uid;
+            let ref = new firebase.database().ref(path + "/mealPlans/");
+            let key = 0;
+            ref.once("value").then(function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    //pulls the name and ingredients of each meal in the database
+                    var mealName = Object.keys(snapshot.val())[key];
+                    var ingredients = childSnapshot.val();
+
+                    //makes a meal object out of the name and ingredients from above
+                    newMeals.push({
+                        key : key,
+                        keyVal : key,
+                        mealName : mealName,
+                        ingredients: ingredients
+                    })
+                    key ++;
+                })
+
+                handle.setState({meals: newMeals});
+
+            }).then(callback);
+
+        })
+    }
+
+    readItems = function (sourcePage, callback){
+        this.clearPage(sourcePage);
+
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
+
+        let ref = new firebase.database().ref(path + "/");
+        ref.once("value").then(function(snapshot) {
+
+            let fruitVegLastKey = 0;
+            if (snapshot.val()[sourcePage + 'FruitVeg']) {
+                let section = snapshot.val()[sourcePage + 'FruitVeg'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'FruitVeg', item.itemName, item.itemQuan, false, key);
+                
+                    fruitVegLastKey = key;
+                });
+
+                fruitVegLastKey++;
+            }
+
+            let meatLastKey = 0;
+            if (snapshot.val()[sourcePage + 'Meat']) {
+                let section = snapshot.val()[sourcePage + 'Meat'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Meat', item.itemName, item.itemQuan, false, key);
+                
+                    meatLastKey = key;
+                });
+                meatLastKey++;
+            }
+
+            let dairyLastKey = 0;
+            if (snapshot.val()[sourcePage + 'Dairy']) {
+                let section = snapshot.val()[sourcePage + 'Dairy'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Dairy', item.itemName, item.itemQuan, false, key);
+                
+                    dairyLastKey = key;
+                });
+                dairyLastKey++;
+            }
+
+            let otherLastKey = 0;
+            if (snapshot.val()[sourcePage + 'Other']) {
+                let section = snapshot.val()[sourcePage + 'Other'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Other', item.itemName, item.itemQuan, false, key);
+                
+                    otherLastKey = key;
+                });
+                otherLastKey++;
+            }
+
+            handle.handleAddItem(sourcePage, 'FruitVeg', "", 1, true, fruitVegLastKey);
+            handle.handleAddItem(sourcePage, 'Dairy', "", 1, true, dairyLastKey);
+            handle.handleAddItem(sourcePage, 'Meat', "", 1, true, meatLastKey);
+            handle.handleAddItem(sourcePage, 'Other', "", 1, true, otherLastKey);
+
+        }).then(callback);
+    }
+    
     /*
     *  render() defines the HTML template for this class.
     */
@@ -470,7 +433,7 @@ class App extends Component {
                                 <Route exact path='/' component={LandingPage} />
                                 <Route path='/list' render={this.WrapGroceryList} />
                                 <Route path='/fridge' render={this.WrapFridge} />
-                                <Route path='/meal-plan' component={MealPlan} />
+                                <Route path='/meal-plan' render={this.WrapMeals} />
                                 <Route path='/affiliated-page' component={AffiliatedPage} />
                                 <Route path='/about-us' component={AboutusPage} />
                                 <Route path='/easter-egg-page' component={EasterGroceryList} />

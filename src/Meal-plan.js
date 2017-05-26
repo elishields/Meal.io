@@ -1,8 +1,5 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { ButtonGroup } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 
 // Import our classes
@@ -14,37 +11,55 @@ import { Header, Footer, Tips } from './Navigation.js';
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import '../src/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg';
 import './App.css';
 
+class MealIngredient extends Component {
+    render() {
+        return(
+            <div>
+                <span>{this.props.itemQuan} x {this.props.itemName}</span>
+            </div>
+        );
+    }
+}
+
 class MealDay extends React.Component {
-    constructor(...args) {
-        super(...args);
+    constructor(props) {
+        super(props);
+
+        let ingredientRows = [];
+        Object.keys(props.ingredients).forEach(function(item) {
+            ingredientRows.push(
+                <MealIngredient
+                    itemName={item}
+                    itemQuan={props.ingredients[item]}
+                />
+            );
+        });
+
         this.state = {
-            open: false
+            open: false,
+            rows: ingredientRows
         };
     }
 
     render() {
         return (
             <div>
-                <h4 className="meal-category-title" onClick={ ()=> this.setState({ open: !this.state.open })}>
-                    Day {this.props.dayNum}
-                </h4>
+                <div id="meal-plan-meal-name" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                    <h4 className="meal-category-title pull-left">
+                        {this.props.mealName}
+                    </h4>
+                    <span className="glyphicon glyphicon-menu-down pull-right" id="meal-plan-chevron" aria-hidden="true"></span>
+                </div>
                 <Panel collapsible expanded={this.state.open} bsStyle={ null } className="meal-panel">
                     <div className="row">
                         <div className="col-xs-12 meal-category">
-                            <p className="meal-category">Breakfast:</p>
+                            {this.state.rows}
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12 meal-category">
-                            <p className="meal-category">Lunch:</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12 meal-category">
-                            <p className="meal-category">Dinner:</p>
-                        </div>
+                        <br/>
+                        <button id="delete-meal" onClick={() => this.props.deleteMeal("MY MEAL")}>Remove Meal</button>
                     </div>
                 </Panel>
             </div>
@@ -53,14 +68,45 @@ class MealDay extends React.Component {
 }
 
 
-/*
- * MealPlan: displays 7 days worth of meals planned, 3 for each day.
- */
 export class MealPlan extends Component {
+    constructor (props) {
+        super (props);
 
+        this.buildMeals = this.buildMeals.bind(this);
+
+        this.state = {
+            mealObjects: []
+        }
+    }
     /*
      *  render() returns the HTML template for Fridge
      */
+
+    componentWillMount() {
+        this.props.readMeals(this.buildMeals);
+    }
+
+    buildMeals = function(){
+        var handle = this;
+        var key = 0;
+
+        let newMeals = [];
+        this.props.meals.forEach(function(item) {
+            newMeals.push(
+                <MealDay
+                    key={key}
+                    ingredients={item.ingredients}
+                    mealName={item.mealName}
+                    deleteMeal={handle.props.deleteMeal}
+                />
+            );
+
+            key++;
+        });
+
+        this.setState({mealObjects: newMeals});
+    }
+
     render() {
         return (
             <div>
@@ -75,98 +121,18 @@ export class MealPlan extends Component {
                         </div>
                     </div>
 
-                    {/*<div className="row">
-                        <div className="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
-                            <img src={MealPlate} className="center-block" id="meal-plan-plate" alt="Meal Plan"/>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-xs-8 col-xs-offset-2">
-                            <ButtonToolbar>
-                                <ButtonGroup className="meal-nav">
-                                    <Button><a href="#meal-day-1">1</a></Button>
-                                    <Button><a href="#meal-day-2">2</a></Button>
-                                    <Button><a href="#meal-day-3">3</a></Button>
-                                    <Button><a href="#meal-day-4">4</a></Button>
-                                    <Button><a href="#meal-day-5">5</a></Button>
-                                    <Button><a href="#meal-day-6">6</a></Button>
-                                    <Button><a href="#meal-day-7">7</a></Button>
-                                </ButtonGroup>
-                            </ButtonToolbar>
-                        </div>
-                    </div> */}
                     <div id="content-section">
                         <div className="row">
                             <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
                                 <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={1} />
+                                    {this.state.mealObjects}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={2} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={3} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={4} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={5} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={6} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-md-4 col-md-offset-4" id="meal-day-1">
-                                <div className="fridge-category" id="fridge-category-fruit-veg">
-                                    <MealDay dayNum={7} />
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <div className="grocery-button-row" id="grocery-button-row">
-                                <button className="col-xs-4 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>CLEAR</button>
-                                <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SEE ALL MEALS</button>
-                                <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SAVE</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
                 <Footer />
             </div>
         )
