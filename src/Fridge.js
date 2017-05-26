@@ -1,6 +1,7 @@
 // Import classes from React
 import React, { Component } from 'react';
 import { ListItem } from './GroceryList.js';
+import { Link } from 'react-router-dom';
 
 // Import our classes
 import { Header, Footer, Tips } from './Navigation.js';
@@ -55,24 +56,27 @@ export class Fridge extends Component {
         let handle = this;
         handle.props.rowsFruitandveg.forEach(function(item){
             if (document.getElementById("check-F" + item.key).checked) {
-                handle.props.addToMealPlan(item.itemName, 1, "fridgeFruitVeg", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName, document.getElementById("grocery-item-quantityF" + item.key).value, "fridgeFruitVeg", "MY MEAL");
             }
         })
         handle.props.rowsDairy.forEach(function(item){
             if (document.getElementById("check-D" + item.key).checked) {
-                handle.props.addToMealPlan(item.itemName, 1, "fridgeDairy", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityD" + item.key).value, "fridgeDairy", "MY MEAL");
             }
         })
         handle.props.rowsMeat.forEach(function(item){
             if (document.getElementById("check-M" + item.key).checked) {
-                handle.props.addToMealPlan(item.itemName, 1, "fridgeMeat", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityM" + item.key).value, "fridgeMeat", "MY MEAL");
             }
         })
         handle.props.rowsOther.forEach(function(item){
             if (document.getElementById("check-O" + item.key).checked) {
-                handle.props.addToMealPlan(item.itemName, 1, "fridgeOther", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityO" + item.key).value, "fridgeOther", "MY MEAL");
             }
         })
+
+        document.getElementById("SrslyDoNotTouch").click();
+
     }
 
     deleteFromFridge = function(){
@@ -312,52 +316,35 @@ export class Fridge extends Component {
                         </div>
                     </div>
                     <Tips />
-                    <div className="row">
-                        <div id="fridge-icon-row">
-                            <div className="fridge-category-col col-xs-3 col-md-2 col-md-offset-2">
-                                <a href="#fridge-category-fruit-veg">
-                                    <img className="fridge-category-icon" src={FruitVeg} alt="FruitVeg"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-dairy">
-                                    <img className="fridge-category-icon" src={Dairy} alt="Dairy"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-meat">
-                                    <img className="fridge-category-icon" src={Meat} alt="Meat"/>
-                                </a>
-                            </div>
-                            <div className="fridge-category-col col-xs-3 col-md-2">
-                                <a href="#fridge-category-other">
-                                    <img className="fridge-category-icon" src={OtherIcon} alt="OtherIcon"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div className="row">
-                        <div className="col-xs-12" id="fridge-list content-section">
+                        <div className="col-xs-12" id="fridge-list">
                             <div className="fridge-category" id="fridge-category-fruit-veg">
-                                <h4 className="fridge-category-title">Fruits & Vegetables</h4>
-                                <p className="fridge-category-content">{this.state.rowsFruitandveg}</p>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">FRUIT & VEG</span>
+                                </h4>
+                                <p className="item-input-row">{this.state.rowsFruitandveg}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-dairy">
-                                <h4 className="fridge-category-title">Dairy</h4>
-                                <p className="fridge-category-content">{this.state.rowsDairy}</p>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">DAIRY</span>
+                                </h4>
+                                <p className="item-input-row">{this.state.rowsDairy}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-meat">
-                                <h4 className="fridge-category-title">Meat</h4>
-                                <p className="fridge-category-content">{this.state.rowsMeat}</p>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">MEAT</span>
+                                </h4>
+                                <p className="item-input-row">{this.state.rowsMeat}</p>
                             </div>
                             <div className="fridge-category" id="fridge-category-other">
-                                <h4 className="fridge-category-title">Other</h4>
-                                <p className="fridge-category-content">{this.state.rowsOther}</p>
+                                <h4 className="subheader">
+                                    <span className="subheader-text">OTHER</span>
+                                </h4>
+                                <p className="item-input-row" id="content-section">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div className="container-fluid">
@@ -371,6 +358,7 @@ export class Fridge extends Component {
                             </div>
                         </div>
                     </div>
+                    <Link to="/meal-plan"><div id="SrslyDoNotTouch"></div></Link>
                 </div>
 
                 <Footer />

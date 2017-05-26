@@ -1,8 +1,5 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { ButtonGroup } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 
 // Import our classes
@@ -14,6 +11,7 @@ import { Header, Footer, Tips } from './Navigation.js';
 // Import styles
 import '../src/bootstrap-3.3.7-dist/css/bootstrap.css';
 import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
+import '../src/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg';
 import './App.css';
 
 class MealIngredient extends Component {
@@ -49,16 +47,19 @@ class MealDay extends React.Component {
     render() {
         return (
             <div>
-                <h4 className="meal-category-title" onClick={ ()=> this.setState({ open: !this.state.open })}>
-                    {this.props.mealName}
-                </h4>
+                <div id="meal-plan-meal-name" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                    <h4 className="meal-category-title pull-left">
+                        {this.props.mealName}
+                    </h4>
+                    <span className="glyphicon glyphicon-menu-down pull-right" id="meal-plan-chevron" aria-hidden="true"></span>
+                </div>
                 <Panel collapsible expanded={this.state.open} bsStyle={ null } className="meal-panel">
                     <div className="row">
                         <div className="col-xs-12 meal-category">
                             {this.state.rows}
                         </div>
                         <br/>
-                        <a href="#" onClick={() => this.props.deleteMeal("myMeal")} style={{color:"#000000"}}>DelEAT Meal</a>
+                        <button id="delete-meal" onClick={() => this.props.deleteMeal("MY MEAL")}>Remove Meal</button>
                     </div>
                 </Panel>
             </div>
@@ -67,9 +68,6 @@ class MealDay extends React.Component {
 }
 
 
-/*
- * MealPlan: displays 7 days worth of meals planned, 3 for each day.
- */
 export class MealPlan extends Component {
     constructor (props) {
         super (props);
@@ -134,19 +132,7 @@ export class MealPlan extends Component {
 
                     </div>
                 </div>
-
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <div className="grocery-button-row" id="grocery-button-row">
-                                <button className="col-xs-4 btn btn-secondary" id="remove-button" onClick={this.deleteItems}>CLEAR</button>
-                                <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SEE ALL MEALS</button>
-                                <button className="col-xs-4 btn btn-secondary" id="add-to-fridge-button" >SAVE</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
                 <Footer />
             </div>
         )

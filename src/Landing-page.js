@@ -127,9 +127,7 @@ class FacebookButton extends Component {
     render () {
         return (
             <div>
-                <a href="#" className="btn btn-default btn-lg" onClick={this.handler} id="btnFacebook">
-                    <img src={FacebookLogin} alt="Facebook Login" id="btnFacebookImage"/>
-                </a>
+                <img src={FacebookLogin} alt="Facebook Login"  onClick={this.handler} id="btnFacebookImage"/>
             </div>
         )
     }
@@ -191,8 +189,8 @@ export class LandingPage extends Component {
     render() {
 
         return (
-            <div>
-                <div className="container-fluid" id="landing-body">
+            <div id="landing-body">
+                <div className="container-fluid">
 
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1" id="landing-logo">
@@ -221,7 +219,7 @@ export class LandingPage extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div className="row" id="landing-lower">
                         <div className="col-xs-10 col-xs-offset-1">
                             <div className="btn-group btn-group-justified" id="landing-buttons-group">
                                 <span className="group-btn">
@@ -245,6 +243,5 @@ export class LandingPage extends Component {
         )
     }
 }
-
 
 export default LandingPage;

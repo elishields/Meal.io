@@ -36,6 +36,17 @@
 #content-section {
     margin-bottom: 150px;
 }
+.subheader {
+    color: white;
+    font-weight: bold;
+    padding: 5px 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
+    background-blend-mode: normal;
+}
+.subheader-text {
+    padding: 0;
+}
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
 #bootstrap-overrides .container-fluid {
@@ -78,6 +89,7 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
+    z-index: 2147483647;
 }
 .menu-item a {
     color: white;
@@ -121,10 +133,16 @@
 .nav-icon-caption {
     text-align: center;
 }
+#bootstrap-overrides a:link, a:visited, a:hover .footer-link img {
+    text-decoration: none;
+}
 #bootstrap-overrides a:active .footer-link img {
     text-decoration: none;
     -webkit-filter: invert(.3);
     filter: invert(.3);
+}
+#bootstrap-overrides a:link, a:visited, a:hover .footer-link p {
+    text-decoration: none;
 }
 #bootstrap-overrides a:active .footer-link p {
     text-decoration: none;
@@ -139,6 +157,11 @@
     margin: 0;
     padding: 0;
 }
+
+#bootstrap-overrides #landing-lower {
+    margin-bottom: 50px;
+}
+
 #landing-logo {
     background-color: #21C0C0;
     margin-top: 30px;
@@ -258,6 +281,9 @@
     width: 100%;
     z-index: 1000;
 }
+#bootstrap-overrides .grocery-button-row button:link, button:visited, button:hover {
+    text-decoration: none;
+}
 #bootstrap-overrides .grocery-button-row button:active {
     text-decoration: none;
     -webkit-filter: invert(.3);
@@ -292,41 +318,64 @@
     height: 16px;
     margin: 0;
 }
-.grocery-subheader {
-    margin: 20px;
-    text-align: center;
-}
-.grocery-subheader-text {
-    border-bottom: 2px solid #21C0C0;
-}
 
 /* FRIDGE *//* FRIDGE *//* FRIDGE */
 
-#fridge-icon-row {
-    margin: 0 auto;
+.item-input-row {
+    padding: 0 15px;
 }
-.fridge-category-col {
-    padding: 0;
-    text-align: center;
+.fridge-category-other {
+    margin-bottom: 150px;
 }
-.fridge-category-icon {
-    width: 75px;
-    height: auto;
-}
-#fridge-list {
-    /*margin: 0;*/
-}
-.fridge-category {
 
+/* MEAL PLAN */
+
+#meal-plan-plate {
+    max-width: 20%;
 }
-.fridge-category-title {
-    color: #21C0C0;
+#meal-list {
+    /* margin: 0;*/
+}
+#meal-plan-meal-name {
+    color: white;
+    display: inline-block;
+    width: 100%;
     font-weight: bold;
-    padding: 5px;
-    background-color: #f7f7f7;
+    padding: 5px 25px;
+    background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
+    background-blend-mode: normal;
 }
-.fridge-category-content {
-    padding-left: 20px;
+.meal-category-title {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+#meal-plan-chevron {
+    padding: 0;
+    font-size: 1.5em;
+    color: #21C0C0;
+}
+.meal-category {
+    font-size: 0.9em;
+}
+#bootstrap-overrides .panel {
+    border: none;
+    box-shadow: none;
+    margin-bottom: -10px;
+}
+.meal-panel {
+    border: none;
+    box-shadow: none;
+}
+#bootstrap-overrides #delete-meal {
+    color: white;
+    background-color: #21C0C0;
+    border: 2px solid #21C0C0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 5%;
+    padding: 4px;
+    margin-top: 5px;
 }
 
 /* AFFILIATED *//* AFFILIATED *//* AFFILIATED */
@@ -351,14 +400,11 @@
 
 /*ABOUT US */
 #buttons{
-    background-color: #21c0c0;
+    background-color: #21C0C0;
     color: white;
     text-decoration: none;
 }
     /* Control how big the team image is */
-#aboutus-team-image {
-    width: 70%;
-}
 #second-heading{
     border: none;
 }
@@ -366,12 +412,20 @@
     border: 0 none;
     box-shadow: none;
 }
-.three-icons{
+.fb-icon{
     width: 80%;
+    padding: 3px;
 }
-#aboutus-button-email {
+#facebook-button {
     margin-bottom: 100px;
 }
+.btn.btn-info.btn-block{
+    background-color: #0065AC;
+}
+.three-icons{
+    width: 90%;
+}
+
 
 /*EASTER EGG */
 #easter-header {
@@ -464,38 +518,6 @@
     margin: 12px 8px 8px 8px;
 }
 
-/* MEAL PLAN */
-
-#meal-plan-plate {
-    max-width: 20%;
-}
-
-#meal-list {
-   /* margin: 0;*/
-}
-
-.meal-category-title {
-    color: #21C0C0;
-    font-weight: bold;
-    padding: 12px 5px;
-    background-color: whitesmoke;
-}
-
-.meal-category {
-    font-size: 0.9em;
-}
-
-#bootstrap-overrides .panel {
-    border: none;
-    box-shadow: none;
-    margin-bottom: -10px;
-}
-
-.meal-panel {
-    border: none;
-    box-shadow: none;
-}
-
 /* HIDE NAVBAR ON KEYBOARD *//* HIDE NAVBAR ON KEYBOARD */
 
 /* Smartphone
@@ -525,13 +547,13 @@
 /* FOOD TIPS DROP DOWN */
 
 .css-hx30u2 {
-    background-color: #21C0C0;
-    color: white;
-    font-size: 1.1em;
-    z-index: 2;
+    background-color: #21C0C0 !important;
+    color: white !important;
+    font-size: 1.1em !important;
+    z-index: 2 !important;
 }
 
 .css-qci76b {
-    z-index: 25;
-    margin: 0;
+    z-index: 25 !important;
+    margin: 0 !important;
 }

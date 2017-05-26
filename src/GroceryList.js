@@ -131,7 +131,7 @@ export class GroceryList extends Component {
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
         this.deleteFromShop = this.deleteFromShop.bind(this);
-        this.mountPage = this.mountPage.bind(this);
+        this.buildPage = this.buildPage.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
@@ -155,10 +155,10 @@ export class GroceryList extends Component {
     }
 
     componentWillMount() {
-        this.mountPage();
+        this.buildPage();
     }
 
-    mountPage() {
+    buildPage() {
         this.props.readItems('shop', this.buildRows.bind(this));
     }
 
@@ -445,29 +445,29 @@ export class GroceryList extends Component {
                         <div className="col-xs-12" id="content-section">
                             <div id="grocery-subheadings">
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">FRUIT & VEG</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">FRUIT & VEG</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsFruitandveg}
+                                <p className="item-input-row">{this.state.rowsFruitandveg}</p>
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">DAIRY</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">DAIRY</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsDairy}
+                                <p className="item-input-row">{this.state.rowsDairy}</p>
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">MEAT</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">MEAT</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsMeat}
+                                <p className="item-input-row">{this.state.rowsMeat}</p>
                                 <div>
-                                    <h4 className="grocery-subheader">
-                                        <span className="grocery-subheader-text">OTHER</span>
+                                    <h4 className="subheader">
+                                        <span className="subheader-text">OTHER</span>
                                     </h4>
                                 </div>
-                                {this.state.rowsOther}
+                                <p className="item-input-row">{this.state.rowsOther}</p>
                             </div>
                         </div>
                     </div>
@@ -482,6 +482,7 @@ export class GroceryList extends Component {
                             </div>
                         </div>
                     </div>
+                    <Link to="/fridge"><div id="DoNotTouchAgain"></div></Link>
                 </div>
 
                 <Footer myprop="" />
