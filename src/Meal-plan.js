@@ -1,8 +1,5 @@
 // Import classes from React
 import React, { Component } from 'react';
-import { ButtonGroup } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 
 // Import our classes
