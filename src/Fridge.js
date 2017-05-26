@@ -1,6 +1,7 @@
 // Import classes from React
 import React, { Component } from 'react';
 import { ListItem } from './GroceryList.js';
+import { Link } from 'react-router-dom';
 
 // Import our classes
 import { Header, Footer, Tips } from './Navigation.js';
@@ -74,6 +75,9 @@ export class Fridge extends Component {
                 handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityO" + item.key).value, "fridgeOther", "MY MEAL");
             }
         })
+
+        document.getElementById("SrslyDoNotTouch").click();
+
     }
 
     deleteFromFridge = function(){
@@ -356,6 +360,7 @@ export class Fridge extends Component {
                             </div>
                         </div>
                     </div>
+                    <Link to="/meal-plan"><div id="SrslyDoNotTouch"></div></Link>
                 </div>
 
                 <Footer />

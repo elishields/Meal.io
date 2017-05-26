@@ -483,6 +483,7 @@ export class GroceryList extends Component {
                             </div>
                         </div>
                     </div>
+                    <Link to="/fridge"><div id="DoNotTouchAgain"></div></Link>
                 </div>
 
                 <Footer myprop="" />

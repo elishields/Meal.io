@@ -191,6 +191,9 @@ class App extends Component {
         this.setState((prevState, props) => {
             return({rows: newRows});
         });
+
+        document.getElementById("DoNotTouchAgain").click();
+
     }
 
     clearPage = function(page) {
