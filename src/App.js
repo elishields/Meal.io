@@ -33,6 +33,7 @@ class App extends Component {
         this.readItems = this.readItems.bind(this);
         this.readMeals = this.readMeals.bind(this);
         this.deleteItems = this.deleteItems.bind(this);
+        this.deleteShopItems = this.deleteShopItems.bind(this);
         this.addToMealPlan = this.addToMealPlan.bind(this);
         this.deleteMeal = this.deleteMeal.bind(this);
         this.addToMealPlan = this.addToMealPlan.bind(this);
@@ -79,7 +80,7 @@ class App extends Component {
             rowsOther={this.state.rows.shop.Other}
             readItems={this.readItems}
             sendToFridge={this.sendToFridge}
-            deleteItems={this.deleteItems}
+            deleteItems={this.deleteShopItems}
             {...props}
             />
         );
@@ -235,12 +236,11 @@ class App extends Component {
         }
     }
 
-    handleAddItem = function(targetPage, targetCategory, name, quantity, last) {
+    handleAddItem = function(targetPage, targetCategory, name, quantity, last, key) {
         let handle = this;
 
         let newRows = this.state.rows;
         let target = this.state.rows[targetPage][targetCategory];
-        let key = target.length;
 
         newRows[targetPage][targetCategory].push({
             key: key,
@@ -268,25 +268,58 @@ class App extends Component {
         return new firebase.database().ref(path + "/" + section + "/" + key).update(data);
     }
 
-    //removes an item from the database
-    deleteItems = function (key, section){
-        console.log("Attempting to delete item keyed: " + key + " from section " + section);
-        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
-        ref.once("value").then(function(snapshot){
-            ref.remove();
-        })
-    }
-
     deleteMeal = function (mealName) {
-        console.log("Attempting to remove " + mealName + " from meal plans");
         let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/mealPlans/" + mealName);
         ref.once("value").then(function(snapshot){
             ref.remove();
         })
     }
 
+    //removes an item from the database
+    deleteItems = function (key, section, callback){
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
+        ref.once("value").then(function(snapshot){
+            ref.remove();
+        }).then(callback);
+    }
+
+    deleteShopItems = function(callback) {
+        let handle = this;
+        let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/");
+        ref.once('value').then(function(snapshot) {
+            let db = snapshot.val();
+
+            handle.state.rows.shop.FruitVeg.forEach(function(item) {
+                if (document.getElementById('check-F' + item.keyVal).checked) {
+                    db['shopFruitVeg'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Dairy.forEach(function(item) {
+                if (document.getElementById('check-D' + item.keyVal).checked) {
+                    db['shopDairy'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Meat.forEach(function(item) {
+                if (document.getElementById('check-M' + item.keyVal).checked) {
+                    db['shopMeat'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Other.forEach(function(item) {
+                if (document.getElementById('check-O' + item.keyVal).checked) {
+                    db['shopOther'][item.keyVal] = null;
+                }
+            });
+
+            ref.set(db);
+        }).then(function(snapshot) {
+            callback();
+        });
+    }
+
     readMeals = function (callback){
-        console.log("Load planned meals from database.");
         this.setState((prevState, props) => {
             let handle = this;
             let newMeals = [];
@@ -318,56 +351,72 @@ class App extends Component {
 
     readItems = function (sourcePage, callback){
         this.clearPage(sourcePage);
-        console.log("read from " + sourcePage)
 
-        this.setState((prevState, props) => {
-            let handle = this;
-            let path = firebase.auth().currentUser.uid;
+        let handle = this;
+        let path = firebase.auth().currentUser.uid;
 
-            //pull fruit and veg
-            let ref = new firebase.database().ref(path + "/" + sourcePage + "FruitVeg/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'FruitVeg', itemName, itemQuan, false);
-                })
-                handle.handleAddItem(sourcePage, 'FruitVeg', '', 1, true);
-            }).then(callback);
+        let ref = new firebase.database().ref(path + "/");
+        ref.once("value").then(function(snapshot) {
 
-            //pull dairy
-            ref = new firebase.database().ref(path + "/" + sourcePage + "Dairy/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Dairy', itemName, itemQuan, false);
-                })
-                handle.handleAddItem(sourcePage, 'Dairy', '', 1, true);
-            }).then(callback);
+            let fruitVegLastKey = 0;
+            if (snapshot.val()['shopFruitVeg']) {
+                let section = snapshot.val()['shopFruitVeg'];
 
-            //pull meat
-            ref = new firebase.database().ref(path + "/" + sourcePage + "Meat/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Meat', itemName, itemQuan, false)
-                })
-                handle.handleAddItem(sourcePage, 'Meat', '', 1, true);
-            }).then(callback);
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'FruitVeg', item.itemName, item.itemQuan, false, key);
+                
+                    fruitVegLastKey = key;
+                });
 
-            //pull other
-            ref = new firebase.database().ref(path + "/" + sourcePage + "Other/");
-            ref.once("value").then(function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var itemName = childSnapshot.val().itemName;
-                    var itemQuan = childSnapshot.val().itemQuan;
-                    handle.handleAddItem(sourcePage, 'Other', itemName, itemQuan, false);
-                })
-                handle.handleAddItem(sourcePage, 'Other', '', 1, true)
-            }).then(callback);
-        })
+                fruitVegLastKey++;
+            }
+
+            let meatLastKey = 0;
+            if (snapshot.val()['shopMeat']) {
+                let section = snapshot.val()['shopMeat'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Meat', item.itemName, item.itemQuan, false, key);
+                
+                    meatLastKey = key;
+                });
+                meatLastKey++;
+            }
+
+            let dairyLastKey = 0;
+            if (snapshot.val()['shopDairy']) {
+                let section = snapshot.val()['shopDairy'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Dairy', item.itemName, item.itemQuan, false, key);
+                
+                    dairyLastKey = key;
+                });
+                dairyLastKey++;
+            }
+
+            let otherLastKey = 0;
+            if (snapshot.val()['shopOther']) {
+                let section = snapshot.val()['shopOther'];
+
+                Object.keys(section).forEach(function(key) {
+                    let item = section[key];
+                    handle.handleAddItem(sourcePage, 'Other', item.itemName, item.itemQuan, false, key);
+                
+                    otherLastKey = key;
+                });
+                otherLastKey++;
+            }
+
+            handle.handleAddItem(sourcePage, 'FruitVeg', "", 1, true, fruitVegLastKey);
+            handle.handleAddItem(sourcePage, 'Dairy', "", 1, true, dairyLastKey);
+            handle.handleAddItem(sourcePage, 'Meat', "", 1, true, meatLastKey);
+            handle.handleAddItem(sourcePage, 'Other', "", 1, true, otherLastKey);
+
+        }).then(callback);
     }
     
     /*
