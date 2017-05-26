@@ -145,7 +145,7 @@ export class AboutusPage extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <h4 className="page-header" id="second-heading">
-                                <span className="page-title-text">Meet the Team</span>
+                                <span className="page-title-text">About the Team</span>
                             </h4>
                         </div>
                     </div>
