@@ -359,8 +359,8 @@ class App extends Component {
         ref.once("value").then(function(snapshot) {
 
             let fruitVegLastKey = 0;
-            if (snapshot.val()['shopFruitVeg']) {
-                let section = snapshot.val()['shopFruitVeg'];
+            if (snapshot.val()[sourcePage + 'FruitVeg']) {
+                let section = snapshot.val()[sourcePage + 'FruitVeg'];
 
                 Object.keys(section).forEach(function(key) {
                     let item = section[key];
@@ -373,8 +373,8 @@ class App extends Component {
             }
 
             let meatLastKey = 0;
-            if (snapshot.val()['shopMeat']) {
-                let section = snapshot.val()['shopMeat'];
+            if (snapshot.val()[sourcePage + 'Meat']) {
+                let section = snapshot.val()[sourcePage + 'Meat'];
 
                 Object.keys(section).forEach(function(key) {
                     let item = section[key];
@@ -386,8 +386,8 @@ class App extends Component {
             }
 
             let dairyLastKey = 0;
-            if (snapshot.val()['shopDairy']) {
-                let section = snapshot.val()['shopDairy'];
+            if (snapshot.val()[sourcePage + 'Dairy']) {
+                let section = snapshot.val()[sourcePage + 'Dairy'];
 
                 Object.keys(section).forEach(function(key) {
                     let item = section[key];
@@ -399,8 +399,8 @@ class App extends Component {
             }
 
             let otherLastKey = 0;
-            if (snapshot.val()['shopOther']) {
-                let section = snapshot.val()['shopOther'];
+            if (snapshot.val()[sourcePage + 'Other']) {
+                let section = snapshot.val()[sourcePage + 'Other'];
 
                 Object.keys(section).forEach(function(key) {
                     let item = section[key];
