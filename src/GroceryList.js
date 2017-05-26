@@ -58,7 +58,7 @@ export class ListItem extends React.Component {
      */
     fireOnChange = function () {
         if (this.state.isLast) {
-            this.state.onChange(this.props.page, this.props.category, '', 1, true);
+            this.state.onChange(this.props.page, this.props.category, '', 1, true, this.props.keyVal + 1);
             this.props.addHandler();
             this.clearOnChange();
         }
@@ -131,6 +131,7 @@ export class GroceryList extends Component {
         this.handleAddDairy = this.handleAddDairy.bind(this);
         this.handleAddOther = this.handleAddOther.bind(this);
         this.deleteFromShop = this.deleteFromShop.bind(this);
+        this.mountPage = this.mountPage.bind(this);
 
         let rowsFruitandveg = [];
         let rowsMeat = [];
@@ -154,7 +155,13 @@ export class GroceryList extends Component {
     }
 
     componentWillMount() {
+        this.mountPage();
+    }
+
+    mountPage() {
+        console.log(this.state.rowsFruitandveg);
         this.props.readItems('shop', this.buildRows.bind(this));
+        console.log(this.state.rowsFruitandveg);
     }
 
     handleBuildItem = function(category) {
@@ -302,6 +309,7 @@ export class GroceryList extends Component {
         let handle = this;
         let rowsFruitandveg = [];
         this.props.rowsFruitandveg.forEach(function(item) {
+            console.log('pushing ' + item.itemName)
             rowsFruitandveg.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
@@ -368,38 +376,37 @@ export class GroceryList extends Component {
             )
         });
 
-        this.setState((prevState, props) => {
-
-            return({rowsFruitandveg: rowsFruitandveg,
+        this.setState({rowsFruitandveg: rowsFruitandveg,
                 rowsMeat: rowsMeat,
                 rowsDairy: rowsDairy,
-                rowsOther: rowsOther});
+                rowsOther: rowsOther
         });
     }
 
     deleteFromShop = function(){
         let handle = this;
+
         handle.props.rowsFruitandveg.forEach(function(item){
             if (document.getElementById("check-F" + item.key).checked) {
-                handle.props.deleteItems(item.key, "shopFruitVeg");
+                handle.props.deleteItems(item.key, "shopFruitVeg", handle.mountPage);
             }
         })
 
         handle.props.rowsMeat.forEach(function(item){
             if (document.getElementById("check-M" + item.key).checked) {
-                handle.props.deleteItems(item.key, "shopMeat");
+                handle.props.deleteItems(item.key, "shopMeat", handle.mountPage);
             }
         })
 
         handle.props.rowsDairy.forEach(function(item){
             if (document.getElementById("check-D" + item.key).checked) {
-                handle.props.deleteItems(item.key, "shopDairy");
+                handle.props.deleteItems(item.key, "shopDairy", handle.mountPage);
             }
         })
 
         handle.props.rowsOther.forEach(function(item){
             if (document.getElementById("check-O" + item.key).checked) {
-                handle.props.deleteItems(item.key, "shopOther");
+                handle.props.deleteItems(item.key, "shopOther", handle.mountPage);
             }
         })
     }
@@ -473,7 +480,7 @@ export class GroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={this.deleteFromShop}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={() => this.props.deleteItems(this.mountPage)}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
                             </div>
                         </div>
