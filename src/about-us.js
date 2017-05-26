@@ -203,7 +203,7 @@ export class AboutusPage extends Component {
                         <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             <a href="mailto:studyingatbcit@gmail.com">
                                 <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
-                                    Email: info@meal.io.ca </button>
+                                    Email Us for any info </button>
                             </a>
                         </div>
 
