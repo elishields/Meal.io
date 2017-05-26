@@ -56,22 +56,22 @@ export class Fridge extends Component {
         let handle = this;
         handle.props.rowsFruitandveg.forEach(function(item){
             if (document.getElementById("check-F" + item.key).checked) {
-                handle.props.addToMealPlan(item.key, item.itemName, document.getElementById("grocery-item-quantityF" + item.key).value, "fridgeFruitVeg", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName, document.getElementById("grocery-item-quantityF" + item.key).value, "fridgeFruitVeg", "MY MEAL");
             }
         })
         handle.props.rowsDairy.forEach(function(item){
             if (document.getElementById("check-D" + item.key).checked) {
-                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityD" + item.key).value, "fridgeDairy", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityD" + item.key).value, "fridgeDairy", "MY MEAL");
             }
         })
         handle.props.rowsMeat.forEach(function(item){
             if (document.getElementById("check-M" + item.key).checked) {
-                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityM" + item.key).value, "fridgeMeat", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityM" + item.key).value, "fridgeMeat", "MY MEAL");
             }
         })
         handle.props.rowsOther.forEach(function(item){
             if (document.getElementById("check-O" + item.key).checked) {
-                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityO" + item.key).value, "fridgeOther", "myMeal");
+                handle.props.addToMealPlan(item.key, item.itemName,  document.getElementById("grocery-item-quantityO" + item.key).value, "fridgeOther", "MY MEAL");
             }
         })
     }

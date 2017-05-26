@@ -71,9 +71,6 @@ class MealDay extends React.Component {
 }
 
 
-/*
- * MealPlan: displays 7 days worth of meals planned, 3 for each day.
- */
 export class MealPlan extends Component {
     constructor (props) {
         super (props);
