@@ -62,7 +62,7 @@ class MealDay extends React.Component {
                             {this.state.rows}
                         </div>
                         <br/>
-                        <button id="delete-meal" onClick={() => this.props.deleteMeal("myMeal")}>Remove Meal</button>
+                        <button id="delete-meal" onClick={() => this.props.deleteMeal("MY MEAL")}>Remove Meal</button>
                     </div>
                 </Panel>
             </div>
