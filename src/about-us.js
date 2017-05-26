@@ -153,12 +153,6 @@ export class AboutusPage extends Component {
 
                     <div className="row">
 
-                        <div className="col-xs-9 col-xs-offset-3 col-md-6 col-md-offset-4">
-                            <p>
-                                <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
-                            </p>
-                        </div>
-
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                                 Meal.io was created by a small-team of dedicated Computer Systems Technology students
