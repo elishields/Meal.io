@@ -477,7 +477,7 @@ export class GroceryList extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="grocery-button-row" id="grocery-button-row">
-                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={() => this.props.deleteItems(this.mountPage)}>DELETE</button>
+                                <button className="col-xs-6 btn btn-secondary" id="remove-button" onClick={() => this.props.deleteItems(this.buildPage)}>DELETE</button>
                                 <button className="col-xs-6 btn btn-secondary" id="add-to-fridge-button" onClick={this.props.sendToFridge}>ADD TO FRIDGE</button>
                             </div>
                         </div>
