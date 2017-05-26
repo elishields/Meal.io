@@ -7,7 +7,6 @@ import '../src/bootstrap-3.3.7-dist/css/bootstrap-theme.css';
 import GroceryListIcon from '../res/grocery-list-about-us.svg';
 import MyFridgeIcon from '../res/fridge-about-us.svg';
 import MealPlanningIcon from '../res/plate-about-us.svg';
-import TeamPicture from '../res/fruit-veg-icon.png';
 import FaceBookLogo from '../res/facebook-logo.png';
 
 import { Header } from './Navigation.js';
@@ -25,7 +24,8 @@ class ShareMealio extends Component {
 
             <FacebookProvider appId="816345498530418">
 
-                <ShareButton  className="btn btn-info btn-block btn-xs" id="no-border-f-button" href="http://www.mealio.tk"
+                <ShareButton  className="btn btn-info btn-block btn-xs" id="no-border-f-button"
+                              href="http://www.mealio.tk"
                               quote="Meal.io is your new meal manager! Use it to make grocery lists,
                                   track perishable foods in your fridge, and create meal plans!
                                   We hope it helps you waste less food!" >
@@ -140,25 +140,17 @@ export class AboutusPage extends Component {
 
                     </div>
 
-
-
                     <br></br>
 
                     <div className="row">
                         <div className="col-xs-12 col-md-6 col-md-offset-3">
                             <h4 className="page-header" id="second-heading">
-                                <span className="page-title-text">Meet the Team</span>
+                                <span className="page-title-text">About the Team</span>
                             </h4>
                         </div>
                     </div>
 
                     <div className="row">
-
-                        <div className="col-xs-9 col-xs-offset-3 col-md-6 col-md-offset-4">
-                            <p>
-                                <img src={TeamPicture} id="aboutus-team-image" alt="Team Picture"></img>
-                            </p>
-                        </div>
 
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -195,15 +187,13 @@ export class AboutusPage extends Component {
 
                     </div>
 
-
-
                     <br></br>
 
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             <a href="mailto:studyingatbcit@gmail.com">
                                 <button id="buttons" type="button" className="btn btn-info btn-block btn-lg">
-                                    Email: info@meal.io.ca </button>
+                                    Email Us for any info </button>
                             </a>
                         </div>
 

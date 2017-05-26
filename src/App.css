@@ -405,9 +405,6 @@
     text-decoration: none;
 }
     /* Control how big the team image is */
-#aboutus-team-image {
-    width: 70%;
-}
 #second-heading{
     border: none;
 }
@@ -425,6 +422,10 @@
 .btn.btn-info.btn-block{
     background-color: #0065AC;
 }
+.three-icons{
+    width: 90%;
+}
+
 
 /*EASTER EGG */
 #easter-header {
