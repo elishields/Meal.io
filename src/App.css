@@ -39,12 +39,13 @@
 .subheader {
     color: white;
     font-weight: bold;
+    padding: 5px 25px;
     text-decoration: none;
     background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
     background-blend-mode: normal;
 }
 .subheader-text {
-    padding: 20px;
+    padding: 0;
 }
 
 /* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES *//* BOOTSTRAP OVERRIDES */
@@ -339,15 +340,17 @@
     display: inline-block;
     width: 100%;
     font-weight: bold;
-    padding: 1px 15px;
+    padding: 5px 25px;
     background-image: linear-gradient(to right, #21C0C0 15%, white 60%);
     background-blend-mode: normal;
 }
 .meal-category-title {
-
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
 }
 #meal-plan-chevron {
-    padding: 5px 3px 0 0;
+    padding: 0;
     font-size: 1.5em;
     color: #21C0C0;
 }
