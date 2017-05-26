@@ -89,6 +89,7 @@
 .menu-item {
     font-size: 1.5em;
     padding: 5px;
+    z-index: 2147483647;
 }
 .menu-item a {
     color: white;
@@ -545,13 +546,13 @@
 /* FOOD TIPS DROP DOWN */
 
 .css-hx30u2 {
-    background-color: #21C0C0;
-    color: white;
-    font-size: 1.1em;
-    z-index: 2;
+    background-color: #21C0C0 !important;
+    color: white !important;
+    font-size: 1.1em !important;
+    z-index: 2 !important;
 }
 
 .css-qci76b {
-    z-index: 25;
-    margin: 0;
+    z-index: 25 !important;
+    margin: 0 !important;
 }
