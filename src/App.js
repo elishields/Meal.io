@@ -33,7 +33,7 @@ class App extends Component {
         this.readItems = this.readItems.bind(this);
         this.readMeals = this.readMeals.bind(this);
         this.deleteItems = this.deleteItems.bind(this);
-        this.deleteItemsNew = this.deleteItemsNew.bind(this);
+        this.deleteShopItems = this.deleteShopItems.bind(this);
         this.addToMealPlan = this.addToMealPlan.bind(this);
         this.deleteMeal = this.deleteMeal.bind(this);
 
@@ -79,7 +79,7 @@ class App extends Component {
             rowsOther={this.state.rows.shop.Other}
             readItems={this.readItems}
             sendToFridge={this.sendToFridge}
-            deleteItems={this.deleteItemsNew}
+            deleteItems={this.deleteShopItems}
             {...props}
             />
         );
@@ -128,7 +128,6 @@ class App extends Component {
         newRows.shop.FruitVeg.forEach(function(item) {
             if (document.getElementById("check-F" + item.key).checked) {
                 newRows.fridge.FruitVeg.push(item);
-                console.log("sending " + item.itemQuan + " " + item.itemName)
             }
         });
 
@@ -217,8 +216,6 @@ class App extends Component {
         this.setState((prevState, props) => {
             rows: newRows
         });
-
-        console.log("added " + name)
     }
 
     writeItem = function (key, name, quan, section){
@@ -231,7 +228,6 @@ class App extends Component {
     }
 
     deleteMeal = function (mealName) {
-        console.log("Attempting to remove " + mealName + " from meal plans");
         let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/mealPlans/" + mealName);
         ref.once("value").then(function(snapshot){
             ref.remove();
@@ -240,14 +236,13 @@ class App extends Component {
 
     //removes an item from the database
     deleteItems = function (key, section, callback){
-        console.log("Attempting to delete item keyed: " + key + " from section " + section);
         let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/" + section + "/" + key);
         ref.once("value").then(function(snapshot){
             ref.remove();
         }).then(callback);
     }
 
-    deleteItemsNew = function(callback) {
+    deleteShopItems = function(callback) {
         let handle = this;
         let ref = new firebase.database().ref(firebase.auth().currentUser.uid + "/");
         ref.once('value').then(function(snapshot) {
@@ -256,7 +251,24 @@ class App extends Component {
             handle.state.rows.shop.FruitVeg.forEach(function(item) {
                 if (document.getElementById('check-F' + item.keyVal).checked) {
                     db['shopFruitVeg'][item.keyVal] = null;
-                    console.log("set item at " + item.keyVal + " to null");
+                }
+            });
+
+            handle.state.rows.shop.Dairy.forEach(function(item) {
+                if (document.getElementById('check-D' + item.keyVal).checked) {
+                    db['shopDairy'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Meat.forEach(function(item) {
+                if (document.getElementById('check-M' + item.keyVal).checked) {
+                    db['shopMeat'][item.keyVal] = null;
+                }
+            });
+
+            handle.state.rows.shop.Other.forEach(function(item) {
+                if (document.getElementById('check-O' + item.keyVal).checked) {
+                    db['shopOther'][item.keyVal] = null;
                 }
             });
 
@@ -267,7 +279,6 @@ class App extends Component {
     }
 
     readMeals = function (callback){
-        console.log("Load planned meals from database.");
         this.setState((prevState, props) => {
             let handle = this;
             let newMeals = [];
@@ -314,6 +325,7 @@ class App extends Component {
                 
                     fruitVegLastKey = key;
                 });
+
                 fruitVegLastKey++;
             }
 

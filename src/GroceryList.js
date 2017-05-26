@@ -159,9 +159,7 @@ export class GroceryList extends Component {
     }
 
     mountPage() {
-        console.log(this.state.rowsFruitandveg);
         this.props.readItems('shop', this.buildRows.bind(this));
-        console.log(this.state.rowsFruitandveg);
     }
 
     handleBuildItem = function(category) {
@@ -309,7 +307,6 @@ export class GroceryList extends Component {
         let handle = this;
         let rowsFruitandveg = [];
         this.props.rowsFruitandveg.forEach(function(item) {
-            console.log('pushing ' + item.itemName)
             rowsFruitandveg.push(
                 <ListItem key={item.key}
                     keyVal={item.key}

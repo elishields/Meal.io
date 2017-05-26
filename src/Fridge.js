@@ -52,7 +52,6 @@ export class Fridge extends Component {
     }
 
     sendToMeal = function(){
-        console.log("send to meal called in fridgeJS");
         let handle = this;
         handle.props.rowsFruitandveg.forEach(function(item){
             if (document.getElementById("check-F" + item.key).checked) {
@@ -223,7 +222,6 @@ export class Fridge extends Component {
         let handle = this;
         let rowsFruitandveg = [];
         this.props.rowsFruitandveg.forEach(function(item) {
-            console.log("adding " + item.itemName)
             rowsFruitandveg.push(
                 <ListItem key={item.key}
                     keyVal={item.key}
